@@ -1,0 +1,10 @@
+    @media (min-width: 768px) {
+      .row {
+        margin-top: 0%;
+        margin-left: 30%;
+        margin-right: 30%;
+      }
+    }
+    .row {
+    	margin-top: 51px;
+    }
