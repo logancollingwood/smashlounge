@@ -393,7 +393,7 @@ function createBeg($cap) {
   $rand = rand(0, 10) / 10;
   if ($rand < $cap) {
     echo "<div class='well full'>";
-    echo "  <h3>Want to support us? </h3><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
+    echo "  <h3>Want to support us? </h3><h4><small>smashlounge was created in a college dorm room</small></h4><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
     echo "</div>";
   }
 }

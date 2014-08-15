@@ -95,7 +95,7 @@ ga('send', 'pageview');
             <h1 class="hddr">smash lounge</h1>
             <p class="fifty">A compendium for acquiring ultimate smash knowledge. Check out an example tech to get going<br/>
             <?php
-              echo "<a class='btn btn-primary btn-lg bttn' href=techs.php?tech=" .  urlencode($randomTech) . ">"."<span class='glyphicon glyphicon-search'></span>    " . $randomTech . "</a>";
+              echo "<a class='btn btn-primary btn-lg bttn' href=techniques.php?tech=" .  urlencode($randomTech) . ">"."<span class='glyphicon glyphicon-search'></span>    " . $randomTech . "</a>";
               echo "</p>";
             ?>
           </div>
