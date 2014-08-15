@@ -71,12 +71,12 @@ div.panel-body.vimeo {
 }
 .jumbotron .hddr {
 	font-size: 100px;
-  color: #222;
+  color: #88c4c0;
 	margin-top: -10px;
 }
 .jumbotron .hddr2 {
 	font-size: 40px;
-	color: #222;
+	color: #88c4c0;
 	margin-top: -10px;
 }
 .container-fluid .turnup {
@@ -103,13 +103,13 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   text-shadow: none;
 }
 .navbar {
-  background-color: #222;
+  background-color: #88c4c0;
   font-size: 20px;
   -moz-border-radius: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
-  -webkit-box-shadow: 0px 9px 0px #444;
-  -moz-box-shadow: 0px 9px 0px #444;
-  box-shadow: 0px 9px 0px #444;
+  -webkit-box-shadow: 0px 9px 0px #66b6b1;
+  -moz-box-shadow: 0px 9px 0px #66b6b1;
+  box-shadow: 0px 9px 0px #66b6b1;
   border-color: transparent;
 }
 @media (min-width: 768px) {
@@ -124,12 +124,12 @@ div.navbar-collapse.collapse > ul > li > a:hover {
 }
 .jumbotron .fifty2{
   font-family: 'ralewaythin';
-  font-color: #222;
+  font-color: #88c4c0;
 }
 .jumbotron .bttn {
 	font-family: 'ralewaythin';
-	background-color: #222;
-  border-color: #222;
+	background-color: #88c4c0;
+  border-color: #88c4c0;
 	text-shadow: 0 .25px 0 #ccc,
                0 .5px 0 #c9c9c9,
                0 .75px 0 #bbb,
@@ -145,15 +145,15 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
   transition: all 0.1s;
-  -webkit-box-shadow: 0px 9px 0px #444;
-  -moz-box-shadow: 0px 9px 0px #444;
-  box-shadow: 0px 9px 0px #444;
+  -webkit-box-shadow: 0px 9px 0px #66b6b1;
+  -moz-box-shadow: 0px 9px 0px #66b6b1;
+  box-shadow: 0px 9px 0px #66b6b1;
 }
 .jumbotron .bttn:hover {
-  background-color:#444;
-  -webkit-box-shadow: 0px 2px 0px #444;
-  -moz-box-shadow: 0px 2px 0px #444;
-  box-shadow: 0px 2px 0px #444;
+  background-color:#66b6b1;
+  -webkit-box-shadow: 0px 2px 0px #66b6b1;
+  -moz-box-shadow: 0px 2px 0px #66b6b1;
+  box-shadow: 0px 2px 0px #66b6b1;
 }
 h1 {
 	font-family: 'junctionregular';
@@ -188,10 +188,10 @@ div.jumbotron > table {
 }
 
 div.row.placeholders > div > div > div.panel-heading > a {
-  color: #222;
+  color: #88c4c0;
 }
 div.row.placeholders > div > div > div.panel-heading > a:hover {
-  color: #444;
+  color: #66b6b1;
   text-decoration: none;
 }
 .nav-sidebar > li {
@@ -209,23 +209,23 @@ div.panel-footer.rgbaTheme {
 
 /* Setting the style of the random gif title from reddit API */
 div.panel-footer.rgbaTheme > h4 a{
-  color: #222;
+  color: #88c4c0;
   font-size: 20px;
   font-family: 'sofia_pro_lightregular';
 }
 div.panel-footer.rgbaTheme > h4 a:hover {
-  color: #444;
+  color: #66b6b1;
   text-decoration: none;
 }
 /* Setting Style for Toggler element on right hand nav */
 #toggler {
-  color: #222;
+  color: #88c4c0;
   font-size: 24px;
   margin-left: -8px;
 }
 
 li.home a {
-  color: #222;
+  color: #88c4c0;
   font-size: 24px;
   margin-left: -8px;
 }
@@ -233,10 +233,10 @@ li.home a {
 
 /* adds slight 1px borders for expanded character and tech lists */
 #chars > ul > li {
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #66b6b1;
 }
 #techs > ul > li {
-  border-bottom: 1px solid #444; 
+  border-bottom: 1px solid #66b6b1; 
 }
 
 div.row.placeholders > ul > div > ul {
@@ -244,24 +244,24 @@ div.row.placeholders > ul > div > ul {
 }
 
 #techs > ul > li.active {
-  background-color: #222;
+  background-color: #88c4c0;
 }
 #techs > ul > li.active:hover {
-  background-color: #222;
+  background-color: #88c4c0;
 }
 
 #chars > ul > li.active {
-  background-color: #222;
+  background-color: #88c4c0;
 }
 #chars > ul > li.active:hover {
-  background-color: #222;
+  background-color: #88c4c0;
 }
 
 #dataz > ul > li.active {
-  background-color: #222;
+  background-color: #88c4c0;
 }
 #dataz > ul > li.active:hover {
-  background-color: #222;
+  background-color: #88c4c0;
 }
 
 
@@ -288,7 +288,7 @@ div.row.placeholders > ul > div > ul {
 .well.data-table {
   font-family: 'sofia_pro_lightregular';
   font-size: 24px;
-  color: #222;
+  color: #88c4c0;
 }
 table.stats {
   margin-bottom: 0px;
@@ -305,7 +305,7 @@ td.charinfo {
 
 li.techLink a {
   font-size: 18px;
-  color: #222;
+  color: #88c4c0;
 }
 
 textarea {
@@ -365,7 +365,7 @@ div.jumbotron.locate {
   font-family: 'junctionregular';
   font-size: 60px;
   width: 100%;
-  color: #222;
+  color: #88c4c0;
 }
 li.gray {
   background-color: #f5f5f5;
@@ -377,11 +377,11 @@ li.gray {
 
 .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #222;
+  background-color: #88c4c0;
   margin-left: -10px;
 }
 .nav-sidebar > .active > a:hover {
-  background-color: #444;
+  background-color: #66b6b1;
 }
 
 
@@ -417,10 +417,10 @@ li > h4.submit {
 }
 
 .btn-info {
-  background-color: #222;
+  background-color: #88c4c0;
 }
 .btn-info:hover {
-  background-color: #444;
+  background-color: #66b6b1;
 }
 
 .data-header {
@@ -446,10 +446,10 @@ li > h4.submit {
 /* Navbar Styling
 */
 .here{
-  background-color: #444;
+  background-color: #66b6b1;
 }
 .theme {
-  color: #222;
+  color: #88c4c0;
 }
 .theme:link {
   text-transform: lowercase;
@@ -458,7 +458,7 @@ li > h4.submit {
 }
 a:hover {
   text-decoration: none;
-  color: #444;
+  color: #66b6b1;
 }
 
 .row.centered {
@@ -468,4 +468,9 @@ a:hover {
 
 .panel.transparent {
   background-color: transparent;
+}
+.well p {
+  font-family: 'ralewaythin';
+  font-size: 25px;
+
 }

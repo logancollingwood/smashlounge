@@ -190,7 +190,10 @@ ga('send', 'pageview');
                           
                         ?>
                     </div>
-                    <?php } ?>
+                    <?php 
+                      } 
+                      createBeg(.5);
+                    ?>
 
 
                     <!-- BEGIN  ADS -->

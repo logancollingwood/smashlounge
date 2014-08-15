@@ -155,6 +155,10 @@ ga('send', 'pageview');
               ?>
             </div>
               <div class='col-md-4'>
+                <?php
+
+                createBeg(.5);
+                ?>
                 <div class="well pull-right adtainer" id="canttouchthis">
                   <div class="panel-body ad" id="adholder">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

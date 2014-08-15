@@ -386,5 +386,16 @@ function createNavBar($extra = 'false') {
   echo "</div>";
 }
 
+// Creates a well asking for code contributions or donations
+// $cap defines what percentage of pages you want your ad to be shown on.
+// ie $cap = .5 will generate this ad on 50% of page requests.
+function createBeg($cap) {
+  $rand = rand(0, 10) / 10;
+  if ($rand < $cap) {
+    echo "<div class='well full'>";
+    echo "  <h3>Want to support us? </h3><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
+    echo "</div>";
+  }
+}
 
 ?>
