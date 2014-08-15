@@ -120,16 +120,19 @@ ga('send', 'pageview');
                 echo "</div>";
               ?>
 
+              <div class='panel panel-default'>
+                <div class='panel-heading'>Introducing..</div>
+                <div class='panel-body vimeo'>
+                  <iframe src="//player.vimeo.com/video/101609571?byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br/>
+                </div>
+                <div class='panel-footer'>
+                <h3><small>from <a href="http://vimeo.com/bobackv">boback</a></small></h3>
+                </div>
+              </div>
 
             </div>
 
             <div class='col-md-4 col-sm-4'>
-              <div class='panel panel-default'>
-                <div class='panel-heading'>Introducing..</div>
-                <div class='panel-body vimeo'>
-                  <iframe src="//player.vimeo.com/video/101609571?byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/101609571">Smashlounge.com // Character Data</a> from <a href="http://vimeo.com/bobackv">boback</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-                </div>
-              </div>
 
               <div class='panel panel-default'>
                 <div class='panel-heading'> Live SSBM Streams </div>
@@ -153,6 +156,9 @@ ga('send', 'pageview');
                 </div>
               </div>
 
+              <?php 
+              createBeg(.3);
+              ?>
             
           </div>
 
