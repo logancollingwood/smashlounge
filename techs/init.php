@@ -367,8 +367,9 @@ function createNavBar($extra = 'false') {
   echo "    <div class='navbar-collapse collapse'>";
   echo "      <ul class='nav navbar-nav navbar-right'>";
   echo "          <li><a href='https://www.twitter.com/thesmashlounge'><i class='fa fa-twitter'></i></a></li>";
-  echo "          <li><a href='http://www.reddit.com/r/smashlounge'><i class='fa fa-reddit'></i></a></li>";
   echo "          <li><a href='https://www.facebook.com/SmashLounge'><i class='fa fa-facebook'></i></a></li>";
+  echo "          <li><a href='http://www.reddit.com/r/smashlounge'><i class='fa fa-reddit'></i></a></li>";
+  echo "          <li><a href='http://www.github.com/logancollingwood/smashlounge'><i class='fa fa-github-alt'></i></a></li>";
   echo "          <li><a href='/api/docs'>api</a></li>";
   echo "          <li><a href='/donate.php'>donate</a></li>";
   echo "          <li><a href='/about.html'>about</a></li>";
