@@ -42,6 +42,8 @@ $hasMain = false;
 $hasSponsor = false;
 $hasVod = false;
 $hasTwitch = false;
+$hasImage = false;
+$hasFacebook = false;
 $mainID = 0;
 $main = "No Main!";
 $query = "SELECT * from userinfo WHERE userid='" . $userid . "'";
@@ -72,6 +74,15 @@ foreach ($result as $row) {
   if ($row['location'] != '') {
     $hasLocation = true;
     $location = $row['location'];
+  }
+  if ($row['image'] != '') {
+    $hasImage = true;
+    $image = $row['image'];
+    $profileImage = "img/profiles/" . $image;
+  }
+  if ($row['facebook'] != '') {
+    $hasFacebook = true;
+    $facebook = $row['facebook'];
   }
 }
 if ($hasMain) {
@@ -136,6 +147,19 @@ function makeLocationPanel($hasLocation, $location) {
         echo "        <h3><small>location</small>";
         echo "        $location</h3>";
         echo "        <div class='mainPic $main'></div>";
+    echo "</div>";
+  }
+}
+
+function makeTwitchPanel($hasTwitch, $twitch) {
+  if ($hasTwitch) {
+    echo "<div class='well'>";
+        echo "        <h3><small>twitch</small>";
+          if (streamIsLive($twitch)) {
+            echo "<a href='http://www.twitch.tv/$twitch'> Online</a>";
+          } else {
+            echo "<a href='http://www.twitch.tv/$twitch'> Offline";
+          }
     echo "</div>";
   }
 }

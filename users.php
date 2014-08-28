@@ -69,6 +69,22 @@ ga('send', 'pageview');
   </head>
 
   <body>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '675204735898402',
+          xfbml      : true,
+          version    : 'v2.0'
+        });
+      };
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
 
     <?php
       createNavBar();
@@ -105,28 +121,30 @@ ga('send', 'pageview');
             if ($found) {
               
                 echo "<div class='row'>";
+
+                  echo "<div class='col-md-2 vcenter'>";
+                    if ($hasImage) {
+                      echo "<img border='0' src='".$profileImage."' width='60%' alt='$username' height='60%'>";
+                    }
+                  echo "</div>";
+
                   echo "<div class='col-md-2 vcenter'>";
                     if ($hasSponsor) {
                       echo "<div class='sponsor'>$sponsor</div> ";
                     }
                   echo "</div>";
 
-                  echo "<div class='col-md-10 vcenter'>";
+                  echo "<div class='col-md-7 vcenter'>";
                     echo "<div class='username'>$username</div> ";
                   echo "</div>";
-                echo "</div>";  
-                echo "<div class='row'>";
-                  if ($hasTwitch) {
-                      echo "<div class='col-md-2'>";
-                      if (streamIsLive($twitch)) {
-                        echo "<br/><h4><i class='fa fa-twitch fa-2x'></i><a href='http://www.twitch.tv/$username'> Online</a></h4>";
-                        
-                      } else {
-                        echo "<br/><h4><i class='fa fa-twitch fa-2x'></i>  Offline</h4>";
-                      }
-                      echo "</div>";
+
+                  echo "<div class='col-md-1 vcenter'>";
+                    if ($hasFacebook) {
+                      echo "<div class='fb-like' data-href='https://www.facebook.com/" . $facebook ."' data-layout='box_count' data-action='like' data-show-faces='true'></div>";
                     }
-              echo "</div>";
+                  echo "</div>";
+
+                echo "</div>";  
             } else { 
               $allUsers = getAllUsers($mysqli);
                 echo "<div class='row'>";
@@ -155,6 +173,7 @@ ga('send', 'pageview');
               <?php makeMainPanel($hasMain, $main, $mysqli); ?>
               <?php makeSponsorPanel($hasSponsor, $sponsor); ?>
               <?php makeLocationPanel($hasLocation, $location); ?>
+              <?php makeTwitchPanel($hasTwitch, $twitch); ?>
               <?php makeTwitterPanel($hasTwitter, $twitter); ?>
             </div>
 
