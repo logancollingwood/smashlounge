@@ -9,6 +9,9 @@
 	$db    = new PDO('mysql:host=' . $dahostname . ';dbname=' . $database .';charset=utf8', $username, $password);
 
 
+
+$start = $_REQUEST['from'] / 1000;
+$end   = $_REQUEST['to'] / 1000;
 $sql   = sprintf('SELECT * FROM ' . $upcoming);
 
 $out = array();

@@ -98,7 +98,14 @@
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
                 <button class="btn btn-lg btn-primary btn-block SL" type="submit">Sign in</button>
             </form>
+
+            <?php 
+                if ($submit) {
+                    alertStatus($submit);
+                }
+            ?>
         </div>
+
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <div class='jumbotron full'>
@@ -134,11 +141,6 @@
         
 
   </div>
-    <?php 
-        if ($submit) {
-            alertStatus($submit);
-        }
-    ?>
 
     
             

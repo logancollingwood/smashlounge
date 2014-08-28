@@ -61,7 +61,7 @@ ga('send', 'pageview');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_june25.js"></script>
+    <script type="text/javascript" src="/js/gfycat_test_june25.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
@@ -155,6 +155,22 @@ ga('send', 'pageview');
               ?>
             </div>
               <div class='col-md-4'>
+                <div class='well'>
+                  <div id="disqus_thread"></div>
+                  <script type="text/javascript">
+                      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                      var disqus_shortname = 'thesmashlounge'; // required: replace example with your forum shortname
+
+                      /* * * DON'T EDIT BELOW THIS LINE * * */
+                      (function() {
+                          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                      })();
+                  </script>
+                  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </div>
                 <?php
 
                 createBeg(.5);

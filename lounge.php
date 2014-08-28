@@ -90,13 +90,13 @@ ga('send', 'pageview');
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main map">
 
-          <div class="row placeholders">
-            <div class="jumbotron locate">
-            <?php if (!$id) { ?>
-            Locate a group near you! <h4>(the locations are merely for reference and do not represent actual group locations)</h4>
-            <?php } else { ?>
-              Welcome to your group! 
-            <?php } ?>
+          <div class="row">
+            <div class="jumbotron full">
+ 
+                
+                  <?php if (!$id) ?>
+                  <h1 class='hddr'>Locate a group near you! <h1/><p class='fifty'>(the locations are merely for reference and do not represent actual group locations)</p>
+
             </div>
             <?php if (!$id) { ?>
             <div id="map-canvas"/></div>

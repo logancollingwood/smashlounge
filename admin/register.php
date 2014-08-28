@@ -1,6 +1,6 @@
 <?php 
     require("static/config.php");
-    require("../techs/init.php");
+    require("techs/init.php");
     if(!empty($_POST)) 
     { 
         // Ensure that the user fills out fields 
@@ -25,7 +25,7 @@
         } 
         catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
         $row = $stmt->fetch(); 
-        if($row){ header("Location: index.php?str=taken"); } 
+        if($row){ header("Location: register.php?str=taken"); } 
          
         // Add row to database 
         $query = " 
@@ -53,10 +53,27 @@
             $stmt = $db->prepare($query); 
             $result = $stmt->execute($query_params); 
         } 
-        catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
+        catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+        $username=$_POST["username"];
+        if (!file_exists($path) && !is_dir($path)) {
+            mkdir(dirname(__FILE__)."/"."$username");         
+        } 
         header("Location: index?str=success"); 
         die("Redirecting to index"); 
     } 
+    $submit = isset($_GET['str'])       ? trim($_GET['str'])       : "";
+    function alertStatus($submit) {
+        if ($submit == 'success') {
+            echo "<div class='alert alert-success alert-dismissable' role='alert'>Congratulations! Your account has been created.";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
+        } else if ($submit == 'taken') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like that username is taken!";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
+        }
+    }
+
 ?>
 
 <!doctype html>
@@ -84,12 +101,18 @@
 
     <div class="container fluid">
 
-      <form action="register.php" method="post" class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please Register</h2>
-        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-        <input type="password" name="password" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+        <form action="register" method="post" class="form-signin" role="form">
+            <h2 class="form-signin-heading">Please Register</h2>
+            <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+        <?php 
+            if ($submit) {
+                alertStatus($submit);
+            }
+        ?>
 
     </div> <!-- /container -->
 

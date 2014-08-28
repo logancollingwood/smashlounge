@@ -6,7 +6,7 @@
 	$clientId = 'j0p7hrbz0zec4a3vwfgrvau6nmw5e68';
 	$file = "https://api.twitch.tv/kraken/search/streams" . $gameTitle;
 	
-	 $json_array = json_decode(file_get_contents($file), true);
+	$json_array = json_decode(file_get_contents($file), true);
 
 	
 	if ($json_array['streams'] != NULL) {
@@ -24,5 +24,14 @@
 
 	}
 	*/
-	
+	function streamIsLive($username = '') {
+		$file = "https://api.twitch.tv/kraken/streams?channel=$username";
+		$json_array = json_decode(file_get_contents($file), true);
+
+		if (empty($json_array['streams'])) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 ?>

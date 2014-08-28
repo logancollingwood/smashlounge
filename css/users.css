@@ -1,0 +1,18 @@
+.mainPic .Marth{
+	width: 46px;
+    height: 44px;
+    background: url('/img/Characters/Alt-marth.jpg') 0 0;
+}
+
+div.panel-body.youtube {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+div.panel-heading.theme .icon {
+	text-align: left;
+	margin-left: 15%;
+}
+
+
+
+

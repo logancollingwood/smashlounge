@@ -54,6 +54,7 @@ ga('send', 'pageview');
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -93,9 +94,13 @@ ga('send', 'pageview');
           <div class="jumbotron full">
 
             <h1 class="hddr">smash lounge</h1>
-            <p class="fifty">A compendium for acquiring ultimate smash knowledge. Check out an example tech to get going<br/>
+            <p class="fifty">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going<br/>
             <?php
-              echo "<a class='btn btn-primary btn-lg bttn' href=techniques.php?tech=" .  urlencode($randomTech) . ">"."<span class='glyphicon glyphicon-search'></span>    " . $randomTech . "</a>";
+              if ($displayChar) {
+                echo "<a class='btn btn-primary btn-lg bttn' href=characters.php?char=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search'></span>    " . $randomLink . "</a>";
+              } else if ($displayTech) {
+                echo "<a class='btn btn-primary btn-lg bttn' href=techniques.php?tech=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search'></span>    " . $randomLink . "</a>";
+              }
               echo "</p>";
             ?>
           </div>
@@ -104,6 +109,7 @@ ga('send', 'pageview');
             <div class="col-md-8 col-sm-8">
 
             <?php
+            
               $string_reddit = file_get_contents("http://www.reddit.com/r/smashgifs/hot.json");
               $json = json_decode($string_reddit, true);  
               $children = $json['data']['children'];
@@ -116,8 +122,10 @@ ga('send', 'pageview');
                   if (strpos($url, "gfycat") == false) {
                     $url = getNewGif($url, $children);
                   }
+
                   drawGif($title, $url, $permalink);
                 echo "</div>";
+               
               ?>
 
               <div class='panel panel-default'>

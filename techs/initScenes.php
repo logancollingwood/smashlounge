@@ -59,6 +59,7 @@
 	    }
 
 	}
+	$regions = array('Atlantic North', 'Atlantic South', 'MidWest', 'South and Southwest', 'West Coast');
 
 
 

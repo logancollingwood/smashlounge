@@ -178,7 +178,7 @@ ga('send', 'pageview');
                             echo "<ul class='list-group'>";
                             if ($storedTechz) {
                               foreach ($storedTechz as $key => $value) {
-                                echo "<li class='list-group-item techLink'><a href='/techs.php?tech=" . urlencode($value['tech']) . "'>" . $value['tech'] . "</a></li>";
+                                echo "<li class='list-group-item techLink'><a href='/techniques.php?tech=" . urlencode($value['tech']) . "'>" . $value['tech'] . "</a></li>";
                               }
                             }
                             if (!$charnotFound) {
@@ -190,10 +190,7 @@ ga('send', 'pageview');
                           
                         ?>
                     </div>
-                    <?php 
-                      } 
-                      createBeg(.5);
-                    ?>
+                    <?php } ?>
 
 
                     <!-- BEGIN  ADS -->

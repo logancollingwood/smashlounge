@@ -38,16 +38,9 @@ foreach ($result as $row) {
 if ($techCount = 0) $notFound = true;
 asort($dataTech);
 
-//     BUILDS RANDOM HOMEPAGE GIF
-//
-//
-//
-////////////////////////////////////////
 
 
-$randomTech = $dataTech[array_rand($dataTech)];
 
-$randGif = rand(0, 10);
 
 //     BUILDS CHARACTER ARRAY
 //
@@ -65,6 +58,27 @@ foreach ($result as $row) {
   $charCount++;
 }
 if ($charCount = 0) $charnotFound = true;
+
+
+
+//     BUILDS RANDOM LINK
+//
+//
+//
+////////////////////////////////////////
+$displayChar = false;
+$displayTech = false;
+
+$which = rand(0,1);
+if ($which < 0.5) {
+  $displayChar = true;
+  $randomChar = $dataChar[array_rand($dataChar)];
+  $randomLink = $randomChar['name'];
+} else {
+  $displayTech = true;
+  $randomLink = $dataTech[array_rand($dataTech)];
+}
+  
 
 
 
@@ -376,9 +390,9 @@ function createNavBar($extra = 'false') {
   if ($extra == 'logout') {
   echo "          <li><a href='static/logout.php'>logout</a></li>";
   } else if ($extra =='register') {
-  echo "          <li><a href='/admin/register'>register</a></li>";
-  } else if ($extra == 'moderate') {
-  echo "          <li><a href='/admin'>moderate</a></li>";
+  echo "          <li><a href='/register'>register</a></li>";
+  } else if ($extra == 'update') {
+  echo "          <li><a href='/update'>update</a></li>";
   }
   echo "      </ul>";
   echo "    </div>";
@@ -386,16 +400,60 @@ function createNavBar($extra = 'false') {
   echo "</div>";
 }
 
-// Creates a well asking for code contributions or donations
-// $cap defines what percentage of pages you want your ad to be shown on.
-// ie $cap = .5 will generate this ad on 50% of page requests.
 function createBeg($cap) {
+  $quotes = array('smashlounge was created in a college dorm room', 'smashlounge was created by two full time students', 'smashlounge is open source for the community','smashlounge costs about $30/month to run: all contributions are useful','smashlounge exists for the community, and is open to all improvements');
+
   $rand = rand(0, 10) / 10;
   if ($rand < $cap) {
     echo "<div class='well full'>";
-    echo "  <h3>Want to support us? </h3><h4><small>smashlounge was created in a college dorm room</small></h4><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
+    echo "  <h3>Want to support us? </h3><h4><small>" . $quotes[array_rand($quotes)] . "</small></h4><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
     echo "</div>";
   }
+}
+
+
+function getCharFromID($mysqli, $id) {
+  if ($id == '0') {
+    return "NO MAIN";
+  }
+  $query = "SELECT * FROM charinfo WHERE id='". $id . "'";
+
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $main = $row['name'];
+  }
+  return $main;
+}
+
+function getIdFromUsername($mysqli, $username) {
+  $userid = -1;
+  $query = "SELECT * from users WHERE username='" . $username . "'";
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+   $userid = $row['id'];
+  }
+  return $userid;
+}
+
+function getYoutubeIdFromUrl($url) {
+  $parts = parse_url($url);
+  if(isset($parts['query'])){
+    parse_str($parts['query'], $qs);
+    if(isset($qs['v'])){
+      return $qs['v'];
+    }else if($qs['vi']){
+      return $qs['vi'];
+    }
+  }
+  if(isset($parts['path'])){
+    $path = explode('/', trim($parts['path'], '/'));
+    return $path[count($path)-1];
+  }
+  return false;
 }
 
 ?>

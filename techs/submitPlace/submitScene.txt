@@ -1,0 +1,180 @@
+City Name: Campbell 
+URL:  
+Game: 2
+Region: 5 
+
+City Name: Puyallup  
+URL:  
+Game: 5
+Region: 5 
+
+City Name: Puyallup  
+URL:  
+Game: 3
+Region: 5 
+
+City Name: Bellingham 
+URL: https://www.facebook.com/groups/wwusupersmashbros/ 
+Game: 2
+Region: 5 
+
+City Name: Columbia 
+URL: https://www.facebook.com/groups/198185083697947/ 
+Game: 0
+Region: 3 
+
+City Name:  
+URL: xanadu 
+Game: 0
+Region: 1 
+
+City Name: Anchorage 
+URL: https://www.facebook.com/groups/422851627850359/ 
+Game: 0
+Region: 5 
+
+City Name:  
+URL:  
+Game: 2
+Region: 1 
+
+City Name: Charlotte 
+URL: https://www.facebook.com/groups/CLTSSB/ 
+Game: 0
+Region: 2 
+
+City Name: Newburgh, New York 
+URL: https://www.facebook.com/groups/1477446389139446/ 
+Game: 0
+Region: 1 
+
+City Name: Memphis 
+URL: https://www.facebook.com/groups/604473126274663/ 
+Game: 0
+Region: 2 
+
+City Name: Stanford 
+URL: https://www.facebook.com/groups/677389429016513 
+Game: 2
+Region: 5 
+
+City Name: Abilene 
+URL: https://www.facebook.com/groups/883930248302198/ 
+Game: 0
+Region: 4 
+
+City Name: Chattanooga Area 
+URL: https://www.facebook.com/groups/495161043926025/ 
+Game: 0
+Region: 2 
+
+City Name: St. George 
+URL: https://www.facebook.com/groups/1422011794735948/ 
+Game: 0
+Region: 5 
+
+City Name: Davis, CA 
+URL: https://www.facebook.com/groups/160709990614463/ 
+Game: 2
+Region: 5 
+
+City Name: Central Islip 
+URL:  
+Game: 2
+Region: 1 
+
+City Name: Castro Valley 
+URL: https://www.facebook.com/groups/700200659991734/ 
+Game: 4
+Region: 5 
+
+City Name: yonkers 
+URL: https://www.facebook.com/groups/158402034366661/ 
+Game: 2
+Region: 1 
+
+City Name: Toronto 
+URL:  
+Game: 2
+Region: 1 
+
+City Name: Chico, CA 
+URL: https://www.facebook.com/groups/Smashchico/ 
+Game: 0
+Region: 5 
+
+City Name: Austin 
+URL: https://www.facebook.com/groups/AustinPM/ 
+Game: 4
+Region: 4 
+
+City Name:  
+URL:  
+Game: 2
+Region: 4 
+
+City Name: Spokane 
+URL: https://www.facebook.com/profile.php?id=152097298237300 
+Game: 0
+Region: 5 
+
+City Name: Spokane 
+URL: https://www.facebook.com/profile.php?id=152097298237300 
+Game: 0
+Region: 5 
+
+City Name: Spokane 
+URL: https://www.facebook.com/profile.php?id=152097298237300 
+Game: 4
+Region: 5 
+
+City Name: Myrtle Beach 
+URL: https://www.facebook.com/groups/626465890748923/ 
+Game: 0
+Region: 4 
+
+City Name: olney 
+URL:  
+Game: 0
+Region: 1 
+
+City Name:  
+URL:  
+Game: 0
+Region: 1 
+
+City Name: Texas - Dallas-Fort Worth 
+URL: https://www.facebook.com/groups/DFW.Melee/ 
+Game: 2
+Region: 4 
+
+City Name: Texas - Dallas-Fort Worth 
+URL: https://www.facebook.com/groups/267428193446857/ 
+Game: 4
+Region: 4 
+
+City Name: Memphis 
+URL: https://www.facebook.com/groups/604473126274663/ 
+Game: 0
+Region: 2 
+
+City Name: Regina 
+URL:  
+Game: 2
+Region: 1 
+
+City Name: eiaoqma 
+URL: jiaods 
+Game: 0
+Region: 1 
+
+City Name: chicago 
+URL:  
+Game: 3
+Region: 3 
+
+City Name: New York 
+URL: http://tdrsqhxnlmvf.com/ 
+Game: 3
+Region: 3 
+
