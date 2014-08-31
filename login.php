@@ -93,6 +93,7 @@
     <link href="static/css/login.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet" media="screen">
+    <link href="css/users.css" rel="stylesheet">
     <link rel="shortcut icon" href="/img/favicon.png">
     <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_june25.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -110,42 +111,9 @@
     <div class='row'>
 
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>
-            <?php 
-              makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
-            ?>
-          </ul>
 
-          <div class='row loginbox'>
+            <?php makeSidebar($loggedIn); ?>
 
-            <div class='row'>
-              <div class='col-md-12'>
-                <ul class='nav nav-sidebar loginbox'>
-                 <li class="home login active"><a href="/login"><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <?php if ($loggedIn) { ?>
-                <div class='row'>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login"><a href="/update">&nbsp;Update</a></li>
-                    </ul>
-                  </div>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
-                    </ul>
-                  </div>
-                </div>
-            <?php } ?>
-
-          </div>
         </div>
 
 

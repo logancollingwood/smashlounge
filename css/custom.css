@@ -135,6 +135,7 @@ div.navbar-collapse.collapse > ul > li > a:hover {
 }
 .bttn {
 	font-family: 'ralewaythin';
+  color: #FFF;
 	background-color: #701c94;
   border-color: #701c94;
 	text-shadow: 0 .25px 0 #ccc,

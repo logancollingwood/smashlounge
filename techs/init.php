@@ -456,4 +456,67 @@ function getYoutubeIdFromUrl($url) {
   return false;
 }
 
+function makeSidebar($loggedIn, $currentPage = '') {
+  global $dataTech, $dataChar, $char, $tech;
+
+  echo "<div class='expander'>";
+  echo "  <ul class='nav nav-sidebar'>";
+  echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
+  echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
+  echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
+            if ($currentPage == '') {
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+            } else if ($currentPage == 'tech') {
+              makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+            } else if ($currentPage == 'char') {
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+              makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
+            }
+
+  echo "   </ul>";
+  echo "</div>";
+  
+
+  if ($loggedIn) {
+
+  } else {
+    echo "<div class='loginbox'>";
+    echo "    <hr class='login'>";
+    echo "    <a class='btn bttn login' href='/login'>Log in</a>";
+    echo "    <a class='btn bttn login' href='/register'>Register</a>";
+
+    echo "</div>";
+  }
+
+/*
+  <div class='loginbox'>
+    <div class='row'>
+                  <div class='col-md-12'>
+                    <ul class='nav nav-sidebar loginbox'>
+                     <li class='home login active'><a href='/login'><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <?php if ($loggedIn) { ?>
+                    <div class='row'>
+                      <div class='col-md-6'>
+                        <ul class='nav nav-sidebar loginbox'>
+                          <li class='home login'><a href='/update'>&nbsp;Update</a></li>
+                        </ul>
+                      </div>
+                      <div class='col-md-6'>
+                        <ul class='nav nav-sidebar loginbox'>
+                          <li class='home login'><a href='/static/logout'>&nbsp;logout</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                <?php } ?>
+
+            </div>
+            */
+}
+
 ?>

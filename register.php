@@ -97,6 +97,7 @@
     <link href="static/css/login.css" rel="stylesheet">
     <link href="../css/dashboard.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet" media="screen">
+    <link href="css/users.css" rel="stylesheet" media="screen">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
@@ -115,53 +116,14 @@
         
 
             <div class="col-sm-3 col-md-2 sidebar">
-              <ul class="nav nav-sidebar turnup">
-                <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-                <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-                <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>
-                <?php 
-                  makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-                  makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
-                ?>
-              </ul>
 
-              <div class='row loginbox'>
+               <?php makeSidebar($loggedIn); ?>
 
-                <div class='row'>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                     <li class="home login"><a href="/login"><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Login</a></li>
-                    </ul>
-                  </div>
-
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login active"><a href="/register"><span class='glyphicon glyphicon-cog pull-left'></span>&nbsp;Register</a></li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class='row'>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login"><a href="/update">&nbsp;Update</a></li>
-                    </ul>
-                  </div>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
-                    </ul>
-                  </div>
-                </div>
-
-              </div>
             </div>
 
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-                <div class='jumbotron full'>
-                    <p class="fifty">Once you make an account, you will have a public profile at smashlounge.com/{username}</p>
-                </div>
+                
 
                 <form action="register" method="post" class="form-signin" role="form">
                     <h2 class="form-signin-heading">Please Register</h2>
