@@ -4,7 +4,14 @@
   require("techs/init.php");
   require("techs/twitch.php");
   require("techs/initUser.php");
-  require("techs/twitch.php");
+
+    session_start();
+    $loggedIn = false;
+    
+
+    if(!empty($_SESSION['user'])) {
+        $loggedIn = true;
+    }
 ?>
 <!--
 
@@ -109,6 +116,39 @@ ga('send', 'pageview');
               makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
             ?>
           </ul>
+
+          <div class='row loginbox'>
+
+            <div class='row'>
+              <div class='col-md-12'>
+                <ul class='nav nav-sidebar loginbox'>
+                  <?php 
+                    if (!$loggedIn) { 
+                      echo "<li class='home login active'><a href='/login'><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>";
+                    } else { 
+                      echo "<li class='home login active'><a href='/login'><span class='glyphicon glyphicon-send pull-left'></span>" . $_SESSION['user']['username'] . "</a></li>";
+                    } 
+                  ?>
+                </ul>
+              </div>
+            </div>
+
+            <?php if ($loggedIn) { ?>
+                <div class='row'>
+                  <div class='col-md-6'>
+                    <ul class='nav nav-sidebar loginbox'>
+                      <li class="home login"><a href="/update">&nbsp;Update</a></li>
+                    </ul>
+                  </div>
+                  <div class='col-md-6'>
+                    <ul class='nav nav-sidebar loginbox'>
+                      <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+            <?php } ?>
+
+          </div>
         </div>
 
 
@@ -150,12 +190,12 @@ ga('send', 'pageview');
                 echo "<div class='row'>";
                   echo "<div class='col-md-2 vcenter'>";
                     
-                      echo "<div class='sponsor'>Welcome</div> ";
+                      echo "<div class='sponsor'>global</div> ";
                     
                   echo "</div>";
 
                   echo "<div class='col-md-10 vcenter'>";
-                    echo "<div class='username'>profiles!</div> ";
+                    echo "<div class='username'>directory!</div> ";
                   echo "</div>";
                 echo "</div>";  
             }

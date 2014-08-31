@@ -1,7 +1,19 @@
 <?php 
     require("static/config.php");
     require("techs/init.php");
+    $loggedIn = false;
+    
+
+    if(!empty($_SESSION['user'])) {
+        $loggedIn = true;
+    }
+    if($loggedIn) {
+        header("Location: users.php?username=" . $_SESSION['user']['username']);
+        die("Redirecting to index.php"); 
+    }
+
     $submitted_username = ''; 
+
     if(!empty($_POST)){ 
         $query = " 
             SELECT 
@@ -38,7 +50,6 @@
             unset($row['salt']); 
             unset($row['password']); 
             $_SESSION['user'] = $row;
-            //echo "chill";
             header("Location: update.php"); 
             die("Redirecting to: secret"); 
         } else { 
@@ -112,31 +123,27 @@
           <div class='row loginbox'>
 
             <div class='row'>
-              <div class='col-md-6'>
+              <div class='col-md-12'>
                 <ul class='nav nav-sidebar loginbox'>
-                 <li class="home login active"><a href="/login"><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Login</a></li>
-                </ul>
-              </div>
-
-              <div class='col-md-6'>
-                <ul class='nav nav-sidebar loginbox'>
-                  <li class="home login"><a href="/register"><span class='glyphicon glyphicon-cog pull-left'></span>&nbsp;Register</a></li>
+                 <li class="home login active"><a href="/login"><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>
                 </ul>
               </div>
             </div>
 
-            <div class='row'>
-              <div class='col-md-6'>
-                <ul class='nav nav-sidebar loginbox'>
-                  <li class="home login"><a href="/update">&nbsp;Update</a></li>
-                </ul>
-              </div>
-              <div class='col-md-6'>
-                <ul class='nav nav-sidebar loginbox'>
-                  <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
-                </ul>
-              </div>
-            </div>
+            <?php if ($loggedIn) { ?>
+                <div class='row'>
+                  <div class='col-md-6'>
+                    <ul class='nav nav-sidebar loginbox'>
+                      <li class="home login"><a href="/update">&nbsp;Update</a></li>
+                    </ul>
+                  </div>
+                  <div class='col-md-6'>
+                    <ul class='nav nav-sidebar loginbox'>
+                      <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+            <?php } ?>
 
           </div>
         </div>

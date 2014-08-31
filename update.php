@@ -1,10 +1,16 @@
 <?php
   require("static/config.php");
   require("techs/init.php");
-  if(empty($_SESSION['user'])) {
+    $loggedIn = false;
+    
+
+    if(!empty($_SESSION['user'])) {
+        $loggedIn = true;
+    }
+    if(!$loggedIn) {
         header("Location: login?str=login");
         die("Redirecting to index.php"); 
-  }
+    }
     
 
   $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
@@ -160,7 +166,7 @@ ga('send', 'pageview');
   <body>
 
     <?php
-      createNavBar('logout');
+      createNavBar();
     ?>
 
     <div class="container-fluid">
@@ -181,31 +187,27 @@ ga('send', 'pageview');
           <div class='row loginbox'>
 
             <div class='row'>
-              <div class='col-md-6'>
+              <div class='col-md-12'>
                 <ul class='nav nav-sidebar loginbox'>
-                 <li class="home login"><a href="/login"><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Login</a></li>
-                </ul>
-              </div>
-
-              <div class='col-md-6'>
-                <ul class='nav nav-sidebar loginbox'>
-                  <li class="home login"><a href="/register"><span class='glyphicon glyphicon-cog pull-left'></span>&nbsp;Register</a></li>
+                 <li class="home login"><a href="/login"><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>
                 </ul>
               </div>
             </div>
 
-            <div class='row'>
-              <div class='col-md-6'>
-                <ul class='nav nav-sidebar loginbox'>
-                  <li class="home login active"><a href="/update">&nbsp;Update</a></li>
-                </ul>
-              </div>
-              <div class='col-md-6'>
-                <ul class='nav nav-sidebar loginbox'>
-                  <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
-                </ul>
-              </div>
-            </div>
+            <?php if ($loggedIn) { ?>
+                <div class='row'>
+                  <div class='col-md-6'>
+                    <ul class='nav nav-sidebar loginbox'>
+                      <li class="home active login"><a href="/update">&nbsp;Update</a></li>
+                    </ul>
+                  </div>
+                  <div class='col-md-6'>
+                    <ul class='nav nav-sidebar loginbox'>
+                      <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+            <?php } ?>
 
           </div>
         </div>
@@ -227,12 +229,15 @@ ga('send', 'pageview');
             <div class="col-md-12 col-sm-12">
 
 
-              
+              <div class='panel panel-default'>
+                <div class='panel-heading'>
+                  <legend><h3>Modify your profile!</h3></legend>
+                </div>
+                <div class='panel-body'>
                 <form action="update" method="post" class="form-horizontal">
                   <fieldset>
 
-                  <!-- Form Name -->
-                  <legend><h3>Modify your profile!</h3></legend>
+
 
                   <!-- Select Basic -->
                   <div class="form-group">
@@ -306,13 +311,15 @@ ga('send', 'pageview');
 
                   <button class="btn btn-lg btn-primary btn-block bttn" type="submit">Update your profile!</button>
 
+                  <br/>
                   </fieldset>
                   </form>
+                  </div>
 
               
 
            
-
+                  </div>
             </div>
 
             <div class='col-md-4 col-sm-4'>
