@@ -482,7 +482,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
   if ($loggedIn) {
     echo "<div class='loginbox'>";
     echo "    <hr class='login'>";
-    echo "    <a class='btn bttn login' href='/" . $_SESSION['user']['username'] . "'>/" . $_SESSION['user']['username'] . "</a>";
+    echo "    <a class='btn bttn login' href='/" . $_SESSION['user']['username'] . "'>profile</a>";
     echo "    <a class='btn bttn login' href='static/logout'>logout</a>";
     echo "</div>";
 

@@ -56,8 +56,6 @@
       $twitter = $_POST['twitter'];
       $twitchId = $_POST['twitch'];
 
-      echo $main . $location . $vod . $twitter . $twitchId;
-
 
       $params = array();
       $params['main'] = $main;
