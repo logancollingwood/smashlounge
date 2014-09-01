@@ -227,5 +227,11 @@ ga('send', 'pageview');
     <script src="js/toggler.js"></script>
     <script src="js/docs.min.js"></script>
     <script src="js/adblockzorz.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#canttouchthis").sticky({topSpacing:70});
+      });
+    </script>
   </body>
 </html>

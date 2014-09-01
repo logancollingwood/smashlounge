@@ -58,6 +58,7 @@
             $result = $stmt->execute($query_params); 
         } 
         catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+        $_SESSION['user']['username'] = $_POST['username'];
         header("Location: update?str=success"); 
         die("Redirecting to update"); 
     } 

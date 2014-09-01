@@ -162,6 +162,7 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   -webkit-box-shadow: 0px 2px 0px #501469;
   -moz-box-shadow: 0px 2px 0px #501469;
   box-shadow: 0px 2px 0px #501469;
+  color:#fff;
 }
 h1 {
 	font-family: 'junctionregular';
@@ -534,4 +535,10 @@ h3 > a {
 
 li.home.login a {
   font-size: 14px;
+}
+.adtainer {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
 }

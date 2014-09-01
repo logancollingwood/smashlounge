@@ -8,7 +8,7 @@
         $loggedIn = true;
     }
     if($loggedIn) {
-        header("Location: users.php?username=" . $_SESSION['user']['username']);
+        header("Location: /" . $_SESSION['user']['username']);
         die("Redirecting to index.php"); 
     }
 

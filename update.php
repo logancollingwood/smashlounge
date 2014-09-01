@@ -38,67 +38,99 @@
 
   if(!empty($_POST)){ 
 
+      $username = $_SESSION['user']['username'];
+
+      $userID = getIdFromUsername($mysqli, $username);
+      
+      $vod = '';
       $main = $_POST['main'];
       $location = $_POST['location'];
       $vodURL = $_POST['vod'];
-      $vod = getYoutubeIdFromUrl($vodURL);
-      
+      $facebook = $_POST['facebook'];
+      echo $vodURL;
+      preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
+      if (empty($matches) && $_POST['vod'] != '') {
+        header("Location: /update?str=url");
+        die("Redirecting to update.php"); 
+      }
       $twitter = $_POST['twitter'];
       $twitchId = $_POST['twitch'];
 
       echo $main . $location . $vod . $twitter . $twitchId;
 
 
-      $username = $_SESSION['user']['username'];
+      $params = array();
+      $params['main'] = $main;
+      $params['location'] = $location;
+      $params['vod'] = $matches[1];
+      $params['twitter'] = $twitter;
+      $params['twitch'] = $twitchId;
 
-      $userID = getIdFromUsername($mysqli, $username);
-      
-      echo "\n" . $userID . "\n";
-      /*
-        $query = " 
-            SELECT 
-                id, 
-                username, 
-                password, 
-                salt
-            FROM users 
-            WHERE 
-                username = :username 
-        "; 
+
+      $query = "SELECT * FROM userinfo WHERE userid=:userID";
+      $query_params = array( 
+        ':userID' => $userID
+      );    
+      try{ 
+        $stmt = $db->prepare($query); 
+        $result = $stmt->execute($query_params); 
+      } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
+      $row = $stmt->fetch(); 
+      if($row){ 
+        $hasInfo = true;
+      } 
+
+
+      if ($hasInfo) {
+        if (!empty($params)) {
+          $setString = "SET main ='" . $main . "'";
+        }
+
+        foreach ($params as $key => $item) {
+          if ($key != 'main' || $item != '') {
+            $setString .= "," . $key . "='" . $item . "'";
+          }
+        }
+
+
+        $query = "UPDATE userinfo " . $setString . "WHERE userid= :userID";
         $query_params = array( 
-            ':username' => $_POST['username'] 
-        ); 
-         
+          ':userID' => $userID
+        );    
+        
         try{ 
-            $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params); 
-        } 
-        catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
-        $login_ok = false; 
-        $row = $stmt->fetch(); 
-        if($row){ 
-            $check_password = hash('sha256', $_POST['password'] . $row['salt']); 
-            for($round = 0; $round < 65536; $round++){
-                $check_password = hash('sha256', $check_password . $row['salt']);
-            } 
-            if($check_password === $row['password']){
-                $login_ok = true;
-            } 
-        } 
+          $stmt = $db->prepare($query); 
+          $result = $stmt->execute($query_params); 
+        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
+      } else {
 
-        if ($login_ok) { 
-            unset($row['salt']); 
-            unset($row['password']); 
-            $_SESSION['user'] = $row;
-            //echo "chill";
-            header("Location: update.php"); 
-            die("Redirecting to: secret"); 
-        } else { 
-            header("Location: login.php?str=failed"); 
-            print("Login Failed."); 
-            $submitted_username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8'); 
-        } 
-      */
+        /*
+        $insertString = "(main";
+        foreach ($params as $key => $item) {
+          if ($key != 'main' || $item != '') {
+            $insertString .= "," . $key . "='" . $item . "'";
+          }
+        }
+        */
+
+        $query = "INSERT INTO userinfo (main, userid, facebook, location, twitch, vod, twitter) VALUES (:main, :userID, :facebook, :location, :twitch, :vod, :twitter);";
+        $query_params = array(
+          ':main' => $main,
+          ':userID' => $userID,
+          ':facebook' => $facebook,
+          ':location' => $location,
+          ':twitch' => $twitchId,
+          ':vod' => $vod,
+          ':twitter' => $twitter
+        );    
+        
+        try{ 
+          $stmt = $db->prepare($query); 
+          $result = $stmt->execute($query_params); 
+        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
+      }
+
+
     }
 
 
@@ -153,6 +185,7 @@ ga('send', 'pageview');
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
+    <link href='css/users.css' rel='stylesheet'>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -172,44 +205,8 @@ ga('send', 'pageview');
     <div class="container-fluid">
       <div class="row">
 
-       <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>
-            <?php 
-              makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
-            ?>
-          </ul>
-          <br/>
-          <br/>
-          <div class='row loginbox'>
-
-            <div class='row'>
-              <div class='col-md-12'>
-                <ul class='nav nav-sidebar loginbox'>
-                 <li class="home login"><a href="/login"><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <?php if ($loggedIn) { ?>
-                <div class='row'>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home active login"><a href="/update">&nbsp;Update</a></li>
-                    </ul>
-                  </div>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
-                    </ul>
-                  </div>
-                </div>
-            <?php } ?>
-
-          </div>
+        <div class="col-sm-3 col-md-2 sidebar">
+          <?php makeSidebar($loggedIn); ?>
         </div>
 
 
@@ -219,8 +216,17 @@ ga('send', 'pageview');
 
 
           <div class="jumbotron full">
+                <?php 
+                    if ($alert) {
+                        alertStatus($alert);
+                    }
+                ?>
+            <h1 class="hddr">Hey 
+              <?php echo "<a href='/".$_SESSION['user']['username']."'>"; ?>
+              <?php echo $_SESSION['user']['username']; ?>
+              <?php echo "</a>"; ?>
 
-            <h1 class="hddr">Hey <?php echo $_SESSION['user']['username']; ?></h1>
+            </h1>
             <p class="fifty">update your profile information<br/>
             
           </div>
@@ -293,6 +299,15 @@ ga('send', 'pageview');
 
                   <!-- Text input-->
                   <div class="form-group">
+                    <label class="col-md-4 control-label" for="facebook">facebook!</label>  
+                    <div class="col-md-4">
+                    <input id="facebook" name="facebook" type="text" placeholder="miom_pewpewu" class="form-control input-md">
+                    <span class="help-block">Please enter just your facebook username</span>  
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
                     <label class="col-md-4 control-label" for="twitter">Twitter!</label>  
                     <div class="col-md-4">
                     <input id="twitter" name="twitter" type="text" placeholder="miom_pewpewu" class="form-control input-md">
@@ -322,15 +337,6 @@ ga('send', 'pageview');
                   </div>
             </div>
 
-            <div class='col-md-4 col-sm-4'>
-
-              <?php 
-                  if ($alert) {
-                      alertStatus($alert);
-                  }
-              ?>
-            
-            </div>
 
 
         </div>

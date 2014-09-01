@@ -453,11 +453,11 @@ function getYoutubeIdFromUrl($url) {
     $path = explode('/', trim($parts['path'], '/'));
     return $path[count($path)-1];
   }
-  return false;
+  return '';
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  global $dataTech, $dataChar, $char, $tech;
+  global $dataTech, $dataChar, $char, $tech, $_SESSION;
 
   echo "<div class='expander'>";
   echo "  <ul class='nav nav-sidebar'>";
@@ -480,6 +480,11 @@ function makeSidebar($loggedIn, $currentPage = '') {
   
 
   if ($loggedIn) {
+    echo "<div class='loginbox'>";
+    echo "    <hr class='login'>";
+    echo "    <a class='btn bttn login' href='/" . $_SESSION['user']['username'] . "'>/" . $_SESSION['user']['username'] . "</a>";
+    echo "    <a class='btn bttn login' href='static/logout'>logout</a>";
+    echo "</div>";
 
   } else {
     echo "<div class='loginbox'>";

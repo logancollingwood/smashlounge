@@ -100,55 +100,10 @@ ga('send', 'pageview');
     <div class="container-fluid">
       <div class="row">
 
+
         <!-- compartamentalize sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <!--
-            <li class="home active"><a href='/users'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>
-            -->
-            <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <!--
-            <li class="home"><a href="/upcoming"><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>
-            -->
-            <?php 
-              makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
-            ?>
-          </ul>
-
-          <div class='row loginbox'>
-
-            <div class='row'>
-              <div class='col-md-12'>
-                <ul class='nav nav-sidebar loginbox'>
-                  <?php 
-                    if (!$loggedIn) { 
-                      echo "<li class='home login active'><a href='/login'><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>";
-                    } else { 
-                      echo "<li class='home login active'><a href='/login'><span class='glyphicon glyphicon-send pull-left'></span>" . $_SESSION['user']['username'] . "</a></li>";
-                    } 
-                  ?>
-                </ul>
-              </div>
-            </div>
-
-            <?php if ($loggedIn) { ?>
-                <div class='row'>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login"><a href="/update">&nbsp;Update</a></li>
-                    </ul>
-                  </div>
-                  <div class='col-md-6'>
-                    <ul class='nav nav-sidebar loginbox'>
-                      <li class="home login"><a href="/static/logout">&nbsp;logout</a></li>
-                    </ul>
-                  </div>
-                </div>
-            <?php } ?>
-
-          </div>
+           <?php makeSidebar($loggedIn); ?>
         </div>
 
 
@@ -195,7 +150,7 @@ ga('send', 'pageview');
                   echo "</div>";
 
                   echo "<div class='col-md-10 vcenter'>";
-                    echo "<div class='username'>directory!</div> ";
+                    echo "<div class='username'>directory</div> ";
                   echo "</div>";
                 echo "</div>";  
             }
@@ -257,7 +212,7 @@ ga('send', 'pageview');
 
             </div>
 
-            <!-- This is the handler for displaying all profiles -->
+            <!-- This is the handler for displaying all profiles in the event that the profile is NOT found-->
             <?php } else {
 
               makeAllUsers($allUsers);
@@ -284,5 +239,11 @@ ga('send', 'pageview');
         });
     </script>
     <script src="/js/adblockzorz.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#canttouchthis").sticky({topSpacing:70});
+      });
+    </script>
   </body>
 </html>
