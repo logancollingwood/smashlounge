@@ -1,7 +1,6 @@
 <?php
 
 require("db.php");
-require("/vendor/autoload.php");
 
 $techCount = 0;
 $charCount = 0;

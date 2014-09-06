@@ -1,64 +1,41 @@
 <?php 
     require("static/config.php");
     require("techs/init.php");
-    if(!empty($_POST)) 
-    { 
+    require("techs/sentry.php");
+
+    if(!empty($_POST)) { 
         $username = $_POST['username'];
         // Ensure that the user fills out fields 
-        if(empty($_POST['username'])) 
-        { die("Please enter a username."); } 
-        if(empty($_POST['password'])) 
-        { die("Please enter a password."); } 
-
+        if(empty($_POST['username'])) { 
+            die("Please enter a username."); 
+        } 
+        if(empty($_POST['password'])) { 
+            die("Please enter a password."); 
+        } 
         if (preg_match("/\\s/", $username)) {
             header("Location: register.php?str=spaces");
         }
          
-        // Check if the username is already taken
-        $query = " 
-            SELECT 
-                1 
-            FROM users 
-            WHERE 
-                username = :username 
-        "; 
-        $query_params = array( ':username' => $_POST['username'] ); 
-        try { 
-            $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params); 
-        } 
-        catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
-        $row = $stmt->fetch(); 
-        if($row){ header("Location: register.php?str=taken"); } 
-         
-        // Add row to database 
-        $query = " 
-            INSERT INTO users ( 
-                username, 
-                password, 
-                salt 
-            ) VALUES ( 
-                :username, 
-                :password, 
-                :salt
-            ) 
-        "; 
-         
-        // Security measures
-        $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647)); 
-        $password = hash('sha256', $_POST['password'] . $salt); 
-        for($round = 0; $round < 65536; $round++){ $password = hash('sha256', $password . $salt); } 
-        $query_params = array( 
-            ':username' => $_POST['username'], 
-            ':password' => $password, 
-            ':salt' => $salt 
-        ); 
-        try {  
-            $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params); 
-        } 
-        catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
-        $_SESSION['user']['username'] = $_POST['username'];
+        try{
+            // Create the user
+            $user = Sentry::createUser(array(
+                'email'     => $_POST['username'],
+                'password'  => $_POST['password'],
+                'activated' => true,
+            ));
+        }
+        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+        {
+            header("Location: register?str=spaces"); 
+        }
+        catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+        {
+            header("Location: register?str=spaces");
+        }
+        catch (Cartalyst\Sentry\Users\UserExistsException $e)
+        {
+            header("Location: register?str=spaces");
+        }
         header("Location: update?str=success"); 
         die("Redirecting to update"); 
     } 
@@ -107,14 +84,7 @@
     <div class='container-fluid'>
 
         <div class='row'>
-    <?php
-        createNavBar('update');
-    ?>
-
-
-
-
-        
+            <?php createNavBar('update'); ?>
 
             <div class="col-sm-3 col-md-2 sidebar">
 
