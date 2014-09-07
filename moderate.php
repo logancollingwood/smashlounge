@@ -32,7 +32,7 @@
     <link href="/css/custom.css" rel="stylesheet">
     <link href="/css/users.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    
+
    <script type="text/javascript" src="/js/gfycat_test_june25.js"></script>
     <script type="text/javascript" src="static/js/submit.js"></script>
     <link rel="shortcut icon" href="/img/favicon.png">
@@ -48,7 +48,7 @@
 
         <!-- compartamentalize sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
-           <?php makeSidebar($loggedIn, 'users'); ?>
+           <?php makeSidebar($loggedIn, 'moderate'); ?>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

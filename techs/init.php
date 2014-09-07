@@ -471,7 +471,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'lounge', 'upcoming', 'users', 'login');
+  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
 
