@@ -70,7 +70,7 @@ ga('send', 'pageview');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_june25.js"></script>
+
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
     <script type="text/javascript" src="/js/gfycat_test_june25.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
