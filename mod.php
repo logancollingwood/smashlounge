@@ -1,6 +1,5 @@
 <?php
-    require("static/config.php");
-    require("../techs/init.php");
+    require("techs/init.php");
     require_once("techs/sentry.php");
     $loggedIn = false;
     if (Sentry::check())
@@ -8,7 +7,13 @@
         $loggedIn = true;
         $user = Sentry::getUser();
     }
-    
+    if (!$loggedIn) {
+      header("Location: login?str=login");
+    }
+
+
+    /* DO A CHECK HERE TO MAKE SURE USER IS A MODERATOR */
+
 ?>
 <!doctype html>
 <html lang="en">
