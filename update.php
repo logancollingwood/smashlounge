@@ -11,7 +11,9 @@
         header("Location: login?str=login");
         die("Redirecting to index.php"); 
     }
-
+    $user = Sentry::getUser();
+    $userID = $user['id'];
+    $username = $user['username'];
     
 
   $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
@@ -33,14 +35,25 @@
         }
   }
 
-
+  $query = "SELECT * FROM userinfo WHERE userid=:userID";
+  $query_params = array( 
+    ':userID' => $userID
+  );    
+  try{ 
+    $stmt = $db->prepare($query); 
+    $result = $stmt->execute($query_params); 
+  } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
+  $row = $stmt->fetch(); 
+  if($row){ 
+    $userFields = $row;
+    $hasInfo = true;
+  }
 
 
 
   if(!empty($_POST)){ 
 
-      $user = Sentry::getUser();
-      $userID = $user['id'];
+     
       
       $vod = '';
       $main = $_POST['main'];
@@ -65,18 +78,7 @@
       $params['twitch'] = $twitchId;
 
 
-      $query = "SELECT * FROM userinfo WHERE userid=:userID";
-      $query_params = array( 
-        ':userID' => $userID
-      );    
-      try{ 
-        $stmt = $db->prepare($query); 
-        $result = $stmt->execute($query_params); 
-      } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
-      $row = $stmt->fetch(); 
-      if($row){ 
-        $hasInfo = true;
-      } 
+
 
 
       if ($hasInfo) {
@@ -220,8 +222,8 @@ ga('send', 'pageview');
                     }
                 ?>
             <h1 class="hddr">Hey 
-              <?php echo "<a href='/".$_SESSION['user']['username']."'>"; ?>
-              <?php echo $_SESSION['user']['username']; ?>
+              <?php echo "<a href='/".$username."'>"; ?>
+              <?php echo $username; ?>
               <?php echo "</a>"; ?>
 
             </h1>
@@ -248,6 +250,9 @@ ga('send', 'pageview');
                     <label class="col-md-4 control-label" for="main">Main</label>
                     <div class="col-md-4">
                       <select id="main" name="main" class="form-control">
+                        <?php 
+                            $selected = $userFields['main'];
+                        ?>
                         <option value="1">Bowser</option>
                         <option value="2">Captain Falcon</option>
                         <option value="3">Donkey Kong</option>

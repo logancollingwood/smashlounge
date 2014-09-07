@@ -100,7 +100,7 @@
                 <form action="register" method="post" class="form-signin" role="form">
                     <h2 class="form-signin-heading">Please Register</h2>
                     <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-                    <input type="email" name="email" class="form-control" placeholder="logan@smashlounge.com" required>
+                    <input type="email" name="email" class="form-control" placeholder="email" required>
                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                     <button class="btn btn-lg btn-primary btn-block SL bttn" type="submit">Register</button>
                 </form>

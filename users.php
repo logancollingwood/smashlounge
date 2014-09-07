@@ -110,7 +110,13 @@ ga('send', 'pageview');
 
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+          <?php if ($loggedIn && $user['username'] == $username) {
+                  echo "<div class='alert alert-info alert-dismissible SL' role='alert'>
+                          <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+                          <a href='/update'>Modify your profile information! </a>
+                        </div>";
+                }
+          ?>
           <div class="jumbotron full">
             <?php 
 

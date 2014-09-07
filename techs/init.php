@@ -411,7 +411,22 @@ function createBeg($cap) {
 }
 
 
-function getCharFromID($mysqli, $id) {
+function getCharFromID($mysqli, $char) {
+  if ($char == '') {
+    return "NO MAIN";
+  }
+  $query = "SELECT * FROM charinfo WHERE name='". $char . "'";
+
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $main = $row['name'];
+  }
+  return $main;
+}
+
+function getIDFromChar($mysqli, $id) {
   if ($id == '0') {
     return "NO MAIN";
   }
@@ -421,7 +436,7 @@ function getCharFromID($mysqli, $id) {
     die('Invalid query: ' . $mysqli->error);
   }
   foreach ($result as $row) {
-    $main = $row['name'];
+    $main = $row['id'];
   }
   return $main;
 }
@@ -456,6 +471,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
+  $pages = array('home', 'lounge', 'upcoming', 'users', 'login');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
 
@@ -481,7 +497,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
   } else {
     echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
   }
-            if ($currentPage == 'home' || $currentPage == 'lounge' || $currentPage == 'upcoming' || $currentPage == 'users') {
+            if (in_array($currentPage, $pages)) {
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
             } else if ($currentPage == 'tech') {
@@ -500,7 +516,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
     echo "<div class='loginbox'>";
     echo "    <hr class='login'>";
     echo "    <a class='btn bttn login' href='/" . $user['username'] . "'>profile</a>";
-    echo "    <a class='btn bttn login' href='static/logout'>logout</a>";
+    echo "    <a class='btn bttn login' href='/logout'>logout</a>";
     echo "</div>";
 
   } else {
