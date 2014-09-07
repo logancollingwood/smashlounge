@@ -4,14 +4,15 @@
   require("techs/init.php");
   require("techs/twitch.php");
   require("techs/initUser.php");
-
-    session_start();
+  require_once("techs/sentry.php");
+  $username = $_GET['username'];
     $loggedIn = false;
-    
-
-    if(!empty($_SESSION['user'])) {
+    if (Sentry::check())
+    {
         $loggedIn = true;
+        $user = Sentry::getUser();
     }
+
 ?>
 <!--
 
@@ -103,7 +104,7 @@ ga('send', 'pageview');
 
         <!-- compartamentalize sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
-           <?php makeSidebar($loggedIn); ?>
+           <?php makeSidebar($loggedIn, 'users'); ?>
         </div>
 
 

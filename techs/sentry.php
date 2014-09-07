@@ -2,11 +2,11 @@
 require("dbSuper.php");
 
 // Include the composer autoload file
-include_once "../vendor/autoload.php";
+include_once "vendor/autoload.php";
 
 
 // Import the necessary classes
-//use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 // Create the Sentry alias
 class_alias('Cartalyst\Sentry\Facades\Native\Sentry', 'Sentry');

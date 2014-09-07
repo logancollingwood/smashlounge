@@ -1,6 +1,13 @@
 <?php
   require("techs/init.php");
   require("techs/initUpcoming.php");
+  require_once("techs/sentry.php");
+    $loggedIn = false;
+    if (Sentry::check())
+    {
+        $loggedIn = true;
+        $user = Sentry::getUser();
+    }
 ?>
 <!--
 
@@ -51,6 +58,7 @@ Questions?
     <link href="css/dashboard_tech.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
     <link href="css/calendar.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
 
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -73,15 +81,7 @@ Questions?
 
     <div class='container-fluid'>
       <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar turnup">
-          <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-          <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-          <li class="home active"><a href="/upcoming"><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>
-          <?php 
-            makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-            makeCollapseNav("char", $dataChar, 'out', $char, $tech);
-          ?>
-        </ul>
+        <?php makeSidebar($loggedIn, 'upcoming') ?>
       </div>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

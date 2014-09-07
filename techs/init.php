@@ -456,14 +456,32 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  global $dataTech, $dataChar, $char, $tech, $_SESSION;
+  global $dataTech, $dataChar, $char, $tech;
+  $user = Sentry::getUser();
 
   echo "<div class='expander'>";
   echo "  <ul class='nav nav-sidebar'>";
-  echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
-  echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
-  echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
-            if ($currentPage == '') {
+  if ($currentPage == 'home') {
+    echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
+  } else {
+    echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
+  }
+  if ($currentPage == 'lounge') {
+    echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
+  } else {
+    echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
+  }
+  if ($currentPage == 'upcoming') {
+    echo "    <li class='home active'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
+  } else {
+    echo "    <li class='home'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
+  }
+  if ($currentPage == 'users') {
+    echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
+  } else {
+    echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
+  }
+            if ($currentPage == 'home' || $currentPage == 'lounge' || $currentPage == 'upcoming' || $currentPage == 'users') {
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
             } else if ($currentPage == 'tech') {
@@ -481,7 +499,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
   if ($loggedIn) {
     echo "<div class='loginbox'>";
     echo "    <hr class='login'>";
-    echo "    <a class='btn bttn login' href='/" . $_SESSION['user']['username'] . "'>profile</a>";
+    echo "    <a class='btn bttn login' href='/" . $user['username'] . "'>profile</a>";
     echo "    <a class='btn bttn login' href='static/logout'>logout</a>";
     echo "</div>";
 

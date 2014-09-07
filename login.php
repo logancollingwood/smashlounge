@@ -1,62 +1,54 @@
 <?php 
     require("static/config.php");
     require("techs/init.php");
-    $loggedIn = false;
+    require_once("techs/sentry.php");
     
-
-    if(!empty($_SESSION['user'])) {
-        $loggedIn = true;
-    }
-    if($loggedIn) {
-        header("Location: /" . $_SESSION['user']['username']);
+    $loggedIn = false;
+    if (Sentry::check())
+    {
+        $user = Sentry::getUser();
+        // User is logged in
+        header("Location: /" . $user['username'] );
         die("Redirecting to index.php"); 
     }
 
-    $submitted_username = ''; 
-
     if(!empty($_POST)){ 
-        $query = " 
-            SELECT 
-                id, 
-                username, 
-                password, 
-                salt
-            FROM users 
-            WHERE 
-                username = :username 
-        "; 
-        $query_params = array( 
-            ':username' => $_POST['username'] 
-        ); 
-         
-        try{ 
-            $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params); 
-        } 
-        catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
-        $login_ok = false; 
-        $row = $stmt->fetch(); 
-        if($row){ 
-            $check_password = hash('sha256', $_POST['password'] . $row['salt']); 
-            for($round = 0; $round < 65536; $round++){
-                $check_password = hash('sha256', $check_password . $row['salt']);
-            } 
-            if($check_password === $row['password']){
-                $login_ok = true;
-            } 
-        } 
 
-        if ($login_ok) { 
-            unset($row['salt']); 
-            unset($row['password']); 
-            $_SESSION['user'] = $row;
-            header("Location: update.php"); 
-            die("Redirecting to: secret"); 
-        } else { 
+
+        try
+        {
+            $user = Sentry::findUserByCredentials(array(
+                'email'      => $_POST['email'],
+                'password'   => $_POST['password']
+            ));
+        }
+        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
             header("Location: login.php?str=failed"); 
-            print("Login Failed."); 
-            $submitted_username = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8'); 
-        } 
+        }
+
+
+        try {
+            // Log the user in
+            Sentry::login($user, true);
+        }
+        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+        {
+            header("Location: login.php?str=failed");
+        }
+        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
+            header("Location: login.php?str=failed");
+        }
+        catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+        {
+            header("Location: login.php?str=failed");
+        }
+
+
+
+        header("Location: update.php"); 
+        die("Redirecting to: secret"); 
     }
     $submit = isset($_GET['str'])       ? trim($_GET['str'])       : "";
 
@@ -121,7 +113,7 @@
 
                     <form action="login" method="post" class="form-signin" role="form">
                         <h2 class="form-signin-heading">Please sign in</h2>
-                        <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+                        <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
                         <input type="password" name="password" class="form-control" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block SL bttn" type="submit">Sign in</button>
                     </form>

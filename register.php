@@ -19,7 +19,8 @@
         try{
             // Create the user
             $user = Sentry::createUser(array(
-                'email'     => $_POST['username'],
+                'username'     => $_POST['username'],
+                'email'        => $_POST['email'],
                 'password'  => $_POST['password'],
                 'activated' => true,
             ));
@@ -36,7 +37,7 @@
         {
             header("Location: register?str=spaces");
         }
-        header("Location: update?str=success"); 
+        header("Location: login"); 
         die("Redirecting to update"); 
     } 
     $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
@@ -99,6 +100,7 @@
                 <form action="register" method="post" class="form-signin" role="form">
                     <h2 class="form-signin-heading">Please Register</h2>
                     <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+                    <input type="email" name="email" class="form-control" placeholder="logan@smashlounge.com" required>
                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                     <button class="btn btn-lg btn-primary btn-block SL bttn" type="submit">Register</button>
                 </form>

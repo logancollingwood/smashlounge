@@ -1,16 +1,17 @@
 <?php
   require("static/config.php");
   require("techs/init.php");
-    $loggedIn = false;
-    
+  require_once("techs/sentry.php");
 
-    if(!empty($_SESSION['user'])) {
-        $loggedIn = true;
-    }
-    if(!$loggedIn) {
+    $loggedIn = true;
+    if ( ! Sentry::check())
+    {
+        $loggedIn = false;
+        // User is not logged in, or is not activated
         header("Location: login?str=login");
         die("Redirecting to index.php"); 
     }
+
     
 
   $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
@@ -38,9 +39,8 @@
 
   if(!empty($_POST)){ 
 
-      $username = $_SESSION['user']['username'];
-
-      $userID = getIdFromUsername($mysqli, $username);
+      $user = Sentry::getUser();
+      $userID = $user['id'];
       
       $vod = '';
       $main = $_POST['main'];
