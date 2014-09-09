@@ -207,12 +207,12 @@ function makeUserGifs($hasGifs, $usergifs) {
 }
 
 function getAllUsers($mysqli) {
-  $query = "SELECT * from users";
+  $query = "SELECT users.username, userinfo.sponsor FROM users LEFT JOIN userinfo on users.id=userinfo.userid";
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
   foreach ($result as $row) {
-   $users[] = $row['username'];
+   $users[] = $row;
   }
 
   return $users;
@@ -220,20 +220,23 @@ function getAllUsers($mysqli) {
 
 
 function makeAllUsers($allUsers) {
+  //print_r($allUsers);
   echo "<div class='col-md-5'>";
-
-  echo "<div class='well'>";
-    echo "<div class='table-responsive'>";
-      echo "<table class='table table-hover table-striped'>";
-        echo "<th>username</th>";
-        
-        foreach ($allUsers as $user) {
-          echo "<tr><td><a href='/$user'>" . $user . "</a></td></tr>";
-        }
-      echo "</table>";
-
+    echo "<div class='well'>";
+      echo "<div class='table-responsive'>";
+        echo "<table class='table table-hover table-striped'>";
+          echo "<th style='text-align: center;'>username</th>";
+          foreach ($allUsers as $user) {
+            echo "<tr><td>"; 
+            if ($user['sponsor'] != '') {
+              echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
+            }
+            echo "<a href='/" . $user['username'] . "'>" . $user['username'] . "</a>";
+            echo "</td></tr>";
+          }
+        echo "</table>";
+      echo "</div>";
     echo "</div>";
-  echo "</div>";
   echo "</div>";
 }
 ?>

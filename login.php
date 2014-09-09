@@ -1,5 +1,4 @@
 <?php 
-    require("static/config.php");
     require("techs/init.php");
     require_once("techs/sentry.php");
     
@@ -80,12 +79,14 @@
     <title>Login</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="static/css/login.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet" media="screen">
-    <link href="css/users.css" rel="stylesheet">
+   <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard_tech.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
+
     <link rel="shortcut icon" href="/img/favicon.png">
     <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_june25.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -110,20 +111,49 @@
 
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+             <div class='row'>
+                    <div class='col-md-6 col-md-offset-3'>
+                        <div class='well'>
+                            <form action="login" method="post" class="form-horizontal">
+                                <fieldset>
+                                <h2 class="form-signin-heading">Please sign in</h2>
 
-                    <form action="login" method="post" class="form-signin" role="form">
-                        <h2 class="form-signin-heading">Please sign in</h2>
-                        <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
-                        <button class="btn btn-lg btn-primary btn-block SL bttn" type="submit">Sign in</button>
-                    </form>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="email">email</label>  
+                                    <div class="col-md-4">
+                                    <input id="email" name="email" type="email" placeholder="support@smashlounge.com" class="form-control input-md" required>
+                                    </div>
+                                </div>
 
-                    <?php 
-                        if ($submit) {
-                            alertStatus($submit);
-                        }
-                    ?>
-                
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="location">password</label>  
+                                    <div class="col-md-4">
+                                    <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required> 
+                                    </div>
+                                </div>
+
+                            
+                                <div class="control-group">
+                                  <div class="controls">
+                                    <button class="btn btn-lg btn-primary SL bttn" type="submit">Sign in</button>
+                                  </div>
+                                </div>
+
+                                <br/>
+
+                                </fieldset>
+                            </form>
+
+                            <?php 
+                                if ($submit) {
+                                    alertStatus($submit);
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>    
         </div>
 
         
@@ -133,5 +163,13 @@
     
             
 </div> <!-- CONTAINER -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/js/jquery.fitvids.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/toggler.js"></script>
+    <script src="/js/jquery.fitvids.js"></script>
 </body>
 </html>
