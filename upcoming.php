@@ -1,4 +1,9 @@
 <?php
+  $hasTournament = false;
+  $tournament = isset($_GET['tournament'])       ? trim($_GET['tournament'])       : "";
+  if ($tournament != '') {
+    $hasTournament = true;
+  }
   require("techs/init.php");
   require("techs/initUpcoming.php");
   require_once("techs/sentry.php");
@@ -8,6 +13,8 @@
         $loggedIn = true;
         $user = Sentry::getUser();
     }
+
+
 ?>
 <!--
 
@@ -85,15 +92,25 @@ Questions?
       </div>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <div class='jumbotron full'>
-        <h1 class="hddr2">Upcoming events</h1>
-        </div>
-
+        
+          <div class='jumbotron full'>
+            <?php 
+              if (!$hasTournament) { 
+                echo "<h1 class='hddr1'>Upcoming events</h1>";
+              } else {
+                echo "<h1 class='hddr1'>$tournament</h1>";
+              }
+            ?>
+          </div>
+       
 
         <div class='row centered'>
 
           <div class='col-md-9'>
-            <div class='well'>
+            <?php if (!$hasTournament) { ?>
+
+
+              <div class='well'>
                 <!-- NAV -->
                 <div class='page-header'>
                   <div class="pull-right form-inline">
@@ -112,10 +129,22 @@ Questions?
 
                   <h3></h3>
                 </div>
-                
+                <div id='calendar'></div>
+              </div>
 
-              <div id='calendar'></div>
-            </div>
+
+            <?php } else { ?>
+
+              <div class='well'> 
+                <div class='challonge_bracket' style='width:100%;height:500px;'></div>
+              </div>
+            <?php 
+
+                makeInfo();
+                makeStandings();
+                //makeBracket();
+
+            } ?>
           </div>
 
           <div class='col-md-3'>
@@ -131,6 +160,7 @@ Questions?
 
         </div>
       </div>
+
     </div>
 
 
@@ -143,6 +173,8 @@ Questions?
     <script src="js/docs.min.js"></script>
     <script type="text/javascript" src="js/underscore-min.js"></script>
     <script type="text/javascript" src="js/calendar.js"></script>
+    <script type="text/javascript" src="js/initTournament.js"></script>
+    <script type="text/javascript" src="js/jquery.challonge.js"></script>
     <script type="text/javascript">
         var calendar = $("#calendar").calendar(
             {
@@ -160,7 +192,7 @@ Questions?
                     var time = new Date(val.start);
                     
                     $(document.createElement('li'))
-                      .html('<a href="' + val.url + '">' + val.title + ' ' + time +  '</a>')
+                      .html('<a href="/upcoming?tournament=' + val.title + '">' + val.title + '</a>')
                       .appendTo(list);
                   });
                 },
