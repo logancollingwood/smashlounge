@@ -563,4 +563,23 @@ function makeSidebar($loggedIn, $currentPage = '') {
             */
 }
 
+function hasSubdomain($url) {
+    $parsed = parse_url($url);
+    $exploded = explode('.', $parsed["host"]);
+    return (count($exploded) > 2);
+}
+
+function makeTwitchPanel($hasTwitch, $twitch) {
+  if ($hasTwitch) {
+    echo "<div class='well'>";
+        echo "        <h3><small>twitch</small>";
+          if (streamIsLive($twitch)) {
+            echo "<a href='http://www.twitch.tv/$twitch'> Online</a>";
+          } else {
+            echo "<a href='http://www.twitch.tv/$twitch'> Offline</a>";
+          }
+    echo "</div>";
+  }
+}
+
 ?>

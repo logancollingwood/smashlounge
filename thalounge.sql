@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 07, 2014 at 03:52 PM
+-- Generation Time: Sep 10, 2014 at 12:21 PM
 -- Server version: 5.5.36-cll-lve
 -- PHP Version: 5.4.23
 
@@ -1503,7 +1503,7 @@ CREATE TABLE IF NOT EXISTS `throttle` (
   `banned_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `throttle`
@@ -1511,7 +1511,8 @@ CREATE TABLE IF NOT EXISTS `throttle` (
 
 INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, `banned`, `last_attempt_at`, `suspended_at`, `banned_at`) VALUES
 (1, 2, NULL, 0, 0, 0, NULL, NULL, NULL),
-(2, 3, NULL, 0, 0, 0, NULL, NULL, NULL);
+(2, 3, NULL, 0, 0, 0, NULL, NULL, NULL),
+(3, 4, NULL, 0, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1522,10 +1523,16 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 CREATE TABLE IF NOT EXISTS `upcoming` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
-  `url` varchar(130) NOT NULL,
+  `bracket` varchar(250) NOT NULL,
   `class` varchar(35) NOT NULL DEFAULT 'event-info',
   `start` date NOT NULL,
   `end` date NOT NULL,
+  `first` varchar(90) NOT NULL,
+  `second` varchar(90) NOT NULL,
+  `third` varchar(90) NOT NULL,
+  `stream` varchar(90) NOT NULL,
+  `attending` int(11) NOT NULL,
+  `location` varchar(90) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -1533,8 +1540,8 @@ CREATE TABLE IF NOT EXISTS `upcoming` (
 -- Dumping data for table `upcoming`
 --
 
-INSERT INTO `upcoming` (`id`, `title`, `url`, `class`, `start`, `end`) VALUES
-(1, 'BAM', 'http://www.smashlounge.com', 'event-success', '2014-08-12', '2014-08-12');
+INSERT INTO `upcoming` (`id`, `title`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`) VALUES
+(1, 'BAM', 'http://challonge.com/BiWeekly1', 'event-success', '2014-08-12', '2014-08-12', 'pewpewu', 'drft', 'bobez', 'pewpewu', 1, '');
 
 -- --------------------------------------------------------
 
@@ -1576,14 +1583,15 @@ CREATE TABLE IF NOT EXISTS `userinfo` (
   `main` int(11) NOT NULL,
   `sponsor` varchar(90) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `userinfo`
 --
 
 INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid`, `vod`, `twitter`, `main`, `sponsor`) VALUES
-(9, 'LoganCollingwood.jpg', '', 'Santa Cruz', 'xuaqua', 2, 'XXrurMG6bts', 'logan6694', 11, 'Smash Lounge');
+(9, 'LoganCollingwood.jpg', '', 'Santa Cruz', 'xuaqua', 2, 'XXrurMG6bts', 'logan6694', 11, 'Smash Lounge'),
+(10, '', 'miom_pewpewu', 'Bay Area', 'pewpewu', 3, '', 'miom_pewpewu', 14, 'Melee it On Me');
 
 -- --------------------------------------------------------
 
@@ -1611,15 +1619,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_activation_code_index` (`activation_code`),
   KEY `users_reset_password_code_index` (`reset_password_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
-(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-09-07 19:38:15', '$2y$10$6u6EZitAqOSrbu7T5S25S.O.WDZ7RsPEbW2UhcLSMXXGdM2hY5.3S', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-09-08 02:38:15'),
-(3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05');
+(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-09-09 01:07:01', '$2y$10$aobA6JskG4Bk7y94EvfJqOgYYcZYq54ap7GpiohgknVes017PoNMe', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-09-09 08:07:01'),
+(3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05'),
+(10, 'sidsj@gmksa.com', 'lounge', '$2y$10$NbPdoaWDO/Ouf0FoURV5KOcaixsDk21PtJMxnE2XhdVtwKbHz3tLS', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014-09-09 08:54:07', '2014-09-09 08:54:07');
 
 -- --------------------------------------------------------
 

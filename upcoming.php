@@ -6,7 +6,10 @@
   }
   require("techs/init.php");
   require("techs/initUpcoming.php");
+  require("techs/twitch.php");
   require_once("techs/sentry.php");
+
+
     $loggedIn = false;
     if (Sentry::check())
     {
@@ -106,7 +109,9 @@ Questions?
 
         <div class='row centered'>
 
-          <div class='col-md-9'>
+          <div class='col-md-8'>
+
+            <!-- NO TOURNAMENT HANDLER -->
             <?php if (!$hasTournament) { ?>
 
 
@@ -132,22 +137,25 @@ Questions?
                 <div id='calendar'></div>
               </div>
 
-
-            <?php } else { ?>
-
-              <div class='well'> 
-                <div class='challonge_bracket' style='width:100%;height:500px;'></div>
-              </div>
-            <?php 
+            <!-- FOR TOURNAMENT SPECIFIC HANDLER -->
+            <?php } else { 
 
                 makeInfo();
-                makeStandings();
-                //makeBracket();
+                makeBracket($eventInfoz['bracket']);
 
             } ?>
+
           </div>
 
-          <div class='col-md-3'>
+          <div class='col-md-4'>
+            
+            <?php
+              if ($hasTournament) {
+                makeTwitchPanel($hasTwitch, $twitch);
+                makeStandings($first, $second, $third);
+              }
+            ?>
+
             <div class='panel panel-default'>
               <div class='panel-header'>
                 <h4>Upcoming:</h4>
@@ -156,6 +164,24 @@ Questions?
                 <ul id="eventlist" class="nav nav-list"></ul>
               </div>
             </div>
+
+                <div class="well pull-right adtainer" id="canttouchthis">
+                    <div class="panel-body ad" id="adholder">
+                      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                      <!-- charpagead -->
+                      <ins class="adsbygoogle"
+                           style="display:inline-block;width:250px;height:250px"
+                           data-ad-client="ca-pub-5354507002335154"
+                           data-ad-slot="9895665829"></ins>
+                      <script>
+                      (adsbygoogle = window.adsbygoogle || []).push({});
+                      </script>
+                    </div>
+                  </div>
+
+                  </td>
+                </div>
+
           </div>
 
         </div>
@@ -217,6 +243,13 @@ Questions?
             });
           });
           
+    </script>
+    <script src="js/adblockzorz.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#canttouchthis").sticky({topSpacing:70});
+      });
     </script>
 
 

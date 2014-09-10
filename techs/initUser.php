@@ -151,18 +151,7 @@ function makeLocationPanel($hasLocation, $location) {
   }
 }
 
-function makeTwitchPanel($hasTwitch, $twitch) {
-  if ($hasTwitch) {
-    echo "<div class='well'>";
-        echo "        <h3><small>twitch</small>";
-          if (streamIsLive($twitch)) {
-            echo "<a href='http://www.twitch.tv/$twitch'> Online</a>";
-          } else {
-            echo "<a href='http://www.twitch.tv/$twitch'> Offline";
-          }
-    echo "</div>";
-  }
-}
+
 
 function makePinnedPanel($hasVod, $vodType, $vod, $hasGifs, $usergifs) {
   $counter = 0;
