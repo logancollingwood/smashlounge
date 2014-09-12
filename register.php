@@ -8,6 +8,11 @@
 
         if (in_array($username, $modules)) {
             header("Location: register?str=reserved"); 
+            die('redirecting');
+        }
+        if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $username)) {
+            header("Location: register?str=chars");
+            die('redirecting');
         }
         // Ensure that the user fills out fields 
         if(empty($_POST['username'])) { 
@@ -18,6 +23,7 @@
         } 
         if (preg_match("/\\s/", $username)) {
             header("Location: register.php?str=spaces");
+            die('redirecting');
         }
          
         try{
@@ -32,17 +38,21 @@
         catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
         {
             header("Location: register?str=spaces"); 
+            die('redirecting');
         }
         catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
         {
             header("Location: register?str=spaces");
+            die('redirecting');
         }
         catch (Cartalyst\Sentry\Users\UserExistsException $e)
         {
             header("Location: register?str=taken");
+            die('redirecting');
         }
         if ($user == NULL) {
             header("Location: register?str=taken");
+            die('redirecting');
         }
         $_GET['str'] = 'success';
         //header("Location: login"); 
@@ -67,6 +77,10 @@
             echo "</div>";
         } else if ($submit == 'reserved') {
             echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! That username is reserved. Please try another one!";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
+        } else if ($submit == 'chars') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Please don't include special characters in your username!";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         }

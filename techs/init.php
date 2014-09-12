@@ -521,15 +521,31 @@ function makeSidebar($loggedIn, $currentPage = '') {
   if ($loggedIn) {
     echo "<div class='loginbox'>";
     echo "    <hr class='login'>";
-    echo "    <a class='btn bttn login' href='/" . $user['username'] . "'>profile</a>";
+
+    echo "    <a class='btn bttn login ";
+      if ($currentPage=='login') {
+        echo "active";
+      }
+    echo "' href='/" . $user['username'] . "'>profile</a>";
+
     echo "    <a class='btn bttn login' href='/logout'>logout</a>";
     echo "</div>";
 
   } else {
     echo "<div class='loginbox'>";
     echo "    <hr class='login'>";
-    echo "    <a class='btn bttn login' href='/login'>Log in</a>";
-    echo "    <a class='btn bttn login' href='/register'>Register</a>";
+    echo "    <a class='btn bttn login ";
+      if ($currentPage=='login') {
+        echo "active";
+      }
+    echo "' href='/login'>login</a>";
+
+
+    echo "    <a class='btn bttn login ";
+      if ($currentPage=='register') {
+        echo "active";
+      }
+    echo "' href='/register'>register</a>";
 
     echo "</div>";
   }
@@ -582,4 +598,12 @@ function makeTwitchPanel($hasTwitch, $twitch) {
   }
 }
 
+function getLatLong($cityName) {
+
+  $query = "?address=" . urlencode($cityName);
+  $clientId = '&key=AIzaSyAXOuPfrJzmPwmqJ5U7OLDLqs9B7HpjXlA';
+  $file = "https://maps.googleapis.com/maps/api/geocode/json" . $query . $clientId;
+  echo $file;
+  //https://maps.googleapis.com/maps/api/geocode/json?address=Mountain+View,+CA&key=AIzaSyAXOuPfrJzmPwmqJ5U7OLDLqs9B7HpjXlA
+}
 ?>

@@ -205,14 +205,14 @@ ga('send', 'pageview');
                 <div class="well pull-right adtainer" id="canttouchthis">
                   <div class="panel-body ad" id="adholder">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- techad -->
+                    <!-- responsive! -->
                     <ins class="adsbygoogle"
-                     style="display:inline-block;width:250px;height:250px"
-                     data-ad-client="ca-pub-5354507002335154"
-                     data-ad-slot="9125976229">
-                    </ins>
+                         style="display:block"
+                         data-ad-client="ca-pub-5354507002335154"
+                         data-ad-slot="6479366620"
+                         data-ad-format="auto"></ins>
                     <script>
-                      (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                   </div>
                 </div>

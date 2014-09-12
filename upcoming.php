@@ -109,7 +109,7 @@ Questions?
 
         <div class='row centered'>
 
-          <div class='col-md-8'>
+          <div class='col-md-7'>
 
             <!-- NO TOURNAMENT HANDLER -->
             <?php if (!$hasTournament) { ?>
@@ -147,7 +147,7 @@ Questions?
 
           </div>
 
-          <div class='col-md-4'>
+          <div class='col-md-5'>
             
             <?php
               if ($hasTournament) {
@@ -168,11 +168,11 @@ Questions?
                 <div class="well pull-right adtainer" id="canttouchthis">
                     <div class="panel-body ad" id="adholder">
                       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                      <!-- charpagead -->
+                      <!-- new sidebar ad -->
                       <ins class="adsbygoogle"
-                           style="display:inline-block;width:250px;height:250px"
+                           style="display:inline-block;width:300px;height:600px"
                            data-ad-client="ca-pub-5354507002335154"
-                           data-ad-slot="9895665829"></ins>
+                           data-ad-slot="8911455825"></ins>
                       <script>
                       (adsbygoogle = window.adsbygoogle || []).push({});
                       </script>

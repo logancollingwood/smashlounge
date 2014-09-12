@@ -272,7 +272,11 @@ div.row.placeholders > ul > div > ul {
 #dataz > ul > li.active:hover {
   background-color: #701c94;
 }
-
+.login.active {
+  background-color: #501469;
+  box-shadow: inset 10px 10px 8px rgba(0,0,0,.125);
+  -webkit-box-shadow: inset 10px 10px 8px rgba(0,0,0,.125);
+}
 
 /*Determines the style of the listing gif rows */
 .list-group.chars {
@@ -531,6 +535,11 @@ h3 > a {
   font-size: 14px;
   margin-left: 2%;
   margin-right: 2%;
+  background-color: #501469;
+  z-index: 1;
+  -webkit-box-shadow: inset -7px -6px 26px 0px rgba(37, 9, 48, 0.77);
+  -moz-box-shadow:    inset -7px -6px 26px 0px rgba(37, 9, 48, 0.77);
+  box-shadow:         inset -7px -6px 26px 0px rgba(37, 9, 48, 0.77);
 }
 
 li.home.login a {
