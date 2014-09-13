@@ -21,7 +21,7 @@
 
   function alertStatus($submit) {
         if ($submit == 'success') {
-            echo "<div class='alert alert-success alert-dismissable' role='alert'>Congratulations! Your account has been created.";
+            echo "<div class='alert alert-success alert-dismissable' role='alert'>Congratulations! Your account has been updated.";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'taken') {
@@ -76,6 +76,7 @@
       $params['vod'] = $matches[1];
       $params['twitter'] = $twitter;
       $params['twitch'] = $twitchId;
+      $params['facebook'] = $facebook;
 
 
 
@@ -130,10 +131,10 @@
         } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
       }
 
-
+      header("Location: /update?str=success");
     }
 
-
+    //print_r($userFields);
 ?>
 <!--
 
@@ -184,7 +185,7 @@ ga('send', 'pageview');
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
     <link href='css/users.css' rel='stylesheet'>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -252,7 +253,22 @@ ga('send', 'pageview');
                       <select id="main" name="main" class="form-control">
                         <?php 
                             $selected = $userFields['main'];
+
+                            $chars = array('EMPTY', 'Bowser', '
+                              Captain Falcon', 'Dr. Mario', 'Falco', 'Fox',
+                              'Ganondorf', 'Ice Climbers', 'Jigglypuff', 'Kirby',
+                              'Link', 'Luigi', 'Mario', 'Marth', 'Mewtwo', 'Mr. Game And Watch',
+                              'Ness', 'Peach', 'Pichu', 'Pikachu', 'Roy', 'Samus', 
+                              'Sheik', 'Yoshi', 'Young Link');
+                            for ($i = 1; $i < count($chars); $i++) {
+                              echo "<option value='$i' ";
+                                if ($userFields['main'] == $i || $i == $_POST['main']) {
+                                  echo "selected='selected'";
+                                }
+                              echo ">" . $chars[$i] . "</option>";
+                            }
                         ?>
+                        <!--
                         <option value="1">Bowser</option>
                         <option value="2">Captain Falcon</option>
                         <option value="3">Donkey Kong</option>
@@ -278,6 +294,7 @@ ga('send', 'pageview');
                         <option value="23">Sheik</option>
                         <option value="24">Yoshi</option>
                         <option value="25">Young Link</option>
+                      -->
                       </select>
                     </div>
                   </div>
@@ -286,7 +303,12 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="location">Location</label>  
                     <div class="col-md-4">
-                    <input id="location" name="location" type="text" placeholder="Santa Cruz" class="form-control input-md">
+                    <input id="location" name="location" type="text" placeholder="Santa Cruz"
+                    <?php
+                      if ($userFields['location'] != '') {
+                        echo " value='" . $userFields['location'] . "'";
+                      }
+                    ?> class="form-control input-md">
                     <span class="help-block">Where do you play?</span>  
                     </div>
                   </div>
@@ -304,7 +326,13 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="facebook">facebook!</label>  
                     <div class="col-md-4">
-                    <input id="facebook" name="facebook" type="text" placeholder="miom_pewpewu" class="form-control input-md">
+                    <input id="facebook" name="facebook" type="text" placeholder="miom_pewpewu"
+                    <?php
+                      if ($userFields['facebook'] != '') {
+                        echo " value='" . $userFields['facebook'] . "'";
+                      }
+                    ?>
+                     class="form-control input-md">
                     <span class="help-block">Please enter just your facebook username</span>  
                     </div>
                   </div>

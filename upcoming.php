@@ -66,7 +66,7 @@ Questions?
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
     <link href="css/calendar.css" rel="stylesheet">
     <link href="/css/users.css" rel="stylesheet">
 

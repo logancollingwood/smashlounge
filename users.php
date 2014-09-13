@@ -63,7 +63,7 @@ ga('send', 'pageview');
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/new.css" rel="stylesheet">
     <link href="/css/users.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -126,7 +126,7 @@ ga('send', 'pageview');
 
                   echo "<div class='col-md-2 vcenter'>";
                     if ($hasImage) {
-                      echo "<img border='0' src='".$profileImage."' width='60%' alt='$username' height='60%'>";
+                      echo "<img id='profpic' border='0' src='".$profileImage."' width='60%' alt='$username' height='60%'>";
                     }
                   echo "</div>";
 
@@ -156,10 +156,11 @@ ga('send', 'pageview');
                     
                   echo "</div>";
 
-                  echo "<div class='col-md-10 vcenter'>";
+                  echo "<div class='col-md-8 vcenter'>";
                     echo "<div class='username'>directory</div> ";
                   echo "</div>";
-                echo "</div>";  
+                echo "</div>"; 
+
             }
 
 
@@ -223,7 +224,16 @@ ga('send', 'pageview');
             <?php } else {
 
               makeAllUsers($allUsers);
+              echo "</div>";
+              echo "<div class='row'>";
 
+                echo "<div class='col-md-6'>";
+                  echo "<div class='panel panel-default'>";
+                  echo "<div class='panel-body' style='margin-left:5px;'>";
+                    echo "<iframe src='/usercard?username=Pewpewu' width='605px' height='405px'></iframe>";
+                  echo "</div>";
+                  echo "</div>";
+                echo "</div>";
             } ?>
 
 
