@@ -227,13 +227,11 @@ ga('send', 'pageview');
               echo "</div>";
               echo "<div class='row'>";
 
-                echo "<div class='col-md-6'>";
-                  echo "<div class='panel panel-default'>";
-                  echo "<div class='panel-body' style='margin-left:5px;'>";
+
+                  echo "<div class='card'>";
                     echo "<iframe src='/usercard?username=Pewpewu' width='605px' height='405px'></iframe>";
                   echo "</div>";
-                  echo "</div>";
-                echo "</div>";
+
             } ?>
 
 

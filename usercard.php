@@ -81,6 +81,11 @@ ga('send', 'pageview');
         width: 600px;
         height: 400px;
       }
+      .row {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding: 5px;
+      }
       body {
         width:600px;
         height:400px;
@@ -100,6 +105,16 @@ ga('send', 'pageview');
       }
       body > div > div.navbar.navbar-inverse.navbar-fixed-top {
         width: 600px;
+        -webkit-border-bottom-right-radius: 20px;
+        -webkit-border-bottom-left-radius: 20px;
+        -moz-border-radius-bottomright: 20px;
+        -moz-border-radius-bottomleft: 20px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      .panel-body.card {
+        margin-left: 0px;
+        width: 405px;
       }
       .info {
        padding-left: 5%;
@@ -111,28 +126,29 @@ ga('send', 'pageview');
   </head>
 
   <body>
-    <div class='rounded'>
-      <?php 
-        echo "<div class='navbar navbar-inverse navbar-fixed-top' role='navigation'>";
-        echo "  <div class='container-fluid heddur'>";
-        echo "    <div class='navbar-header'>";
-        echo "      <a class='navbar-brand heddur' href='/$username'>smash lounge:&nbsp;&nbsp;&nbsp;&nbsp;$username</a>";
-        echo "    </div>";
-        echo "  </div>";
-        echo "</div>";
-      ?>
-       
-          <?php 
+    <div class='row rounded'>
+      <div class='panel panel-default'>
+        <div class='panel-heading'>
+          <?php
+           echo "      <a href='/$username'>smash lounge:&nbsp;&nbsp;&nbsp;&nbsp;$username</a>";
+           ?>
 
-            if ($found) {
+        </div>
+        <div class='panel-body'>
+           
+              <?php 
 
-              echo"<div class='info'>";
-              echo "  <h3><small>" .  $info['sponsor'] . "</small>    $username</h3>";
-              echo "</div>";
-            }
+                if ($found) {
 
-          ?>
+                  echo"<div class='info'>";
+                  echo "  <h3><small>" .  $info['sponsor'] . "</small>    $username</h3>";
+                  echo "</div>";
+                }
 
+              ?>
+
+        </div>
+      </div>
     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->

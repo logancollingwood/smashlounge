@@ -70,3 +70,7 @@ hr.login {
   right: 0px;
   padding-bottom: 15%;
 }
+.panel-body.card {
+  margin-left: 0px;
+  width: 405px;
+}
