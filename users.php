@@ -229,7 +229,7 @@ ga('send', 'pageview');
 
 
                   echo "<div class='card'>";
-                    echo "<iframe src='/usercard?username=Pewpewu' width='605px' height='405px'></iframe>";
+                    echo "<iframe src='/usercard?username=Pewpewu' width='605px' height='412px ALLOWTRANSPARENCY='true'></iframe>";
                   echo "</div>";
 
             } ?>

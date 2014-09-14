@@ -416,11 +416,11 @@ function createBeg($cap) {
 }
 
 
-function getCharFromID($mysqli, $char) {
-  if ($char == '') {
+function getCharFromID($mysqli, $id) {
+  if ($id == '') {
     return "NO MAIN";
   }
-  $query = "SELECT * FROM charinfo WHERE name='". $char . "'";
+  $query = "SELECT * FROM charinfo WHERE id='". $id . "'";
 
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
