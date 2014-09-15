@@ -395,11 +395,42 @@ li.gray {
   color: #fff;
   background-color: #0097a7;
   margin-left: -10px;
+  transition: all 80ms linear;
+  transition-delay: 80ms;
+  -webkit-transition-delay: 80ms; /* for Safari & Chrome */
+  -webkit-transition-timing-function: ease;
+}
+.nav-sidebar > .active > a {
+
 }
 .nav-sidebar > .active > a:hover {
   background-color: #00bcd4;
 }
 
+.nav-sidebar > li.home a{
+  background-color: transparent;
+  transition: all 80ms linear;
+  transition-delay: 80ms;
+  -webkit-transition-delay: 80ms; /* for Safari & Chrome */
+  -webkit-transition-timing-function: ease;
+}
+
+.nav-sidebar > li.home a:hover {
+  background-color: #00bcd4;
+  color: #FFF;
+}
+
+.nav-sidebar > li.home.active a{
+  background-color: #0097a7;
+  transition: all 80ms linear;
+  transition-delay: 80ms;
+  -webkit-transition-delay: 80ms; /* for Safari & Chrome */
+  -webkit-transition-timing-function: ease;
+}
+.nav-sidebar > li.home.active a:hover{
+  background-color: #00bcd4;
+
+}
 
 li > h4.submit {
   font-size: 30px;
@@ -495,6 +526,9 @@ a:hover {
 }
 
 h3 > a {
+  transition: all 100ms linear;
+  transition-delay: 100ms;
+  -webkit-transition-delay: 100ms; /* for Safari & Chrome */
   color: #000;
 }
 

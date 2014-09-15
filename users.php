@@ -141,9 +141,16 @@ ga('send', 'pageview');
                   echo "</div>";
 
                   echo "<div class='col-md-1 vcenter'>";
+                    /*
+                    echo "<div class='row'>";
                     if ($hasFacebook) {
                       echo "<div class='fb-like' data-href='https://www.facebook.com/" . $facebook ."' data-layout='box_count' data-action='like' data-show-faces='true'></div>";
                     }
+                    echo "</div>";
+                    */
+                    echo "<div class='row'>";
+                    echo "<a class='anchor' href='/usercard?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
+                    echo "</div>";
                   echo "</div>";
 
                 echo "</div>";  
@@ -207,7 +214,7 @@ ga('send', 'pageview');
                   <div class="panel-body ad" id="adholder">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- responsive! -->
-                    <ins class="adsbygoogle"
+                    <ins class="adsbygoogle adslot_1"
                          style="display:block"
                          data-ad-client="ca-pub-5354507002335154"
                          data-ad-slot="6479366620"
@@ -228,8 +235,8 @@ ga('send', 'pageview');
               echo "<div class='row'>";
 
 
-                  echo "<div class='card'>";
-                    echo "<iframe src='/usercard?username=Pewpewu' width='605px' height='412px ALLOWTRANSPARENCY='true'></iframe>";
+                  echo "<div class='col-md-6'>";
+                    echo "<iframe src='/usercard?username=Pewpewu' width='625px' height='412px' ALLOWTRANSPARENCY='true'></iframe>";
                   echo "</div>";
 
             } ?>

@@ -78,7 +78,15 @@
       $params['twitch'] = $twitchId;
       $params['facebook'] = $facebook;
 
+        if (preg_match("/\\s/", $params['twitter'])) {
+          header("Location: update.php?str=spaces");
+          die('redirecting');
+        }
 
+        if (preg_match("/\\s/", $params['twitch'])) {
+          header("Location: update.php?str=spaces");
+          die('redirecting');
+        }
 
 
 
@@ -252,21 +260,17 @@ ga('send', 'pageview');
                     <div class="col-md-4">
                       <select id="main" name="main" class="form-control">
                         <?php 
-                            $selected = $userFields['main'];
 
-                            $chars = array('EMPTY', 'Bowser', '
-                              Captain Falcon', 'Dr. Mario', 'Falco', 'Fox',
-                              'Ganondorf', 'Ice Climbers', 'Jigglypuff', 'Kirby',
-                              'Link', 'Luigi', 'Mario', 'Marth', 'Mewtwo', 'Mr. Game And Watch',
-                              'Ness', 'Peach', 'Pichu', 'Pikachu', 'Roy', 'Samus', 
-                              'Sheik', 'Yoshi', 'Young Link');
-                            for ($i = 1; $i < count($chars); $i++) {
-                              echo "<option value='$i' ";
-                                if ($userFields['main'] == $i || $i == $_POST['main']) {
-                                  echo "selected='selected'";
-                                }
-                              echo ">" . $chars[$i] . "</option>";
-                            }
+                          $selected = $userFields['main'];
+                          for ($i = 1; $i <= 26; $i++) {
+                            $chars[$i] = getCharFromID($mysqli, $i);
+                            echo "<option value='$i' ";
+                              if ($userFields['main'] == $i || $i == $_POST['main']) {
+                                echo "selected='selected'";
+                              }
+                            echo ">" . $chars[$i] . "</option>";
+                          }
+
                         ?>
                         <!--
                         <option value="1">Bowser</option>

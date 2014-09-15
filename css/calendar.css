@@ -1,3 +1,6 @@
+div > div.panel-body {
+  margin-bottom: 0px;
+}
 [class*="cal-cell"] {
   float: left;
   margin-left: 0;
