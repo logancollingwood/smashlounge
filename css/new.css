@@ -508,16 +508,19 @@ li > h4.submit {
   margin-right: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
-  -webkit-box-shadow: 0px 0px 17px 3px rgba(66, 182, 182, 0.77), inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
-  -moz-box-shadow:    0px 0px 17px 3px rgba(66, 182, 182, 0.77), inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
-  box-shadow:         0px 0px 17px 3px rgba(66, 182, 182, 0.77), inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  -webkit-box-shadow: 0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  -moz-box-shadow:    0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  box-shadow:         0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
   background-color: rgba(66, 182, 182, 0.7);
   border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px 10px 10px 10px;
   -webkit-border-radius: 10px 10px 10px 10px;
   border: 0px solid #000000;
 }
-
+h1 anchor {
+  font-size: 30%;
+  color: #FFF;
+}
 /* Navbar Styling
 */
 .here{

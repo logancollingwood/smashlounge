@@ -22,6 +22,8 @@
 		$attending = $eventInfoz['attending'];
 		$host = $eventInfoz['host'];
 		$bracket = $eventInfoz['bracket'];
+		$startDate = $eventInfoz['start'];
+		$endDate = $eventInfoz['end'];
 	}
 
 

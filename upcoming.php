@@ -107,7 +107,7 @@ Questions?
                     echo "<h1 class='lead'>$tournament</h1>";
                   echo "</div>";
                   echo "<div class='col-md-3 vcenter'>";
-                    echo "<h2>DATE</h2>";
+                    echo "<h1><anchor>" . date("F jS", strtotime($startDate))  . " - " . date("F jS", strtotime($endDate)) . "</anchor></h2>";
                   echo "</div>";
                 }
               ?>
