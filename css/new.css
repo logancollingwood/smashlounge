@@ -165,11 +165,27 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   color:#fff;
 }
 h1 {
-	font-family: 'junctionregular';
+	font-family: 'Raleway', sans-serif;
 	text-transform: uppercase;
 	font-size: 75px;
-
+  font-weight: 100;
 }
+h1.lead {
+  color: #40352d !important;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
 div > div.panel-heading {
   font-family: 'ralewaythin';
   font-size: 32px;
@@ -184,9 +200,11 @@ div.jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color:rgba(245,245,245,0.6);
-  -webkit-box-shadow: 10px 10px 10px -4px rgba(66, 182, 182, 0.77);
-  -moz-box-shadow: 10px 10px 10px -4px rgba(66, 182, 182, 0.77);
-  box-shadow: 10px 10px 10px -4px rgba(66, 182, 182, 0.77);
+
+  -webkit-box-shadow: 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  -moz-box-shadow:    0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  box-shadow:         0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+
 }
 
 /* Holds character details table */
@@ -486,8 +504,18 @@ li > h4.submit {
 .jumbotron {
   margin-right: 25%;
 }
-.jumbotron.full {
+.jumbotron.banner {
   margin-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -webkit-box-shadow: 0px 0px 17px .5px rgba(66, 182, 182, 0.77), inset 0px 0px 17px .5px rgba(66, 182, 182, 0.77);
+  -moz-box-shadow:    0px 0px 17px .5px rgba(66, 182, 182, 0.77), inset 0px 0px 17px .5px rgba(66, 182, 182, 0.77);
+  box-shadow:         0px 0px 17px .5px rgba(66, 182, 182, 0.77), inset 0px 0px 17px .5px rgba(66, 182, 182, 0.77);
+  background-color: inherit;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 0px solid #000000;
 }
 
 /* Navbar Styling
@@ -540,7 +568,7 @@ h3 > a {
   border-right-color: #00bcd4;
 }
 .username {
-  font-family: 'sofia_pro_lightregular';
+  font-family: 'Raleway';
   font-size: 60px;
   text-transform: uppercase;
   text-align: left;

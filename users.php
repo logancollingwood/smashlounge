@@ -61,19 +61,25 @@ ga('send', 'pageview');
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="/css/new.css" rel="stylesheet">
-    <link href="/css/users.css" rel="stylesheet">
+    
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    
+
+    <?php 
+      printLibraries();
+    ?>
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard_tech.css" rel="stylesheet">
+    <link href="/css/new.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-    <script type="text/javascript" src="/js/gfycat_test_june25.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
   </head>
 
   <body>
@@ -117,7 +123,7 @@ ga('send', 'pageview');
                         </div>";
                 }
           ?>
-          <div class="jumbotron full">
+          <div class="jumbotron banner">
             <?php 
 
             if ($found) {
@@ -208,6 +214,7 @@ ga('send', 'pageview');
                 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
               </div>
+              <hr>
               <?php createBeg(.3); ?>
 
                 <div class="well pull-right adtainer" id="canttouchthis">
