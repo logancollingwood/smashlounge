@@ -97,19 +97,26 @@ Questions?
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
           <div class='jumbotron full'>
-            <?php 
-              if (!$hasTournament) { 
-                echo "<h1 class='hddr1'>Upcoming events</h1>";
-              } else {
-                echo "<h1 class='hddr1'>$tournament</h1>";
-              }
-            ?>
+            <div class='row'>
+              <?php 
+                if (!$hasTournament) { 
+                  echo "<h1 class='hddr1'>Upcoming events</h1>";
+                } else {
+                  echo "<div class='col-md-9 vcenter'>";
+                    echo "<h1 class='hddr1'>$tournament</h1>";
+                  echo "</div>";
+                  echo "<div class='col-md-3 vcenter'>";
+                    echo "<h2>DATE</h2>";
+                  echo "</div>";
+                }
+              ?>
+            </div>
           </div>
        
 
         <div class='row centered'>
 
-          <div class='col-md-7'>
+          <div class='col-md-9'>
 
             <!-- NO TOURNAMENT HANDLER -->
             <?php if (!$hasTournament) { ?>
@@ -140,19 +147,21 @@ Questions?
             <!-- FOR TOURNAMENT SPECIFIC HANDLER -->
             <?php } else { 
 
-                makeInfo();
-                makeBracket($eventInfoz['bracket']);
+                if ($bracket != '') {
+                  makeBracket($bracket);
+                }
 
             } ?>
 
           </div>
 
-          <div class='col-md-5'>
+          <div class='col-md-3'>
             
             <?php
               if ($hasTournament) {
                 makeTwitchPanel($hasTwitch, $twitch);
                 makeStandings($first, $second, $third);
+                makeInfo($host, $attending);
               }
             ?>
 

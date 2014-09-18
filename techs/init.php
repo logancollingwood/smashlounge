@@ -588,7 +588,7 @@ function hasSubdomain($url) {
 function makeTwitchPanel($hasTwitch, $twitch) {
   if ($hasTwitch) {
     echo "<div class='well'>";
-        echo "        <h3><small>twitch</small>";
+        echo "        <h3><small class='pull-left labelz'>twitch</small>";
           if (streamIsLive($twitch)) {
             echo "<a href='http://www.twitch.tv/$twitch'> Online</a>";
           } else {
