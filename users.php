@@ -163,15 +163,7 @@ ga('send', 'pageview');
             } else { 
               $allUsers = getAllUsers($mysqli);
                 echo "<div class='row'>";
-                  echo "<div class='col-md-2 vcenter'>";
-                    
-                      echo "<div class='sponsor'>global</div> ";
-                    
-                  echo "</div>";
-
-                  echo "<div class='col-md-8 vcenter'>";
-                    echo "<div class='username'>directory</div> ";
-                  echo "</div>";
+                  echo "<h1 class='lead'>global directory</h1>";
                 echo "</div>"; 
 
             }

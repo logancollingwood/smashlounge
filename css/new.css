@@ -185,6 +185,14 @@ h1.lead {
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
 }
+@media (min-width: 768px) {
+  .lead {
+    font-size: 63px;
+  }
+}
+.lead {
+  font-size: 48px;
+}
 
 div > div.panel-heading {
   font-family: 'ralewaythin';
