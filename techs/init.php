@@ -84,6 +84,14 @@ if ($which < 0.5) {
 }
   
 
+function grabGfyName ($url) {
+  $pattern = '/((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/';
+  $matches = array();
+ 
+  preg_match ($pattern, $url, $matches);
+ 
+  return $matches[4];
+}
 
 
 function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null') {
