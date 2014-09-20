@@ -20,4 +20,5 @@ function showImage() {
 
 $(document).ready(function(){
 	window.setTimeout('TestPage()', 500); 
+
 })
