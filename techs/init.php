@@ -84,14 +84,6 @@ if ($which < 0.5) {
 }
   
 
-function grabGfyName ($url) {
-  $pattern = '/((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/';
-  $matches = array();
- 
-  preg_match ($pattern, $url, $matches);
- 
-  return $matches[4];
-}
 
 
 function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null') {
@@ -596,7 +588,7 @@ function hasSubdomain($url) {
 function makeTwitchPanel($hasTwitch, $twitch) {
   if ($hasTwitch) {
     echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>twitch</small>";
+        echo "        <h3><small>twitch</small>";
           if (streamIsLive($twitch)) {
             echo "<a href='http://www.twitch.tv/$twitch'> Online</a>";
           } else {
@@ -614,53 +606,4 @@ function getLatLong($cityName) {
   echo $file;
   //https://maps.googleapis.com/maps/api/geocode/json?address=Mountain+View,+CA&key=AIzaSyAXOuPfrJzmPwmqJ5U7OLDLqs9B7HpjXlA
 }
-
-function array_sort($array, $on, $order=SORT_ASC)
-{
-    $new_array = array();
-    $sortable_array = array();
-
-    if (count($array) > 0) {
-        foreach ($array as $k => $v) {
-            if (is_array($v)) {
-                foreach ($v as $k2 => $v2) {
-                    if ($k2 == $on) {
-                        $sortable_array[$k] = $v2;
-                    }
-                }
-            } else {
-                $sortable_array[$k] = $v;
-            }
-        }
-
-        switch ($order) {
-            case SORT_ASC:
-                asort($sortable_array);
-            break;
-            case SORT_DESC:
-                arsort($sortable_array);
-            break;
-        }
-
-        foreach ($sortable_array as $k => $v) {
-            $new_array[$k] = $array[$k];
-        }
-    }
-
-    return $new_array;
-}
-
-
-function printLibraries() {
-  echo "<!-- PRINTING DEPENDENCIES -->";
-  echo "\n";
-  echo "<!-- Bootstrap core CSS -->";
-  echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";
-  echo "<link href='http://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic' rel='stylesheet' type='text/css'>";
-  echo "<script type='text/javascript' src='http://www.smashlounge.com/js/gfycat_test_june25.js'></script>";
-  echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>";
-  echo "<!--  -->";
-  echo "\n";
-}
-
 ?>

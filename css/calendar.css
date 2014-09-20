@@ -1,7 +1,3 @@
-div > div.panel-body {
-  margin-bottom: 0px;
-}
-
 [class*="cal-cell"] {
   float: left;
   margin-left: 0;
@@ -497,10 +493,10 @@ span[data-cal-date]:hover {
   background-image: url("../img/tick.png?2");
 }
 #cal-slide-content:hover {
-  background-color: rgba(0, 94, 166, 0.53);
+  background-color: transparent;
 }
 #cal-slide-content a.event-item {
-  color: #1a1a1a;
+  color: #00838f;
   font-weight: normal;
   line-height: 22px;
   text-align: left;
@@ -521,11 +517,4 @@ a.cal-event-week {
 }
 .well {
   padding: 19px;
-}
-
-
-.cal-event-list {
-  background-color: rgba(0, 94, 166, 0.75);
-  background-image: url('/img/cal_texture.png') !important;
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

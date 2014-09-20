@@ -124,7 +124,7 @@ function makeTwitterPanel($hasTwitter, $twitter) {
 function makeMainPanel($hasMain, $main, $mysqli) {
 	if ($hasMain) {
 		echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>main</small>";
+        echo "        <h3><small>main</small>";
         echo "        <a href='characters?char=" . urlencode($main) . "'>$main</a></h3>";
         echo "        <div class='mainPic $main'></div>";
     echo "</div>";
@@ -134,7 +134,7 @@ function makeMainPanel($hasMain, $main, $mysqli) {
 function makeSponsorPanel($hasSponsor, $sponsor) {
     if ($hasSponsor) {
     echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>sponsor</small>";
+        echo "        <h3><small>sponsor</small>";
         echo "        $sponsor</h3>";
         echo "        <div class='mainPic $main'></div>";
     echo "</div>";
@@ -144,7 +144,7 @@ function makeSponsorPanel($hasSponsor, $sponsor) {
 function makeLocationPanel($hasLocation, $location) {
     if ($hasLocation) {
     echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>location</small>";
+        echo "        <h3><small>location</small>";
         echo "        $location</h3>";
         echo "        <div class='mainPic $main'></div>";
     echo "</div>";

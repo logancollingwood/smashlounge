@@ -61,25 +61,19 @@ ga('send', 'pageview');
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard_tech.css" rel="stylesheet">
+    <link href="/css/new.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    
-
-    <?php 
-      printLibraries();
-    ?>
-
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="/css/new.css" rel="stylesheet">
-    <link href="/css/users.css" rel="stylesheet">
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-
+    <script type="text/javascript" src="/js/gfycat_test_june25.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -123,7 +117,7 @@ ga('send', 'pageview');
                         </div>";
                 }
           ?>
-          <div class="jumbotron banner">
+          <div class="jumbotron full">
             <?php 
 
             if ($found) {
@@ -147,23 +141,24 @@ ga('send', 'pageview');
                   echo "</div>";
 
                   echo "<div class='col-md-1 vcenter'>";
-                    /*
-                    echo "<div class='row'>";
                     if ($hasFacebook) {
                       echo "<div class='fb-like' data-href='https://www.facebook.com/" . $facebook ."' data-layout='box_count' data-action='like' data-show-faces='true'></div>";
                     }
-                    echo "</div>";
-                    */
-                    echo "<div class='row'>";
-                    echo "<a class='anchor' href='/usercard?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
-                    echo "</div>";
                   echo "</div>";
 
                 echo "</div>";  
             } else { 
               $allUsers = getAllUsers($mysqli);
                 echo "<div class='row'>";
-                  echo "<h1 class='lead'>global directory</h1>";
+                  echo "<div class='col-md-2 vcenter'>";
+                    
+                      echo "<div class='sponsor'>global</div> ";
+                    
+                  echo "</div>";
+
+                  echo "<div class='col-md-8 vcenter'>";
+                    echo "<div class='username'>directory</div> ";
+                  echo "</div>";
                 echo "</div>"; 
 
             }
@@ -206,14 +201,13 @@ ga('send', 'pageview');
                 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
               </div>
-              <hr>
               <?php createBeg(.3); ?>
 
                 <div class="well pull-right adtainer" id="canttouchthis">
                   <div class="panel-body ad" id="adholder">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- responsive! -->
-                    <ins class="adsbygoogle adslot_1"
+                    <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-client="ca-pub-5354507002335154"
                          data-ad-slot="6479366620"
@@ -234,8 +228,8 @@ ga('send', 'pageview');
               echo "<div class='row'>";
 
 
-                  echo "<div class='col-md-6'>";
-                    echo "<iframe src='/usercard?username=Pewpewu' width='625px' height='412px' ALLOWTRANSPARENCY='true'></iframe>";
+                  echo "<div class='card'>";
+                    echo "<iframe src='/usercard?username=Pewpewu' width='605px' height='412px ALLOWTRANSPARENCY='true'></iframe>";
                   echo "</div>";
 
             } ?>
