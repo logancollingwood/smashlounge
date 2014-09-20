@@ -1,3 +1,7 @@
+@base-color: #0097a7;
+@flair-color: #00bcd4;
+@jumbotron-style: rgba(66, 182, 182, 0.77);
+
 @font-face {
     font-family: 'junctionregular';
     src: url('font/junction-regular-webfont.eot');
@@ -71,18 +75,18 @@ div.panel-body.vimeo {
 }
 .hddr {
 	font-size: 100px;
-  color: #0097a7;
+  color: @base-color;
 	margin-top: -10px;
 }
 .hddr2 {
 	font-size: 40px;
-	color: #0097a7;
+	color: @base-color;
 	margin-top: -10px;
 }
 .hddr3 {
   font-size: 40px;
   text-align: left;
-  color: #00bcd4;
+  color: @flair-color;
   font-family: 'sofia_pro_lightregular';
 
 }
@@ -110,13 +114,13 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   text-shadow: none;
 }
 .navbar {
-  background-color: #0097a7;
+  background-color: @base-color;
   font-size: 20px;
   -moz-border-radius: 0px 0px 0px 0px;
   border-radius: 0px 0px 0px 0px;
-  -webkit-box-shadow: 0px 9px 0px #00bcd4;
-  -moz-box-shadow: 0px 9px 0px #00bcd4;
-  box-shadow: 0px 9px 0px #00bcd4;
+  -webkit-box-shadow: 0px 9px 0px @flair-color;
+  -moz-box-shadow: 0px 9px 0px @flair-color;
+  box-shadow: 0px 9px 0px @flair-color;
   border-color: transparent;
 }
 @media (min-width: 768px) {
@@ -131,13 +135,13 @@ div.navbar-collapse.collapse > ul > li > a:hover {
 }
 .jumbotron .fifty2{
   font-family: 'ralewaythin';
-  font-color: #0097a7;
+  font-color: @base-color;
 }
 .bttn {
 	font-family: 'ralewaythin';
   color: #FFF;
-	background-color: #0097a7;
-  border-color: #0097a7;
+	background-color: @base-color;
+  border-color: @base-color;
 	text-shadow: 0 .25px 0 #ccc,
                0 .5px 0 #c9c9c9,
                0 .75px 0 #bbb,
@@ -153,15 +157,15 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   -webkit-transition: all 0.1s;
   -moz-transition: all 0.1s;
   transition: all 0.1s;
-  -webkit-box-shadow: 0px 9px 0px #00bcd4;
-  -moz-box-shadow: 0px 9px 0px #00bcd4;
-  box-shadow: 0px 9px 0px #00bcd4;
+  -webkit-box-shadow: 0px 9px 0px @flair-color;
+  -moz-box-shadow: 0px 9px 0px @flair-color;
+  box-shadow: 0px 9px 0px @flair-color;
 }
 .bttn:hover {
-  background-color:#00bcd4;
-  -webkit-box-shadow: 0px 2px 0px #00bcd4;
-  -moz-box-shadow: 0px 2px 0px #00bcd4;
-  box-shadow: 0px 2px 0px #00bcd4;
+  background-color:@flair-color;
+  -webkit-box-shadow: 0px 2px 0px @flair-color;
+  -moz-box-shadow: 0px 2px 0px @flair-color;
+  box-shadow: 0px 2px 0px @flair-color;
   color:#fff;
 }
 h1 {
@@ -184,9 +188,9 @@ div.jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color:rgba(245,245,245,0.6);
-  -webkit-box-shadow: 10px 10px 10px -4px rgba(66, 182, 182, 0.77);
-  -moz-box-shadow: 10px 10px 10px -4px rgba(66, 182, 182, 0.77);
-  box-shadow: 10px 10px 10px -4px rgba(66, 182, 182, 0.77);
+  -webkit-box-shadow: 10px 10px 10px -4px @jumbotron-style;
+  -moz-box-shadow: 10px 10px 10px -4px @jumbotron-style;
+  box-shadow: 10px 10px 10px -4px @jumbotron-style;
 }
 
 /* Holds character details table */
@@ -197,10 +201,10 @@ div.jumbotron > table {
 }
 
 div.row.placeholders > div > div > div.panel-heading > a {
-  color: #0097a7;
+  color: @base-color;
 }
 div.row.placeholders > div > div > div.panel-heading > a:hover {
-  color: #00bcd4;
+  color: @flair-color;
   text-decoration: none;
 }
 .nav-sidebar > li {
@@ -218,23 +222,23 @@ div.panel-footer.rgbaTheme {
 
 /* Setting the style of the random gif title from reddit API */
 div.panel-footer.rgbaTheme > h4 a{
-  color: #0097a7;
+  color: @base-color;
   font-size: 20px;
   font-family: 'sofia_pro_lightregular';
 }
 div.panel-footer.rgbaTheme > h4 a:hover {
-  color: #00bcd4;
+  color: @flair-color;
   text-decoration: none;
 }
 /* Setting Style for Toggler element on right hand nav */
 #toggler {
-  color: #0097a7;
+  color: @base-color;
   font-size: 24px;
   margin-left: -8px;
 }
 
 li.home a {
-  color: #0097a7;
+  color: @base-color;
   font-size: 24px;
   margin-left: -8px;
 }
@@ -242,10 +246,10 @@ li.home a {
 
 /* adds slight 1px borders for expanded character and tech lists */
 #chars > ul > li {
-  border-bottom: 1px solid #00bcd4;
+  border-bottom: 1px solid @flair-color;
 }
 #techs > ul > li {
-  border-bottom: 1px solid #00bcd4; 
+  border-bottom: 1px solid @flair-color; 
 }
 
 div.row.placeholders > ul > div > ul {
@@ -253,27 +257,27 @@ div.row.placeholders > ul > div > ul {
 }
 
 #techs > ul > li.active {
-  background-color: #0097a7;
+  background-color: @base-color;
 }
 #techs > ul > li.active:hover {
-  background-color: #0097a7;
+  background-color: @base-color;
 }
 
 #chars > ul > li.active {
-  background-color: #0097a7;
+  background-color: @base-color;
 }
 #chars > ul > li.active:hover {
-  background-color: #0097a7;
+  background-color: @base-color;
 }
 
 #dataz > ul > li.active {
-  background-color: #0097a7;
+  background-color: @base-color;
 }
 #dataz > ul > li.active:hover {
-  background-color: #0097a7;
+  background-color: @base-color;
 }
 .login.active {
-  background-color: #00bcd4;
+  background-color: @flair-color;
   box-shadow: inset 10px 10px 8px rgba(0,0,0,.125);
   -webkit-box-shadow: inset 10px 10px 8px rgba(0,0,0,.125);
 }
@@ -301,7 +305,7 @@ div.row.placeholders > ul > div > ul {
 .well.data-table {
   font-family: 'sofia_pro_lightregular';
   font-size: 24px;
-  color: #0097a7;
+  color: @base-color;
 }
 table.stats {
   margin-bottom: 0px;
@@ -318,7 +322,7 @@ td.charinfo {
 
 li.techLink a {
   font-size: 18px;
-  color: #0097a7;
+  color: @base-color;
 }
 
 textarea {
@@ -381,7 +385,7 @@ div.jumbotron.locate {
   font-family: 'junctionregular';
   font-size: 60px;
   width: 100%;
-  color: #0097a7;
+  color: @base-color;
 }
 li.gray {
   background-color: #f5f5f5;
@@ -393,11 +397,11 @@ li.gray {
 
 .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #0097a7;
+  background-color: @base-color;
   margin-left: -10px;
 }
 .nav-sidebar > .active > a:hover {
-  background-color: #00bcd4;
+  background-color: @flair-color;
 }
 
 
@@ -433,10 +437,10 @@ li > h4.submit {
 }
 
 .btn-info {
-  background-color: #0097a7;
+  background-color: @base-color;
 }
 .btn-info:hover {
-  background-color: #00bcd4;
+  background-color: @flair-color;
 }
 
 .data-header {
@@ -462,10 +466,10 @@ li > h4.submit {
 /* Navbar Styling
 */
 .here{
-  background-color: #00bcd4;
+  background-color: @flair-color;
 }
 .theme {
-  color: #0097a7;
+  color: @base-color;
 }
 .theme:link {
   text-transform: lowercase;
@@ -474,7 +478,7 @@ li > h4.submit {
 }
 a:hover {
   text-decoration: none;
-  color: #00bcd4;
+  color: @flair-color;
 }
 
 .row.centered {
@@ -503,7 +507,7 @@ h3 > a {
   font-size: 22px;
   border-right-style: solid;
   border-right-width: 3px;
-  border-right-color: #00bcd4;
+  border-right-color: @flair-color;
 }
 .username {
   font-family: 'sofia_pro_lightregular';
@@ -538,7 +542,7 @@ h3 > a {
   font-size: 14px;
   margin-left: 2%;
   margin-right: 2%;
-  background-color: #00bcd4;
+  background-color: @flair-color;
   z-index: 1;
   box-shadow: inset -7px -6px 26px 0px rgba(34, 133, 125, 0.77);
   -webkit-box-shadow: inset -7px -6px 26px 0px rgba(66, 182, 182, 0.77);
