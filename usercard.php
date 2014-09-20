@@ -174,10 +174,16 @@ ga('send', 'pageview');
     <div class='row rounded'>
       <div class='panel panel-default'>
         <div class='panel-heading'>
-          <?php
-             echo "      <a href='/$username'><span class='logo'>smash lounge:</span>&nbsp$username</a>";
-           ?>
-
+          <div class='row'>
+            <div class='col-md-9'>
+              <?php
+               echo "      <a href='http://www.smashlounge.com/$username'>$username</a>";
+              ?>
+            </div>
+            <div class='col-md-3'>
+              <a href='http://www.smashlounge.com'><span class='logo'>@smash lounge</span></a>
+            </div>
+          </div>
         </div>
         <div class='panel-body'>
 
@@ -189,11 +195,14 @@ ga('send', 'pageview');
                     if ($found) {
 
                       echo"<div class='info'>";
-                      echo "  <h3><small>sponsor: </small>" . $info['sponsor'] . "</h3>";
-                      echo "<hr>";
-                      echo "  <h3><small>main: </small><a href='/characters?char=" . getCharFromID($mysqli, $info['main']) . "'>" . getCharFromID($mysqli, $info['main']) . "</a></h3>";
+                       echo "  <h3><small>main: </small><a href='/characters?char=" . getCharFromID($mysqli, $info['main']) . "'>" . getCharFromID($mysqli, $info['main']) . "</a></h3>";
                       echo "<hr>";
                       echo "  <h3><small>location: </small>" . $info['location'] . "</h3>";
+                      echo "<hr>";
+                      echo "  <h3><small>sponsor: </small>" . $info['sponsor'] . "</h3>";
+                      
+
+
                       echo "</div>";
                     }
                   ?>
@@ -203,9 +212,9 @@ ga('send', 'pageview');
                     if ($found) {
 
                       echo"<div class='info'>";
-                      echo "  <h3><small>twitch: </small><a href='https://www.twitch.tv/" . $info['twitch'] . "'>" . $info['twitch'] . "</a></h3>";
-                      echo "<hr>";
                       echo "  <h3><small>twitter: </small><a href='https://www.twitter.com/" . $info['twitter'] . "'>" . $info['twitter'] . "</a></h3>";
+                      echo "<hr>";
+                      echo "  <h3><small>twitch: </small><a href='https://www.twitch.tv/" . $info['twitch'] . "'>" . $info['twitch'] . "</a></h3>";
                       echo "<hr>";
                       echo "  <h3><small>facebook: </small><a href='https://www.facebook.com/" . $info['facebook'] . "'>" . $info['facebook'] . "</a></h3>";
                       echo "</div>";

@@ -169,11 +169,35 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   color:#fff;
 }
 h1 {
-	font-family: 'junctionregular';
+	font-family: 'Raleway', sans-serif;
 	text-transform: uppercase;
 	font-size: 75px;
-
+  font-weight: 100;
 }
+h1.lead {
+  color: #fff !important;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+@media (min-width: 768px) {
+  .lead {
+    font-size: 63px;
+  }
+}
+.lead {
+  font-size: 48px;
+}
+
 div > div.panel-heading {
   font-family: 'ralewaythin';
   font-size: 32px;
@@ -188,9 +212,17 @@ div.jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
   background-color:rgba(245,245,245,0.6);
+<<<<<<< HEAD:css/new.less
   -webkit-box-shadow: 10px 10px 10px -4px @jumbotron-style;
   -moz-box-shadow: 10px 10px 10px -4px @jumbotron-style;
   box-shadow: 10px 10px 10px -4px @jumbotron-style;
+=======
+
+  -webkit-box-shadow: 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  -moz-box-shadow:    0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  box-shadow:         0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+
+>>>>>>> FETCH_HEAD:css/new.css
 }
 
 /* Holds character details table */
@@ -399,11 +431,42 @@ li.gray {
   color: #fff;
   background-color: @base-color;
   margin-left: -10px;
+  transition: all 80ms linear;
+  transition-delay: 80ms;
+  -webkit-transition-delay: 80ms; /* for Safari & Chrome */
+  -webkit-transition-timing-function: ease;
+}
+.nav-sidebar > .active > a {
+
 }
 .nav-sidebar > .active > a:hover {
   background-color: @flair-color;
 }
 
+.nav-sidebar > li.home a{
+  background-color: transparent;
+  transition: all 80ms linear;
+  transition-delay: 80ms;
+  -webkit-transition-delay: 80ms; /* for Safari & Chrome */
+  -webkit-transition-timing-function: ease;
+}
+
+.nav-sidebar > li.home a:hover {
+  background-color: #00bcd4;
+  color: #FFF;
+}
+
+.nav-sidebar > li.home.active a{
+  background-color: #0097a7;
+  transition: all 80ms linear;
+  transition-delay: 80ms;
+  -webkit-transition-delay: 80ms; /* for Safari & Chrome */
+  -webkit-transition-timing-function: ease;
+}
+.nav-sidebar > li.home.active a:hover{
+  background-color: #00bcd4;
+
+}
 
 li > h4.submit {
   font-size: 30px;
@@ -459,10 +522,23 @@ li > h4.submit {
 .jumbotron {
   margin-right: 25%;
 }
-.jumbotron.full {
+.jumbotron.banner {
   margin-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  -webkit-box-shadow: 0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  -moz-box-shadow:    0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  box-shadow:         0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  background-color: rgba(66, 182, 182, 0.7);
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 0px solid #000000;
 }
-
+h1 anchor {
+  font-size: 30%;
+  color: #FFF;
+}
 /* Navbar Styling
 */
 .here{
@@ -499,6 +575,9 @@ a:hover {
 }
 
 h3 > a {
+  transition: all 100ms linear;
+  transition-delay: 100ms;
+  -webkit-transition-delay: 100ms; /* for Safari & Chrome */
   color: #000;
 }
 
@@ -510,7 +589,7 @@ h3 > a {
   border-right-color: @flair-color;
 }
 .username {
-  font-family: 'sofia_pro_lightregular';
+  font-family: 'Raleway';
   font-size: 60px;
   text-transform: uppercase;
   text-align: left;
@@ -558,4 +637,9 @@ li.home.login a {
   position: -moz-sticky;
   position: -ms-sticky;
   position: -o-sticky;
+}
+
+
+.labelz {
+  margin-left: 9%;
 }

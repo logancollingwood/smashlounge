@@ -61,8 +61,13 @@ Questions?
 
     <title>Smash Lounge: Upcoming Events</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+
+
+    
+    <?php 
+      printLibraries();
+    ?>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
@@ -71,16 +76,12 @@ Questions?
     <link href="/css/users.css" rel="stylesheet">
 
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_may18.js"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
   </head>
   <body>
 
@@ -96,20 +97,27 @@ Questions?
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         
-          <div class='jumbotron full'>
-            <?php 
-              if (!$hasTournament) { 
-                echo "<h1 class='hddr1'>Upcoming events</h1>";
-              } else {
-                echo "<h1 class='hddr1'>$tournament</h1>";
-              }
-            ?>
+          <div class='jumbotron banner'>
+            <div class='row'>
+              <?php 
+                if (!$hasTournament) { 
+                  echo "<h1 class='lead'>Upcoming events</h1>";
+                } else {
+                  echo "<div class='col-md-9 vcenter'>";
+                    echo "<h1 class='lead'>$tournament</h1>";
+                  echo "</div>";
+                  echo "<div class='col-md-3 vcenter'>";
+                    echo "<h1><anchor>" . date("F jS", strtotime($startDate))  . " - " . date("F jS", strtotime($endDate)) . "</anchor></h2>";
+                  echo "</div>";
+                }
+              ?>
+            </div>
           </div>
        
 
-        <div class='row centered'>
+        <div class='row'>
 
-          <div class='col-md-7'>
+          <div class='col-md-9'>
 
             <!-- NO TOURNAMENT HANDLER -->
             <?php if (!$hasTournament) { ?>
@@ -118,21 +126,33 @@ Questions?
               <div class='well'>
                 <!-- NAV -->
                 <div class='page-header'>
-                  <div class="pull-right form-inline">
-                    <div class="btn-group">
-                      <button class="btn btn-primary" data-calendar-nav="prev"><< Prev</button>
-                      <button class="btn" data-calendar-nav="today">Today</button>
-                      <button class="btn btn-primary" data-calendar-nav="next">Next >></button>
+                  <div class='row'>
+
+                    <div class='col-md-8'>
+                      <h3></h3>
                     </div>
-                    <div class="btn-group">
-                      <button class="btn btn-warning" data-calendar-view="year">Year</button>
-                      <button class="btn btn-warning active" data-calendar-view="month">Month</button>
-                      <button class="btn btn-warning" data-calendar-view="week">Week</button>
-                      <button class="btn btn-warning" data-calendar-view="day">Day</button>
+
+                    <div class='col-md-4'>
+                      <div class="pull-right form-inline">
+                        <div class="btn-group">
+                          <button class="btn btn-warning" data-calendar-view="year">Year</button>
+                          <button class="btn btn-warning active" data-calendar-view="month">Month</button>
+                          <button class="btn btn-warning" data-calendar-view="week">Week</button>
+                          <button class="btn btn-warning" data-calendar-view="day">Day</button>
+                        </div>
+
+                        <hr>
+
+                        <div class="btn-group">
+                          <button class="btn btn-primary" data-calendar-nav="prev"><< Prev</button>
+                          <button class="btn" data-calendar-nav="today">Today</button>
+                          <button class="btn btn-primary" data-calendar-nav="next">Next >></button>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
 
-                  <h3></h3>
                 </div>
                 <div id='calendar'></div>
               </div>
@@ -140,19 +160,21 @@ Questions?
             <!-- FOR TOURNAMENT SPECIFIC HANDLER -->
             <?php } else { 
 
-                makeInfo();
-                makeBracket($eventInfoz['bracket']);
+                if ($bracket != '') {
+                  makeBracket($bracket);
+                }
 
             } ?>
 
           </div>
 
-          <div class='col-md-5'>
+          <div class='col-md-3'>
             
             <?php
               if ($hasTournament) {
                 makeTwitchPanel($hasTwitch, $twitch);
                 makeStandings($first, $second, $third);
+                makeInfo($host, $attending);
               }
             ?>
 
@@ -164,24 +186,22 @@ Questions?
                 <ul id="eventlist" class="nav nav-list"></ul>
               </div>
             </div>
-
-                <div class="well pull-right adtainer" id="canttouchthis">
-                    <div class="panel-body ad" id="adholder">
-                      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                      <!-- responsive! -->
-                      <ins class="adsbygoogle"
-                           style="display:block"
-                           data-ad-client="ca-pub-5354507002335154"
-                           data-ad-slot="6479366620"
-                           data-ad-format="auto"></ins>
-                      <script>
-                      (adsbygoogle = window.adsbygoogle || []).push({});
-                      </script>
-                    </div>
-                  </div>
-
-                  </td>
+            <hr>
+            <div class="well pull-right adtainer" id="canttouchthis">
+                <div class="panel-body ad" id="adholder">
+                  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                  <!-- responsive! -->
+                  <ins class="adsbygoogle"
+                       style="display:block"
+                       data-ad-client="ca-pub-5354507002335154"
+                       data-ad-slot="6479366620"
+                       data-ad-format="auto"></ins>
+                  <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
                 </div>
+            </div>
+          </div>
 
           </div>
 
