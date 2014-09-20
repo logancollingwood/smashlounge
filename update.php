@@ -60,8 +60,9 @@
       $location = $_POST['location'];
       $vodURL = $_POST['vod'];
       $facebook = $_POST['facebook'];
-      echo $vodURL;
-      preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
+      //echo $vodURL;
+      //preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
+      //echo $matches;
       if (empty($matches) && $_POST['vod'] != '') {
         header("Location: /update?str=url");
         die("Redirecting to update.php"); 
@@ -77,6 +78,14 @@
       $params['twitter'] = $twitter;
       $params['twitch'] = $twitchId;
       $params['facebook'] = $facebook;
+
+      $gfyURL = remove_http($_POST['gfycat']);
+      $gfyID = grabGfyName($gfyURL);
+
+      if ($gfyID === NULL) {
+        header("Location: /update?str=url");
+        die("Redirecting to update.php"); 
+      }
 
         if (preg_match("/\\s/", $params['twitter'])) {
           header("Location: update.php?str=spaces");
@@ -136,8 +145,19 @@
         try{ 
           $stmt = $db->prepare($query); 
           $result = $stmt->execute($query_params); 
-        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
+        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+
       }
+          $query = "INSERT INTO usergif (userid, url) VALUES (:userID, :id);";
+          $query_params = array(
+            ':userID' => $userID,
+            ':id' => $gfyID
+          ); 
+          try{ 
+            $stmt = $db->prepare($query); 
+            $result = $stmt->execute($query_params); 
+          } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+
 
       header("Location: /update?str=success");
     }
@@ -215,7 +235,7 @@ ga('send', 'pageview');
       <div class="row">
 
         <div class="col-sm-3 col-md-2 sidebar">
-          <?php makeSidebar($loggedIn); ?>
+          <?php makeSidebar($loggedIn, 'update'); ?>
         </div>
 
 
@@ -224,24 +244,21 @@ ga('send', 'pageview');
 
 
 
-          <div class="jumbotron full">
+          <div class="jumbotron banner">
                 <?php 
                     if ($alert) {
                         alertStatus($alert);
                     }
                 ?>
-            <h1 class="hddr">Hey 
-              <?php echo "<a href='/".$username."'>"; ?>
-              <?php echo $username; ?>
-              <?php echo "</a>"; ?>
-
+            <h1 class="lead">
+              Update your profile
             </h1>
-            <p class="fifty">update your profile information<br/>
+            
             
           </div>
 
           <div class="row">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-7">
 
 
               <div class='panel panel-default'>
@@ -359,7 +376,16 @@ ga('send', 'pageview');
                     </div>
                   </div>
 
-                  <button class="btn btn-lg btn-primary btn-block bttn" type="submit">Update your profile!</button>
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>  
+                    <div class="col-md-4">
+                    <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" class="form-control input-md">
+                    <span class="help-block">Please enter a link to a sweet gfycat!</span>  
+                    </div>
+                  </div>
+
+                  <button class="btn btn-lg btn-primary btn-block bttn" type="submit">Save</button>
 
                   <br/>
                   </fieldset>
@@ -370,6 +396,54 @@ ga('send', 'pageview');
 
            
                   </div>
+            </div>
+            <div class='col-md-5'>
+              <div class='panel panel-default'>
+                <div class='panel-heading'>
+                  <div class='row'>
+                    <div class='col-md-3'>
+                      <?php
+                       echo "      <a href='http://www.smashlounge.com/$username'>$username</a>";
+                      ?>
+                    </div>
+                    <div class='col-md-3'>
+                      <a href='http://www.smashlounge.com'><span class='logo'>@smash lounge</span></a>
+                    </div>
+                  </div>
+                </div>
+                <div class='panel-body'>
+
+                      <div class='row'>
+                   
+                        <div class='col-md-7 col-sm-7'>
+                          <?php 
+
+                              echo"<div class='info'>";
+                                echo "  <h3><small>main: </small><a href='/characters?char=" . getCharFromID($mysqli, $userFields['main']) . "'>" . getCharFromID($mysqli, $userFields['main']) . "</a></h3>";
+                                echo "<hr>";
+                                echo "  <h3><small>location: </small>" . $userFields['location'] . "</h3>";
+                                echo "<hr>";
+                                echo "  <h3><small>sponsor: </small>" . $userFields['sponsor'] . "</h3>";
+                              echo "</div>";
+
+                          ?>
+                        </div>
+                        <div class='col-md-5 col-sm-5'>
+                          <?php
+                              echo"<div class='info'>";
+                                echo "  <h3><small>twitter: </small><a href='https://www.twitter.com/" . $userFields['twitter'] . "'>" . $userFields['twitter'] . "</a></h3>";
+                                echo "<hr>";
+                                echo "  <h3><small>twitch: </small><a href='https://www.twitch.tv/" . $userFields['twitch'] . "'>" . $userFields['twitch'] . "</a></h3>";
+                                echo "<hr>";
+                                echo "  <h3><small>facebook: </small><a href='https://www.facebook.com/" . $userFields['facebook'] . "'>" . $userFields['facebook'] . "</a></h3>";
+                              echo "</div>";
+                          ?>
+                        </div>
+                      </div>
+
+
+                </div>
+              </div>
             </div>
 
 

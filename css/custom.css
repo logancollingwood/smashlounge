@@ -345,7 +345,7 @@ div.panel.adtainer {
   width: 290px;
 }
 div.well.adtainer {
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .adblocked {

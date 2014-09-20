@@ -93,6 +93,16 @@ function grabGfyName ($url) {
   return $matches[4];
 }
 
+function remove_http($url) {
+   $disallowed = array('http://', 'https://');
+   foreach($disallowed as $d) {
+      if(strpos($url, $d) === 0) {
+         return str_replace($d, '', $url);
+      }
+   }
+   return $url;
+}
+
 
 function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null') {
   if ($key === 'char') {
@@ -484,7 +494,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register');
+  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
 

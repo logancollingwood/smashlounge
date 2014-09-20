@@ -44,6 +44,7 @@ $hasVod = false;
 $hasTwitch = false;
 $hasImage = false;
 $hasFacebook = false;
+$hasGifs = false;
 $mainID = 0;
 $main = "No Main!";
 $query = "SELECT * from userinfo WHERE userid='" . $userid . "'";
@@ -136,7 +137,6 @@ function makeSponsorPanel($hasSponsor, $sponsor) {
     echo "<div class='well'>";
         echo "        <h3><small class='pull-left labelz'>sponsor</small>";
         echo "        $sponsor</h3>";
-        echo "        <div class='mainPic $main'></div>";
     echo "</div>";
   }
 }
@@ -146,7 +146,6 @@ function makeLocationPanel($hasLocation, $location) {
     echo "<div class='well'>";
         echo "        <h3><small class='pull-left labelz'>location</small>";
         echo "        $location</h3>";
-        echo "        <div class='mainPic $main'></div>";
     echo "</div>";
   }
 }
@@ -160,21 +159,19 @@ function makePinnedPanel($hasVod, $vodType, $vod, $hasGifs, $usergifs) {
       echo "<div class='well youtube'>";
        echo "<iframe id='ytplayer' type='text/html' src='http://www.youtube.com/embed/$vod' frameborder='0'></iframe>";
       echo "</div>";
-            if ($hasGifs) {
-             
-              echo "<ul class='list-group'>";
-              foreach ($usergifs as $tmpGif) {
-                $counter++;
-                echo "<li class='list-group-item'>";
-                echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                
-                echo "</li>";
-              }
-              echo "</ul>";
-              echo "</br>";
-              
-            }
     }
+  }
+  if ($hasGifs) {     
+    echo "<ul class='list-group'>";
+    foreach ($usergifs as $tmpGif) {
+      $counter++;
+      echo "<li class='list-group-item'>";
+      echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
+      
+      echo "</li>";
+    }
+    echo "</ul>";
+    echo "</br>";
   }
 }
 
