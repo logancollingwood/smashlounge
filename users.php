@@ -79,6 +79,7 @@ ga('send', 'pageview');
     <link href="/css/new.css" rel="stylesheet">
     <link href="/css/users.css" rel="stylesheet">
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    
 
   </head>
 
@@ -115,7 +116,7 @@ ga('send', 'pageview');
 
 
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div id='particles' class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <?php if ($loggedIn && $user['username'] == $username) {
                   echo "<div class='alert alert-info alert-dismissible SL' role='alert'>
                           <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
@@ -260,10 +261,17 @@ ga('send', 'pageview');
         });
     </script>
     <script src="/js/adblockzorz.js"></script>
-    <script src="js/jquery.sticky.js"></script>
+    <script src="/js/jquery.sticky.js"></script>
+    <script src="/js/jquery.particleground.min.js"></script>
     <script>
       $(document).ready(function(){
         $("#canttouchthis").sticky({topSpacing:70});
+
+        $('#particles').particleground({
+          dotColor: '#5cbdaa',
+          lineColor: '#5cbdaa'
+        });
+
       });
     </script>
   </body>

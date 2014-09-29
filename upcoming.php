@@ -103,7 +103,10 @@ Questions?
                 if (!$hasTournament) { 
                   echo "<h1 class='lead'>Upcoming events</h1>";
                 } else {
-                  echo "<div class='col-md-9 vcenter'>";
+                  echo "<div class='col-md-1 vcenter'>";
+                    echo "<a href='/upcoming'><i class='fa fa-angle-left fa-4x'></i></a>";
+                  echo "</div>";
+                  echo "<div class='col-md-8 vcenter'>";
                     echo "<h1 class='lead'>$tournament</h1>";
                   echo "</div>";
                   echo "<div class='col-md-3 vcenter'>";
@@ -163,6 +166,7 @@ Questions?
                 if ($bracket != '') {
                   makeBracket($bracket);
                 }
+                makeDiscussion();
 
             } ?>
 
