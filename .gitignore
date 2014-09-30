@@ -217,3 +217,10 @@ pip-log.txt
 
 *.jpg
 *.jpeg
+
+#######################
+## The Smash Lounge
+#######################
+
+techs/db.php
+techs/dbSuper.php
