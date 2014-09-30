@@ -224,3 +224,6 @@ pip-log.txt
 .htaccess
 techs/db.php
 techs/dbSuper.php
+static/dbSuper.php
+vendor
+composer.lock
