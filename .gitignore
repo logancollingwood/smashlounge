@@ -221,6 +221,6 @@ pip-log.txt
 #######################
 ## The Smash Lounge
 #######################
-
+.htaccess
 techs/db.php
 techs/dbSuper.php
