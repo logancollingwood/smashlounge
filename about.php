@@ -1,4 +1,9 @@
+<?php
 
+
+  require("techs/init.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,6 +22,7 @@
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -31,39 +37,17 @@
 
   <body>
 
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
+      <?php
+        createNavBar('about');
+      ?>
         <div class="cover-container">
 
-          <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container-fluid heddur">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-               <a class="navbar-brand heddur" href="/">smash lounge&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-gamepad fa-1x"></i></a>
-              </div>
-              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="http://www.reddit.com/r/smashlounge"><i class="fa fa-reddit"></i></a></li>
-                  <li><a href="https://www.facebook.com/SmashLounge"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="/api/docs">api</a></li>
-                  <li><a href="/donate.php">donate</a></li>
-                  <li class='here'><a href="/about.html">about</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Smash Lounge</h1>
-            <p class="lead">is an online compendium for Super Smash Brothers Melee</p>
+            <div class='row'>
+              <h1 class="cover-heading">Smash Lounge</h1>
+              <p class="lead">is an online compendium for Super Smash Brothers Melee</p>
+            </div>
             <p class="lead">
               Code by <a href="http://www.logancollingwood.com"> Logan Collingwood </a> <a href="http://www.twitter.com/logan6694"> @logan6694 </a>
               <br />
@@ -91,7 +75,7 @@
 
         </div>
 
-      </div>
+
 
     </div>
 
