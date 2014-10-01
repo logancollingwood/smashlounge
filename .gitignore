@@ -217,3 +217,13 @@ pip-log.txt
 
 *.jpg
 *.jpeg
+
+#######################
+## The Smash Lounge
+#######################
+.htaccess
+techs/db.php
+techs/dbSuper.php
+static/dbSuper.php
+vendor
+composer.lock
