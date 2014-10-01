@@ -51,7 +51,9 @@ ga('send', 'pageview');
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
+
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -71,26 +73,15 @@ ga('send', 'pageview');
 
   <div class="container-fluid">
       <div class="row">
+
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <?php
-              if ($tech != '') {
-               makeCollapseNav("tech", $dataTech, 'in', $char, $tech);
-              }else {
-               makeCollapseNav("tech", $dataTech, 'out', $char, $tech);
-              }
-               makeCollapseNav("char", $dataChar, 'out', $char, $tech);
-              
-            ?>
-          </ul>
+          <?php makeSidebar($loggedIn, 'techs') ?>
         </div>
   
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <div class="jumbotron full">
-            <h1 class="hddr2"><?php 
+          <div class="jumbotron banner">
+            <h1 class="lead"><?php 
               if ($tech){
                 echo $tech; 
               } else {
@@ -175,20 +166,21 @@ ga('send', 'pageview');
 
                 createBeg(.5);
                 ?>
+                <hr>
                 <div class="well pull-right adtainer" id="canttouchthis">
                   <div class="panel-body ad" id="adholder">
                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- techad -->
+                    <!-- responsive! -->
                     <ins class="adsbygoogle"
-                     style="display:inline-block;width:250px;height:250px"
-                     data-ad-client="ca-pub-5354507002335154"
-                     data-ad-slot="9125976229">
-                    </ins>
+                         style="display:block"
+                         data-ad-client="ca-pub-5354507002335154"
+                         data-ad-slot="6479366620"
+                         data-ad-format="auto"></ins>
                     <script>
-                      (adsbygoogle = window.adsbygoogle || []).push({});
+                    (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                   </div>
-                </div>
+              </div>
               </div>
 
             
@@ -203,11 +195,11 @@ ga('send', 'pageview');
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toggler.js"></script>
     <script src="js/docs.min.js"></script>
     <script src="js/adblockzorz.js"></script>
-    <script src="js/jquery.sticky.js"></script>
     <script>
       $(document).ready(function(){
         $("#canttouchthis").sticky({topSpacing:70});

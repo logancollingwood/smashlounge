@@ -1,6 +1,7 @@
 <?php
   $char = isset($_GET['char'])       ? trim($_GET['char'])       : "";
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
+
   require("techs/init.php");
   require("techs/twitch.php");
 ?>
@@ -52,8 +53,10 @@ ga('send', 'pageview');
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/dashboard_tech.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -73,16 +76,8 @@ ga('send', 'pageview');
     <div class="container-fluid">
       <div class="row">
 
-        <!-- compartamentalize sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home active"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <?php 
-              makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
-            ?>
-          </ul>
+          <?php makeSidebar($loggedIn, 'home') ?>
         </div>
 
 
@@ -91,16 +86,18 @@ ga('send', 'pageview');
 
 
 
-          <div class="jumbotron full">
+          <div class="jumbotron banner">
 
-            <h1 class="hddr">smash lounge</h1>
-            <p class="fifty">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going<br/>
+            <h1 class='lead'>smash lounge</h1>
+            <hr style='width:50%;'>
+            <p class="fifty">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br>
             <?php
               if ($displayChar) {
-                echo "<a class='btn btn-primary btn-lg bttn' href=characters.php?char=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search'></span>    " . $randomLink . "</a>";
+                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=characters.php?char=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
               } else if ($displayTech) {
-                echo "<a class='btn btn-primary btn-lg bttn' href=techniques.php?tech=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search'></span>    " . $randomLink . "</a>";
+                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=techniques.php?tech=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
               }
+              echo "</br>";
               echo "</p>";
             ?>
           </div>

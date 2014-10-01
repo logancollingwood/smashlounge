@@ -3,6 +3,7 @@
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
   $submit = isset($_GET['submit'])       ? trim($_GET['submit'])       : "";
 	require("techs/init.php");
+  
   require ("techs/initChar.php");
 ?>
 <!--
@@ -53,7 +54,8 @@ ga('send', 'pageview');
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -74,25 +76,13 @@ ga('send', 'pageview');
 	<div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <?php 
-              makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-              if ($char != '') {
-               makeCollapseNav("char", $dataChar, 'in', $char, $tech);
-              }else {
-               makeCollapseNav("char", $dataChar, 'out', $char, $tech);
-              }
-             /* makeCollapseNav("data", $dataDataz, 'out', $char, $tech); */
-            ?>
-          </ul>
+          <?php makeSidebar($loggedIn, 'chars') ?>
         </div>
   
         
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <div class="jumbotron full">
-            <h1 class="hddr2"><?php 
+          <div class="jumbotron banner">
+            <h1 class="lead"><?php 
             	if (!$charnotFound){
             		echo $char; 
             	} else {

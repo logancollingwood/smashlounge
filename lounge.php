@@ -56,7 +56,8 @@ ga('send', 'pageview');
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_lounge.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
+    <link href="css/users.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -79,23 +80,16 @@ ga('send', 'pageview');
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <li class="home active"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <?php 
-              makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
-            ?>
-          </ul>
+          <?php makeSidebar($loggedIn, 'home') ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main map">
 
           <div class="row">
-            <div class="jumbotron full">
+            <div class="jumbotron banner">
  
                 
                   <?php if (!$id) ?>
-                  <h1 class='hddr'>Locate a group near you! <h1/><p class='fifty'>(the locations are merely for reference and do not represent actual group locations)</p>
+                  <h1 class='lead'>Locate a group near you! <h1/><p class='fifty'>(the locations are merely for reference and do not represent actual group locations)</p>
 
             </div>
             <?php if (!$id) { ?>

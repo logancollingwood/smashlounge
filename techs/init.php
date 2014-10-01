@@ -1,22 +1,32 @@
 <?php
 
-require("db.php");
+
+require_once('/techs/db.php');
+require_once("techs/sentry.php");
+
+
+  $loggedIn = false;
+  if (Sentry::check())
+  {
+      $loggedIn = true;
+      $user = Sentry::getUser();
+  }
+
 
 $modules = array('api', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static',
  'techs', 'vendor', '404', 'about', 'awards', 'characters', 'composer.json', 'composer.lock',
   'composer.phar', 'donate', 'error_log', 'index', 'info', 'login', 'logout', 'lounge', 'moderate',
    'register', 'techniques', 'upcoming', 'update', 'users'); 
 
-$techCount = 0;
-$charCount = 0;
-$datazCount = 0;
-$listCounter = 0;
+
+
 
 //     BUILDS DATABASE CONNCETION
 //
 //
 //
 ////////////////////////////////////////
+
 
 $mysqli = new mysqli($dahostname, $username, $password, $database);
 if ($mysqli->connect_errno) {   
@@ -30,7 +40,7 @@ if ($mysqli->connect_errno) {
 //
 //
 ////////////////////////////////////////
-
+$techCount = 0;
 $query = "SELECT * from " . $techTable;
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
@@ -53,7 +63,7 @@ asort($dataTech);
 ////////////////////////////////////////
 
 $query = "SELECT * FROM " . $charTable . " ORDER BY tierdata";
-
+$charCount = 0;
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
 }
@@ -407,8 +417,12 @@ function createNavBar($extra = 'false') {
   echo "          <li><a href='http://www.reddit.com/r/smashlounge'><i class='fa fa-reddit'></i></a></li>";
   echo "          <li><a href='http://www.github.com/logancollingwood/smashlounge'><i class='fa fa-github-alt'></i></a></li>";
   echo "          <li><a href='/api/docs'>api</a></li>";
-  echo "          <li><a href='/donate.php'>donate</a></li>";
-  echo "          <li><a href='/about.html'>about</a></li>";
+  echo "          <li ";
+  if ($extra == 'donate') echo ' class="here"';
+  echo " ><a href='/donate.php'>donate</a></li>";
+  echo "          <li ";
+  if ($extra == 'about') echo ' class="here"';
+  echo "><a href='/about'>about</a></li>";
   if ($extra == 'logout') {
   echo "          <li><a href='static/logout.php'>logout</a></li>";
   } else if ($extra =='register') {
@@ -494,7 +508,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update');
+  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
 
