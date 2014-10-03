@@ -1,12 +1,13 @@
 /* Dark - Primary Color */
+
 @base-color: #0097a7;
 /* Light - Highlight Color */
+
 @flair-color: #00bcd4;
 
-/* DARKER THEME RGBA! :D */
-@jumbotron-style-dark: rgba(66, 182, 182, 0.75);
-/* LIGHTER THEME RGBA! :D */
-@jumbotron-style-light: rgba(66, 182, 182, 0.65);
+/* Gradients! :D */
+@jumbotron-style: rgba(66, 182, 182, 0.77);
+
 
 
 /** BASE SELECTORS TO MATCH 2 COLOR SCHEME **/
@@ -169,9 +170,9 @@ div.navbar-collapse.collapse > ul > li > a:hover {
                0 1.25px 2.5px rgba(0,0,0,.25),
                0 2.5px 2.5px rgba(0,0,0,.2),
                0 5px 5px rgba(0,0,0,.15);
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all 0.1s;
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  transition: all 0.15s;
   -webkit-box-shadow: 0px 9px 0px @flair-color;
   -moz-box-shadow: 0px 9px 0px @flair-color;
   box-shadow: 0px 9px 0px @flair-color;
@@ -182,6 +183,7 @@ div.navbar-collapse.collapse > ul > li > a:hover {
   -moz-box-shadow: 0px 2px 0px @flair-color;
   box-shadow: 0px 2px 0px @flair-color;
   color:#fff;
+  border-color: transparent;
 }
 h1 {
 	font-family: 'Raleway', sans-serif;
@@ -228,14 +230,14 @@ div.jumbotron {
   padding-bottom: 30px;
   background-color:rgba(245,245,245,0.6);
 
-  -webkit-box-shadow: 10px 10px 10px -4px @jumbotron-style-dark;
-  -moz-box-shadow: 10px 10px 10px -4px @jumbotron-style-dark;
-  box-shadow: 10px 10px 10px -4px @jumbotron-style-dark;
+  -webkit-box-shadow: 10px 10px 10px -4px @jumbotron-style;
+  -moz-box-shadow: 10px 10px 10px -4px @jumbotron-style;
+  box-shadow: 10px 10px 10px -4px @jumbotron-style;
 
 
-  -webkit-box-shadow: 10px 10px 10px -4px @jumbotron-style-dark;
-  -moz-box-shadow: 10px 10px 10px -4px @jumbotron-style-dark;
-  box-shadow: 10px 10px 10px -4px @jumbotron-style-dark;
+  -webkit-box-shadow: 10px 10px 10px -4px @jumbotron-style;
+  -moz-box-shadow: 10px 10px 10px -4px @jumbotron-style;
+  box-shadow: 10px 10px 10px -4px @jumbotron-style;
 
 
 }
@@ -369,7 +371,7 @@ td.charinfo {
 
 li.techLink a {
   font-size: 18px;
-  color: @base-color;
+  
 }
 
 textarea {
@@ -396,7 +398,7 @@ div.panel.adtainer {
   width: 290px;
 }
 div.well.adtainer {
-  width: 100%;
+  
 }
 
 .adblocked {
@@ -541,10 +543,10 @@ li > h4.submit {
   margin-right: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
-  -webkit-box-shadow: 0px 10px 1px 0px #349191, inset 0px 0px 17px 3px @jumbotron-style-dark;
-  -moz-box-shadow:    0px 10px 1px 0px #349191, inset 0px 0px 17px 3px @jumbotron-style-dark;
-  box-shadow:         0px 10px 1px 0px #349191, inset 0px 0px 17px 3px @jumbotron-style-dark;
-  background-color: @jumbotron-style-light;
+  -webkit-box-shadow: 0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  -moz-box-shadow:    0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  box-shadow:         0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  background-color: rgba(66, 182, 182, 0.7);
   border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px 10px 10px 10px;
   -webkit-border-radius: 10px 10px 10px 10px;
