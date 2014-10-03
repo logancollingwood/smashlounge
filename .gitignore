@@ -222,6 +222,7 @@ pip-log.txt
 ## The Smash Lounge
 #######################
 .htaccess
+php.ini
 techs/db.php
 techs/dbSuper.php
 static/dbSuper.php
