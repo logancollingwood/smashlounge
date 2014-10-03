@@ -1,7 +1,7 @@
 <?php
 
 
-require_once('/techs/db.php');
+require_once("techs/db.php");
 require_once("techs/sentry.php");
 
 
