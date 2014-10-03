@@ -53,7 +53,7 @@ ga('send', 'pageview');
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard_tech.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/new.css" rel="stylesheet">
     <link href="/css/users.css" rel="stylesheet">
 
