@@ -37,7 +37,7 @@ awards
 
 relevant information:
 ===========
-Accessor functions are mostly found in the /techs directory, where I wrote scripts to access the database and initialize arrays which are referenced from the template pages.
+Accessor functions are mostly found in the /techs directory, where I wrote scripts to access the database and initialize arrays which are referenced from the template pages, following MVC principles.
 
 
 API:
