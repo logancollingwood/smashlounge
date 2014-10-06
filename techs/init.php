@@ -5,6 +5,8 @@ require_once("techs/db.php");
 require_once("techs/sentry.php");
 
 
+
+
   $loggedIn = false;
   if (Sentry::check())
   {
@@ -509,39 +511,40 @@ function getYoutubeIdFromUrl($url) {
 
 function makeSidebar($loggedIn, $currentPage = '') {
   $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars');
+  $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
 
   echo "<div class='expander'>";
   echo "  <ul class='nav nav-sidebar'>";
-  if ($currentPage == 'home') {
-    echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
-  } else {
-    echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
-  }
-  if ($currentPage == 'users') {
-    echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
-  } else {
-    echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
-  }
-  if ($currentPage == 'lounge') {
-    echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
-  } else {
-    echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
-  }
-  if ($currentPage == 'upcoming') {
-    echo "    <li class='home active'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
-  } else {
-    echo "    <li class='home'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
-  }
+    if ($currentPage == 'home') {
+      echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>";
+    }
+    if ($currentPage == 'users') {
+      echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
+    } else {
+      echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
+    }
+    if ($currentPage == 'lounge') {
+      echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
+    }
+    if ($currentPage == 'upcoming') {
+      echo "    <li class='home active'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
+    }
   
-            if (in_array($currentPage, $pages)) {
+            if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
-            } else if ($currentPage == 'tech') {
+            } else if ($currentPage == 'techs') {
               makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
-            } else if ($currentPage == 'char') {
+            } else if ($currentPage == 'chars') {
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
             }

@@ -284,6 +284,20 @@ div.panel-footer.rgbaTheme > h4 a:hover {
   color: @base-color;
   font-size: 24px;
   margin-left: -8px;
+  background-color: transparent;
+  transition: all 80ms linear;
+  
+  transition-delay: 80ms;
+    -webkit-transition-delay: 80ms;
+    -webkit-transition-timing-function: ease;
+}
+#toggler:hover {
+    background-color: @flair-color;
+    color: #FFF;
+}
+.nav>li>a:hover {
+    background-color: @flair-color;
+    color: #fff;
 }
 
 li.home a {
@@ -346,6 +360,7 @@ div.row.placeholders > ul > div > ul {
   }
   div.panel-body.desc {
   margin-left: 10px;
+  margin-right: 10px;
   font-family: 'sofia_pro_lightregular';
   font-size: 16px;
   }
@@ -380,6 +395,7 @@ textarea {
 
 div.panel-body.desc {
   margin-left: 3px;
+  margin-right: 3px;
   font-family: 'sofia_pro_lightregular';
   font-size: 16px;
 }
@@ -471,6 +487,11 @@ li.gray {
 .nav-sidebar > li.home a:hover {
   background-color: #00bcd4;
   color: #FFF;
+}
+
+.nav  >  li  >  a:hover {
+    background-color: @flair-color;
+    color: #fff;
 }
 
 .nav-sidebar > li.home.active a{
@@ -627,6 +648,7 @@ h3 > a {
   }
   div.panel-body.desc {
   margin-left: 10px;
+  margin-right: 10px;
   font-family: 'sofia_pro_lightregular';
   font-size: 16px;
   }
