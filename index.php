@@ -7,16 +7,16 @@
 ?>
 <!--
 
-ooooo                                                   
-`888'                                                   
- 888          .ooooo.   .oooooooo  .oooo.   ooo. .oo.   
- 888         d88' `88b 888' `88b  `P  )88b  `888P"Y88b  
- 888         888   888 888   888   .oP"888   888   888  
- 888       o 888   888 `88bod8P'  d8(  888   888   888  
-o888ooooood8 `Y8bod8P' `8oooooo.  `Y888""8o o888o o888o 
-                       d"     YD                        
-                       "Y88888P'                        
-                       
+ooooo
+`888'
+ 888          .ooooo.   .oooooooo  .oooo.   ooo. .oo.
+ 888         d88' `88b 888' `88b  `P  )88b  `888P"Y88b
+ 888         888   888 888   888   .oP"888   888   888
+ 888       o 888   888 `88bod8P'  d8(  888   888   888
+o888ooooood8 `Y8bod8P' `8oooooo.  `Y888""8o o888o o888o
+                       d"     YD
+                       "Y88888P'
+
 -->
 <!--
 
@@ -31,15 +31,16 @@ Questions?
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-51481444-1', 'auto');
-ga('require', 'displayfeatures');
-ga('send', 'pageview');
-</script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-51481444-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+    </script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,8 +50,12 @@ ga('send', 'pageview');
 
     <title>Smash Lounge</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main Dependencies -->
+    <?php
+
+      printLibraries();
+
+    ?>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -63,8 +68,7 @@ ga('send', 'pageview');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_june25.js"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
   </head>
 
   <body>
@@ -106,9 +110,9 @@ ga('send', 'pageview');
             <div class="col-md-8 col-sm-8">
 
             <?php
-            
+
               $string_reddit = file_get_contents("http://www.reddit.com/r/smashgifs/hot.json");
-              $json = json_decode($string_reddit, true);  
+              $json = json_decode($string_reddit, true);
               $children = $json['data']['children'];
               $randGif = rand(0, count($children)-1);
 
@@ -122,7 +126,7 @@ ga('send', 'pageview');
 
                   drawGif($title, $url, $permalink);
                 echo "</div>";
-               
+
               ?>
 
               <div class='panel panel-default'>
@@ -142,7 +146,7 @@ ga('send', 'pageview');
               <div class='panel panel-default'>
                 <div class='panel-heading'> Live SSBM Streams </div>
                 <div class='panel-body randgifz'>
-                  <?php 
+                  <?php
                     $counter = 0;
                     $maxCount = 4;
                     foreach ($activeStreams as $data) {
@@ -161,10 +165,10 @@ ga('send', 'pageview');
                 </div>
               </div>
 
-              <?php 
+              <?php
               createBeg(.3);
               ?>
-            
+
           </div>
 
 

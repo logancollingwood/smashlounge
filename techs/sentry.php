@@ -2,7 +2,7 @@
 require("dbSuper.php");
 
 // Include the composer autoload file
-include_once "vendor/autoload.php";
+include_once "src/Cartalyst/Sentry/Sentry.php";
 
 
 // Import the necessary classes
