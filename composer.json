@@ -28,10 +28,9 @@
 			"email": "bruno.gaspar@cartalyst.com",
 			"role": "Developer"
 		}
-	],
-	"require": {
-		"php": ">=5.3.3"
-	},
+	],	
+	"php": ">=5.3.3",
+
 	"require-dev": {
 		"mockery/mockery": "0.7.2",
 
@@ -69,4 +68,5 @@
 		}
 	},
 	"minimum-stability": "dev"
+
 }

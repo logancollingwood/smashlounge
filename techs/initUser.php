@@ -1,7 +1,36 @@
 <?php
 
+////////////////////////////////////////
+//            EXPORTED GLOBALS
+//
+//
+//    USERID
+//    
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-require("db.php");
+$userid = '';
+
+
+
+require("techs/db.php");
 $found = true;
 
 //     BUILDS DATABASE CONNCETION
@@ -9,6 +38,12 @@ $found = true;
 //
 //
 ////////////////////////////////////////
+
+$mysqli = new mysqli($dahostname, $username, $password, $database);
+if ($mysqli->connect_errno) {   
+  printf("Connect failed: %s\n", $mysqli->connect_error);
+  exit();
+}
 
 $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
 $query = "SELECT * from users WHERE username='" . $username . "'";

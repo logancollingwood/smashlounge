@@ -12,7 +12,7 @@
     }
 
     if(!empty($_POST)){ 
-
+        require('static/db_submit.php');
 
         try
         {
@@ -28,6 +28,7 @@
 
 
         try {
+            echo "TRYING LOGIN";
             // Log the user in
             Sentry::login($user, true);
         }
@@ -78,18 +79,20 @@
     <meta charset="utf-8">
     <title>Login</title>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-   <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <?php 
+        printLibraries();
+    ?>
 
-    <!-- Custom styles for this template -->
+    <!-- Custom CSS for this view -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
     <link href="/css/new.css" rel="stylesheet">
     <link href="/css/users.css" rel="stylesheet">
+    
+
+    
 
     <link rel="shortcut icon" href="/img/favicon.png">
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_june25.js"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 
 <body>

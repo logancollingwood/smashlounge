@@ -30,7 +30,8 @@
 
 		if (empty($json_array['streams'])) {
 			return false;
-		} 
-		return true;
+		} else {
+			return true;
+		}
 	}
 ?>

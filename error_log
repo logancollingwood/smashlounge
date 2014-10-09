@@ -1,0 +1,102 @@
+[16-Aug-2014 00:58:57 UTC] PHP Fatal error:  Maximum execution time of 120 seconds exceeded in /home/vaplounge/public_html/register.php on line 87
+[16-Aug-2014 10:06:00 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 10:09:56 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/techniques.php on line 160
+[16-Aug-2014 10:10:32 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/techniques.php on line 160
+[16-Aug-2014 10:11:11 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/techniques.php on line 160
+[16-Aug-2014 10:11:49 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:12:23 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:12:45 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:13:06 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:13:38 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:14:14 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:14:18 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:19:35 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 10:20:52 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:21:20 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 10:26:41 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 10:29:36 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 23:10:28 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:10:31 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:10:48 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:10:55 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:11:00 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:11:19 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:11:25 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:11:28 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:12:19 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/techniques.php on line 160
+[16-Aug-2014 23:13:15 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/index.php on line 160
+[16-Aug-2014 23:14:16 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 23:14:17 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[16-Aug-2014 23:14:17 UTC] PHP Fatal error:  Call to undefined function createBeg() in /home/vaplounge/public_html/characters.php on line 195
+[20-Aug-2014 00:22:36 UTC] PHP Fatal error:  Call to undefined function streamIsLiveByUsername() in /home/vaplounge/public_html/users.php on line 104
+[20-Aug-2014 00:22:50 UTC] PHP Fatal error:  Call to undefined function streamIsLive() in /home/vaplounge/public_html/users.php on line 104
+[20-Aug-2014 00:22:52 UTC] PHP Fatal error:  Call to undefined function streamIsLive() in /home/vaplounge/public_html/users.php on line 104
+[27-Aug-2014 22:54:25 UTC] PHP Fatal error:  Call to undefined function getIdFromUsername() in /home/vaplounge/public_html/update.php on line 64
+[27-Aug-2014 22:54:53 UTC] PHP Fatal error:  Call to undefined function getIdFromUsername() in /home/vaplounge/public_html/update.php on line 64
+[27-Aug-2014 22:54:56 UTC] PHP Fatal error:  Call to undefined function getIdFromUsername() in /home/vaplounge/public_html/update.php on line 64
+[27-Aug-2014 22:55:26 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/vaplounge/public_html/techs/init.php on line 433
+[27-Aug-2014 22:55:46 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/vaplounge/public_html/techs/init.php on line 433
+[06-Sep-2014 22:35:42 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/register.php on line 19
+[06-Sep-2014 22:36:14 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/register.php on line 19
+[06-Sep-2014 22:36:16 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/register.php on line 19
+[06-Sep-2014 22:36:27 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/register.php on line 19
+[06-Sep-2014 22:36:43 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/register.php on line 19
+[06-Sep-2014 22:45:14 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/register.php on line 19
+[06-Sep-2014 22:53:08 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/register.php on line 19
+[06-Sep-2014 22:56:52 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 13
+[06-Sep-2014 22:58:06 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 13
+[06-Sep-2014 22:58:40 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 15
+[06-Sep-2014 23:21:22 UTC] PHP Fatal error:  Class 'Illuminate\Database\Eloquent\Model' not found in /home/vaplounge/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/User.php on line 30
+[06-Sep-2014 23:24:19 UTC] PHP Fatal error:  Class 'Capsule' not found in /home/vaplounge/public_html/techs/sentry.php on line 15
+[06-Sep-2014 23:24:39 UTC] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'The function password_hash() does not exist, your PHP environment is probably incompatible. Try running [vendor/ircmaxell/password-compat/version-test.php] to check compatibility or use an alternative hashing strategy.' in /home/vaplounge/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Hashing/NativeHasher.php:59
+Stack trace:
+#0 /home/vaplounge/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/User.php(826): Cartalyst\Sentry\Hashing\NativeHasher->hash('xion1234')
+#1 /home/vaplounge/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/User.php(882): Cartalyst\Sentry\Users\Eloquent\User->hash('xion1234')
+#2 /home/vaplounge/public_html/vendor/illuminate/database/Illuminate/Database/Eloquent/Model.php(407): Cartalyst\Sentry\Users\Eloquent\User->setAttribute('password', 'xion1234')
+#3 /home/vaplounge/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/Provider.php(296): Illuminate\Database\Eloquent\Model->fill(Array)
+#4 /home/vaplounge/vendo in /home/vaplounge/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Hashing/NativeHasher.php on line 59
+[06-Sep-2014 23:28:50 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'field list'' in /home/vaplounge/public_html/vendor/illuminate/database/Illuminate/Database/Connection.php:344
+Stack trace:
+#0 /home/vaplounge/public_html/vendor/illuminate/database/Illuminate/Database/Connection.php(344): PDO->prepare('insert into `us...')
+#1 /home/vaplounge/public_html/vendor/illuminate/database/Illuminate/Database/Connection.php(592): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `us...', Array)
+#2 /home/vaplounge/public_html/vendor/illuminate/database/Illuminate/Database/Connection.php(556): Illuminate\Database\Connection->runQueryCallback('insert into `us...', Array, Object(Closure))
+#3 /home/vaplounge/public_html/vendor/illuminate/database/Illuminate/Database/Connection.php(345): Illuminate\Database\Connection->run('insert into `us...', Array, Object(Closure))
+#4 /home/vaplounge/public_html/vendor/i in /home/vaplounge/public_html/vendor/illuminate/database/Illuminate/Database/Connection.php on line 600
+[06-Sep-2014 23:38:18 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/login.php on line 6
+[06-Sep-2014 23:49:33 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 15
+[06-Sep-2014 23:50:29 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 15
+[06-Sep-2014 23:51:38 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 15
+[06-Sep-2014 23:51:43 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 15
+[06-Sep-2014 23:52:15 UTC] PHP Fatal error:  Class 'Illuminate\Database\Capsule\Manager' not found in /home/vaplounge/public_html/techs/sentry.php on line 15
+[06-Sep-2014 23:53:43 UTC] PHP Fatal error:  Class 'Sentry' not found in /home/vaplounge/public_html/techs/init.php on line 460
+[09-Sep-2014 01:12:05 UTC] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/vaplounge/public_html/update.php on line 43
+[09-Sep-2014 01:12:06 UTC] PHP Fatal error:  Call to a member function prepare() on a non-object in /home/vaplounge/public_html/update.php on line 43
+[09-Sep-2014 01:50:51 UTC] PHP Fatal error:  Uncaught exception 'InvalidArgumentException' with message 'Login attribute [email] was not provided.' in /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/Provider.php:116
+Stack trace:
+#0 /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Sentry.php(596): Cartalyst\Sentry\Users\Eloquent\Provider->findByCredentials(Array)
+#1 /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Facades/Facade.php(65): Cartalyst\Sentry\Sentry->findUserByCredentials(Array)
+#2 /home/vaplounge/public_html/register.php(11): Cartalyst\Sentry\Facades\Facade::__callStatic('findUserByCrede...', Array)
+#3 /home/vaplounge/public_html/register.php(11): Cartalyst\Sentry\Facades\Native\Sentry::findUserByCredentials(Array)
+#4 {main}
+  thrown in /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/Provider.php on line 116
+[09-Sep-2014 01:51:09 UTC] PHP Fatal error:  Uncaught exception 'InvalidArgumentException' with message 'Login attribute [email] was not provided.' in /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/Provider.php:116
+Stack trace:
+#0 /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Sentry.php(596): Cartalyst\Sentry\Users\Eloquent\Provider->findByCredentials(Array)
+#1 /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Facades/Facade.php(65): Cartalyst\Sentry\Sentry->findUserByCredentials(Array)
+#2 /home/vaplounge/public_html/register.php(11): Cartalyst\Sentry\Facades\Facade::__callStatic('findUserByCrede...', Array)
+#3 /home/vaplounge/public_html/register.php(11): Cartalyst\Sentry\Facades\Native\Sentry::findUserByCredentials(Array)
+#4 {main}
+  thrown in /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/Provider.php on line 116
+[09-Sep-2014 01:53:49 UTC] PHP Fatal error:  Uncaught exception 'InvalidArgumentException' with message 'Login attribute [email] was not provided.' in /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/Provider.php:116
+Stack trace:
+#0 /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Sentry.php(596): Cartalyst\Sentry\Users\Eloquent\Provider->findByCredentials(Array)
+#1 /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Facades/Facade.php(65): Cartalyst\Sentry\Sentry->findUserByCredentials(Array)
+#2 /home/vaplounge/public_html/register.php(11): Cartalyst\Sentry\Facades\Facade::__callStatic('findUserByCrede...', Array)
+#3 /home/vaplounge/public_html/register.php(11): Cartalyst\Sentry\Facades\Native\Sentry::findUserByCredentials(Array)
+#4 {main}
+  thrown in /home/vaplounge/public_html/vendor/cartalyst/sentry/src/Cartalyst/Sentry/Users/Eloquent/Provider.php on line 116
+[10-Sep-2014 00:45:20 UTC] PHP Fatal error:  Call to undefined function makeInfo() in /home/vaplounge/public_html/upcoming.php on line 138
+[12-Sep-2014 23:04:41 UTC] PHP Fatal error:  Call to undefined function getInfoForUsername() in /home/vaplounge/public_html/usercard.php on line 7
+[13-Sep-2014 00:20:09 UTC] PHP Fatal error:  Call to undefined function length() in /home/vaplounge/public_html/update.php on line 262
+[14-Sep-2014 04:37:59 UTC] PHP Fatal error:  Call to undefined function getCharFromID() in /home/vaplounge/public_html/usercard.php on line 147
+[20-Sep-2014 07:42:57 UTC] PHP Fatal error:  Call to undefined function grabGfyName() in /home/vaplounge/public_html/update.php on line 81

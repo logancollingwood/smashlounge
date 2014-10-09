@@ -6,6 +6,7 @@ global $author;
 
 $query = "SELECT * FROM " . $charTable . " WHERE name='" . $char . "'";
 
+$charnotFound = FALSE;
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
 }
@@ -37,6 +38,7 @@ foreach ($result as $row) {
 
 $column = 0;
 $source;
+$author = [];
 foreach ($moves as $row) {
   $dataid = $row['id'];
   $query = "SELECT * FROM " . $movesGifsTable . " WHERE charid='" . $charID . "' AND dataid='" . $dataid . "'";

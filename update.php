@@ -1,7 +1,7 @@
 <?php
-  require("static/config.php");
+  
   require("techs/init.php");
-  require_once("techs/sentry.php");
+  require("static/config.php");
 
     $loggedIn = true;
     if ( ! Sentry::check())
@@ -15,7 +15,7 @@
     $userID = $user['id'];
     $username = $user['username'];
     
-
+    $userFields;
   $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
   
 
@@ -35,19 +35,16 @@
         }
   }
 
-  $query = "SELECT * FROM userinfo WHERE userid=:userID";
-  $query_params = array( 
-    ':userID' => $userID
-  );    
-  try{ 
-    $stmt = $db->prepare($query); 
-    $result = $stmt->execute($query_params); 
-  } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
-  $row = $stmt->fetch(); 
-  if($row){ 
+  $query = "SELECT * FROM userinfo WHERE userid=" . $userID;
+    
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
     $userFields = $row;
     $hasInfo = true;
   }
+
 
 
 
@@ -74,15 +71,20 @@
       $params = array();
       $params['main'] = $main;
       $params['location'] = $location;
-      $params['vod'] = $matches[1];
+      //$params['vod'] = $matches[1];
       $params['twitter'] = $twitter;
       $params['twitch'] = $twitchId;
       $params['facebook'] = $facebook;
 
-      $gfyURL = remove_http($_POST['gfycat']);
-      $gfyID = grabGfyName($gfyURL);
+      if (isset($_POST['gfycat'])) {
+        $hasGfy = true;
+      }
+      if ($hasGfy) {
+        $gfyURL = remove_http($_POST['gfycat']);
+        $gfyID = grabGfyName($gfyURL);
+      }
 
-      if ($gfyID === NULL) {
+      if ($gfyID === '') {
         header("Location: /update?str=url");
         die("Redirecting to update.php"); 
       }
@@ -208,21 +210,25 @@ ga('send', 'pageview');
 
     <title>Smash Lounge</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <?php 
+        printLibraries();
+    ?>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/new.css" rel="stylesheet">
     <link href='css/users.css' rel='stylesheet'>
 
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
+    </script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_june25.js"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
+
   </head>
 
   <body>
@@ -279,43 +285,18 @@ ga('send', 'pageview');
                         <?php 
 
                           $selected = $userFields['main'];
+                          $recentlyMained = isset($_POST['main'])       ? trim($_POST['main'])       : "0";
                           for ($i = 1; $i <= 26; $i++) {
                             $chars[$i] = getCharFromID($mysqli, $i);
                             echo "<option value='$i' ";
-                              if ($userFields['main'] == $i || $i == $_POST['main']) {
+
+                              if ($selected == $i || $i == $recentlyMained) {
                                 echo "selected='selected'";
                               }
                             echo ">" . $chars[$i] . "</option>";
                           }
 
                         ?>
-                        <!--
-                        <option value="1">Bowser</option>
-                        <option value="2">Captain Falcon</option>
-                        <option value="3">Donkey Kong</option>
-                        <option value="4">Dr. Mario</option>
-                        <option value="5">Falco</option>
-                        <option value="6">Fox</option>
-                        <option value="7">Ganondorf</option>
-                        <option value="8">Ice Climbers</option>
-                        <option value="9">Jigglypuff</option>
-                        <option value="10">Kirby</option>
-                        <option value="11">Link</option>
-                        <option value="12">Luigi</option>
-                        <option value="13">Mario</option>
-                        <option value="14">Marth</option>
-                        <option value="15">Mewtwo</option>
-                        <option value="16">Mr. Game And Watch</option>
-                        <option value="17">Ness</option>
-                        <option value="18">Peach</option>
-                        <option value="19">Pichu</option>
-                        <option value="20">Pikachu</option>
-                        <option value="21">Roy</option>
-                        <option value="22">Samus</option>
-                        <option value="23">Sheik</option>
-                        <option value="24">Yoshi</option>
-                        <option value="25">Young Link</option>
-                      -->
                       </select>
                     </div>
                   </div>
@@ -385,17 +366,36 @@ ga('send', 'pageview');
                     </div>
                   </div>
 
-                  <button class="btn btn-lg btn-primary btn-block bttn" type="submit">Save</button>
+                      <div id="map-canvas"/></div>
 
-                  <br/>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="latitude">latitude</label>  
+                        <div class="col-md-4">
+                        <input id="latitude" name="lat" type="text" placeholder="lat" class="form-control input-md">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="longitude">longitude</label>  
+                        <div class="col-md-4">
+                        <input id="longitude" name="long" type="text" placeholder="long" class="form-control input-md">
+                        </div>
+                      </div>
+                  <hr>
+                  </div>
+                  <div class='panel panel-footer'>
+
+                    <button class="btn btn-lg btn-primary btn-block bttn" type="submit">Save</button>
+                  </div>
+                  
                   </fieldset>
                   </form>
+
                   </div>
 
               
 
            
-                  </div>
+                  
             </div>
             <div class='col-md-5'>
               <div class='panel panel-default'>
@@ -459,9 +459,11 @@ ga('send', 'pageview');
     <script src="js/jquery.fitvids.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toggler.js"></script>
+    <script src="js/mapInitUpdate.js"></script>
     <script>
        $(document).ready(function(){
           // Target your .container, .wrapper, .post, etc.
+          
           $(".vimeo").fitVids();
         });
     </script>

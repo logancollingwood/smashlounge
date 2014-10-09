@@ -51,8 +51,9 @@ ga('send', 'pageview');
 
     <title>Smash Lounge: Find a group!</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <?php
+      printLibraries();
+    ?>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_lounge.css" rel="stylesheet">
@@ -63,12 +64,12 @@ ga('send', 'pageview');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_may18.js"></script>
+
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
     </script>
 
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
   </head>
 
   <body>
@@ -80,7 +81,7 @@ ga('send', 'pageview');
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <?php makeSidebar($loggedIn, 'home') ?>
+          <?php makeSidebar($loggedIn, 'lounge') ?>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main map">
 

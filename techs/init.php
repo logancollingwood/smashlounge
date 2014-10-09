@@ -1,11 +1,10 @@
 <?php
 
-
-require_once("techs/db.php");
 require_once("techs/sentry.php");
+require_once("techs/db.php");
 
 
-
+/*Relevant table for stats */
 
   $loggedIn = false;
   if (Sentry::check())
@@ -18,7 +17,7 @@ require_once("techs/sentry.php");
 $modules = array('api', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static',
  'techs', 'vendor', '404', 'about', 'awards', 'characters', 'composer.json', 'composer.lock',
   'composer.phar', 'donate', 'error_log', 'index', 'info', 'login', 'logout', 'lounge', 'moderate',
-   'register', 'techniques', 'upcoming', 'update', 'users');
+   'register', 'techniques', 'upcoming', 'update', 'users'); 
 
 
 
@@ -31,7 +30,7 @@ $modules = array('api', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static
 
 
 $mysqli = new mysqli($dahostname, $username, $password, $database);
-if ($mysqli->connect_errno) {
+if ($mysqli->connect_errno) {   
   printf("Connect failed: %s\n", $mysqli->connect_error);
   exit();
 }
@@ -94,14 +93,14 @@ if ($which < 0.5) {
   $displayTech = true;
   $randomLink = $dataTech[array_rand($dataTech)];
 }
-
+  
 
 function grabGfyName ($url) {
   $pattern = '/((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/';
   $matches = array();
-
+ 
   preg_match ($pattern, $url, $matches);
-
+ 
   return $matches[4];
 }
 
@@ -439,8 +438,7 @@ function createNavBar($extra = 'false') {
 }
 
 function createBeg($cap) {
-  $quotes = array('smashlounge was created in a college dorm room', 'smashlounge was created by two full time students', 'smashlounge is open source for the community','smashlounge costs about $30/month to run: all contributions are useful','smashlounge exists for the community, and is open to all improvements'
-    'smashlounge exists to help lower the barrier to entry for Super Smash Brothers Melee');
+  $quotes = array('smashlounge was created in a college dorm room', 'smashlounge was created by two full time students', 'smashlounge is open source for the community','smashlounge costs about $30/month to run: all contributions are useful','smashlounge exists for the community, and is open to all improvements');
 
   $rand = rand(0, 10) / 10;
   if ($rand < $cap) {
@@ -538,7 +536,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
     } else {
       echo "    <li class='home'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
     }
-
+  
             if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
@@ -552,7 +550,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
 
   echo "   </ul>";
   echo "</div>";
-
+  
 
   if ($loggedIn) {
     echo "<div class='loginbox'>";
@@ -686,19 +684,10 @@ function printLibraries() {
   echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";
   echo "<link href='http://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic' rel='stylesheet' type='text/css'>";
   echo "<script type='text/javascript' src='http://www.smashlounge.com/js/gfycat_test_june25.js'></script>";
+  echo "<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>";
   echo "<!--  -->";
   echo "\n";
 }
-function printAnalytics() {
-  echo "<script>";
-  echo "  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){";
-  echo "  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),";
-  echo "  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)";
-  echo "  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');";
-  echo "    ga('create', 'UA-51481444-1', 'auto');";
-  echo "    ga('require', 'displayfeatures');";
-  echo "    ga('send', 'pageview');";
-  echo "</script>";
-}
+
 ?>
