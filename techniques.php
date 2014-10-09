@@ -46,8 +46,9 @@ ga('send', 'pageview');
 
     <title>Smash Lounge: <?php echo $tech ?></title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <?php 
+      printLibraries();
+    ?>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
@@ -63,8 +64,7 @@ ga('send', 'pageview');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="/js/gfycat_test_june25.js"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
   </head>
   <body>
    <?php
