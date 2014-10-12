@@ -111,6 +111,7 @@ ga('send', 'pageview');
                 echo "<div class='row centered'>";
                 $counter = 0;
                 if ($gifs) {
+                  echo "<ul id='techzz'>";
                   foreach ($gifs as $tmpGif) {
                     $counter++;
                     echo "<li class='list-group-item'>";
@@ -140,6 +141,7 @@ ga('send', 'pageview');
                         echo "\n";
                   }
                 }
+                echo "</ul>";
                 echo "</div>";
               }
 
@@ -200,9 +202,12 @@ ga('send', 'pageview');
     <script src="js/toggler.js"></script>
     <script src="js/docs.min.js"></script>
     <script src="js/adblockzorz.js"></script>
+    <script src="js/initController.js"></script>
     <script>
       $(document).ready(function(){
         $("#canttouchthis").sticky({topSpacing:70});
+
+
       });
     </script>
 </body>
