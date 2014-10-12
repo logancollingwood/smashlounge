@@ -226,5 +226,5 @@ php.ini
 techs/db.php
 techs/dbSuper.php
 static/dbSuper.php
-## vendor
+vendor
 composer.lock
