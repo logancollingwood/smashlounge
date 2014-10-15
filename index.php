@@ -2,8 +2,12 @@
   $char = isset($_GET['char'])       ? trim($_GET['char'])       : "";
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
 
-  require("techs/init.php");
-  require("techs/twitch.php");
+  require_once("techs/init.php");
+  require_once("techs/twitch.php");
+  require_once("techs/sentry.php");
+
+
+
 ?>
 <!--
 

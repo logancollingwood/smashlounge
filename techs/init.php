@@ -1,10 +1,10 @@
 <?php
 
-require_once("techs/sentry.php");
-require_once("techs/db.php");
+  require_once("techs/sentry.php");
+  require_once("techs/db.php");
 
 
-/*Relevant table for stats */
+
 
   $loggedIn = false;
   if (Sentry::check())
@@ -20,6 +20,10 @@ $modules = array('api', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static
    'register', 'techniques', 'upcoming', 'update', 'users'); 
 
 
+$techCount = 0;
+$charCount = 0;
+$datazCount = 0;
+$listCounter = 0;
 
 
 //     BUILDS DATABASE CONNCETION
@@ -41,7 +45,7 @@ if ($mysqli->connect_errno) {
 //
 //
 ////////////////////////////////////////
-$techCount = 0;
+
 $query = "SELECT * from " . $techTable;
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
@@ -64,7 +68,7 @@ asort($dataTech);
 ////////////////////////////////////////
 
 $query = "SELECT * FROM " . $charTable . " ORDER BY tierdata";
-$charCount = 0;
+
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
 }
