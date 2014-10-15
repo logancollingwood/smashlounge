@@ -1,7 +1,7 @@
 <?php
-  
+
   require("techs/init.php");
-  require("static/config.php");
+ 
 
     $loggedIn = true;
     if ( ! Sentry::check())
@@ -9,15 +9,15 @@
         $loggedIn = false;
         // User is not logged in, or is not activated
         header("Location: login?str=login");
-        die("Redirecting to index.php"); 
+        die("Redirecting to index.php");
     }
     $user = Sentry::getUser();
     $userID = $user['id'];
     $username = $user['username'];
-    
+
     $userFields;
   $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
-  
+
 
   function alertStatus($submit) {
         if ($submit == 'success') {
@@ -36,7 +36,7 @@
   }
 
   $query = "SELECT * FROM userinfo WHERE userid=" . $userID;
-    
+
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
@@ -48,10 +48,10 @@
 
 
 
-  if(!empty($_POST)){ 
+  if(!empty($_POST)){
 
-     
-      
+
+
       $vod = '';
       $main = $_POST['main'];
       $location = $_POST['location'];
@@ -62,7 +62,7 @@
       //echo $matches;
       if (empty($matches) && $_POST['vod'] != '') {
         header("Location: /update?str=url");
-        die("Redirecting to update.php"); 
+        die("Redirecting to update.php");
       }
       $twitter = $_POST['twitter'];
       $twitchId = $_POST['twitch'];
@@ -86,7 +86,7 @@
 
       if ($gfyID === '') {
         header("Location: /update?str=url");
-        die("Redirecting to update.php"); 
+        die("Redirecting to update.php");
       }
 
         if (preg_match("/\\s/", $params['twitter'])) {
@@ -114,14 +114,14 @@
 
 
         $query = "UPDATE userinfo " . $setString . "WHERE userid= :userID";
-        $query_params = array( 
+        $query_params = array(
           ':userID' => $userID
-        );    
-        
-        try{ 
-          $stmt = $db->prepare($query); 
-          $result = $stmt->execute($query_params); 
-        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); } 
+        );
+
+        try{
+          $stmt = $db->prepare($query);
+          $result = $stmt->execute($query_params);
+        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
       } else {
 
         /*
@@ -142,11 +142,11 @@
           ':twitch' => $twitchId,
           ':vod' => $vod,
           ':twitter' => $twitter
-        );    
-        
-        try{ 
-          $stmt = $db->prepare($query); 
-          $result = $stmt->execute($query_params); 
+        );
+
+        try{
+          $stmt = $db->prepare($query);
+          $result = $stmt->execute($query_params);
         } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
 
       }
@@ -154,10 +154,10 @@
           $query_params = array(
             ':userID' => $userID,
             ':id' => $gfyID
-          ); 
-          try{ 
-            $stmt = $db->prepare($query); 
-            $result = $stmt->execute($query_params); 
+          );
+          try{
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute($query_params);
           } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
 
 
@@ -168,16 +168,16 @@
 ?>
 <!--
 
-ooooo                                                   
-`888'                                                   
- 888          .ooooo.   .oooooooo  .oooo.   ooo. .oo.   
- 888         d88' `88b 888' `88b  `P  )88b  `888P"Y88b  
- 888         888   888 888   888   .oP"888   888   888  
- 888       o 888   888 `88bod8P'  d8(  888   888   888  
-o888ooooood8 `Y8bod8P' `8oooooo.  `Y888""8o o888o o888o 
-                       d"     YD                        
-                       "Y88888P'                        
-                       
+ooooo
+`888'
+ 888          .ooooo.   .oooooooo  .oooo.   ooo. .oo.
+ 888         d88' `88b 888' `88b  `P  )88b  `888P"Y88b
+ 888         888   888 888   888   .oP"888   888   888
+ 888       o 888   888 `88bod8P'  d8(  888   888   888
+o888ooooood8 `Y8bod8P' `8oooooo.  `Y888""8o o888o o888o
+                       d"     YD
+                       "Y88888P'
+
 -->
 <!--
 
@@ -210,7 +210,7 @@ ga('send', 'pageview');
 
     <title>Smash Lounge</title>
 
-    <?php 
+    <?php
         printLibraries();
     ?>
 
@@ -227,7 +227,7 @@ ga('send', 'pageview');
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
 
   </head>
 
@@ -251,7 +251,7 @@ ga('send', 'pageview');
 
 
           <div class="jumbotron banner">
-                <?php 
+                <?php
                     if ($alert) {
                         alertStatus($alert);
                     }
@@ -259,8 +259,8 @@ ga('send', 'pageview');
             <h1 class="lead">
               Update your profile
             </h1>
-            
-            
+
+
           </div>
 
           <div class="row">
@@ -282,7 +282,7 @@ ga('send', 'pageview');
                     <label class="col-md-4 control-label" for="main">Main</label>
                     <div class="col-md-4">
                       <select id="main" name="main" class="form-control">
-                        <?php 
+                        <?php
 
                           $selected = $userFields['main'];
                           $recentlyMained = isset($_POST['main'])       ? trim($_POST['main'])       : "0";
@@ -303,7 +303,7 @@ ga('send', 'pageview');
 
                   <!-- Text input-->
                   <div class="form-group">
-                    <label class="col-md-4 control-label" for="location">Location</label>  
+                    <label class="col-md-4 control-label" for="location">Location</label>
                     <div class="col-md-4">
                     <input id="location" name="location" type="text" placeholder="Santa Cruz"
                     <?php
@@ -311,22 +311,22 @@ ga('send', 'pageview');
                         echo " value='" . $userFields['location'] . "'";
                       }
                     ?> class="form-control input-md">
-                    <span class="help-block">Where do you play?</span>  
+                    <span class="help-block">Where do you play?</span>
                     </div>
                   </div>
 
                   <!-- Text input-->
                   <div class="form-group">
-                    <label class="col-md-4 control-label" for="vod">VOD</label>  
+                    <label class="col-md-4 control-label" for="vod">VOD</label>
                     <div class="col-md-4">
                     <input id="vod" name="vod" type="text" placeholder="https://www.youtube.com/watch?v=UbfInBIJitM" class="form-control input-md">
-                    <span class="help-block">Please link a vod you would like displayed on your profile page</span>  
+                    <span class="help-block">Please link a vod you would like displayed on your profile page</span>
                     </div>
                   </div>
 
                   <!-- Text input-->
                   <div class="form-group">
-                    <label class="col-md-4 control-label" for="facebook">facebook!</label>  
+                    <label class="col-md-4 control-label" for="facebook">facebook!</label>
                     <div class="col-md-4">
                     <input id="facebook" name="facebook" type="text" placeholder="miom_pewpewu"
                     <?php
@@ -335,47 +335,47 @@ ga('send', 'pageview');
                       }
                     ?>
                      class="form-control input-md">
-                    <span class="help-block">Please enter just your facebook username</span>  
+                    <span class="help-block">Please enter just your facebook username</span>
                     </div>
                   </div>
 
                   <!-- Text input-->
                   <div class="form-group">
-                    <label class="col-md-4 control-label" for="twitter">Twitter!</label>  
+                    <label class="col-md-4 control-label" for="twitter">Twitter!</label>
                     <div class="col-md-4">
                     <input id="twitter" name="twitter" type="text" placeholder="miom_pewpewu" class="form-control input-md">
-                    <span class="help-block">Please enter just your twitter username</span>  
+                    <span class="help-block">Please enter just your twitter username</span>
                     </div>
                   </div>
 
                   <!-- Text input-->
                   <div class="form-group">
-                    <label class="col-md-4 control-label" for="twitch">Twitch</label>  
+                    <label class="col-md-4 control-label" for="twitch">Twitch</label>
                     <div class="col-md-4">
                     <input id="twitch" name="twitch" type="text" placeholder="pewpewu" class="form-control input-md">
-                    <span class="help-block">Please enter just your Twitch channel name, if you have one!</span>  
+                    <span class="help-block">Please enter just your Twitch channel name, if you have one!</span>
                     </div>
                   </div>
 
                   <!-- Text input-->
                   <div class="form-group">
-                    <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>  
+                    <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>
                     <div class="col-md-4">
                     <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" class="form-control input-md">
-                    <span class="help-block">Please enter a link to a sweet gfycat!</span>  
+                    <span class="help-block">Please enter a link to a sweet gfycat!</span>
                     </div>
                   </div>
 
                       <div id="map-canvas"/></div>
 
                       <div class="form-group">
-                        <label class="col-md-4 control-label" for="latitude">latitude</label>  
+                        <label class="col-md-4 control-label" for="latitude">latitude</label>
                         <div class="col-md-4">
                         <input id="latitude" name="lat" type="text" placeholder="lat" class="form-control input-md">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-md-4 control-label" for="longitude">longitude</label>  
+                        <label class="col-md-4 control-label" for="longitude">longitude</label>
                         <div class="col-md-4">
                         <input id="longitude" name="long" type="text" placeholder="long" class="form-control input-md">
                         </div>
@@ -386,16 +386,16 @@ ga('send', 'pageview');
 
                     <button class="btn btn-lg btn-primary btn-block bttn" type="submit">Save</button>
                   </div>
-                  
+
                   </fieldset>
                   </form>
 
                   </div>
 
-              
 
-           
-                  
+
+
+
             </div>
             <div class='col-md-5'>
               <div class='panel panel-default'>
@@ -414,9 +414,9 @@ ga('send', 'pageview');
                 <div class='panel-body'>
 
                       <div class='row'>
-                   
+
                         <div class='col-md-7 col-sm-7'>
-                          <?php 
+                          <?php
 
                               echo"<div class='info'>";
                                 echo "  <h3><small>main: </small><a href='/characters?char=" . getCharFromID($mysqli, $userFields['main']) . "'>" . getCharFromID($mysqli, $userFields['main']) . "</a></h3>";
@@ -463,7 +463,7 @@ ga('send', 'pageview');
     <script>
        $(document).ready(function(){
           // Target your .container, .wrapper, .post, etc.
-          
+
           $(".vimeo").fitVids();
         });
     </script>
