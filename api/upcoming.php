@@ -19,7 +19,7 @@ foreach($db->query($sql) as $row) {
     $out[] = array(
         'id' => $row['id'],
         'title' => $row['title'],
-        'url' => $row['url'],
+        'url' => "http://www.smashlounge.com/upcoming?tournament=" . urlencode($row['title']),
         'class' => $row['class'],
         'start' => strtotime($row['start']) . '000',
         'end' => strtotime($row['end']) .'000'
