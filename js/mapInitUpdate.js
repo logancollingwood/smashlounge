@@ -9,7 +9,7 @@ function bindInfoWindow(map, infoWindow) {
     var lon = event.latLng.lng();
     document.getElementById('longitude').value = lon.toFixed(3);
     document.getElementById('latitude').value = lat.toFixed(3);
-            alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
+
   });
 
   google.maps.event.addListener(map, 'click', function(event) {
@@ -44,7 +44,3 @@ function placeMarker(location, map) {
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
-

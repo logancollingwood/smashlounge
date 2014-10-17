@@ -1,18 +1,18 @@
-<?php 
+<?php
     require("techs/init.php");
     require_once("techs/sentry.php");
-    
+
     $loggedIn = false;
     if (Sentry::check())
     {
         $user = Sentry::getUser();
         // User is logged in
         header("Location: /" . $user['username'] );
-        die("Redirecting to index.php"); 
+        die("Redirecting to index.php");
     }
 
     if(!empty($_POST)){ 
-        require('static/db_submit.php');
+        require('techs/dbSuper.php');
 
         try
         {
@@ -23,7 +23,7 @@
         }
         catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
         {
-            header("Location: login.php?str=failed"); 
+            header("Location: login.php?str=failed");
         }
 
 
@@ -47,8 +47,8 @@
 
 
 
-        header("Location: update.php"); 
-        die("Redirecting to: secret"); 
+        header("Location: update.php");
+        die("Redirecting to: secret");
     }
     $submit = isset($_GET['str'])       ? trim($_GET['str'])       : "";
 
@@ -72,14 +72,14 @@
             echo "</div>";
         }
     }
-?>  
+?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Login</title>
 
-    <?php 
+    <?php
         printLibraries();
     ?>
 
@@ -87,9 +87,9 @@
     <link href="css/dashboard_tech.css" rel="stylesheet">
     <link href="/css/new.css" rel="stylesheet">
     <link href="/css/users.css" rel="stylesheet">
-    
 
-    
+
+
 
     <link rel="shortcut icon" href="/img/favicon.png">
 
@@ -98,11 +98,11 @@
 <body>
         <div class='container-fluid'>
 
-    <?php 
+    <?php
         createNavBar();
     ?>
 
-    
+
 
     <div class='row'>
 
@@ -123,7 +123,7 @@
 
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="email">email</label>  
+                                    <label class="col-md-4 control-label" for="email">email</label>
                                     <div class="col-md-4">
                                     <input id="email" name="email" type="email" placeholder="support@smashlounge.com" class="form-control input-md" required>
                                     </div>
@@ -131,13 +131,13 @@
 
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="location">password</label>  
+                                    <label class="col-md-4 control-label" for="location">password</label>
                                     <div class="col-md-4">
-                                    <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required> 
+                                    <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required>
                                     </div>
                                 </div>
 
-                            
+
                                 <div class="control-group">
                                   <div class="controls">
                                     <button class="btn btn-lg btn-primary SL bttn" type="submit">Sign in</button>
@@ -149,22 +149,22 @@
                                 </fieldset>
                             </form>
 
-                            <?php 
+                            <?php
                                 if ($submit) {
                                     alertStatus($submit);
                                 }
                             ?>
                         </div>
                     </div>
-                </div>    
+                </div>
         </div>
 
-        
+
 
   </div>
 
-    
-            
+
+
 </div> <!-- CONTAINER -->
     <!-- Bootstrap core JavaScript
     ================================================== -->

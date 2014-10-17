@@ -4,7 +4,10 @@
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
 
   require_once("techs/init.php");
+<<<<<<< HEAD
   require_once("techs/initAttending.php");
+=======
+>>>>>>> FETCH_HEAD
   require_once("techs/twitch.php");
 
 
@@ -54,7 +57,11 @@ Questions?
     <meta name="author" content="">
     <link rel="shortcut icon" href="img/favicon.png">
 
+<<<<<<< HEAD
     <title>Smash Lounge: Attending</title>
+=======
+    <title>Smash Lounge</title>
+>>>>>>> FETCH_HEAD
 
     <!-- Main Dependencies -->
     <?php
@@ -64,7 +71,11 @@ Questions?
     ?>
 
     <!-- Custom styles for this template -->
+<<<<<<< HEAD
     <link href="css/dashboard_tech.css" rel="stylesheet">
+=======
+    <link href="css/dashboard.css" rel="stylesheet">
+>>>>>>> FETCH_HEAD
     <link href="css/custom.css" rel="stylesheet">
     
 
@@ -91,7 +102,10 @@ Questions?
             <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
             <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
             <li class="home active"><a href="/attending.php"><span class='glyphicon glyphicon-th-list pull-left'></span>&nbsp;Attending</a></li>
+<<<<<<< HEAD
             <li class="home"><a href="/upcoming.php"><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>
+=======
+>>>>>>> FETCH_HEAD
             <?php 
               makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
               makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
@@ -115,6 +129,7 @@ Questions?
 
           <div class="row">
             <div class='col-md-9'>
+<<<<<<< HEAD
               <?php
                 foreach ($upcomingEvents as $event) {
                   makeEventSignup($event);
@@ -141,6 +156,19 @@ Questions?
               </div>
 
 
+=======
+              <div class='panel panel-default'>
+                  <div class='panel-heading'>NorCal Regional</div>
+                  <div class='panel-body form'>
+                    <iframe src="https://docs.google.com/forms/d/1ZEc2zxEEeTwBUNPnvYVVSGLEOp_Nn1LarvaisOPtwWc/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+                  </div>
+                </div>
+              </div>
+            
+
+            <div class='col-md-3'>
+              <?php createBeg(1) ?>
+>>>>>>> FETCH_HEAD
             </div>
           </div>
         </div>
@@ -153,7 +181,11 @@ Questions?
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toggler.js"></script>
+<<<<<<< HEAD
     <!-- VENMO API -->
     <script src='https://platform.venmo.com/sdk.js'></script>
+=======
+
+>>>>>>> FETCH_HEAD
   </body>
 </html>
