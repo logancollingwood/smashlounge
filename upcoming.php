@@ -177,7 +177,11 @@ Questions?
             <?php
               if ($hasTournament) {
                 makeTwitchPanel($hasTwitch, $twitch);
-                makeStandings($first, $second, $third);
+
+                if ($first || $second || $third) {
+                  makeStandings($first, $second, $third);
+                }
+                
                 makeInfo($host, $attending);
               }
             ?>
