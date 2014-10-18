@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 06, 2014 at 03:35 PM
+-- Generation Time: Oct 18, 2014 at 02:24 PM
 -- Server version: 5.5.36-cll-lve
 -- PHP Version: 5.4.23
 
@@ -1334,7 +1334,7 @@ CREATE TABLE IF NOT EXISTS `submissions` (
   `pageid` int(11) NOT NULL,
   `dataid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Dumping data for table `submissions`
@@ -1348,7 +1348,8 @@ INSERT INTO `submissions` (`id`, `url`, `source`, `description`, `pageid`, `data
 (30, 'MeaslyOddballCowrie', '', 'Shroomed showing how to finish with f-air', 1, 4),
 (31, 'BogusEagerAvocet', 'NMW', 'S2J getting an amazing conversion, covering many options in knockdown situations', 0, 26),
 (32, 'IlliterateVagueCrab', 'djloreddit', 'The Top 4 Wavedashers in Melee. ', 0, 1),
-(33, 'NextDecimalAfricanmolesnake', 'TBH4', 'mango, using waveshining to own set up for a double shine dair destruction of leffen', 0, 27);
+(33, 'NextDecimalAfricanmolesnake', 'TBH4', 'mango, using waveshining to own set up for a double shine dair destruction of leffen', 0, 27),
+(34, 'GrippingEverlastingArthropods', 'Kadano / http://smashboards.co', 'Marthâ€™s ledgedashstall (aka haxdash), easiest perfect execution with controller inputs, completely intangible', 0, 13);
 
 -- --------------------------------------------------------
 
@@ -1528,6 +1529,7 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 CREATE TABLE IF NOT EXISTS `upcoming` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
+  `fb_id` varchar(130) NOT NULL,
   `bracket` varchar(250) NOT NULL,
   `class` varchar(35) NOT NULL DEFAULT 'event-info',
   `start` date NOT NULL,
@@ -1546,8 +1548,8 @@ CREATE TABLE IF NOT EXISTS `upcoming` (
 -- Dumping data for table `upcoming`
 --
 
-INSERT INTO `upcoming` (`id`, `title`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`) VALUES
-(1, 'BAM', 'http://challonge.com/waldesmash', 'event-success', '2014-10-18', '2014-10-19', 'pewpewu', '', '', 'pewpewu', 265, '', 'Official Norcal Melee');
+INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`) VALUES
+(1, 'Do You Fox Wit it?', '722984804448159', 'http://Showdownesports.challonge.com/SFGameNight13/', 'event-success', '2014-11-16', '2014-11-17', '', '', '', 'showdownsmash', 0, '', 'NorCal');
 
 -- --------------------------------------------------------
 
@@ -1624,7 +1626,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_activation_code_index` (`activation_code`),
   KEY `users_reset_password_code_index` (`reset_password_code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `users`
@@ -1632,7 +1634,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
 (2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-09-26 21:16:59', '$2y$10$iV9LrPMFqcZoIVQYcfPBE.ey.xEB.ry0HRg24uPjr1j/iPGkpMIWG', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-09-27 04:16:59'),
-(3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05');
+(3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05'),
+(4, 'austenturmel@gmail.com', 'SmashingTurnips', '$2y$10$BsKEH51LFmzs2aM0HAGnt.cO34G5QQeNdQfDzIIr01/2dzTXG3Azi', NULL, 1, NULL, NULL, '2014-10-10 13:19:36', '$2y$10$DEztY.Nii3/GrPPEst7qQO.jqP8Gmk9j.C24YkaqG5ktgZqLsiAMi', NULL, NULL, NULL, '2014-10-10 20:19:23', '2014-10-10 20:19:36');
 
 -- --------------------------------------------------------
 

@@ -535,6 +535,11 @@ function makeSidebar($loggedIn, $currentPage = '') {
     } else {
       echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
     }
+    if ($currentPage == 'attending') {
+      echo "    <li class='home active'><a href='/attending'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/attending'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>";
+    }
     if ($currentPage == 'upcoming') {
       echo "    <li class='home active'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
     } else {

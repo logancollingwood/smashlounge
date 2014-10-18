@@ -66,8 +66,8 @@ Questions?
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-    
+    <link href="css/new.css" rel="stylesheet">
+    <link href="/css/users.css" rel="stylesheet">
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -88,16 +88,7 @@ Questions?
       <div class="row">
 
         <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar turnup">
-            <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-            <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-            <li class="home active"><a href="/attending.php"><span class='glyphicon glyphicon-th-list pull-left'></span>&nbsp;Attending</a></li>
-            <li class="home"><a href="/upcoming.php"><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>
-            <?php 
-              makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav("char", $dataChar, 'out', $char, $tech, '');
-            ?>
-          </ul>
+          <?php makeSidebar($loggedIn, 'attending') ?>
         </div>
 
 
@@ -106,7 +97,7 @@ Questions?
 
 
 
-          <div class="jumbotron full">
+          <div class="jumbotron banner">
 
             <h1 class='lead'>Attending</h1>
             
