@@ -228,3 +228,6 @@ techs/dbSuper.php
 static/dbSuper.php
 vendor
 composer.lock
+github.php
+.cache
+.viminfo
