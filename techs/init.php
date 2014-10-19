@@ -513,7 +513,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars');
+  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending');
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
@@ -546,16 +546,16 @@ function makeSidebar($loggedIn, $currentPage = '') {
       echo "    <li class='home'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
     }
   
-            if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
-              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
-            } else if ($currentPage == 'techs') {
-              makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
-              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
-            } else if ($currentPage == 'chars') {
-              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
-            }
+    if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
+      makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+      makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+    } else if ($currentPage == 'techs') {
+      makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
+      makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+    } else if ($currentPage == 'chars') {
+      makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+      makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
+    }
 
   echo "   </ul>";
   echo "</div>";
