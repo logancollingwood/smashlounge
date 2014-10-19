@@ -22,7 +22,7 @@ $( document ).ready(function() {
 	console.log("Number of gifs: " + amount);
 	var data = {"tech" : tech, "charz": charz, "amount": amount};
 
-	$.getJSON( "api/FrameData.php", data )
+	$.getJSON( "api/frameData.php", data )
 	  .done(function( json ) {
 	  	console.log(json['options']);
 	  	if (json['status'] == 'success') {
