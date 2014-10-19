@@ -67,7 +67,7 @@
     	//echo $link;
     	echo "<div class='well'>";
         echo "  <div class='challonge_bracket_real' style='width:100%;height:500px;'>";
-        echo "		<iframe src='" . $link . "/module?theme=2651&show_final_results=1' width='100%'' height='500' frameborder='0' scrolling='auto' allowtransparency='true'></iframe>";
+        echo "		<iframe src='" . $link . "/module?multiplier=0.9theme=2651&show_final_results=1' width='100%'' height='500' frameborder='0' scrolling='auto' allowtransparency='true'></iframe>";
         echo"   </div>";
         echo "</div>";
     }
