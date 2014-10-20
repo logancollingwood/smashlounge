@@ -30,7 +30,7 @@ $userid = '';
 
 
 
-require("techs/db.php");
+require_once("techs/db.php");
 $found = true;
 
 //     BUILDS DATABASE CONNCETION
@@ -75,6 +75,9 @@ $hasImage = false;
 $hasFacebook = false;
 $hasGifs = false;
 $mainID = 0;
+$twitch = '';
+$twitter = '';
+$vod = '';
 $main = "No Main!";
 $query = "SELECT * from userinfo WHERE userid='" . $userid . "'";
 if (!$result = $mysqli->query($query)) {
@@ -135,6 +138,7 @@ foreach ($result as $row) {
 if ($hasGifs) {
   shuffle($usergifs);
 }
+
 
 
 
@@ -235,23 +239,44 @@ function getAllUsers($mysqli) {
 
 
 function makeAllUsers($allUsers) {
+
+  /*
+
+                    echo "<div class='col-md-6'>";
+                    echo "<iframe src='/usercard?username=Pewpewu' width='625px' height='412px' ALLOWTRANSPARENCY='true'></iframe>";
+                  echo "</div>";
+  */
   //print_r($allUsers);
-  echo "<div class='col-md-5'>";
-    echo "<div class='well'>";
-      echo "<div class='table-responsive'>";
-        echo "<table class='table table-hover table-striped'>";
-          echo "<th style='text-align: center;'>username</th>";
-          foreach ($allUsers as $user) {
-            echo "<tr><td>"; 
-            if ($user['sponsor'] != '') {
-              echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
-            }
-            echo "<a href='/" . $user['username'] . "'>" . $user['username'] . "</a>";
-            echo "</td></tr>";
-          }
-        echo "</table>";
+
+
+      echo "<div class='col-md-4'>";
+        echo "<div class='well'>";
+          echo "<div class='table-responsive'>";
+            echo "<table class='table table-hover table-striped'>";
+              echo "<th style='text-align: center;'>username</th>";
+              foreach ($allUsers as $user) {
+                echo "<tr><td>"; 
+                if ($user['sponsor'] != '') {
+                  echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
+                }
+                echo "<a href='/" . $user['username'] . "'>" . $user['username'] . "</a>";
+                echo "</td></tr>";
+              }
+            echo "</table>";
+          echo "</div>";
+
       echo "</div>";
+      echo "</div>";
+
+        echo "<div class='col-md-8'>";
+          echo "<div id='map-canvas'/></div>";
+        echo "</div>";
+
+
+
+      echo "</div>";
+
     echo "</div>";
-  echo "</div>";
+
 }
 ?>
