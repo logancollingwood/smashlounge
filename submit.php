@@ -115,6 +115,27 @@ Questions?
           dotColor: '#5cbdaa',
           lineColor: '#5cbdaa'
         });
+
+        $(".post-submissions").on("click", function(event) {
+          // Prevent default behavior
+          event.preventDefault();
+
+          $.ajax({
+            url: 'postSubmission.php',
+            type: 'POST',
+            data: $(".submit-wrapper form").serialize(),
+          })
+          .done(function() {
+            // Place How We Should Handle Successful Gif Submissions
+          })
+          .fail(function() {
+            // Place How We Should Handle Failed Submissions
+          })
+          .always(function() {
+            // Handler for all gif submissions
+          });
+        });
+        
       });
     </script>
     
