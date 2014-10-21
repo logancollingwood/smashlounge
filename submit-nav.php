@@ -18,7 +18,7 @@
           <input type="hidden" name="dataid" value="" />
           <fieldset>
             <label for="url">GfyCat URL</label>
-            <input type="text" class="form-control" name="url" placeholder="LusciousFattyNarwhal"/>
+            <input type="text" class="form-control" name="url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
           </fieldset>
           <fieldset>
             <label for="source">Original Source</label>

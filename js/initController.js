@@ -24,11 +24,15 @@ $( document ).ready(function() {
 
 	$.getJSON( "api/frameData.php", data )
 	  .done(function( json ) {
-	  	console.log(json['options']);
+	  	console.log(json);
 	  	if (json['status'] == 'success') {
-	  		for (i = 1; i < json['gif'].length; i++) { 
+
+	  		for (i = 1; i <= amount; i++) { 
 		    	console.log("Current gif:" + i + " framedata = ");
-		    	console.log(json['gif'][i]);
+		    	var frameData = json['gif'][i-1];
+		    	$( '#controller-' + i).frameinputs( frameData );
+		    	console.log(json['gif'][0]);
+
 			}
 	  	} else {
 	  		console.log("No data found for this data set");

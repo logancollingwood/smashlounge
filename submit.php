@@ -74,7 +74,7 @@ Questions?
 
         <!-- compartamentalize sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
-           <?php makeSidebar(false, 'users'); ?>
+           <?php makeSidebar(false, 'submit'); ?>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -99,22 +99,10 @@ Questions?
     <script src="js/jquery.fitvids.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toggler.js"></script>
-    <script src="js/jquery.fitvids.js"></script>
     <script src="js/adblockzorz.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/jquery.particleground.min.js"></script>
 
     <script>
       $(document).ready(function(){
-        // Target your .container, .wrapper, .post, etc.
-        $(".youtube").fitVids();
-
-        $("#canttouchthis").sticky({topSpacing:70});
-
-        $('#particles').particleground({
-          dotColor: '#5cbdaa',
-          lineColor: '#5cbdaa'
-        });
 
         $(".post-submissions").on("click", function(event) {
           // Prevent default behavior
@@ -148,23 +136,6 @@ Questions?
       ga('require', 'displayfeatures');
       ga('send', 'pageview');
     </script>
-    
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '675204735898402',
-          xfbml      : true,
-          version    : 'v2.0'
-        });
-      };
 
-      (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-    </script>
   </body>
 </html>

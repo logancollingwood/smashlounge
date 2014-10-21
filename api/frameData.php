@@ -16,11 +16,29 @@
   		$json['status'] = 'success';
   		
   		$json['gif'][0] = array(
-  			array('frame' => 2, 'buttons' => array('b'), 'ctrlstick' => array('270', '100')),
-  			array('frame' => 3, 'buttons' => array('y'), 'ctrlstick' => array()),
-  			array('frame' => 4, 'buttons' => array('b'), 'ctrlstick' => array('270', '100')),
+  			array('frame' => 12, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
+  			array('frame' => 13, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
+  			array('frame' => 14, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
+  			array('frame' => 15, 'buttons' => array(''), 'ctrlStick' => array('90', '100')),
+  			array('frame' => 16, 'buttons' => array('l'), 'ctrlStick' => array()),
+  			array('frame' => 17, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 18, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 19, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 20, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 21, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
   		);
-	  	
+	  	$json['gif'][1] = array(
+  			array('frame' => 12, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
+  			array('frame' => 13, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
+  			array('frame' => 14, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
+  			array('frame' => 15, 'buttons' => array(''), 'ctrlStick' => array('90', '100')),
+  			array('frame' => 16, 'buttons' => array('l'), 'ctrlStick' => array()),
+  			array('frame' => 17, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 18, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 19, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 20, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 21, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  		);
   		
 	  
 	  

@@ -4,6 +4,7 @@
   $submit = isset($_GET['submit'])       ? trim($_GET['submit'])       : "";
   require("techs/init.php");
   require("techs/initTechs.php");
+  require_once("techs/controller.php");
 ?>
 <!--
 
@@ -115,13 +116,33 @@ ga('send', 'pageview');
                   foreach ($gifs as $tmpGif) {
                     $counter++;
                     echo "<li class='list-group-item'>";
-                    echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                    echo  "<h4>Example " . $counter . " of " . $tech . "</h4>";
-                    echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
-                    if ($tmpGif['source']) {
-                      echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
-                    }
-                    echo  "<span class='badge'>". $counter . "</span>";
+                      if (in_array($tech, $hasFrameData)) {
+                        echo "<div class='row'>";
+                          echo "<div class='col-md-8'>";
+                            echo "<div id=gif" . $counter . " data-title=true data-autoplay=false data-controls=true data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
+                            echo  "<h4>Example " . $counter . " of " . $tech . "</h4>";
+                            echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
+                            if ($tmpGif['source']) {
+                              echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
+                            }
+                            echo  "<span class='badge'>". $counter . "</span>";
+                          echo "</div>";
+                          echo "<div class='col-md-4'>";
+                            echo "<div class='controller-wrapper'>";
+                              makeControllerWithID($counter);
+                            echo "</div>";
+                          echo "</div>";
+                        echo "</div>";
+                      } else {
+                        echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
+                        echo  "<h4>Example " . $counter . " of " . $tech . "</h4>";
+                        echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
+                        if ($tmpGif['source']) {
+                          echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
+                        }
+                        echo  "<span class='badge'>". $counter . "</span>";
+                      }
+
                     echo "</li>";
                   }
 
@@ -196,12 +217,14 @@ ga('send', 'pageview');
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/jquery.sticky.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toggler.js"></script>
     <script src="js/docs.min.js"></script>
     <script src="js/adblockzorz.js"></script>
+    <script type="text/javascript" src="js/svg.min.js"></script>
+    <script type="text/javascript" src="js/frameinput.js"></script>
     <script src="js/initController.js"></script>
     <script>
       $(document).ready(function(){

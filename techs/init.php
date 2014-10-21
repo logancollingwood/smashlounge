@@ -162,7 +162,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       if (strcasecmp($rec, $tech) == 0) {
         echo "class='active'";
       }
-      echo "><a href=techniques?tech=" . urlencode($rec) . ">";
+      echo "><a href=techniques.php?tech=" . urlencode($rec) . ">";
       echo $rec . "</a></li>";
       echo "\n";
     }
@@ -514,7 +514,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending');
+  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending', 'submit');
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
@@ -537,14 +537,14 @@ function makeSidebar($loggedIn, $currentPage = '') {
       echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
     }
     if ($currentPage == 'attending') {
-      echo "    <li class='home active'><a href='/attending'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>";
+      echo "    <li class='home active'><a href='/attending.php'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>";
     } else {
-      echo "    <li class='home'><a href='/attending'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>";
+      echo "    <li class='home'><a href='/attending.php'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>";
     }
     if ($currentPage == 'upcoming') {
-      echo "    <li class='home active'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
+      echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
     } else {
-      echo "    <li class='home'><a href='/upcoming'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
+      echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
     }
   
     if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
@@ -570,7 +570,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
       if ($currentPage=='login') {
         echo "active";
       }
-    echo "' href='/" . $user['username'] . "'>profile</a>";
+    echo "' href='/users.php?username" . $user['username'] . "'>profile</a>";
 
     echo "    <a class='btn bttn login' href='/logout'>logout</a>";
     echo "</div>";
@@ -582,14 +582,14 @@ function makeSidebar($loggedIn, $currentPage = '') {
       if ($currentPage=='login') {
         echo "active";
       }
-    echo "' href='/login'>login</a>";
+    echo "' href='/login.php'>login</a>";
 
 
     echo "    <a class='btn bttn login ";
       if ($currentPage=='register') {
         echo "active";
       }
-    echo "' href='/register'>register</a>";
+    echo "' href='/register.php'>register</a>";
 
     echo "</div>";
   }
