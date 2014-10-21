@@ -29,6 +29,7 @@
 	}
 
 	$url 			= $_POST['url'];
+	$cleanURL		= grabGfyName($url);
 	$source 		= $_POST['source'];
 	$description 	= $_POST['description'];
 
@@ -39,7 +40,7 @@
 	}
 
 	// Bind Params
-	if (!$stmt->bind_param("sss", $url, $source, $description)) {
+	if (!$stmt->bind_param("sss", $cleanURL, $source, $description)) {
 	    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 	    exit();
 	}

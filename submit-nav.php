@@ -13,7 +13,7 @@
       <a class='btn btn-navbar navbar-btn dropdown-toggle' data-toggle="dropdown" href="#">submit</a>
       <div class="dropdown-menu" role="menu">
         <form class="form">
-          <!-- Potentiall Use the following hidden fields -->
+          <!-- Potentially Use the following hidden fields -->
           <input type="hidden" name="pageid" value="" />
           <input type="hidden" name="dataid" value="" />
           <fieldset>
@@ -40,6 +40,7 @@
         <li><a href='http://www.github.com/logancollingwood/smashlounge'><i class='fa fa-github-alt'></i></a></li>
         <li><a href='/api/docs'>api</a></li>
         <li><a href='/donate.php'>donate</a></li>
+
         <li><a href='/about.html'>about</a></li>
         <?php if ($extra == 'logout'): ?>
           <li><a href='static/logout.php'>logout</a></li>
