@@ -67,7 +67,7 @@ Questions?
 
   <body>
     <div id="fb-root"></div>
-    <?php createNavBar(); ?>
+    <?php include_once('submit-nav.php'); ?>
 
     <div class="container-fluid">
       <div class="row">
