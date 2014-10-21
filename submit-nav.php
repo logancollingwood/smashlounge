@@ -12,7 +12,10 @@
     <div class="navbar-right dropdown submit-wrapper">
       <a class='btn btn-navbar navbar-btn dropdown-toggle' data-toggle="dropdown" href="#">submit</a>
       <div class="dropdown-menu" role="menu">
-        <form class="form" action="postSubmission.php" method="POST">
+        <form class="form">
+          <!-- Potentiall Use the following hidden fields -->
+          <input type="hidden" name="pageid" value="" />
+          <input type="hidden" name="dataid" value="" />
           <fieldset>
             <label for="url">GfyCat URL</label>
             <input type="text" class="form-control" name="url" placeholder="LusciousFattyNarwhal"/>
@@ -25,7 +28,7 @@
             <label for="description">Description</label>
             <input type="text" class="form-control" maxlength="100" name="description" placeholder="Mew2King Ken Comboes a Scrub"/>
           </fieldset>
-          <input type="submit" class="btn btn-default" name="submit" value="submit"/>
+          <button class="btn btn-default post-submissions">submit</button>
         </form>
       </div>
     </div>
