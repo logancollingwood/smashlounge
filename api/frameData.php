@@ -8,6 +8,14 @@
   	$tech = urldecode($tech);
   	$amount = urldecode($amount);
 	header('Content-type: application/json');
+
+	$DOWN = array('270', '100');
+	$UP = array('90', '100');
+	$LEFT = array('180', '100');
+	$RIGHT = array('0', '100');
+	$SOUTHEAST = array('315', '100');
+	$SOUTHWEST = array('225', '100');
+	$EMPTY = array();
 	
 	$json;
 
@@ -16,10 +24,10 @@
   		$json['status'] = 'success';
   		
   		$json['gif'][0] = array(
-  			array('frame' => 12, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
-  			array('frame' => 13, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
-  			array('frame' => 14, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
-  			array('frame' => 15, 'buttons' => array(''), 'ctrlStick' => array('90', '100')),
+  			array('frame' => 12, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+  			array('frame' => 13, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+  			array('frame' => 14, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+  			array('frame' => 15, 'buttons' => array('y'), 'ctrlStick' => array()),
   			array('frame' => 16, 'buttons' => array('l'), 'ctrlStick' => array()),
   			array('frame' => 17, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
   			array('frame' => 18, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
@@ -27,17 +35,36 @@
   			array('frame' => 20, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
   			array('frame' => 21, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
   		);
+  		
 	  	$json['gif'][1] = array(
-  			array('frame' => 12, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
-  			array('frame' => 13, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
-  			array('frame' => 14, 'buttons' => array(''), 'ctrlStick' => array('270', '100')),
-  			array('frame' => 15, 'buttons' => array(''), 'ctrlStick' => array('90', '100')),
-  			array('frame' => 16, 'buttons' => array('l'), 'ctrlStick' => array()),
-  			array('frame' => 17, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
-  			array('frame' => 18, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
-  			array('frame' => 19, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
-  			array('frame' => 20, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
-  			array('frame' => 21, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+	  		//FIRST WAVEDASH
+  			array('frame' => 2, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+  			array('frame' => 4, 'buttons' => array('y'), 'ctrlStick' => array()),
+  			array('frame' => 5, 'buttons' => array('l'), 'ctrlStick' => $SOUTHWEST),
+  			array('frame' => 6, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+  			array('frame' => 7, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+  			array('frame' => 8, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+  			//SECOND WAVEDASH
+  			array('frame' => 22, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+  			array('frame' => 23, 'buttons' => array('y'), 'ctrlStick' => array()),
+  			array('frame' => 24, 'buttons' => array('l'), 'ctrlStick' => array()),
+  			array('frame' => 25, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+  			array('frame' => 25, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+  			array('frame' => 26, 'buttons' => array(''), 'ctrlStick' => $UP),
+  			//THIRD WAVEDASH
+  			array('frame' => 44, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+  			array('frame' => 45, 'buttons' => array('y'), 'ctrlStick' => array()),
+  			array('frame' => 46, 'buttons' => array('l'), 'ctrlStick' => $SOUTHEAST),
+  			array('frame' => 47, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
+  			array('frame' => 48, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
+  			array('frame' => 49, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
+
+  			array('frame' => 64, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+  			array('frame' => 65, 'buttons' => array('y'), 'ctrlStick' => array()),
+  			array('frame' => 66, 'buttons' => array('l'), 'ctrlStick' => $SOUTHEAST),
+  			array('frame' => 67, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
+  			array('frame' => 68, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
+  			array('frame' => 69, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
   		);
   		
 	  

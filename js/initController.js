@@ -29,10 +29,9 @@ $( document ).ready(function() {
 
 	  		for (i = 1; i <= amount; i++) { 
 		    	console.log("Current gif:" + i + " framedata = ");
+		    	console.log(json['gif'][i-1]);
 		    	var frameData = json['gif'][i-1];
 		    	$( '#controller-' + i).frameinputs( frameData );
-		    	console.log(json['gif'][0]);
-
 			}
 	  	} else {
 	  		console.log("No data found for this data set");

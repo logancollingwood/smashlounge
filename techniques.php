@@ -119,7 +119,7 @@ ga('send', 'pageview');
                       if (in_array($tech, $hasFrameData)) {
                         echo "<div class='row'>";
                           echo "<div class='col-md-8'>";
-                            echo "<div id=gif" . $counter . " data-title=true data-autoplay=false data-controls=true data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
+                            echo "<div id=gif" . $counter . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
                             echo  "<h4>Example " . $counter . " of " . $tech . "</h4>";
                             echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
                             if ($tmpGif['source']) {
