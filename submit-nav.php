@@ -12,7 +12,7 @@
     <div class="navbar-right dropdown submit-wrapper">
       <a class='btn btn-navbar navbar-btn dropdown-toggle' data-toggle="dropdown" href="#">submit</a>
       <div class="dropdown-menu" role="menu">
-        <form class="form">
+        <form class="form" action="postSubmission.php" method="POST">
           <fieldset>
             <label for="url">GfyCat URL</label>
             <input type="text" class="form-control" name="url" placeholder="LusciousFattyNarwhal"/>
