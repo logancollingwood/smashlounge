@@ -173,8 +173,11 @@
 
     echo json_encode($json);
     return true;
+
   } else if ($tech == 'L Cancel') {
 
+    $json['status'] = 'success';
+    
     $json['gif'][0] = array(
       array('frame' => 7, 'buttons' => array('y'), 'ctrlStick' => array()),
       array('frame' => 30, 'buttons' => array('a'), 'ctrlStick' => $DOWN),
@@ -197,6 +200,7 @@
     echo json_encode($json);
     return true;
   }
+
 	$json['status'] = 'failure';
 	echo json_encode($json);
 
