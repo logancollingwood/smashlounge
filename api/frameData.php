@@ -187,12 +187,12 @@
       array('frame' => 34, 'buttons' => array(''), 'ctrlStick' => $DOWN),
       array('frame' => 35, 'buttons' => array(''), 'ctrlStick' => $DOWN),
 
-      array('frame' => 39, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-      array('frame' => 40, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-      array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-      array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-      array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-      array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 39, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 40, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => array()),
 
     );
       for ($i = 60; $i <= 112; $i++) {
