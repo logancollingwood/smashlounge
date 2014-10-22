@@ -1,6 +1,6 @@
 <?php
 
-$hasFrameData = array('Wave Dash', 'Jump Canceled Grab', 'Ledge Hop');
+$hasFrameData = array('Wave Dash', 'Jump Canceled Grab', 'Ledge Hop', 'L Cancel');
 
 function makeControllerWithID($id) {
 echo '
