@@ -174,23 +174,25 @@
     echo json_encode($json);
     return true;
   } else if ($tech == 'L Cancel') {
-    
-    array('frame' => 7, 'buttons' => array('y'), 'ctrlStick' => array()),
-    array('frame' => 30, 'buttons' => array('a'), 'ctrlStick' => $DOWN),
-    array('frame' => 31, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-    array('frame' => 32, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-    array('frame' => 33, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-    array('frame' => 34, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-    array('frame' => 35, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-    array('frame' => 36, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 37, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 38, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 39, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 40, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-    array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+
+    $json['gif'][0] = array(
+      array('frame' => 7, 'buttons' => array('y'), 'ctrlStick' => array()),
+      array('frame' => 30, 'buttons' => array('a'), 'ctrlStick' => $DOWN),
+      array('frame' => 31, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 32, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 33, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 34, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 35, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 36, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 37, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 38, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 39, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 40, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+      array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+    );
 
     echo json_encode($json);
     return true;
