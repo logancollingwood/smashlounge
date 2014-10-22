@@ -30,8 +30,8 @@ $( document ).ready(function() {
 	  		for (i = 1; i <= amount; i++) { 
 		    	console.log("Current gif:" + i + " framedata = ");
 		    	console.log(json['gif'][i-1]);
-		    	var frameData = json['gif'][i-1];
-		    	$( '#controller-' + i).frameinputs( frameData );
+		    	
+		    	$( '#controller-' + i).frameinputs( json['gif'][i-1] );
 			}
 	  	} else {
 	  		console.log("No data found for this data set");
