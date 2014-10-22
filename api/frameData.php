@@ -186,9 +186,7 @@
       array('frame' => 33, 'buttons' => array(''), 'ctrlStick' => $DOWN),
       array('frame' => 34, 'buttons' => array(''), 'ctrlStick' => $DOWN),
       array('frame' => 35, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-      array('frame' => 36, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-      array('frame' => 37, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
-      array('frame' => 38, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+
       array('frame' => 39, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
       array('frame' => 40, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
       array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
