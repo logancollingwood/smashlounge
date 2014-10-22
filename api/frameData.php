@@ -197,7 +197,7 @@
       array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
 
     );
-      for ($i = 65; $i <= 112; $i++) {
+      for ($i = 60; $i <= 112; $i++) {
         $json['gif'][0][] = array('frame' => $i, 'buttons' => array('r'), 'ctrlStick' => array());
       }
     echo json_encode($json);
