@@ -15,6 +15,8 @@
 	$RIGHT = array('0', '100');
 	$SOUTHEAST = array('315', '100');
 	$SOUTHWEST = array('225', '100');
+  $NORTHWEST = array('135', '100');
+  $NORTHEAST = array('45', '100');
 	$EMPTY = array();
 	
 	$json;
@@ -109,7 +111,71 @@
 
 	    echo json_encode($json);
 	  	return true;
-	}
+	} else if ($tech == 'Ledge Hop') {
+    $json['status'] = 'success';
+
+    $json['gif'][0] = array(
+      //FIRST LEDGEHOP
+      array('frame' => 16, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 17, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 18, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 19, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 20, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 21, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 22, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 23, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 24, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 25, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 26, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 27, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 28, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 29, 'buttons' => array('y'), 'ctrlStick' => array()),
+      array('frame' => 30, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 31, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 32, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 33, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 34, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 35, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 36, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 37, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 38, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 39, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 40, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 41, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+
+      //SECOND LEDGEHOP
+      array('frame' => 60, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 61, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 62, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 63, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 64, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 65, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 66, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 67, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 68, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 69, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 70, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 71, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 72, 'buttons' => array('y'), 'ctrlStick' => $SOUTHWEST),
+      array('frame' => 73, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST,
+      array('frame' => 74, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 75, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 76, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 77, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 78, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 79, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 80, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 81, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 82, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 83, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 84, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+
+
+    );
+
+    echo json_encode($json);
+    return true;
+  }
 	$json['status'] = 'failure';
 	echo json_encode($json);
 
