@@ -177,7 +177,7 @@
   } else if ($tech == 'L Cancel') {
 
     $json['status'] = 'success';
-    
+
     $json['gif'][0] = array(
       array('frame' => 7, 'buttons' => array('y'), 'ctrlStick' => array()),
       array('frame' => 30, 'buttons' => array('a'), 'ctrlStick' => $DOWN),
@@ -195,6 +195,10 @@
       array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
       array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
       array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => $DOWN),
+
+      for ($i = 65; $i <= 112; $i++) {
+        array('frame' => $i, 'buttons' => array('r'), 'ctrlStick' => $DOWN),
+      }
     );
 
     echo json_encode($json);
