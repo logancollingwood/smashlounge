@@ -157,7 +157,7 @@
       array('frame' => 70, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
       array('frame' => 71, 'buttons' => array(''), 'ctrlStick' => $SOUTHWEST),
       array('frame' => 72, 'buttons' => array('y'), 'ctrlStick' => $SOUTHWEST),
-      array('frame' => 73, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST,
+      array('frame' => 73, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
       array('frame' => 74, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
       array('frame' => 75, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
       array('frame' => 76, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
@@ -169,8 +169,6 @@
       array('frame' => 82, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
       array('frame' => 83, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
       array('frame' => 84, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
-
-
     );
 
     echo json_encode($json);
