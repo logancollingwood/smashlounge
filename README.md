@@ -7,7 +7,7 @@ Source code for http://www.smashLounge.com
 Clone the repository into the root directory of your local website
 <hr>
 
-### dependencies:
+### Dependencies:
 ===========
 1. XAMPP or WAMPP, or any *AMP stack.
 
