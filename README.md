@@ -4,7 +4,7 @@ smashlounge
 Source code for http://www.smashlounge.com
 <hr>
 <h1> Installation </h1>
-Clone the repository into the root directory of your local website
+<p>Clone the repository into the root directory of your local website</p>
 ===========
 
 ### Dependencies:
