@@ -235,6 +235,34 @@
 
     echo json_encode($json);
     return true;
+  } else if ($tech == 'Jump Canceled Up Smash') {
+    $json['status'] = 'success';
+    $json['gif'][0] = array(
+      array('frame' => 27, 'buttons' => array(''), 'ctrlStick' => $UP),
+      array('frame' => 28, 'buttons' => array(''), 'ctrlStick' => $UP),
+      array('frame' => 29, 'buttons' => array(''), 'ctrlStick' => $UP),
+      array('frame' => 30, 'buttons' => array('a'), 'ctrlStick' => $UP),
+      array('frame' => 31, 'buttons' => array('a'), 'ctrlStick' => $UP),
+      array('frame' => 32, 'buttons' => array('a'), 'ctrlStick' => $UP),
+
+      array('frame' => 77, 'buttons' => array(''), 'ctrlStick' => $UP),
+      array('frame' => 78, 'buttons' => array(''), 'ctrlStick' => $UP),
+      array('frame' => 79, 'buttons' => array(''), 'ctrlStick' => $UP),
+      array('frame' => 80, 'buttons' => array(''), 'ctrlStick' => $UP),
+      array('frame' => 81, 'buttons' => array('a'), 'ctrlStick' => $UP),
+      array('frame' => 82, 'buttons' => array('a'), 'ctrlStick' => $UP),
+      array('frame' => 82, 'buttons' => array('a'), 'ctrlStick' => $UP),
+
+      
+    );
+
+    for ($i = 24; $i < 27; $i++) {
+      $json['gif'][0][] = array('frame' => $i, 'buttons' => array(''), 'ctrlStick' => $RIGHT);
+    }
+    for ($i = 68; $i < 77; $i++) {
+      $json['gif'][0][] = array('frame' => $i, 'buttons' => array(''), 'ctrlStick' => $LEFT);
+    }
+
   }
 
 	$json['status'] = 'failure';

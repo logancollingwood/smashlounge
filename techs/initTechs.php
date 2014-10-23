@@ -21,6 +21,8 @@ $query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
   }
   foreach ($result as $row) {
     $description = $row["description"];
+    $input = $row["inputs"];
+    $wiki = $row["smashwiki"];
   }
   if (!$description) {
     $description = "No description found for " . $tech;

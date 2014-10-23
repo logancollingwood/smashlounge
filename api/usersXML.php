@@ -47,7 +47,7 @@
     $un = $userInfo[0]['username'];
 
 
-    $profileHref = "/" . $un;
+    $profileHref = "/users.php?username=" . $un;
 
     $region = "No Region";
     switch ($row['region']) {

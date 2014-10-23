@@ -29,15 +29,7 @@ Questions?
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-51481444-1', 'auto');
-ga('require', 'displayfeatures');
-ga('send', 'pageview');
-</script>
+    <?php analytics() ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -116,15 +108,15 @@ ga('send', 'pageview');
                   foreach ($gifs as $tmpGif) {
                    
                     echo "<li class='list-group-item'>";
-                      if (in_array($tech, $hasFrameData)) {
+                      if ($tmpGif['frameDataJson'] != NULL) {
                         echo "<div class='row'>";
                           echo "<div class='col-md-8'>";
-                            echo "<div id=gif" . $counter . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
+                            echo "<div id=gif" . $tmpGif['id'] . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
                           echo "</div>";
                           echo "<div class='col-md-4'>";
 
                             echo "<div class='controller-wrapper'>";
-                              makeControllerWithID($counter);
+                              makeControllerWithID($tmpGif['id']);
                             echo "</div>";
                             echo "<hr>";
                             echo "<div class='well'>";
@@ -227,11 +219,21 @@ ga('send', 'pageview');
     <script src="js/jquery.sticky.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toggler.js"></script>
-    <script src="js/docs.min.js"></script>
     <script src="js/adblockzorz.js"></script>
+
     <script type="text/javascript" src="js/svg.min.js"></script>
     <script type="text/javascript" src="js/frameinput.js"></script>
-    <script src="js/initController.js"></script>
+
+    <script>
+      $( document ).ready(function() {
+        <?php foreach ($gifs as $tmpGif) { 
+          if ($tmpGif['frameDataJson'] != NULL) { ?>
+          $('#controller-<?php echo $tmpGif["id"]; ?>').frameinputs( <?php echo $tmpGif['frameDataJson']; ?> );
+        <?php }
+        } ?>
+      });
+    </script>
+
     <script>
       $(document).ready(function(){
         $("#canttouchthis").sticky({topSpacing:70});
