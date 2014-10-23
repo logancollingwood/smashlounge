@@ -59,7 +59,7 @@ $table = 'submissions';
 
 Relevant Information:
 ===========
-Accessor functions are mostly found in the /techs directory, where I wrote scripts to access the database and initialize variables which are referenced from the template pages, following MVC principles. These variables are then exported to the views (which lie in the root directory) via php's ```include()``` function. I also export necessary functions for the views in the relevant controller.
+This website is built on MVC principles. All of the controllers lie in the techs/ directory. Each view has an associated controller, specified by init{VIEW}.php. The views lie in the root directory, and access exported variables and functions from the controller. 
 
 
 API:
