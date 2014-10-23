@@ -1,7 +1,44 @@
 smashlounge
 ===========
 
-Source code for SmashLounge
+Source code for http://www.smashLounge
+<hr>
+
+<h1> Installation </h1>
+<hr>
+
+dependencies:
+===========
+XAMPP or WAMPP, or any *AMP stack.
+
+Composer
+
+
+installation:
+===========
+Clone the repository into the root directory of your local website
+
+<hr>
+Install composer:
+
+	with curl -> '''curl -sS https://getcomposer.org/installer | php'''
+
+	without curl -> '''php -r "readfile('https://getcomposer.org/installer');" | php'''
+
+Run php composer install in the repository directory. This will read composer.json and install
+all necessary dependencies for the website. A directory will be created called 'src' which contains
+Cartalyst Sentry, which is used for user authentication.
+<hr>
+Upload schema:
+
+If you are using XAMPP or WAMP, you have access to phpmyadmin. Use the schema located in schema/mysql.sql
+to replicate our database. Create a database called 'thalounge', and run the sql script to populate the tables.
+
+<hr>
+Export connection credentials to the client scripts.
+
+Create 'db.php' and 'dbSuper.php' in the techs/ directory to hold authentication credentials.
+
 
 
 Live modules:
