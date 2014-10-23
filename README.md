@@ -6,19 +6,19 @@ Source code for http://www.smashLounge
 <h1> Installation </h1>
 <hr>
 
-dependencies:
+### dependencies:
 ===========
 1. XAMPP or WAMPP, or any *AMP stack.
 
 2. Composer
 
 
-installation:
+### installation:
 ===========
 Clone the repository into the root directory of your local website
 
 <hr>
-###Install composer:
+### Install composer:
 
 	with curl -> ```curl -sS https://getcomposer.org/installer | php```
 
@@ -28,13 +28,13 @@ Run php composer install in the repository directory. This will read composer.js
 all necessary dependencies for the website. A directory will be created called 'src' which contains
 Cartalyst Sentry, which is used for user authentication.
 <hr>
-###Upload schema:
+### Upload schema:
 
 If you are using XAMPP or WAMP, you have access to phpmyadmin. Use the schema located in schema/mysql.sql
 to replicate our database. Create a database called 'thalounge', and run the sql script to populate the tables.
 
 <hr>
-###Export connection credentials to the client scripts.
+### Export connection credentials to the client scripts.
 
 Create 'db.php' and 'dbSuper.php' in the techs/ directory to hold authentication credentials.
 db should hold the credentials for a user that has READ only access to the tables, and dbSuper should hold credentials for a user that has READ/WRITE access to the tables. This separation of credentials will allow us to provide write access to scripts which explicitly need write access (ie credentials for submitting).
