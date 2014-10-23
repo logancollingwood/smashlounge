@@ -193,33 +193,48 @@
       array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => array()),
       array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => array()),
       array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => array())
-
     );
-      for ($i = 60; $i <= 112; $i++) {
-        $json['gif'][0][] = array('frame' => $i, 'buttons' => array('r'), 'ctrlStick' => array());
-      }
+    for ($i = 60; $i <= 112; $i++) {
+      $json['gif'][0][] = array('frame' => $i, 'buttons' => array('r'), 'ctrlStick' => array());
+    }
+
     echo json_encode($json);
     return true;
   } else if ($tech == 'Ledge Stall') {
+
     $json['status'] = 'success';
 
     $json['gif'][0] = array(
       array('frame' => 1, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-      array('frame' => 30, 'buttons' => array('a'), 'ctrlStick' => $DOWN),
-      array('frame' => 31, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-      array('frame' => 32, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-      array('frame' => 33, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-      array('frame' => 34, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-      array('frame' => 35, 'buttons' => array(''), 'ctrlStick' => $DOWN),
-
-      array('frame' => 39, 'buttons' => array('l'), 'ctrlStick' => array()),
-      array('frame' => 40, 'buttons' => array('l'), 'ctrlStick' => array()),
-      array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => array()),
-      array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => array()),
-      array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => array()),
-      array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => array())
+      array('frame' => 12, 'buttons' => array('y'), 'ctrlStick' => array()),
+      array('frame' => 16, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 17, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 18, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 19, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 20, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 21, 'buttons' => array('b'), 'ctrlStick' => $UP),    
+      array('frame' => 22, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 23, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 24, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 25, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 26, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 27, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 28, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 29, 'buttons' => array('b'), 'ctrlStick' => $UP),
+      array('frame' => 30, 'buttons' => array('b'), 'ctrlStick' => $UP)
 
     );
+
+    $json['gif'][1] = array(
+      array('frame' => 9, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+    );
+
+    for ($i = 14; $i < 40; $i++) {
+      $json['gif'][1][] = array('frame' => $i, 'buttons' => array('b'), 'ctrlStick' => $UP);
+    }
+
+    echo json_encode($json);
+    return true;
   }
 
 	$json['status'] = 'failure';
