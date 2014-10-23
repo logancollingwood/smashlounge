@@ -2,16 +2,15 @@ smashlounge
 ===========
 
 Source code for http://www.smashLounge
-<hr>
 
 <h1> Installation </h1>
 <hr>
 
 dependencies:
 ===========
-XAMPP or WAMPP, or any *AMP stack.
+1. XAMPP or WAMPP, or any *AMP stack.
 
-Composer
+2. Composer
 
 
 installation:
@@ -21,9 +20,9 @@ Clone the repository into the root directory of your local website
 <hr>
 Install composer:
 
-	with curl -> '''curl -sS https://getcomposer.org/installer | php'''
+	with curl -> ```curl -sS https://getcomposer.org/installer | php```
 
-	without curl -> '''php -r "readfile('https://getcomposer.org/installer');" | php'''
+	without curl -> ```php -r "readfile('https://getcomposer.org/installer');" | php```
 
 Run php composer install in the repository directory. This will read composer.json and install
 all necessary dependencies for the website. A directory will be created called 'src' which contains
@@ -42,22 +41,22 @@ db should hold the credentials for a user that has READ only access to the table
 
 db.php 
 <hr>
-'''
+```php
 $username="smashlounge";
 $password="";
 $database="thalounge";
 $dahostname="localhost";
-'''
+```
 
 dbSuper.php
 <hr>
-'''
+```php
 $username = 'submit';
 $password = '';
 $dahostname = 'localhost';
 $dbname = 'thalounge';
 $table = 'submissions';
-'''
+```
 
 
 Live modules:
