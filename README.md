@@ -38,7 +38,26 @@ to replicate our database. Create a database called 'thalounge', and run the sql
 Export connection credentials to the client scripts.
 
 Create 'db.php' and 'dbSuper.php' in the techs/ directory to hold authentication credentials.
+db should hold the credentials for a user that has READ only access to the tables, and dbSuper should hold credentials for a user that has READ/WRITE access to the tables. This separation of credentials will allow us to provide write access to scripts which explicitly need write access (ie credentials for submitting).
 
+db.php 
+<hr>
+'''
+$username="smashlounge";
+$password="";
+$database="thalounge";
+$dahostname="localhost";
+'''
+
+dbSuper.php
+<hr>
+'''
+$username = 'submit';
+$password = '';
+$dahostname = 'localhost';
+$dbname = 'thalounge';
+$table = 'submissions';
+'''
 
 
 Live modules:
