@@ -1,11 +1,11 @@
 smashlounge
 ===========
 
-Source code for http://www.smashLounge.com
-
+Source code for http://www.smashlounge.com
+<hr>
 <h1> Installation </h1>
 Clone the repository into the root directory of your local website
-<hr>
+===========
 
 ### Dependencies:
 ===========
@@ -14,7 +14,7 @@ Clone the repository into the root directory of your local website
 2. Composer
 
 
-<hr>
+===========
 ### Install composer:
 
 	with curl -> ```curl -sS https://getcomposer.org/installer | php```
@@ -24,17 +24,17 @@ Clone the repository into the root directory of your local website
 Run php composer install in the repository directory. This will read composer.json and install
 all necessary dependencies for the website. A directory will be created called 'src' which contains
 Cartalyst Sentry, which is used for user authentication.
-<hr>
+===========
 ### Upload schema:
 
 If you are using XAMPP or WAMP, you have access to phpmyadmin. Use the schema located in schema/mysql.sql
 to replicate our database. Create a database called 'thalounge', and run the sql script to populate the tables.
 
-<hr>
+===========
 ### Export connection credentials to the client scripts.
 
 Create 'db.php' and 'dbSuper.php' in the techs/ directory to hold authentication credentials.
-db should hold the credentials for a user that has READ only access to the tables, and dbSuper should hold credentials for a user that has READ/WRITE access to the tables. This separation of credentials will allow us to provide write access to scripts which explicitly need write access (ie credentials for submitting).
+db should hold the credentials for a user that has READ only access to the tables, and dbSuper should hold credentials for a user that has READ/WRITE access to the tables. This separation of credentials will allow us to provide write access to scripts which explicitly need write access (ie credentials for submitting). These scripts should export the following variables.
 
 db.php 
 ```php
@@ -53,7 +53,7 @@ $dbname = 'thalounge';
 $table = 'submissions';
 ```
 
-<hr>
+
 <hr>
 Live modules:
 ===========
