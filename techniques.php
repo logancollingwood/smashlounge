@@ -114,35 +114,43 @@ ga('send', 'pageview');
                 if ($gifs) {
                   echo "<ul id='techzz'>";
                   foreach ($gifs as $tmpGif) {
-                    $counter++;
+                   
                     echo "<li class='list-group-item'>";
                       if (in_array($tech, $hasFrameData)) {
                         echo "<div class='row'>";
                           echo "<div class='col-md-8'>";
                             echo "<div id=gif" . $counter . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
-                            echo  "<h4>Example " . $counter . " of " . $tech . "</h4>";
-                            echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
-                            if ($tmpGif['source']) {
-                              echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
-                            }
-                            echo  "<span class='badge'>". $counter . "</span>";
                           echo "</div>";
                           echo "<div class='col-md-4'>";
+
                             echo "<div class='controller-wrapper'>";
                               makeControllerWithID($counter);
                             echo "</div>";
+                            echo "<hr>";
+                            echo "<div class='well'>";
+                              echo  "<h4>Example of " . $tech . "</h4>";
+                              echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
+                              if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
+                                echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
+                              } else if ($tmpGif['source']) {
+                                echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
+                              }
+                              echo  "&nbsp;<span class='badge'>". $counter . "</span>";
+                              echo "</div>";
                           echo "</div>";
                         echo "</div>";
                       } else {
                         echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                        echo  "<h4>Example " . $counter . " of " . $tech . "</h4>";
+                        echo  "<h4>Example of " . $tech . "</h4>";
                         echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
-                        if ($tmpGif['source']) {
-                          echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
+                        if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
+                          echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
+                        } else if ($tmpGif['source']) {
+                          echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
                         }
                         echo  "<span class='badge'>". $counter . "</span>";
                       }
-
+                    $counter++;
                     echo "</li>";
                   }
 

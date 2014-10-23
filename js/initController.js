@@ -27,11 +27,11 @@ $( document ).ready(function() {
 	  	console.log(json);
 	  	if (json['status'] == 'success') {
 
-	  		for (i = 1; i <= amount; i++) { 
+	  		for (i = 0; i < amount; i++) { 
 		    	console.log("Current gif:" + i + " framedata = ");
-		    	console.log(json['gif'][i-1]);
+		    	console.log(json['gif'][i]);
 		    	
-		    	$( '#controller-' + i).frameinputs( json['gif'][i-1] );
+		    	$( '#controller-' + i).frameinputs( json['gif'][i] );
 			}
 	  	} else {
 	  		console.log("No data found for this data set");

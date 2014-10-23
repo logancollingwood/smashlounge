@@ -247,7 +247,7 @@ Questions?
                     var time = new Date(val.start);
                     
                     $(document.createElement('li'))
-                      .html('<a href="/upcoming?tournament=' + val.title + '">' + val.title + '</a>')
+                      .html('<a href="/upcoming.php?tournament=' + val.title + '">' + val.title + '</a>')
                       .appendTo(list);
                   });
                 },

@@ -38,7 +38,7 @@
   			array('frame' => 18, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
   			array('frame' => 19, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
   			array('frame' => 20, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
-  			array('frame' => 21, 'buttons' => array(''), 'ctrlStick' => array('315', '100')),
+  			array('frame' => 21, 'buttons' => array(''), 'ctrlStick' => array('315', '100'))
   		);
 
 	  	$json['gif'][1] = array(
@@ -69,7 +69,7 @@
   			array('frame' => 66, 'buttons' => array('l'), 'ctrlStick' => $SOUTHEAST),
   			array('frame' => 67, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
   			array('frame' => 68, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
-  			array('frame' => 69, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST),
+  			array('frame' => 69, 'buttons' => array(''), 'ctrlStick' => $SOUTHEAST)
   		);
   		
 	  
@@ -90,7 +90,7 @@
   			array('frame' => 38, 'buttons' => array(''), 'ctrlStick' => $RIGHT),
   			array('frame' => 39, 'buttons' => array(''), 'ctrlStick' => $RIGHT),
   			array('frame' => 40, 'buttons' => array(''), 'ctrlStick' => $RIGHT),
-  			array('frame' => 41, 'buttons' => array('z'), 'ctrlStick' => array()),
+  			array('frame' => 41, 'buttons' => array('z'), 'ctrlStick' => array())
 
   		);
 
@@ -106,7 +106,7 @@
   			array('frame' => 38, 'buttons' => array(''), 'ctrlStick' => $RIGHT),
   			array('frame' => 39, 'buttons' => array(''), 'ctrlStick' => $RIGHT),
   			array('frame' => 40, 'buttons' => array('y'), 'ctrlStick' => array()),
-  			array('frame' => 41, 'buttons' => array('z'), 'ctrlStick' => array()),
+  			array('frame' => 41, 'buttons' => array('z'), 'ctrlStick' => array())
   		);
 
 	    echo json_encode($json);
@@ -168,7 +168,7 @@
       array('frame' => 81, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
       array('frame' => 82, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
       array('frame' => 83, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
-      array('frame' => 84, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST),
+      array('frame' => 84, 'buttons' => array(''), 'ctrlStick' => $NORTHEAST)
     );
 
     echo json_encode($json);
@@ -192,7 +192,7 @@
       array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => array()),
       array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => array()),
       array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => array()),
-      array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => array())
 
     );
       for ($i = 60; $i <= 112; $i++) {
@@ -200,6 +200,26 @@
       }
     echo json_encode($json);
     return true;
+  } else if ($tech == 'Ledge Stall') {
+    $json['status'] = 'success';
+
+    $json['gif'][0] = array(
+      array('frame' => 1, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 30, 'buttons' => array('a'), 'ctrlStick' => $DOWN),
+      array('frame' => 31, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 32, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 33, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 34, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+      array('frame' => 35, 'buttons' => array(''), 'ctrlStick' => $DOWN),
+
+      array('frame' => 39, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 40, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 41, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 42, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 43, 'buttons' => array('l'), 'ctrlStick' => array()),
+      array('frame' => 44, 'buttons' => array('l'), 'ctrlStick' => array())
+
+    );
   }
 
 	$json['status'] = 'failure';
