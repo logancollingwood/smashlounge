@@ -1,7 +1,7 @@
 smashlounge
 ===========
 
-Source code for http://www.smashLounge
+Source code for http://www.smashLounge.com
 
 <h1> Installation </h1>
 <hr>
@@ -40,7 +40,6 @@ Create 'db.php' and 'dbSuper.php' in the techs/ directory to hold authentication
 db should hold the credentials for a user that has READ only access to the tables, and dbSuper should hold credentials for a user that has READ/WRITE access to the tables. This separation of credentials will allow us to provide write access to scripts which explicitly need write access (ie credentials for submitting).
 
 db.php 
-<hr>
 ```php
 $username="smashlounge";
 $password="";
@@ -49,7 +48,6 @@ $dahostname="localhost";
 ```
 
 dbSuper.php
-<hr>
 ```php
 $username = 'submit';
 $password = '';
@@ -58,7 +56,8 @@ $dbname = 'thalounge';
 $table = 'submissions';
 ```
 
-
+<hr>
+<hr>
 Live modules:
 ===========
 
