@@ -128,14 +128,12 @@ ga('send', 'pageview');
                             echo "</div>";
                             echo "<hr>";
                             echo "<div class='well'>";
-                              echo  "<h4>Example of " . $tech . "</h4>";
                               echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
                               if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
                                 echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
                               } else if ($tmpGif['source']) {
                                 echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
                               }
-                              echo  "&nbsp;<span class='badge'>". $counter . "</span>";
                               echo "</div>";
                           echo "</div>";
                         echo "</div>";
