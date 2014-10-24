@@ -76,28 +76,29 @@
       $params['twitch'] = $twitchId;
       $params['facebook'] = $facebook;
 
-      if (isset($_POST['gfycat'])) {
+      $hasGfy = false;
+
+      if (isset($_POST['gfycat']) && $_POST['gfycat'] != '' ) {
         $hasGfy = true;
       }
       if ($hasGfy) {
         $gfyURL = remove_http($_POST['gfycat']);
         $gfyID = grabGfyName($gfyURL);
+        if ($gfyID === '') {
+          header("Location: /update?str=url");
+          die("Redirecting to update.php");
+        }
       }
 
-      if ($gfyID === '') {
-        header("Location: /update?str=url");
-        die("Redirecting to update.php");
+      if (preg_match("/\\s/", $params['twitter'])) {
+        header("Location: update.php?str=spaces");
+        die('redirecting');
       }
 
-        if (preg_match("/\\s/", $params['twitter'])) {
-          header("Location: update.php?str=spaces");
-          die('redirecting');
-        }
-
-        if (preg_match("/\\s/", $params['twitch'])) {
-          header("Location: update.php?str=spaces");
-          die('redirecting');
-        }
+      if (preg_match("/\\s/", $params['twitch'])) {
+        header("Location: update.php?str=spaces");
+        die('redirecting');
+      }
 
 
 
@@ -113,15 +114,14 @@
         }
 
 
-        $query = "UPDATE userinfo " . $setString . "WHERE userid= :userID";
-        $query_params = array(
-          ':userID' => $userID
-        );
+        $query = "UPDATE userinfo " . $setString . "WHERE userid= " . $userID;
 
-        try{
-          $stmt = $db->prepare($query);
-          $result = $stmt->execute($query_params);
-        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+        if (!$result = $mysqli->query($query)) {
+          die('Invalid query: ' . $mysqli->error);
+        } else {
+          header("Location: /update.php?str=success");
+        }
+
       } else {
 
         /*
@@ -161,7 +161,7 @@
           } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
 
 
-      header("Location: /update?str=success");
+      header("Location: /update.php?str=success");
     }
 
     //print_r($userFields);
@@ -343,7 +343,13 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="twitter">Twitter!</label>
                     <div class="col-md-4">
-                    <input id="twitter" name="twitter" type="text" placeholder="miom_pewpewu" class="form-control input-md">
+                    <input id="twitter" name="twitter" type="text" placeholder="miom_pewpewu" 
+                    <?php
+                      if ($userFields['twitter'] != '') {
+                        echo " value='" . $userFields['twitter'] . "'";
+                      }
+                    ?>
+                    class="form-control input-md">
                     <span class="help-block">Please enter just your twitter username</span>
                     </div>
                   </div>
@@ -352,7 +358,13 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="twitch">Twitch</label>
                     <div class="col-md-4">
-                    <input id="twitch" name="twitch" type="text" placeholder="pewpewu" class="form-control input-md">
+                    <input id="twitch" name="twitch" type="text" placeholder="pewpewu" 
+                    <?php
+                      if ($userFields['twitch'] != '') {
+                        echo " value='" . $userFields['twitch'] . "'";
+                      }
+                    ?>
+                    class="form-control input-md">
                     <span class="help-block">Please enter just your Twitch channel name, if you have one!</span>
                     </div>
                   </div>
@@ -363,6 +375,15 @@ ga('send', 'pageview');
                     <div class="col-md-4">
                     <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" class="form-control input-md">
                     <span class="help-block">Please enter a link to a sweet gfycat!</span>
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="friendcode">3DS Friend Code!</label>
+                    <div class="col-md-4">
+                    <input id="friendcode" name="friendcode" type="text" placeholder="friendcode" class="form-control input-md">
+                    <span class="help-block">Your 3DS Friend Code!</span>
                     </div>
                   </div>
 

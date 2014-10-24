@@ -2,9 +2,29 @@
     require("techs/init.php");
     
 
-    if(!empty($_POST)) { 
+    if(!empty($_POST)) {
+
+        $postKeys = array('username', 'email', 'password');
+
+        // Check for each $_POST key
+        foreach ($postKeys as $key) {
+            if (!isset($_POST[$key]) || empty($_POST[$key])) {
+                header("Location: register?str=fields");
+                exit();
+            }
+        }
+
         $username = $_POST['username'];
 
+        $query = "SELECT * FROM users WHERE username='". $username . "'";
+
+        if (!$result = $mysqli->query($query)) {
+            die('Invalid query: ' . $mysqli->error);
+        }
+        foreach ($result as $row) {
+            header("Location: register?str=unexists");
+            die('redirecting');
+        }
 
         if (in_array($username, $modules)) {
             header("Location: register?str=reserved"); 
@@ -14,13 +34,6 @@
             header("Location: register?str=chars");
             die('redirecting');
         }
-        // Ensure that the user fills out fields 
-        if(empty($_POST['username'])) { 
-            die("Please enter a username."); 
-        } 
-        if(empty($_POST['password'])) { 
-            die("Please enter a password."); 
-        } 
         if (preg_match("/\\s/", $username)) {
             header("Location: register.php?str=spaces");
             die('redirecting');
@@ -73,6 +86,10 @@
             echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like that email is already in use!";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
+        } else if ($submit == 'unexists') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like that username is already in use!";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
         } else if ($submit == 'spaces') {
             echo "<div class='alert alert-danger alert-dismissable' role='alert'>Please make sure your username contains no whitespace!";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
@@ -83,6 +100,10 @@
             echo "</div>";
         } else if ($submit == 'chars') {
             echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Please don't include special characters in your username!";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
+        } else if ($submit == 'fields') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like you're missing some fields.";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         }
@@ -116,7 +137,7 @@
     <div class='container-fluid'>
 
         <div class='row'>
-            <?php createNavBar('update'); ?>
+            <?php createNavBar(); ?>
 
             <div class="col-sm-3 col-md-2 sidebar">
 

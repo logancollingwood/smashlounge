@@ -530,6 +530,11 @@ function makeSidebar($loggedIn, $currentPage = '') {
       echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
     } else {
       echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>";
+    }    
+    if ($currentPage == 'submit') {
+      echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;Submit</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;Submit</a></li>";
     }
     if ($currentPage == 'lounge') {
       echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
@@ -570,7 +575,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
       if ($currentPage=='login') {
         echo "active";
       }
-    echo "' href='/users.php?username" . $user['username'] . "'>profile</a>";
+    echo "' href='/users.php?username=" . $user['username'] . "'>profile</a>";
 
     echo "    <a class='btn bttn login' href='/logout'>logout</a>";
     echo "</div>";
