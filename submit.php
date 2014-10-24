@@ -3,7 +3,7 @@
   require("techs/twitch.php");
   require("techs/initUser.php");
   require_once("techs/sentry.php");
-  $username = $_GET['username'];
+    $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
     $loggedIn = false;
     if (Sentry::check())
     {
@@ -80,12 +80,61 @@ Questions?
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div class="jumbotron banner">
             <div class='row'>
-              <h1 class='lead'>Submit a SmashGif</h1>
+              <h1 class='lead'>Submit Data</h1>
             </div>
           </div>
+          <ul class='nav nav-tabs' role='tablist' id='myTab'>
+            <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz'>Gifs</a></li>
+            <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz'>Tournaments</a></li>
+            <li><a href='#technique' role='tab' data-toggle='tab' class='tabz'>Techniques</a></li>
+            <li><a href='#group' role='tab' data-toggle='tab' class='tabz'>Regional Group</a></li>
+          </ul>
 
           <!-- Submit Form Row -->
           <div class="row">
+
+            <div class='tab-content'>
+
+              <div class='tab-pane active' id='gif'>
+                <div class='col-md-6 col-md-offset-3'>
+                  <div class='well'>
+                    <form class="form">
+                      <!-- Potentially Use the following hidden fields -->
+                      <input type="hidden" name="pageid" value="" />
+                      <input type="hidden" name="dataid" value="" />
+                      <fieldset>
+                        <label for="url">GfyCat URL</label>
+                        <input type="text" class="form-control" name="url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
+                      </fieldset>
+                      <fieldset>
+                        <label for="source">Original Source</label>
+                        <input type="text" class="form-control" maxlength="100" name="source" placeholder="Big House 4"/>
+                      </fieldset>
+                      <fieldset>
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" maxlength="100" name="description" placeholder="Mew2King Ken Comboes a Scrub"/>
+                      </fieldset>
+                      <br>
+                      <button class="btn btn-default post-submissions">submit</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class='tab-pane' id='tournament'>
+                TOURNAMENT
+              </div>
+
+              <div class='tab-pane' id='technique'>
+                TECHNIQUE
+              </div>
+
+              <div class='tab-pane' id='group'>
+                GROUP
+              </div>
+
+            </div>
+
           </div>
 
         </div>

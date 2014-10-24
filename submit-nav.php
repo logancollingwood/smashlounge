@@ -42,13 +42,8 @@
         <li><a href='/donate.php'>donate</a></li>
 
         <li><a href='/about.html'>about</a></li>
-        <?php if ($extra == 'logout'): ?>
-          <li><a href='static/logout.php'>logout</a></li>
-        <?php elseif ($extra =='register'): ?>
-          <li><a href='/register'>register</a></li>
-        <?php elseif ($extra == 'update'): ?>
-          <li><a href='/update'>update</a></li>
-        <?php endif; ?>
+
+
       </ul>
     </div>
   </div>

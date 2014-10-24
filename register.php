@@ -34,11 +34,13 @@
                 'password'  => $_POST['password'],
                 'activated' => true,
             ));
-        }
-        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+        }catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
         {
-            header("Location: register?str=spaces"); 
-            die('redirecting');
+            echo 'Login field is required.';
+        }
+        catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+        {
+            echo 'Password field is required.';
         }
         catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
         {
@@ -47,7 +49,7 @@
         }
         catch (Cartalyst\Sentry\Users\UserExistsException $e)
         {
-            header("Location: register?str=taken");
+            header("Location: register?str=exists");
             die('redirecting');
         }
         if ($user == NULL) {
@@ -67,8 +69,8 @@
             echo "    <hr><a class='btn bttn login' href='/login'>Log in</a>";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
-        } else if ($submit == 'taken') {
-            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like that username is taken!";
+        } else if ($submit == 'exists') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like that email is already in use!";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'spaces') {
@@ -127,16 +129,41 @@
                 <div class='row'>
                     <div class='col-md-6 col-md-offset-3'>
                         <div class='well'>
-                            <form action="register" method="post" class="form-signin" role="form">
+                            <form action="register" method="post" class="form-horizontal" role="form">
+                                <fieldset>
                                 <h2 class="form-signin-heading">Please Register</h2>
-                                <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-                                <input type="email" name="email" class="form-control" placeholder="email" required>
-                                <input type="password" name="password" class="form-control" placeholder="Password" required>
-                                <button class="btn btn-lg btn-primary btn-block SL bttn" type="submit">Register</button>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="email">username</label>
+                                    <div class="col-md-4">
+                                    <input type="text" name="username" class="form-control input-md" placeholder="username" required autofocus>
+                                </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="email">email</label>
+                                    <div class="col-md-4">
+                                    <input id="email" name="email" type="email" placeholder="support@smashlounge.com" class="form-control input-md" required>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="location">password</label>
+                                    <div class="col-md-4">
+                                    <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <button class="btn btn-lg btn-primary SL bttn" type="submit">Register</button>
+                                    </div>
+                                </div>
                             </form>
 
                             <?php 
                                 if ($alert) {
+                                    echo "<br>";
                                     alertStatus($alert);
                                 }
                             ?>
