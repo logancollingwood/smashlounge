@@ -373,7 +373,12 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>
                     <div class="col-md-4">
-                    <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" class="form-control input-md">
+                    <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" 
+                                        <?php
+                      if ($userFields['twitter'] != '') {
+                        echo " value='" . $userFields['twitter'] . "'";
+                      }
+                    ?>class="form-control input-md">
                     <span class="help-block">Please enter a link to a sweet gfycat!</span>
                     </div>
                   </div>

@@ -9,7 +9,7 @@
         // Check for each $_POST key
         foreach ($postKeys as $key) {
             if (!isset($_POST[$key]) || empty($_POST[$key])) {
-                header("Location: register?str=fields");
+                header("Location: register.php?str=fields");
                 exit();
             }
         }
@@ -22,16 +22,16 @@
             die('Invalid query: ' . $mysqli->error);
         }
         foreach ($result as $row) {
-            header("Location: register?str=unexists");
+            header("Location: register.php?str=unexists");
             die('redirecting');
         }
 
         if (in_array($username, $modules)) {
-            header("Location: register?str=reserved"); 
+            header("Location: register.php?str=reserved"); 
             die('redirecting');
         }
         if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $username)) {
-            header("Location: register?str=chars");
+            header("Location: register.php?str=chars");
             die('redirecting');
         }
         if (preg_match("/\\s/", $username)) {
@@ -57,16 +57,16 @@
         }
         catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
         {
-            header("Location: register?str=spaces");
+            header("Location: register.php?str=spaces");
             die('redirecting');
         }
         catch (Cartalyst\Sentry\Users\UserExistsException $e)
         {
-            header("Location: register?str=exists");
+            header("Location: register.php?str=exists");
             die('redirecting');
         }
         if ($user == NULL) {
-            header("Location: register?str=taken");
+            header("Location: register.php?str=taken");
             die('redirecting');
         }
         $_GET['str'] = 'success';
@@ -150,7 +150,7 @@
                 <div class='row'>
                     <div class='col-md-6 col-md-offset-3'>
                         <div class='well'>
-                            <form action="register" method="post" class="form-horizontal" role="form">
+                            <form action="register.php" method="post" class="form-horizontal" role="form">
                                 <fieldset>
                                 <h2 class="form-signin-heading">Please Register</h2>
 
