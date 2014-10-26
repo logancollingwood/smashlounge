@@ -235,7 +235,7 @@ Questions?
       $(document).ready(function(){
         var spawned = false;
         $("#giffyurl").change(function(event){     
-            console.log('firing');
+            //console.log('firing');
             // prevent form from being submitted
             //event.preventDefault();
 
@@ -255,7 +255,8 @@ Questions?
               return;
             }
 
-            $("#gfyLocation").append("<div class='spawned'><hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
+            var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
+            $("#gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
             spawned = true;
             gfyCollection.init();
             //return;
