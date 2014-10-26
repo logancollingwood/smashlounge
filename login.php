@@ -2,17 +2,20 @@
     require("techs/init.php");
     require_once("techs/sentry.php");
 
+    $submit = isset($_GET['str'])       ? trim($_GET['str'])       : "";
     $loggedIn = false;
     if (Sentry::check())
     {
         $user = Sentry::getUser();
         // User is logged in
-        header("Location: /" . $user['username'] );
+        header("Location: /users.php?username=" . $user['username']);
         die("Redirecting to index.php");
     }
 
+    $redirect = isset($_GET['redirect'])       ? trim($_GET['redirect'])       : "";
     if(!empty($_POST)){ 
-        require('techs/dbSuper.php');
+        echo "logging in";
+        //require('techs/dbSuper.php');
 
         try
         {
@@ -45,13 +48,14 @@
             header("Location: login.php?str=failed");
         }
 
+        if ($redirect != '') {
+            header("Location: " . $redirect);
+            die("Redirecting to: redirect");
+        }
 
-
-        header("Location: update.php");
+        header("Location: login.php");
         die("Redirecting to: secret");
     }
-    $submit = isset($_GET['str'])       ? trim($_GET['str'])       : "";
-
 
     function alertStatus($submit) {
         if ($submit == 'logout') {
@@ -78,7 +82,7 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-
+    <?php analytics(); ?>
     <?php
         printLibraries();
     ?>

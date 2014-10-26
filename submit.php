@@ -83,58 +83,148 @@ Questions?
               <h1 class='lead'>Submit Data</h1>
             </div>
           </div>
-          <ul class='nav nav-tabs' role='tablist' id='myTab'>
-            <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz'>Gifs</a></li>
-            <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz'>Tournaments</a></li>
-            <li><a href='#technique' role='tab' data-toggle='tab' class='tabz'>Techniques</a></li>
-            <li><a href='#group' role='tab' data-toggle='tab' class='tabz'>Regional Group</a></li>
-          </ul>
-
+          <?php if ($loggedIn): ?>
+            <ul class='nav nav-tabs' role='tablist' id='myTab'>
+              <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz'>Gifs</a></li>
+              <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz'>Tournaments</a></li>
+              <li><a href='#technique' role='tab' data-toggle='tab' class='tabz'>Techniques</a></li>
+              <li><a href='#group' role='tab' data-toggle='tab' class='tabz'>Regional Group</a></li>
+            </ul>
+          <?php endif; ?>
           <!-- Submit Form Row -->
           <div class="row">
 
-            <div class='tab-content'>
 
-              <div class='tab-pane active' id='gif'>
-                <div class='col-md-6 col-md-offset-3'>
-                  <div class='well'>
-                    <form class="form">
-                      <!-- Potentially Use the following hidden fields -->
-                      <input type="hidden" name="pageid" value="" />
-                      <input type="hidden" name="dataid" value="" />
-                      <fieldset>
-                        <label for="url">GfyCat URL</label>
-                        <input type="text" class="form-control" name="url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
-                      </fieldset>
-                      <fieldset>
-                        <label for="source">Original Source</label>
-                        <input type="text" class="form-control" maxlength="100" name="source" placeholder="Big House 4"/>
-                      </fieldset>
-                      <fieldset>
-                        <label for="description">Description</label>
-                        <input type="text" class="form-control" maxlength="100" name="description" placeholder="Mew2King Ken Comboes a Scrub"/>
-                      </fieldset>
-                      <br>
-                      <button class="btn btn-default post-submissions">submit</button>
-                    </form>
+            <?php if ($loggedIn): ?>
+              <div class='tab-content'>
+
+                <div class='tab-pane active' id='gif'>
+                  <div class='col-md-9'>
+                    <hr>
+                    <div class='well SL'>
+                      <form class="form">
+                        <!-- Potentially Use the following hidden fields -->
+                        <input type="hidden" name="pageid" value="" />
+                        <input type="hidden" name="dataid" value="" />
+                        <fieldset>
+                          <label for="url">GfyCat URL</label>
+                          <input id='giffyurl' type="text" class="form-control" name="gif_url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
+
+                        </fieldset>
+                        <fieldset>
+                          <label for="source">Original Source</label>
+                          <input type="text" class="form-control" maxlength="100" name="gif_source" placeholder="Big House 4"/>
+                        </fieldset>
+                        <fieldset>
+                          <label for="description">Description</label>
+                          <input type="text" class="form-control" maxlength="100" name="gif_description" placeholder="Mew2King Ken Comboes a Scrub"/>
+                        </fieldset>
+                        <fieldset>
+                          <label for="description">credits:</label>
+                          <input type="text" class="form-control" maxlength="100" name="gif_credits" 
+                          <?php echo " value=" . $user['username']?> placeholder="Mew2King Ken Comboes a Scrub"/>
+                        </fieldset>
+                        <br>
+                        <button class="btn btn-default post-submissions">submit</button>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class='col-md-3'>
+                    <div id='gfyLocation'>
+                    </div>
                   </div>
                 </div>
+
+                <div class='tab-pane' id='tournament'>
+                  <div class='tab-pane' id='tournament'>
+                  <div class='col-md-6 col-md-offset-2'>
+                    <hr>
+                    <div class='well SL'>
+                      <form class="form">
+                        <!-- Potentially Use the following hidden fields -->
+                        <input type="hidden" name="pageid" value="" />
+                        <input type="hidden" name="dataid" value="" />
+                        <fieldset>
+                          <label for="url">Tournament Name</label>
+                          <input type="text" class="form-control" name="tournament_name" placeholder="Do You Fox With It?"/>
+                        </fieldset>
+                        <fieldset>
+                          <label for="source">Start Date</label>
+                          <input type="date" class="form-control" maxlength="100" name="tournament_start" placeholder="6/24/15"/>
+                        </fieldset>
+                        <fieldset>
+                          <label for="description">End Date</label>
+                          <input type="date" class="form-control" maxlength="100" name="tournament_end" placeholder="6/25/15"/>
+                        </fieldset>
+                        <fieldset>
+                          <label for="description">Twitch URL</label>
+                          <input type="text" class="form-control" maxlength="100" name="tournament_twitch" placeholder="twitch.tv/showdownsmash"/>
+                        </fieldset>
+                        <fieldset>
+                          <label for="description">Challonge URL</label>
+                          <input type="text" class="form-control" maxlength="100" name="tournament_challonge" placeholder="http://challonge.com/BiWeekly1"/>
+                        </fieldset>
+                        <fieldset>
+                          <label for="description">credits:</label>
+                          <input type="text" class="form-control" maxlength="100" name="description" 
+                          <?php echo " value=" . $user['username']?> placeholder="Mew2King Ken Comboes a Scrub"/>
+                        </fieldset>
+                        <br>
+                        <button class="btn btn-default post-submissions">submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class='tab-pane' id='technique'>
+                  TECHNIQUE
+                </div>
+
+                <div class='tab-pane' id='group'>
+                  GROUP
+                </div>
+
               </div>
+            <?php else: ?>
+              <div class='col-md-6 col-md-offset-3'>
+                    <div class='well'>
+                        <form action="login?redirect=submit" method="post" class="form-horizontal">
+                            <fieldset>
+                            <h2 class="form-signin-heading">Please sign in in order to submit!</h2>
 
-              <div class='tab-pane' id='tournament'>
-                TOURNAMENT
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="email">email</label>
+                                <div class="col-md-4">
+                                <input id="email" name="email" type="email" placeholder="support@smashlounge.com" class="form-control input-md" required>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="location">password</label>
+                                <div class="col-md-4">
+                                <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                              <div class="controls">
+                                <button class="btn btn-lg btn-primary SL bttn" type="submit">Sign in</button>
+                              </div>
+                            </div>
+
+                            <br/>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
               </div>
-
-              <div class='tab-pane' id='technique'>
-                TECHNIQUE
-              </div>
-
-              <div class='tab-pane' id='group'>
-                GROUP
-              </div>
-
-            </div>
-
+            <?php endif; ?>
           </div>
 
         </div>
@@ -174,6 +264,36 @@ Questions?
         });
         
       });
+    </script>
+    <script>
+      $(document).ready(function(){
+        var spawned = false;
+        $("#giffyurl").change(function(event){     
+            console.log('firing');
+            // prevent form from being submitted
+            //event.preventDefault();
+
+            // get value of text box using .val()
+            var url = $("#giffyurl").val();
+
+            var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
+            var str = url;
+            var m = re.exec(str);
+            //console.log(m[4]);
+            if (m == null) {
+              if (spawned) {
+                $( ".gfyVid" ).remove();
+                spawned = false;
+              }
+              return;
+            }
+
+            $("#gfyLocation").append("<hr><div class='well'><img id='spawned' class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div>");
+            spawned = true;
+            gfyCollection.init();
+            //return;
+        });
+      })
     </script>
     
     <script>
