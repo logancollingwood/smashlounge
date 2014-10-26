@@ -125,7 +125,7 @@ Questions?
                           <?php if($loggedIn) {
                               echo " value=" . $user['username'];
                             }
-                          ?> placeholder="Mew2King Ken Comboes a Scrub"/>
+                          ?> placeholder="Your Username!"/>
                         </fieldset>
                         <br>
                         <button class="btn btn-default post-submissions">submit</button>
@@ -170,8 +170,11 @@ Questions?
                         </fieldset>
                         <fieldset>
                           <label for="description">credits:</label>
-                          <input type="text" class="form-control" maxlength="100" name="description" 
-                          <?php echo " value=" . $user['username']?> placeholder="Mew2King Ken Comboes a Scrub"/>
+                          <input type="text" class="form-control" maxlength="100" name="technique_credits" 
+                          <?php if($loggedIn) {
+                              echo " value=" . $user['username'];
+                            }
+                          ?> placeholder="Your Username!"/>
                         </fieldset>
                         <br>
                         <button class="btn btn-default post-submissions">submit</button>
@@ -235,11 +238,7 @@ Questions?
       $(document).ready(function(){
         var spawned = false;
         $("#giffyurl").change(function(event){     
-            //console.log('firing');
-            // prevent form from being submitted
-            //event.preventDefault();
 
-            // get value of text box using .val()
             var url = $("#giffyurl").val();
 
             var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
