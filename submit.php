@@ -83,19 +83,19 @@ Questions?
               <h1 class='lead'>Submit Data</h1>
             </div>
           </div>
-          <?php if ($loggedIn): ?>
+
             <ul class='nav nav-tabs' role='tablist' id='myTab'>
               <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz'>Gifs</a></li>
               <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz'>Tournaments</a></li>
               <li><a href='#technique' role='tab' data-toggle='tab' class='tabz'>Techniques</a></li>
               <li><a href='#group' role='tab' data-toggle='tab' class='tabz'>Regional Group</a></li>
             </ul>
-          <?php endif; ?>
+
           <!-- Submit Form Row -->
           <div class="row">
 
 
-            <?php if ($loggedIn): ?>
+            
               <div class='tab-content'>
 
                 <div class='tab-pane active' id='gif'>
@@ -122,7 +122,10 @@ Questions?
                         <fieldset>
                           <label for="description">credits:</label>
                           <input type="text" class="form-control" maxlength="100" name="gif_credits" 
-                          <?php echo " value=" . $user['username']?> placeholder="Mew2King Ken Comboes a Scrub"/>
+                          <?php if($loggedIn) {
+                              echo " value=" . $user['username'];
+                            }
+                          ?> placeholder="Mew2King Ken Comboes a Scrub"/>
                         </fieldset>
                         <br>
                         <button class="btn btn-default post-submissions">submit</button>
@@ -187,44 +190,7 @@ Questions?
                 </div>
 
               </div>
-            <?php else: ?>
-              <div class='col-md-6 col-md-offset-3'>
-                    <div class='well'>
-                        <form action="login?redirect=submit" method="post" class="form-horizontal">
-                            <fieldset>
-                            <h2 class="form-signin-heading">Please sign in in order to submit!</h2>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="email">email</label>
-                                <div class="col-md-4">
-                                <input id="email" name="email" type="email" placeholder="support@smashlounge.com" class="form-control input-md" required>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="location">password</label>
-                                <div class="col-md-4">
-                                <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required>
-                                </div>
-                            </div>
-
-
-                            <div class="control-group">
-                              <div class="controls">
-                                <button class="btn btn-lg btn-primary SL bttn" type="submit">Sign in</button>
-                              </div>
-                            </div>
-
-                            <br/>
-
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-              </div>
-            <?php endif; ?>
+            
           </div>
 
         </div>
