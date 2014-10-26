@@ -248,13 +248,14 @@ Questions?
             //console.log(m[4]);
             if (m == null) {
               if (spawned) {
-                $( ".gfyVid" ).remove();
+                $( ".spawned" ).empty();
+                $( ".spawned" ).remove();
                 spawned = false;
               }
               return;
             }
 
-            $("#gfyLocation").append("<hr><div class='well'><img id='spawned' class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div>");
+            $("#gfyLocation").append("<div class='spawned'><hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
             spawned = true;
             gfyCollection.init();
             //return;
