@@ -22,7 +22,7 @@ with curl ->
 without curl -> 
 	```php -r "readfile('https://getcomposer.org/installer');" | php```
 
-Run php composer install in the repository directory. This will read composer.json and install
+Run ```php composer install``` in the repository directory. This will read composer.json and install
 all necessary dependencies for the website. A directory will be created called 'src' which contains Cartalyst Sentry, which is used for user authentication.
 
 ===========
