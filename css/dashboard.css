@@ -26,6 +26,7 @@ body {
 /* Hide for mobile, show later */
 .sidebar {
 	top: 35px;
+  display: none;
 }
 
 @media (min-width: 768px) {
@@ -45,28 +46,14 @@ body {
 
 }
 
-/* Sidebar navigation */
-.nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
-}
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-  color: #000;
-}
-.nav-sidebar > .active > a:hover {
-  background-color: #45918d;
-}
 
 /*
  * Main content
  */
 
 .main {
-  display: none;
   padding: 20px;
+  padding-top: 5%;
 }
 @media (min-width: 768px) {
   .main {
@@ -76,6 +63,7 @@ body {
     height : auto !important; /* Ignored by Internet Explorer, applied everywhere else. */
     height : 100%;            /* Internet Explorer treats as min-height. */
     min-height : 100%;        /* Internet Explorer ignores this. */
+    padding-top: 20px;
   }
 }
 .main .page-header {
@@ -83,21 +71,12 @@ body {
 }
 
 
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
+.mobilenav {
+  display: inline;
+  height: 10%;
 }
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
+@media (min-width: 768px) {
+  .mobilenav {
+    display: none;
+  }
 }

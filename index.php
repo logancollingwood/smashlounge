@@ -35,21 +35,13 @@ Questions?
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-51481444-1', 'auto');
-    ga('require', 'displayfeatures');
-    ga('send', 'pageview');
-    </script>
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="A compendium for Super Smash Bros">
+    <meta name="author" content="smashlounge">
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Smash Lounge</title>
@@ -63,8 +55,7 @@ Questions?
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/new.css" rel="stylesheet">
-    <link href="/css/users.css" rel="stylesheet">
+
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -108,6 +99,22 @@ Questions?
               echo "</br>";
               echo "</p>";
             ?>
+          </div>
+          <div class='mobilenav'>
+            <hr>
+            <ul class='nav'>
+              <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
+              <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>
+              <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;Submit</a></li>
+              <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
+              <li class='home'><a href='/attending.php'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>
+              <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>
+              <?php
+                makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+                makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+              ?>
+            </ul>
+            <hr>
           </div>
 
           <div class="row">
