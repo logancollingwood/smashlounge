@@ -258,6 +258,8 @@ function makeAllUsers($allUsers) {
                 echo "<tr><td>"; 
                 if ($user['sponsor'] != '') {
                   echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
+                } else {
+                  echo "<br>";
                 }
                 echo "<a href='/" . $user['username'] . "'>" . $user['username'] . "</a>";
                 echo "</td></tr>";
