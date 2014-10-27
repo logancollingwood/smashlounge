@@ -21,7 +21,7 @@ function drawRandomGif() {
               drawRandomGif();
             }
 
-            var panelHeading = "<a href='" + permalink + "'>Enjoy a random r/smashgif</a>&nbsp;-&nbsp;<button type='button' class='btn btn-default btn-lg' id='drawgif'>another?</button>"; 
+            var panelHeading = "<a href='" + permalink + "'>Enjoy a random r/smashgif</a>&nbsp;-&nbsp;<button type='button' class='btn btn-default btn-lg' id='drawgif'>another?</button><br>"; 
             var panelBody = "<img class='gfyitem' data-expand=true data-id='" + m[4] + "' />";
             var panelFooter = "<h4 randGifDesc><a href='" + permalink + "'>" +  title + "</a></h4>"
 

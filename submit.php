@@ -101,34 +101,57 @@ Questions?
                 <div class='tab-pane active' id='gif'>
                   <div class='col-md-9'>
                     <hr>
-                    <div class='well SL'>
-                      <form class="form">
+                    <div class='well'>
+                      <br>
+                      <form method="post" class="form-horizontal">
                         <!-- Potentially Use the following hidden fields -->
-                        <input type="hidden" name="pageid" value="" />
-                        <input type="hidden" name="dataid" value="" />
-                        <fieldset>
-                          <label for="url">GfyCat URL</label>
-                          <input id='giffyurl' type="text" class="form-control" name="gif_url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
+                        <input type="hidden" name="pageid" value="0" />
+                        <input type="hidden" name="dataid" value="1" />
 
-                        </fieldset>
-                        <fieldset>
-                          <label for="source">Original Source</label>
-                          <input type="text" class="form-control" maxlength="100" name="gif_source" placeholder="Big House 4"/>
-                        </fieldset>
-                        <fieldset>
-                          <label for="description">Description</label>
-                          <input type="text" class="form-control" maxlength="100" name="gif_description" placeholder="Mew2King Ken Comboes a Scrub"/>
-                        </fieldset>
-                        <fieldset>
-                          <label for="description">credits:</label>
-                          <input type="text" class="form-control" maxlength="100" name="gif_credits" 
-                          <?php if($loggedIn) {
-                              echo " value=" . $user['username'];
-                            }
-                          ?> placeholder="Your Username!"/>
-                        </fieldset>
-                        <br>
+
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="gif_selectorid">type</label>
+                            <div class="col-md-4">
+                              <select id='gif_selectorid' name='gif_selector' class="form-control">
+                                  <option value="tech">Technique Gif</option>
+                                  <option value="char">Character Gif</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-md-4 control-label" for="giffyurl">gfycat url</label>
+                            <div class="col-md-4">
+                              <input id='giffyurl' type="text" class="form-control" name="gif_url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
+                            </div>
+                          </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="gif_sourceid">original source</label>
+                          <div class="col-md-4">
+                            <input id='gif_sourceid' type="text" class="form-control" maxlength="100" name="gif_source" placeholder="Big House 4"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="gif_descriptionid">description</label>
+                          <div class="col-md-4">
+                            <input id='gif_descriptionid' type="text" class="form-control" maxlength="100" name="gif_description" placeholder="Mew2King Ken Comboes a Scrub"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="gif_creditsid">credit</label>
+                          <div class="col-md-4">
+                            <input id='gif_creditsid' type="text" class="form-control" maxlength="100" name="gif_credits" 
+                            <?php if($loggedIn) {
+                                echo " value=" . $user['username'];
+                              }
+                            ?> placeholder="Your Username!"/>
+                          </div>
+                        </div>
                         <button class="btn btn-default post-submissions">submit</button>
+                        <br>
                       </form>
                     </div>
                   </div>
@@ -253,7 +276,7 @@ Questions?
               }
               return;
             }
-
+            $( ".spawned" ).empty();
             var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
             $("#gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
             spawned = true;

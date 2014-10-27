@@ -49,7 +49,7 @@
         }
 
         if ($redirect != '') {
-            header("Location: " . $redirect);
+            header("Location: /" . $redirect);
             die("Redirecting to: redirect");
         }
 
@@ -121,7 +121,7 @@
              <div class='row'>
                     <div class='col-md-6 col-md-offset-3'>
                         <div class='well'>
-                            <form action="login.php" method="post" class="form-horizontal">
+                            <form action="login" method="post" class="form-horizontal">
                                 <fieldset>
                                 <h2 class="form-signin-heading">Please sign in</h2>
 
