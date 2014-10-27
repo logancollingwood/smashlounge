@@ -125,11 +125,8 @@
     
 
     
-    <link href="static/css/login.css" rel="stylesheet">
-    <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="css/new.css" rel="stylesheet" media="screen">
-    <link href="css/users.css" rel="stylesheet" media="screen">
-    
+    <link href="css/dashboard_mobile.css" rel="stylesheet">
+
 
 </head>
 
@@ -198,5 +195,8 @@
 
 
     </div>
+    
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/toggler.js"></script>
 </body>
 </html>
