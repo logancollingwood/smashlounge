@@ -104,7 +104,7 @@ Questions?
                   echo "<div class='row centered'>";
                   $counter = 0;
                   if ($gifs) {
-                    echo "<ul id='techzz'>";
+                    echo "<ul class='list-group techzz'>";
                     foreach ($gifs as $tmpGif) {
                      
                       echo "<li class='list-group-item'>";
@@ -119,6 +119,8 @@ Questions?
                                 makeControllerWithID($tmpGif['id']);
                               echo "</div>";
                               echo "<hr>";
+                               echo  "<h4>Example #" . ($counter+1) . "</h4>";
+                              echo "<hr>";
                               echo "<div class='well'>";
                                 echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
                                 if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
@@ -131,7 +133,7 @@ Questions?
                           echo "</div>";
                         } else {
                           echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                          echo  "<h4>Example of " . $tech . "</h4>";
+                          echo  "<h4>Example #" . ($counter+1) . "</h4>";
                           echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
                           if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
                             echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
