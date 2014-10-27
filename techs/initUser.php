@@ -78,6 +78,9 @@ $mainID = 0;
 $twitch = '';
 $twitter = '';
 $vod = '';
+$usergifs = array();
+
+
 $main = "No Main!";
 $query = "SELECT * from userinfo WHERE userid='" . $userid . "'";
 if (!$result = $mysqli->query($query)) {
@@ -150,7 +153,7 @@ if ($hasGifs) {
 function makeTwitterPanel($hasTwitter, $twitter) {
 	if ($hasTwitter) {
 		echo "<div class='well'>";
-        echo "			<a class='twitter-timeline' href='https://twitter.com/" . $twitter . "' data-widget-id='500580319922114561' data-screen-name='$twitter' data-show-replies='false'>Tweets by $username</a>";
+        echo "			<a class='twitter-timeline' href='https://twitter.com/" . $twitter . "' data-widget-id='500580319922114561' data-screen-name='$twitter' data-show-replies='false'>Tweets by $twitter</a>";
     echo "</div>";
 	}
 }
