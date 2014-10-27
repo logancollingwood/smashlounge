@@ -199,13 +199,9 @@ Questions?
         </div>
       </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
     <script src="js/jquery.sticky.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/toggler.js"></script>
+
     <script src="js/adblockzorz.js"></script>
 
     <script type="text/javascript" src="js/svg.min.js"></script>

@@ -3,24 +3,12 @@
 
     require("../techs/db.php");
 
+  // Start XML file, create parent node
 
-    function getUserByID($mysqli, $id) {
-      $user;
-      $query = "SELECT * from users WHERE id='" . $id . "'";
-      if (!$result = $mysqli->query($query)) {
-        die('Invalid query: ' . $mysqli->error);
-      }
-      foreach ($result as $row) {
-        $user[] = $row;
-      }
-      return $user;
-    }
+  $dom = new DOMDocument("1.0");
+  $node = $dom->createElement("markers");
+  $parnode = $dom->appendChild($node);
 
-    // Start XML file, create parent node
-
-    $dom = new DOMDocument("1.0");
-    $node = $dom->createElement("markers");
-    $parnode = $dom->appendChild($node);
 
     // Opens a connection to a MySQL server
 
@@ -39,6 +27,7 @@
   }
 
   header("Content-type: text/xml");
+
   foreach ($result as $row) {
 
     $userID = $row['userid'];
@@ -46,10 +35,10 @@
     $userInfo = getUserByID($mysqli, $userID);
     $un = $userInfo[0]['username'];
 
-
     $profileHref = "/users.php?username=" . $un;
 
     $region = "No Region";
+    /*
     switch ($row['region']) {
     case 1:
         $region = "Atlantic North";
@@ -67,7 +56,7 @@
         $region = "West Coast";
         break;
     }
-
+    */
     $node = $dom->createElement("marker");
     $newnode = $parnode->appendChild($node);
     $newnode->setAttribute("name", $un);
@@ -77,6 +66,7 @@
     $newnode->setAttribute("href", $profileHref);
 
     $game = "Loves all games!";
+    /*
     switch ($row['game']) {
     case 0:
         $game = "All";
@@ -97,7 +87,7 @@
         $game = "Smash 4";
         break;
     }
-
+    */
     $newnode->setAttribute("type", $game);
   }
 

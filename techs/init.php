@@ -706,6 +706,10 @@ function printLibraries() {
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>";
   echo "<link href='/css/new.css' rel='stylesheet'>";
   echo "<link href='/css/users.css' rel='stylesheet'>";
+
+
+  echo "<script src='/js/bootstrap.min.js'></script>";
+  echo "<script src='/js/toggler.js'></script>";
   echo "<!--  -->";
   echo "\n";
 }

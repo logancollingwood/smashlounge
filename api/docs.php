@@ -1,6 +1,6 @@
 <?php
   require("../techs/db.php");
-  
+  require("../techs/init.php");
 
   $mysqli = new mysqli($dahostname, $username, $password, $database);
   if ($mysqli->connect_errno) {   

@@ -82,15 +82,14 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <?php analytics(); ?>
+
     <?php
         printLibraries();
     ?>
 
     <!-- Custom CSS for this view -->
-    <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="/css/new.css" rel="stylesheet">
-    <link href="/css/users.css" rel="stylesheet">
+    <link href="css/dashboard_mobile.css" rel="stylesheet">
+
 
 
 
@@ -169,14 +168,9 @@
 
 
 
-</div> <!-- CONTAINER -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="/js/jquery.fitvids.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/toggler.js"></script>
+</div>
+
+
     <script src="/js/jquery.fitvids.js"></script>
 </body>
 </html>

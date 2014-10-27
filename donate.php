@@ -90,7 +90,8 @@
 
 
           <div class='row'>
-
+            <br>
+            <div class='col-md-7'>
               <div class="panel panel-default donate">
                 <div class='panel-heading'>
                   <h3> Donate with Bitcoin <i class="fa fa-btc fa-1x"></i></h3>
@@ -132,12 +133,15 @@
                   <br />
                 </div>
               </div>
+            </div>
 
+            <div class='col-md-2 donate'>
               
-              <h3> OR </h3>
-              
+              <h3 style="color:#FFF;"> OR </h3>
+            </div>
 
-              <div class='panel panel-default'>
+            <div class='col-md-3 donate'>
+              <div class='panel panel-default donate'>
                 <div class='panel-heading'>
                   <h3> Donate with Paypal <i class="fa fa-money fa-1x"></i></h3>
                 </div>
@@ -151,7 +155,9 @@
                   <br />
                 </div>
               </div> 
-
+            </div>
+          </div>
+          <div class='row'>
               <div class="inner cover thanks">
                 
                   <h1 class="cover-heading large">Thank you <span class="glyphicon glyphicon-heart gray"></span></h1>
@@ -170,7 +176,7 @@
               </div>
 
           </div>
-
+        </div>
 
 
           <br/>
