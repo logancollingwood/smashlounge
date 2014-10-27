@@ -23,13 +23,13 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Thank You</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <?php
+      printLibraries();
+    ?>
 
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
-    <link href="css/new.css" rel="stylesheet">
+
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
