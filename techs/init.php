@@ -425,20 +425,13 @@ function createNavBar($extra = 'false') {
   echo "          <li><a href='https://www.facebook.com/SmashLounge'><i class='fa fa-facebook'></i></a></li>";
   echo "          <li><a href='http://www.reddit.com/r/smashlounge'><i class='fa fa-reddit'></i></a></li>";
   echo "          <li><a href='http://www.github.com/logancollingwood/smashlounge'><i class='fa fa-github-alt'></i></a></li>";
-  echo "          <li><a href='/api/docs'>api</a></li>";
+  echo "          <li><a href='/api/docs.php'>api</a></li>";
   echo "          <li ";
   if ($extra == 'donate') echo ' class="here"';
   echo " ><a href='/donate.php'>donate</a></li>";
   echo "          <li ";
   if ($extra == 'about') echo ' class="here"';
-  echo "><a href='/about'>about</a></li>";
-  if ($extra == 'logout') {
-  echo "          <li><a href='static/logout.php'>logout</a></li>";
-  } else if ($extra =='register') {
-  echo "          <li><a href='/register'>register</a></li>";
-  } else if ($extra == 'update') {
-  echo "          <li><a href='/update'>update</a></li>";
-  }
+  echo "><a href='/about.php'>about</a></li>";
   echo "      </ul>";
   echo "    </div>";
   echo "  </div>";
