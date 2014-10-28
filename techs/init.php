@@ -457,7 +457,7 @@ function createBeg($cap) {
 
 
 function getCharFromID($mysqli, $id) {
-  if ($id == '') {
+  if ($id == '0') {
     return "NO MAIN";
   }
   $query = "SELECT * FROM charinfo WHERE id='". $id . "'";
@@ -471,8 +471,8 @@ function getCharFromID($mysqli, $id) {
   return $main;
 }
 
-function getIDFromChar($mysqli, $id) {
-  if ($id == '0') {
+function getIDFromChar($mysqli, $name) {
+  if ($name == '') {
     return "NO MAIN";
   }
   $query = "SELECT * FROM charinfo WHERE id='". $id . "'";

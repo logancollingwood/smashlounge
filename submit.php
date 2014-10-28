@@ -119,6 +119,32 @@ Questions?
                             </div>
                           </div>
 
+                          <div class="form-group" id='techSelector'>
+                            <label class="col-md-4 control-label" for="gif_techselectorid">technique</label>
+                            <div class="col-md-4">
+                              <select id='gif_techselectorid' name='gif_techselector' class="form-control">
+                                  <?php
+                                    foreach($dataTech as $tech) {
+                                      echo "<option value='" . $tech['name'] . "'>" . $tech['name'] . "</option>";
+                                    }
+                                  ?>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group" id='charSelector'>
+                            <label class="col-md-4 control-label" for="gif_charselectorid">type</label>
+                            <div class="col-md-4">
+                              <select id='gif_charselectorid' name='gif_charselector' class="form-control">
+                                <?php 
+                                  foreach($dataChar as $char) {
+                                    echo "<option value='" . $char['name'] . "'>" . $char['name'] . "</option>";
+                                  }
+                                ?>
+                              </select>
+                            </div>
+                          </div>
+
                           <div class="form-group">
                             <label class="col-md-4 control-label" for="giffyurl">gfycat url</label>
                             <div class="col-md-4">
