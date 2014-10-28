@@ -125,7 +125,7 @@ Questions?
                               <select id='gif_techselectorid' name='gif_techselector' class="form-control">
                                   <?php
                                     foreach($dataTech as $tech) {
-                                      echo "<option value='" . $tech['name'] . "'>" . $tech['name'] . "</option>";
+                                      echo "<option value='" . $tech . "'>" . $tech . "</option>";
                                     }
                                   ?>
                               </select>
