@@ -125,7 +125,9 @@ Questions?
                               <select id='gif_techselectorid' name='gif_techselector' class="form-control">
                                   <?php
                                     $techsList = getAllTechs($mysqli, $techTable);
+
                                     foreach($techsList as $tech) {
+                                      print_r($tech);
                                       echo "<option value='" . $tech['id'] . "'>" . $tech['tech'] . "</option>";
                                     }
                                   ?>
