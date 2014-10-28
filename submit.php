@@ -192,10 +192,10 @@ Questions?
 
                 <div class='tab-pane' id='tournament'>
                   <div class='tab-pane' id='tournament'>
-                  <div class='col-md-9 col-md-offset-2'>
+                  <div class='col-md-9'>
                     <hr>
                     <div class='well SL'>
-                    <br>
+                      <br>
                       <form method="post" class="form-horizontal">
                         <!-- Potentially Use the following hidden fields -->
                         <input type="hidden" name="pageid" value="" />
@@ -253,6 +253,7 @@ Questions?
                     </div>
                   </div>
                 </div>
+
                 </div>
 
                 <div class='tab-pane' id='technique'>
