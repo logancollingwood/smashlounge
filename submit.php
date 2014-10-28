@@ -124,8 +124,9 @@ Questions?
                             <div class="col-md-4">
                               <select id='gif_techselectorid' name='gif_techselector' class="form-control">
                                   <?php
-                                    foreach($dataTech as $tech) {
-                                      echo "<option value='" . $tech . "'>" . $tech . "</option>";
+                                    $techsList = getAllTechs($mysqli);
+                                    foreach($techsList as $tech) {
+                                      echo "<option value='" . $tech['id'] . "'>" . $tech['tech'] . "</option>";
                                     }
                                   ?>
                               </select>
@@ -136,9 +137,10 @@ Questions?
                             <label class="col-md-4 control-label" for="gif_charselectorid">type</label>
                             <div class="col-md-4">
                               <select id='gif_charselectorid' name='gif_charselector' class="form-control">
-                                <?php 
+                                <?php
+
                                   foreach($dataChar as $char) {
-                                    echo "<option value='" . $char['name'] . "'>" . $char['name'] . "</option>";
+                                    echo "<option value='" . $char['id'] . "'>" . $char['name'] . "</option>";
                                   }
                                 ?>
                               </select>

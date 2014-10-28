@@ -62,6 +62,7 @@ asort($dataTech);
 
 
 
+
 //     BUILDS CHARACTER ARRAY
 //
 //
@@ -726,4 +727,17 @@ function analytics() {
     </script>";
 }
 
+
+function getAllTechs($mysqli) {
+  $query = "SELECT * from " . $techTable;
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $techs =  $row;
+    $techCount++;
+  }
+  asort($techs);
+  return $techs
+}
 ?>
