@@ -197,7 +197,7 @@ Questions?
                   <div class='col-md-6 col-md-offset-2'>
                     <hr>
                     <div class='well SL'>
-                      <form class="form">
+                      <form method="post" class="form-horizontal">
                         <!-- Potentially Use the following hidden fields -->
                         <input type="hidden" name="pageid" value="" />
                         <input type="hidden" name="dataid" value="" />
