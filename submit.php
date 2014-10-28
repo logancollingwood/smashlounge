@@ -197,6 +197,7 @@ Questions?
                   <div class='col-md-6 col-md-offset-2'>
                     <hr>
                     <div class='well SL'>
+                    <br>
                       <form method="post" class="form-horizontal">
                         <!-- Potentially Use the following hidden fields -->
                         <input type="hidden" name="pageid" value="" />
@@ -212,7 +213,7 @@ Questions?
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tournament_startid">Start Date</label>
                           <div class="col-md-4">
-                            <input id="tournament_startid" idtype="date" class="form-control" maxlength="100" name="tournament_start" placeholder="6/24/15"/>
+                            <input id="tournament_startid" type="date" class="form-control" maxlength="100" name="tournament_start" placeholder="6/24/15"/>
                           </div>
                         </div>
 
