@@ -285,8 +285,8 @@ Questions?
       $(document).ready(function(){
         var spawned = false;
 
-        $("#gif_charselectorid").hide();
-        $("#gif_techselectorid").hide();
+        $("#charSelector").hide();
+        $("#techSelector").hide();
 
         $("#giffyurl").change(function(event){     
 
@@ -313,12 +313,12 @@ Questions?
         });
 
         if ($( "#gif_selectorid" ).val() == 'tech') {
-          $("#gif_charselectorid").hide();
-          $("#gif_techselectorid").show();
+          $("#charSelector").hide();
+          $("#techSelector").show();
         }
         if ($( "#gif_selectorid" ).val() == 'char') {
-          $("#gif_charselectorid").show();
-          $("#gif_techselectorid").hide();
+          $("#charSelector").show();
+          $("#techSelector").hide();
         }
 
       })
