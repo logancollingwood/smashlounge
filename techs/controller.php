@@ -262,7 +262,7 @@ echo '
                     <circle class="core" fill="#EAEAEA" cx="1924.061" cy="1164.044" r="82"/>
                 </g>
 
-                <text x="1250" y="600" 
+                <text x="1300" y="600" 
                     font-family="raleway" 
                     font-size="190" fill="white">
                     smashlounge
