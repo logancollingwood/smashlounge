@@ -1,7 +1,5 @@
 <?php
   require("techs/init.php");
-  require("techs/twitch.php");
-  require("techs/initUser.php");
   require_once("techs/sentry.php");
     $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
     $loggedIn = false;
