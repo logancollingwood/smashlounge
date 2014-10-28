@@ -284,6 +284,10 @@ Questions?
     <script>
       $(document).ready(function(){
         var spawned = false;
+
+        $("#gif_charselectorid").hide();
+        $("#gif_techselectorid").hide();
+
         $("#giffyurl").change(function(event){     
 
             var url = $("#giffyurl").val();
@@ -307,6 +311,16 @@ Questions?
             gfyCollection.init();
             //return;
         });
+
+        if ($( "#gif_selectorid" ).val() == 'tech') {
+          $("#gif_charselectorid").hide();
+          $("#gif_techselectorid").show();
+        }
+        if ($( "#gif_selectorid" ).val() == 'char') {
+          $("#gif_charselectorid").show();
+          $("#gif_techselectorid").hide();
+        }
+
       })
     </script>
     
