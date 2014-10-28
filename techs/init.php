@@ -734,7 +734,7 @@ function getAllTechs($mysqli, $techTable) {
     die('Invalid query: ' . $mysqli->error);
   }
   foreach ($result as $row) {
-    $techs =  $row;
+    $techs[] =  $row;
   }
   asort($techs);
   return $techs;
