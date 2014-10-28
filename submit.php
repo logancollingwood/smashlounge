@@ -311,15 +311,17 @@ Questions?
             gfyCollection.init();
             //return;
         });
-
-        if ($( "#gif_selectorid" ).val() == 'tech') {
-          $("#charSelector").hide();
-          $("#techSelector").show();
-        }
-        if ($( "#gif_selectorid" ).val() == 'char') {
-          $("#charSelector").show();
-          $("#techSelector").hide();
-        }
+        
+        $("#gif_selectorid").change(function () {
+          if ($( "#gif_selectorid" ).val() == 'tech') {
+            $("#charSelector").hide();
+            $("#techSelector").show();
+          }
+          if ($( "#gif_selectorid" ).val() == 'char') {
+            $("#charSelector").show();
+            $("#techSelector").hide();
+          }
+        });
 
       })
     </script>
