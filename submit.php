@@ -201,34 +201,53 @@ Questions?
                         <!-- Potentially Use the following hidden fields -->
                         <input type="hidden" name="pageid" value="" />
                         <input type="hidden" name="dataid" value="" />
-                        <fieldset>
-                          <label for="url">Tournament Name</label>
-                          <input type="text" class="form-control" name="tournament_name" placeholder="Do You Fox With It?"/>
-                        </fieldset>
-                        <fieldset>
-                          <label for="source">Start Date</label>
-                          <input type="date" class="form-control" maxlength="100" name="tournament_start" placeholder="6/24/15"/>
-                        </fieldset>
-                        <fieldset>
-                          <label for="description">End Date</label>
-                          <input type="date" class="form-control" maxlength="100" name="tournament_end" placeholder="6/25/15"/>
-                        </fieldset>
-                        <fieldset>
-                          <label for="description">Twitch URL</label>
-                          <input type="text" class="form-control" maxlength="100" name="tournament_twitch" placeholder="twitch.tv/showdownsmash"/>
-                        </fieldset>
-                        <fieldset>
-                          <label for="description">Challonge URL</label>
-                          <input type="text" class="form-control" maxlength="100" name="tournament_challonge" placeholder="http://challonge.com/BiWeekly1"/>
-                        </fieldset>
-                        <fieldset>
-                          <label for="description">credits:</label>
-                          <input type="text" class="form-control" maxlength="100" name="technique_credits" 
-                          <?php if($loggedIn) {
-                              echo " value=" . $user['username'];
-                            }
-                          ?> placeholder="Your Username!"/>
-                        </fieldset>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_urlid">Tournament Name</label>
+                          <div class="col-md-4">
+                            <input id="tournament_urlid" type="text" class="form-control" name="tournament_name" placeholder="Do You Fox With It?"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_startid">Start Date</label>
+                          <div class="col-md-4">
+                            <input id="tournament_startid" idtype="date" class="form-control" maxlength="100" name="tournament_start" placeholder="6/24/15"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_endid">End Date</label>
+                          <div class="col-md-4">
+                            <input id="tournament_endid" type="date" class="form-control" maxlength="100" name="tournament_end" placeholder="6/25/15"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_twitchid">Twitch URL</label>
+                          <div class="col-md-4">
+                            <input id="tournament_twitchid" type="text" class="form-control" maxlength="100" name="tournament_twitch" placeholder="twitch.tv/showdownsmash"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_challongeid">Challonge URL</label>
+                          <div class="col-md-4">
+                            <input id="tournament_challongeid" type="text" class="form-control" maxlength="100" name="tournament_challonge" placeholder="http://challonge.com/BiWeekly1"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_creditsid">credits:</label>
+                          <div class="col-md-4">
+                            <input id="tournament_creditsid" type="text" class="form-control" maxlength="100" name="technique_credits" 
+                            <?php if($loggedIn) {
+                                echo " value=" . $user['username'];
+                              }
+                            ?> placeholder="Your Username!"/>
+                          </div>
+                        </div>
+
                         <br>
                         <button class="btn btn-default post-submissions">submit</button>
                       </form>
