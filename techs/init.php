@@ -735,7 +735,6 @@ function getAllTechs($mysqli, $techTable) {
   }
   foreach ($result as $row) {
     $techs =  $row;
-    $techCount++;
   }
   asort($techs);
   return $techs;
