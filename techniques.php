@@ -201,9 +201,7 @@ Questions?
 
 
     <script src="js/jquery.sticky.js"></script>
-
     <script src="js/adblockzorz.js"></script>
-
     <script type="text/javascript" src="js/svg.min.js"></script>
     <script type="text/javascript" src="js/frameinput.js"></script>
 
