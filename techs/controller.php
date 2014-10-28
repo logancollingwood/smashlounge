@@ -261,6 +261,12 @@ echo '
                     <!-- Core -->
                     <circle class="core" fill="#EAEAEA" cx="1924.061" cy="1164.044" r="82"/>
                 </g>
+                
+                <text x="1890" y="1100" 
+                    font-family="raleway" 
+                    font-size="55">
+                    smashlounge
+                </text>
 
                 <!-- A Button -->
                 <g class="button button-a">
