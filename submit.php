@@ -136,7 +136,7 @@ Questions?
                           </div>
 
                           <div class="form-group" id='charSelector'>
-                            <label class="col-md-4 control-label" for="gif_charselectorid">type</label>
+                            <label class="col-md-4 control-label" for="gif_charselectorid">character</label>
                             <div class="col-md-4">
                               <select id='gif_charselectorid' name='gif_charselector' class="form-control">
                                 <?php
@@ -286,7 +286,7 @@ Questions?
         var spawned = false;
 
         $("#charSelector").hide();
-        $("#techSelector").hide();
+        
 
         $("#giffyurl").change(function(event){     
 
@@ -311,7 +311,7 @@ Questions?
             gfyCollection.init();
             //return;
         });
-        
+
         $("#gif_selectorid").change(function () {
           if ($( "#gif_selectorid" ).val() == 'tech') {
             $("#charSelector").hide();
