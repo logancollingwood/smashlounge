@@ -192,7 +192,7 @@ Questions?
 
                 <div class='tab-pane' id='tournament'>
                   <div class='tab-pane' id='tournament'>
-                  <div class='col-md-6 col-md-offset-2'>
+                  <div class='col-md-9 col-md-offset-2'>
                     <hr>
                     <div class='well SL'>
                     <br>
