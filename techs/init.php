@@ -738,6 +738,7 @@ function getAllTechs($mysqli) {
     $techCount++;
   }
   asort($techs);
-  return $techs
+  return $techs;
 }
+
 ?>
