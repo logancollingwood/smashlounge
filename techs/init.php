@@ -728,7 +728,7 @@ function analytics() {
 }
 
 
-function getAllTechs($mysqli) {
+function getAllTechs($mysqli, $techTable) {
   $query = "SELECT * from " . $techTable;
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
