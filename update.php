@@ -15,8 +15,8 @@
     $userID = $user['id'];
     $username = $user['username'];
 
-    $userFields;
-  $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
+    $userFields = array();
+    $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
 
 
   function alertStatus($submit) {
@@ -36,7 +36,7 @@
   }
 
   $query = "SELECT * FROM userinfo WHERE userid=" . $userID;
-
+  $hasInfo = false;
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
@@ -50,6 +50,7 @@
 
   if(!empty($_POST)){
 
+      updateProfile($userID, $_POST);
 
 
       $vod = '';
@@ -307,8 +308,10 @@ ga('send', 'pageview');
                     <div class="col-md-4">
                     <input id="location" name="location" type="text" placeholder="Santa Cruz"
                     <?php
-                      if ($userFields['location'] != '') {
-                        echo " value='" . $userFields['location'] . "'";
+                      if ($hasInfo) {
+                        if ($userFields['location'] != '') {
+                          echo " value='" . $userFields['location'] . "'";
+                        }
                       }
                     ?> class="form-control input-md">
                     <span class="help-block">Where do you play?</span>
@@ -330,8 +333,10 @@ ga('send', 'pageview');
                     <div class="col-md-4">
                     <input id="facebook" name="facebook" type="text" placeholder="miom_pewpewu"
                     <?php
-                      if ($userFields['facebook'] != '') {
-                        echo " value='" . $userFields['facebook'] . "'";
+                      if ($hasInfo) {
+                        if ($userFields['facebook'] != '') {
+                          echo " value='" . $userFields['facebook'] . "'";
+                        }
                       }
                     ?>
                      class="form-control input-md">
@@ -345,8 +350,10 @@ ga('send', 'pageview');
                     <div class="col-md-4">
                     <input id="twitter" name="twitter" type="text" placeholder="miom_pewpewu" 
                     <?php
-                      if ($userFields['twitter'] != '') {
-                        echo " value='" . $userFields['twitter'] . "'";
+                      if ($hasInfo) {
+                        if ($userFields['twitter'] != '') {
+                          echo " value='" . $userFields['twitter'] . "'";
+                        }
                       }
                     ?>
                     class="form-control input-md">
@@ -360,8 +367,10 @@ ga('send', 'pageview');
                     <div class="col-md-4">
                     <input id="twitch" name="twitch" type="text" placeholder="pewpewu" 
                     <?php
-                      if ($userFields['twitch'] != '') {
-                        echo " value='" . $userFields['twitch'] . "'";
+                      if ($hasInfo) {
+                        if ($userFields['twitch'] != '') {
+                          echo " value='" . $userFields['twitch'] . "'";
+                        }
                       }
                     ?>
                     class="form-control input-md">
@@ -374,11 +383,13 @@ ga('send', 'pageview');
                     <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>
                     <div class="col-md-4">
                     <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" 
-                                        <?php
-                      if ($userFields['twitter'] != '') {
-                        echo " value='" . $userFields['twitter'] . "'";
+                    <?php
+                      if ($hasInfo) {
+                        if ($userFields['twitter'] != '') {
+                          echo " value='" . $userFields['twitter'] . "'";
+                        }
                       }
-                    ?>class="form-control input-md">
+                    ?> class="form-control input-md">
                     <span class="help-block">Please enter a link to a sweet gfycat!</span>
                     </div>
                   </div>
@@ -423,55 +434,56 @@ ga('send', 'pageview');
 
 
             </div>
-            <div class='col-md-5'>
-              <div class='panel panel-default'>
-                <div class='panel-heading'>
-                  <div class='row'>
-                    <div class='col-md-3'>
-                      <?php
-                       echo "      <a href='http://www.smashlounge.com/$username'>$username</a>";
-                      ?>
-                    </div>
-                    <div class='col-md-3'>
-                      <a href='http://www.smashlounge.com'><span class='logo'>@smash lounge</span></a>
+            <?php if ($hasInfo) { ?>
+              <div class='col-md-5'>
+                <div class='panel panel-default'>
+                  <div class='panel-heading'>
+                    <div class='row'>
+                      <div class='col-md-3'>
+                        <?php
+                         echo "      <a href='http://www.smashlounge.com/users/$username'>$username</a>";
+                        ?>
+                      </div>
+                      <div class='col-md-3'>
+                        <a href='http://www.smashlounge.com'><span class='logo'>@smash lounge</span></a>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class='panel-body'>
+                  <div class='panel-body'>
 
-                      <div class='row'>
+                        <div class='row'>
 
-                        <div class='col-md-7 col-sm-7'>
-                          <?php
+                          <div class='col-md-7 col-sm-7'>
+                            <?php
 
-                              echo"<div class='info'>";
-                                echo "  <h3><small>main: </small><a href='/characters?char=" . getCharFromID($mysqli, $userFields['main']) . "'>" . getCharFromID($mysqli, $userFields['main']) . "</a></h3>";
-                                echo "<hr>";
-                                echo "  <h3><small>location: </small>" . $userFields['location'] . "</h3>";
-                                echo "<hr>";
-                                echo "  <h3><small>sponsor: </small>" . $userFields['sponsor'] . "</h3>";
-                              echo "</div>";
+                                echo"<div class='info'>";
+                                  echo "  <h3><small>main: </small><a href='/characters?char=" . getCharFromID($mysqli, $userFields['main']) . "'>" . getCharFromID($mysqli, $userFields['main']) . "</a></h3>";
+                                  echo "<hr>";
+                                  echo "  <h3><small>location: </small>" . $userFields['location'] . "</h3>";
+                                  echo "<hr>";
+                                  echo "  <h3><small>sponsor: </small>" . $userFields['sponsor'] . "</h3>";
+                                echo "</div>";
 
-                          ?>
+                            ?>
+                          </div>
+                          <div class='col-md-5 col-sm-5'>
+                            <?php
+                                echo"<div class='info'>";
+                                  echo "  <h3><small>twitter: </small><a href='https://www.twitter.com/" . $userFields['twitter'] . "'>" . $userFields['twitter'] . "</a></h3>";
+                                  echo "<hr>";
+                                  echo "  <h3><small>twitch: </small><a href='https://www.twitch.tv/" . $userFields['twitch'] . "'>" . $userFields['twitch'] . "</a></h3>";
+                                  echo "<hr>";
+                                  echo "  <h3><small>facebook: </small><a href='https://www.facebook.com/" . $userFields['facebook'] . "'>" . $userFields['facebook'] . "</a></h3>";
+                                echo "</div>";
+                            ?>
+                          </div>
                         </div>
-                        <div class='col-md-5 col-sm-5'>
-                          <?php
-                              echo"<div class='info'>";
-                                echo "  <h3><small>twitter: </small><a href='https://www.twitter.com/" . $userFields['twitter'] . "'>" . $userFields['twitter'] . "</a></h3>";
-                                echo "<hr>";
-                                echo "  <h3><small>twitch: </small><a href='https://www.twitch.tv/" . $userFields['twitch'] . "'>" . $userFields['twitch'] . "</a></h3>";
-                                echo "<hr>";
-                                echo "  <h3><small>facebook: </small><a href='https://www.facebook.com/" . $userFields['facebook'] . "'>" . $userFields['facebook'] . "</a></h3>";
-                              echo "</div>";
-                          ?>
-                        </div>
-                      </div>
 
 
+                  </div>
                 </div>
               </div>
-            </div>
-
+            <?php } ?>
 
 
         </div>

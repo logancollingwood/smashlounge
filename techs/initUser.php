@@ -27,7 +27,7 @@
 //
 
 $userid = '';
-
+$userFields = array();
 
 
 require_once("techs/db.php");
