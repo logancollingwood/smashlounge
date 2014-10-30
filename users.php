@@ -69,7 +69,7 @@ Questions?
     ?>
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard_mobile.css" rel="stylesheet">
+    <link href="/css/dashboard_mobile.css" rel="stylesheet">
 
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
     <script type="text/javascript"
@@ -250,6 +250,6 @@ Questions?
     </script>
     <script src="/js/adblockzorz.js"></script>
     <script src="/js/jquery.sticky.js"></script>
-    <script src="js/mapInitUser.js"></script>
+    <script src="/js/mapInitUser.js"></script>
   </body>
 </html>
