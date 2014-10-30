@@ -1,6 +1,8 @@
 <?php
 
   require_once("techs/sentry.php");
+  require_once("techs/tables.php");
+  
   require_once("techs/db.php");
 
 
