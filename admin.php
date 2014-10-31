@@ -96,7 +96,7 @@
             <h4 class="modal-title" id="myModalLabel">Gfycat Preview</h4>
           </div>
           <div class="modal-body">
-            <h1 class="gfycat-target">...</h1>
+            <h1 class="gfycat-target"></h1>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@
         $('.modal-link').on('click', function(event) {
           // Prevent Default Behavior
           event.preventDefault();
-
+          $('#myModal .gfycat-target').empty();
           // Set to modal-link text
           var gfyCatURL = $(this).text();
           var linkAndString = "<a href='http://www.gfycat.com/" + gfyCatURL + "'><p class='fifty2'>" + gfyCatURL + "</p></a>"; 
