@@ -12,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+   
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Moderate SmashLounge</title>
 
     <?php printLibraries(); ?>
 
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="css/dashboard_mobile.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -35,72 +35,72 @@
 
   <?php createNavBar(); ?>
 
-    <div class="container">  
-      <?php if ( ! Sentry::check()): ?>
-        <!-- Not Logged In -->
-        <form class="form-signin" role="form" action='login.php?redirect=admin' method='post'>
-          <h2 class="form-signin-heading">Please sign in</h2>
-          <input name='email' id='email' type="email" class="form-control" placeholder="Email address" required autofocus>
-          <input name='password' id='password' type="password" class="form-control" placeholder="Password" required>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-      <?php else: ?>
-        
-        <?php require_once ('techs/initAdmin.php'); ?>
+    <div class="container"> 
+      <div class="row">
 
-        <!-- Logged In -->
-        <div class="management">
-          <header>
-            <h1>Approve / Delete Gifs</h1>
-          </header>
-
-          <?php if (!$result = $mysqli->query($query)): ?>
-            <div class="adminError">
-              <h2>There was a database error.</h2>
-              <p><?php echo $mysqli->error; ?></p>
-            </div>
+        <div class="col-sm-3 col-md-2 sidebar">
+          <?php makeSidebar($loggedIn, 'update'); ?>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <?php if ( ! Sentry::check()): ?>
+            <!-- Not Logged In -->
+            <form class="form-signin" role="form" action='login.php?redirect=admin' method='post'>
+              <h2 class="form-signin-heading">Please sign in</h2>
+              <input name='email' id='email' type="email" class="form-control" placeholder="Email address" required autofocus>
+              <input name='password' id='password' type="password" class="form-control" placeholder="Password" required>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
           <?php else: ?>
-            <table class="table">
-              <tr>
-                <th>Gfycat URL</th>
-                <th>Original Source</th>
-                <th>Description</th>
-                <th>Approve</th>
-                <th>Delete</th>
-              </tr>
-              <?php foreach ($result as $row): ?>
-                <tr class="submission" data-id="<?php echo $row['id']; ?>">
-                  <td>
-                    <a class="modal-link" href="#">
-                      <?php echo $row['url']; ?>
-                    </a>
-                  </td>
-                  <td><?php echo $row['source']; ?></td>
-                  <td><?php echo $row['description']; ?></td>
-                  <td><a class="approve-link" href="#"><i class="fa fa-check-circle"></i></a></td>
-                  <td><a class="delete-link" href="#"><i class="fa fa-times-circle"></i></a></td>
-                </tr>
-              <?php endforeach; ?>
-            </table>
+        
+            <?php require_once ('techs/initAdmin.php'); ?>
+
+            <!-- Logged In -->
+            <div class="management">
+              <br>
+              <header>
+                <h1>Approve / Deny gifs</h1>
+              </header>
+
+              <?php if (!$result = $mysqli->query($query)): ?>
+                <div class="adminError">
+                  <h2>There was a database error.</h2>
+                  <p><?php echo $mysqli->error; ?></p>
+                </div>
+              <?php else: ?>
+                <table class="table table-striped">
+                  <tr>
+                    <th>Gfycat URL</th>
+                    <th>content</th>
+                    <th>Original Source</th>
+                    <th>Description</th>
+                    <th>Approve</th>
+                    <th>Delete</th>
+                  </tr>
+                  <?php foreach ($result as $row): ?>
+                    <tr class="submission" data-id="<?php echo $row['id']; ?>">
+                      <td>
+                        <a class="modal-link" href="http://www.gfycat.com/<?php echo $row['url'] ?>">
+                          <?php echo trim($row['url']); ?>
+                        </a>
+                      </td>
+                      <td style='width: 70%;'>
+                        <img class='gfyitem' data-expand=true data-id="<?php echo trim($row['url']); ?>"/>
+                      </td>
+                      <td><?php echo $row['source']; ?></td>
+                      <td><?php echo $row['description']; ?></td>
+                      <td><a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a></td>
+                      <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
+                    </tr>
+                  <?php endforeach; ?>
+                </table>
+              <?php endif; ?>
+            </div>
           <?php endif; ?>
         </div>
-      <?php endif; ?>
+      </div>
     </div> <!-- /container -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="myModalLabel">Gfycat Preview</h4>
-          </div>
-          <div class="modal-body">
-            
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -110,18 +110,7 @@
     
     <script>
       $(document).ready(function() {
-        $('.modal-link').on('click', function(event) {
-          // Prevent Default Behavior
-          event.preventDefault();
-          $('#myModal .modal-body').empty();
-          // Set to modal-link text
-          var gfyCatURL = $(this).text();
-          var linkAndString = "<a href='http://www.gfycat.com/" + gfyCatURL + "'><p class='fifty2'>" + gfyCatURL + "</p></a>"; 
-          // Change gfycat text
-          $('#myModal .modal-body').append(linkAndString + "<hr><img class='gfyitem' data-expand=true data-id='" + gfyCatURL + "' />");
-          // Show Modal Window
-          $('#myModal').modal('show');
-        });
+        gfyCollection.init();
 
         $('.approve-link').on('click', function(event) {
           // Prevent Default Behavior
