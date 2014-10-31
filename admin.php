@@ -116,10 +116,9 @@
 
           // Set to modal-link text
           var gfyCatURL = $(this).text();
-
+          var linkAndString = "<a href='http://www.gfycat.com/" + gfyCatURL + "'><p class='fifty2'>" + gfyCatURL + "</p></a>"; 
           // Change gfycat text
-          $('#myModal .gfycat-target').text(gfyCatURL);
-
+          $('#myModal .gfycat-target').append(linkAndString + "<hr><img class='gfyitem' data-expand=true data-id='" + gfyCatURL + "' />");
           // Show Modal Window
           $('#myModal').modal('show');
         });
