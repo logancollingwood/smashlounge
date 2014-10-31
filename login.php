@@ -49,7 +49,7 @@
         }
 
         if ($redirect != '') {
-            header("Location: /" . $redirect);
+            header("Location: /" . $redirect . ".php") ;
             die("Redirecting to: redirect");
         }
 

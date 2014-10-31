@@ -35,10 +35,12 @@
 
   <body>
 
+  <?php createNavBar(); ?>
+
     <div class="container">  
       <?php if ( ! Sentry::check()): ?>
         <!-- Not Logged In -->
-        <form class="form-signin" role="form" action='techs/auth.php' method='post'>
+        <form class="form-signin" role="form" action='login.php?redirect=admin' method='post'>
           <h2 class="form-signin-heading">Please sign in</h2>
           <input name='myemail' type="email" class="form-control" placeholder="Email address" required autofocus>
           <input name='mypass' type="password" class="form-control" placeholder="Password" required>
