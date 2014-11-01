@@ -32,10 +32,15 @@
 
     $userID = $row['userid'];
 
-    $userInfo = getUserByID($mysqli, $userID);
-    $un = $userInfo[0]['username'];
+    $query = "SELECT * FROM users where id=" . $userID;
 
-    $profileHref = "/users.php?username=" . $un;
+    if (!$result = $mysqli->query($query)) {
+      die('Invalid query: ' . $mysqli->error);
+    }
+    foreach ($result as $rowInner) {
+        $username = $rowInner['username'];
+    }
+    $profileHref = "/users/" . $username;
 
     $region = "No Region";
     /*
@@ -59,7 +64,7 @@
     */
     $node = $dom->createElement("marker");
     $newnode = $parnode->appendChild($node);
-    $newnode->setAttribute("name", $un);
+    $newnode->setAttribute("name", $username);
     $newnode->setAttribute("region", $region);
     $newnode->setAttribute("lat", $row['latitude']);
     $newnode->setAttribute("lng", $row['longitude']);

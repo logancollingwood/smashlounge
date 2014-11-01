@@ -264,7 +264,7 @@ function makeAllUsers($allUsers) {
                 } else {
                   echo "<br>";
                 }
-                echo "<a href='/" . $user['username'] . "'>" . $user['username'] . "</a>";
+                echo "<a href='/users/" . $user['username'] . "'>" . $user['username'] . "</a>";
                 echo "</td></tr>";
               }
             echo "</table>";
