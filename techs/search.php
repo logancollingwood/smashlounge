@@ -46,7 +46,7 @@
 	}
 
 
-	$display_name = preg_replace("/".$search_string."/i", "<strong class="highlight">".$search_string."</strong>", $result['username']);
+	$display_name = preg_replace("/".$search_string."/i", "<strong class='highlight'>".$search_string."</strong>", $result['username']);
 	$display_url = "\/users/" . $result['username'];
 
 

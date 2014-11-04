@@ -257,6 +257,8 @@ function makeAllUsers($allUsers) {
           echo "<div class='table-responsive'>";
             echo "<input id='search' type='text' placeholder='username' />";
             echo "<h4 id='results-text'>Showing results for: <strong id='search-string'>Array</strong></h4";
+            echo "<ul id='results'>";
+            echo "</ul>";
             echo "<table class='table table-hover table-striped'>";
               echo "<th style='text-align: center;'>username</th>";
               foreach ($allUsers as $user) {
