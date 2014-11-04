@@ -259,6 +259,7 @@ function makeAllUsers($allUsers) {
             echo "<h4 id='results-text'>Showing results for: <strong id='search-string'>Array</strong></h4";
             echo "<ul id='results'>";
             echo "</ul>";
+            /*
             echo "<table class='table table-hover table-striped'>";
               echo "<th style='text-align: center;'>username</th>";
               foreach ($allUsers as $user) {
@@ -272,6 +273,7 @@ function makeAllUsers($allUsers) {
                 echo "</td></tr>";
               }
             echo "</table>";
+            */
           echo "</div>";
 
       echo "</div>";
