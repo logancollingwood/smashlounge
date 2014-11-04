@@ -235,8 +235,8 @@ Questions?
 
     $(document).ready(function() {  
       $(".youtube").fitVids();
-      $(".panel-body.userlist").css({'max-height':($("#map-canvas").height()+'px')});
-
+      $(".panel-default").css({'max-height':($("#map-canvas").height()+'px')});
+      $(".panel-default").css({'overflow-y':('scroll')});
       // Live Search
       // On Search Submit and Get Results
       function search() {
