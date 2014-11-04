@@ -27,7 +27,7 @@
 		$query = 'SELECT * FROM users
 		WHERE username 
 		LIKE "%'.$search_string.'%" 
-		OR name LIKE "%'.$search_string.'%"';
+		OR username LIKE "%'.$search_string.'%"';
 		if (!$result = $mysqli->query($query)) {
 		  die('Invalid query: ' . $mysqli->error);
 		}
