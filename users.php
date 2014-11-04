@@ -270,7 +270,7 @@ Questions?
         }return false;    
       }
 
-      $("input#search").live("keyup", function(e) {
+      $("input#search").on("keyup", function(e) {
         // Set Timeout
         clearTimeout($.data(this, 'timer'));
 
