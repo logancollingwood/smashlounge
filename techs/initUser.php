@@ -253,7 +253,7 @@ function makeAllUsers($allUsers) {
 
 
       echo "<div class='col-md-4'>";
-        echo "<div id='userList' class='well'>";
+        echo "<div class='well userlist'>";
           echo "<div class='table-responsive'>";
             echo "<table class='table table-hover table-striped'>";
               echo "<th style='text-align: center;'>username</th>";
