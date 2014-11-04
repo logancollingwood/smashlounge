@@ -1,5 +1,6 @@
 <?php
 	require_once("db.php");
+
 	$mysqli = new mysqli($dahostname, $username, $password, $database);
 
 	if ($mysqli->connect_errno) {   
@@ -10,18 +11,21 @@
 	// Define Output HTML Formating
 	$html = '';
 	$html .= '<li class="result">';
+	$html .= '<h4><small>no sponsor</small></h4>';
 	$html .= '<a target="_blank" href="urlString">';
-	$html .= '<h3>nameString</h3>';
+	$html .= 'nameString';
 	$html .= '</a>';
 	$html .= '</li>';
 
-
+	if (!isset($_POST['query'])) {
+		echo "damn";
+		return;
+	}
 	// Get Search
 	$search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_POST['query']);
 	$search_string = $mysqli->real_escape_string($search_string);
 	// Check Length More Than One Character
 	if (strlen($search_string) >= 1 && $search_string !== ' ') {
-		echo $search_string;
 
 		// Build Query
 		$query = 'SELECT * FROM users
@@ -40,7 +44,7 @@
 		    foreach ($result_array as $result) {
 		        // Output
         		$display_name = preg_replace("/".$search_string."/i", "<strong class='highlight'>".$search_string."</strong>", $result['username']);
-				$display_url = "\/users/" . $result['username'];
+				$display_url = "/users/" . $result['username'];
 
 
 				// Insert Name
@@ -63,6 +67,41 @@
 		}
 
 
+	} else {
+		$query = 'SELECT * FROM users';
+		if (!$result = $mysqli->query($query)) {
+		  die('Invalid query: ' . $mysqli->error);
+		}
+		foreach($result as $row) {
+		    $result_array[] = $row;
+		}
+		
+		// Check If We Have Results
+		if (isset($result_array)) {
+		    foreach ($result_array as $result) {
+		        // Output
+        		$display_name = preg_replace("/".$search_string."/i", "<strong class='highlight'>".$search_string."</strong>", $result['username']);
+				$display_url = "/users/" . $result['username'];
+
+
+				// Insert Name
+				$output = str_replace('nameString', $display_name, $html);
+
+				// Insert URL
+				$output = str_replace('urlString', $display_url, $output);
+
+				// Output
+				echo($output);
+		    }
+		}else{
+	    	// Format No Results Output
+			$output = str_replace('urlString', 'javascript:void(0);', $html);
+			$output = str_replace('nameString', '<b>No Results Found.</b>', $output);
+			$output = str_replace('functionString', 'Sorry :(', $output);
+
+			// Output
+			echo($output);
+		}
 	}
 
 

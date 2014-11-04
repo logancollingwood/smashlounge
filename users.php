@@ -205,21 +205,6 @@ Questions?
                   </div>
                   <hr>
                   <?php createBeg(.3); ?>
-
-                    <div class="well pull-right adtainer" id="canttouchthis">
-                      <div class="panel-body ad" id="adholder">
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- responsive! -->
-                        <ins class="adsbygoogle adslot_1"
-                             style="display:block"
-                             data-ad-client="ca-pub-5354507002335154"
-                             data-ad-slot="6479366620"
-                             data-ad-format="auto"></ins>
-                        <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                      </div>
-                    </div>
                   </div>
 
                 <?php } else {
@@ -257,17 +242,18 @@ Questions?
       function search() {
         var query_value = $('input#search').val();
         $('b#search-string').html(query_value);
-        if(query_value !== ''){
+        
           $.ajax({
             type: "POST",
-            url: "search.php",
+            url: "/techs/search.php",
             data: { query: query_value },
             cache: false,
             success: function(html){
+              console.log(html);
               $("ul#results").html(html);
             }
           });
-        }return false;    
+           
       }
 
       $("input#search").on("keyup", function(e) {
@@ -277,15 +263,11 @@ Questions?
         // Set Search String
         var search_string = $(this).val();
 
-        // Do Search
-        if (search_string == '') {
-          $("ul#results").fadeOut();
-          $('h4#results-text').fadeOut();
-        }else{
-          $("ul#results").fadeIn();
-          $('h4#results-text').fadeIn();
-          $(this).data('timer', setTimeout(search, 100));
-        };
+
+        $("ul#results").fadeIn();
+        $('h4#results-text').fadeIn();
+        $(this).data('timer', setTimeout(search, 100));
+
       });
 
     });

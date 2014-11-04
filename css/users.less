@@ -8,6 +8,7 @@
 /* Gradients! :D */
 @jumbotron-style: rgba(66, 182, 182, 0.77);
 
+@black: #000;
 .mainPic .Marth{
 	width: 46px;
     height: 44px;
@@ -101,6 +102,44 @@ a.anchor {
 .well.userlist {
     max-height: 400px;
     overflow-y: scroll;
+}
+
+ul.users {
+    padding-left: 1%;
+    padding-right: 1%;
+    list-style-type: none;
+}
+ul.users > li
+{
+    border-top: 1px solid;
+    border-bottom-color: @black;
+    padding-bottom: 4%;
+    padding-top: 4%;
+}
+
+input#search {
+	width: 90%;
+	height: 10%;
+	padding: 5px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 3%;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	outline: none;
+	border: 1px solid #ababab;
+	font-size: 20px;
+	line-height: 25px;
+	color: #ababab;
+}
+
+input#search:hover, input#search:focus {
+	color: @flair-color;
+	border: 1px solid @flair-color;
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset, 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .adslot_1 { display:inline-block; width: 500px; height: 500px; }
