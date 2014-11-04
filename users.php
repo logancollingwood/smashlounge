@@ -235,7 +235,7 @@ Questions?
 
     $(document).ready(function() {  
       $(".youtube").fitVids();
-      $(".well.userlist").css({'max-height':($("#mapcanvas").height()+'px')});
+      $(".panel-body.userlist").css({'max-height':($("#map-canvas").height()+'px')});
 
       // Live Search
       // On Search Submit and Get Results
