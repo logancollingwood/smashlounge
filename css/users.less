@@ -99,24 +99,20 @@ a.anchor {
   color: #00bcd4;
   margin-left: 50%;
 }
-.userlist {
-    max-height: 500px;
-    overflow-y: scroll;
-}
 
 ul.users {
     padding-left: 1%;
     padding-right: 1%;
     list-style-type: none;
 }
-ul.users > li
-{
-    border-top: 1px solid;
-    border-bottom-color: @black;
+ul.users > li {
     padding-bottom: 4%;
     padding-top: 4%;
 }
-
+ul.users > li:not(:first-child) {
+    border-top: 1px solid;
+    border-bottom-color: @black;
+}
 input#search {
 	width: 80%;
 	height: 10%;
