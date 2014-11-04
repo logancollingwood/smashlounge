@@ -272,6 +272,7 @@ function makeAllUsers($allUsers) {
             }
 
             echo '  </ul>';
+            echo "<div class='clr'></div>";
           echo "</div>";
       echo "</div>";
       echo "</div>";
