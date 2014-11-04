@@ -278,8 +278,9 @@ Questions?
 
       // On Search Submit and Get Results
       function search() {
+          console.log('searching');
           var query_value = $('input#search').val();
-          $('b#search-string').html(query_value);
+          
           if(query_value !== ''){
               $.ajax({
                   type: "POST",
