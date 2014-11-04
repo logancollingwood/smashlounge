@@ -288,6 +288,7 @@ Questions?
                   data: { query: query_value },
                   cache: false,
                   success: function(html){
+                    console.log('success');
                       $("ul#results").html(html);
                   }
               });
