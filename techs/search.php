@@ -21,7 +21,8 @@
 	// Check Length More Than One Character
 	if (strlen($search_string) >= 1 && $search_string !== ' ') {
 	}
-
+	echo $search_string;
+	
 	// Build Query
 	$query = 'SELECT * FROM users 
 	WHERE username 
