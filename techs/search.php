@@ -1,6 +1,7 @@
 <?php
 	require_once("db.php");
 
+
 	$mysqli = new mysqli($dahostname, $username, $password, $database);
 
 	if ($mysqli->connect_errno) {   
@@ -28,10 +29,11 @@
 	if (strlen($search_string) >= 1 && $search_string !== ' ') {
 
 		// Build Query
-		$query = 'SELECT * FROM users
-		WHERE username 
+		$query = 'SELECT users.username, userinfo.sponsor FROM users LEFT JOIN userinfo on users.id=userinfo.userid
+		WHERE users.username 
 		LIKE "%'.$search_string.'%" 
-		OR username LIKE "%'.$search_string.'%"';
+		OR users.username LIKE "%'.$search_string.'%"';
+
 		if (!$result = $mysqli->query($query)) {
 		  die('Invalid query: ' . $mysqli->error);
 		}
@@ -43,18 +45,25 @@
 		if (isset($result_array)) {
 		    foreach ($result_array as $result) {
 		        // Output
-        		$display_name = preg_replace("/".$search_string."/i", "<strong class='highlight'>".$search_string."</strong>", $result['username']);
+        		$display_name = $result['username'];
 				$display_url = "/users/" . $result['username'];
 
 
 				// Insert Name
 				$output = str_replace('nameString', $display_name, $html);
 
+				// Insert Sponsor
+				if ($result['sponsor'] != '') {
+					$secondout = str_replace('no sponsor', $result['sponsor'], $output);
+				} else {
+					$secondout = str_replace('no sponsor', '', $output);
+				}
+
 				// Insert URL
-				$output = str_replace('urlString', $display_url, $output);
+				$final = str_replace('urlString', $display_url, $secondout);
 
 				// Output
-				echo($output);
+				echo($final);
 		    }
 		}else{
 	    	// Format No Results Output
@@ -68,14 +77,14 @@
 
 
 	} else {
-		$query = 'SELECT * FROM users';
+		$query = 'SELECT users.username, userinfo.sponsor FROM users LEFT JOIN userinfo on users.id=userinfo.userid';
 		if (!$result = $mysqli->query($query)) {
 		  die('Invalid query: ' . $mysqli->error);
 		}
 		foreach($result as $row) {
 		    $result_array[] = $row;
 		}
-		
+
 		// Check If We Have Results
 		if (isset($result_array)) {
 		    foreach ($result_array as $result) {
@@ -87,20 +96,19 @@
 				// Insert Name
 				$output = str_replace('nameString', $display_name, $html);
 
+				// Insert Sponsor
+				if ($result['sponsor'] != '') {
+					$secondout = str_replace('no sponsor', $result['sponsor'], $output);
+				} else {
+					$secondout = str_replace('no sponsor', '', $output);
+				}
+
 				// Insert URL
-				$output = str_replace('urlString', $display_url, $output);
+				$final = str_replace('urlString', $display_url, $secondout);
 
 				// Output
-				echo($output);
+				echo($final);
 		    }
-		}else{
-	    	// Format No Results Output
-			$output = str_replace('urlString', 'javascript:void(0);', $html);
-			$output = str_replace('nameString', '<b>No Results Found.</b>', $output);
-			$output = str_replace('functionString', 'Sorry :(', $output);
-
-			// Output
-			echo($output);
 		}
 	}
 
