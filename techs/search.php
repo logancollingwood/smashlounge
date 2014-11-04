@@ -16,7 +16,7 @@
 	$html .= '</ul>';
 
 	// Get Search
-	$search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_POST['query']);
+	$search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_GET['query']);
 	$search_string = $mysqli->real_escape_string($search_string);
 	// Check Length More Than One Character
 	if (strlen($search_string) >= 1 && $search_string !== ' ') {
