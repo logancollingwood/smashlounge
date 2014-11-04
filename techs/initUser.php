@@ -253,41 +253,44 @@ function makeAllUsers($allUsers) {
 
 
       echo "<div class='col-md-4'>";
-        echo "<div class='well userlist'>";
-          echo "<div class='table-responsive'>";
-            echo "<span class='glyphicon glyphicon-search'></span><input id='search' type='text' placeholder='username' />";
-              echo "  <!-- Show Results -->";
-              echo '  <h4 id="results-text"></h4>';
-              echo '  <ul id="results" class="users">';
-              foreach ($allUsers as $user) {
-                echo "<li>"; 
-                if ($user['sponsor'] != '') {
-                  echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
-                } else {
-                  echo "<br>";
-                }
-                echo "<a href='/users/" . $user['username'] . "'>" . $user['username'] . "</a>";
-                echo "</li>";
-              }
-
-              echo '  </ul>';
-            /*
-            echo "<table class='table table-hover table-striped'>";
-              echo "<th style='text-align: center;'>username</th>";
-              foreach ($allUsers as $user) {
-                echo "<tr><td>"; 
-                if ($user['sponsor'] != '') {
-                  echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
-                } else {
-                  echo "<br>";
-                }
-                echo "<a href='/users/" . $user['username'] . "'>" . $user['username'] . "</a>";
-                echo "</td></tr>";
-              }
-            echo "</table>";
-            */
+        echo "<div class='panel panel-default'>";
+          echo "<div class='panel-heading'>";
+          echo "  <span class='glyphicon glyphicon-search SL'></span><input id='search' type='text' placeholder='username' />";
           echo "</div>";
+          echo "<div class='panel-body userlist'>";
+            echo "<div class='table-responsive'>";
+                echo "  <!-- Show Results -->";
+                echo '  <h4 id="results-text"></h4>';
+                echo '  <ul id="results" class="users">';
+                foreach ($allUsers as $user) {
+                  echo "<li>"; 
+                  if ($user['sponsor'] != '') {
+                    echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
+                  } else {
+                    echo "<br>";
+                  }
+                  echo "<a href='/users/" . $user['username'] . "'>" . $user['username'] . "</a>";
+                  echo "</li>";
+                }
 
+                echo '  </ul>';
+              /*
+              echo "<table class='table table-hover table-striped'>";
+                echo "<th style='text-align: center;'>username</th>";
+                foreach ($allUsers as $user) {
+                  echo "<tr><td>"; 
+                  if ($user['sponsor'] != '') {
+                    echo "<h4><small>" . $user['sponsor'] . "</small></h4>";
+                  } else {
+                    echo "<br>";
+                  }
+                  echo "<a href='/users/" . $user['username'] . "'>" . $user['username'] . "</a>";
+                  echo "</td></tr>";
+                }
+              echo "</table>";
+              */
+            echo "</div>";
+          echo "</div>";
       echo "</div>";
       echo "</div>";
 
