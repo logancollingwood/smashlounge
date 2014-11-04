@@ -24,15 +24,15 @@
 		echo $search_string;
 
 		// Build Query
-		$query = 'SELECT * FROM users 
+		$query = 'SELECT * FROM users
 		WHERE username 
 		LIKE "%'.$search_string.'%" 
 		OR name LIKE "%'.$search_string.'%"';
-
-		// Do Search
-		$result = $mysqli->query($query);
-		while($results = $result->fetch_array()) {
-		    $result_array[] = $results;
+		if (!$result = $mysqli->query($query)) {
+		  die('Invalid query: ' . $mysqli->error);
+		}
+		foreach($result as $row) {
+		    $result_array[] = $row;
 		}
 
 		// Check If We Have Results
