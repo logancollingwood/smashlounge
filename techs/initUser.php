@@ -78,6 +78,9 @@ $mainID = 0;
 $twitch = '';
 $twitter = '';
 $vod = '';
+$sponsor ='';
+$hasLocation = false;
+$location = '';
 $usergifs = array();
 
 

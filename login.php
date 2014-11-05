@@ -91,12 +91,6 @@
     <!-- Custom CSS for this view -->
     <link href="css/dashboard_mobile.css" rel="stylesheet">
 
-
-
-
-
-    <link rel="shortcut icon" href="/img/favicon.png">
-
 </head>
 
 <body>

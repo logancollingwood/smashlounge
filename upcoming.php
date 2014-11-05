@@ -50,7 +50,7 @@ Questions?
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A compendium for Super Smash Bros.">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/favicon.png">
+
 
     <title>Smash Lounge: Upcoming Events</title>
 
@@ -96,7 +96,7 @@ Questions?
                   echo "<h1 class='lead'>Upcoming events</h1>";
                 } else {
                   echo "<div class='col-md-1 vcenter'>";
-                    echo "<a href='/upcoming'><i class='fa fa-angle-left fa-4x'></i></a>";
+                    echo "<a href='/upcoming.php'><i class='fa fa-angle-left fa-4x'></i></a>";
                   echo "</div>";
                   echo "<div class='col-md-8 vcenter'>";
                     echo "<h1 class='lead'>$tournament</h1>";

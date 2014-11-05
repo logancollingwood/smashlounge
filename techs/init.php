@@ -418,7 +418,9 @@ function createNavBar($extra = 'false') {
   echo "        <span class='icon-bar'></span>";
   echo "        <span class='icon-bar'></span>";
   echo "      </button>";
-  echo "      <a class='navbar-brand heddur' href='/'>smash lounge&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-gamepad fa-1x'></i></a>";
+  echo "      <div class='navbar-brand spacing'>";
+  echo "        <a class='navbar-brand heddur' href='/'>smash lounge&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-gamepad fa-1x'></i></a>";
+  echo "      </div>";
   echo "    </div>";
   echo "    <div class='navbar-collapse collapse'>";
   echo "      <ul class='nav navbar-nav navbar-right'>";
@@ -693,6 +695,7 @@ function printLibraries() {
   echo "<!-- PRINTING DEPENDENCIES -->";
   echo "\n";
   analytics();
+  echo "<link rel='shortcut icon' href='/img/favicon.ico'>";
   echo "<!-- Bootstrap core CSS -->";
   echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";
   echo "<link href='http://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic' rel='stylesheet' type='text/css'>";

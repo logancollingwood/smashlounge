@@ -42,7 +42,7 @@ Questions?
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A compendium for Super Smash Bros">
     <meta name="author" content="smashlounge">
-    <link rel="shortcut icon" href="img/favicon.png">
+
 
     <title>Smash Lounge</title>
 
