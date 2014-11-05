@@ -272,8 +272,8 @@ ga('send', 'pageview');
                 <div class='panel-heading'>
                   <legend><h3>Modify your profile!</h3></legend>
                 </div>
-                <div class='panel-body'>
-                <form action="update" method="post" class="form-horizontal">
+                <div class='panel-body full'>
+                <form action="update.php" method="post" class="form-horizontal">
                   <fieldset>
 
 
@@ -403,20 +403,6 @@ ga('send', 'pageview');
                     </div>
                   </div>
 
-                      <div id="map-canvas"/></div>
-
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="latitude">latitude</label>
-                        <div class="col-md-4">
-                        <input id="latitude" name="lat" type="text" placeholder="lat" class="form-control input-md">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="longitude">longitude</label>
-                        <div class="col-md-4">
-                        <input id="longitude" name="long" type="text" placeholder="long" class="form-control input-md">
-                        </div>
-                      </div>
                   <hr>
                   </div>
                   <div class='panel panel-footer'>
@@ -429,64 +415,31 @@ ga('send', 'pageview');
 
                   </div>
 
-
-
-
-
             </div>
-            <?php if ($hasInfo) { ?>
-              <div class='col-md-5'>
-                <div class='panel panel-default'>
-                  <div class='panel-heading'>
-                    <div class='row'>
-                      <div class='col-md-3'>
-                        <?php
-                         echo "      <a href='http://www.smashlounge.com/users/$username'>$username</a>";
-                        ?>
-                      </div>
-                      <div class='col-md-3'>
-                        <a href='http://www.smashlounge.com'><span class='logo'>@smash lounge</span></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class='panel-body'>
-
-                        <div class='row'>
-
-                          <div class='col-md-7 col-sm-7'>
-                            <?php
-
-                                echo"<div class='info'>";
-                                  echo "  <h3><small>main: </small><a href='/characters?char=" . getCharFromID($mysqli, $userFields['main']) . "'>" . getCharFromID($mysqli, $userFields['main']) . "</a></h3>";
-                                  echo "<hr>";
-                                  echo "  <h3><small>location: </small>" . $userFields['location'] . "</h3>";
-                                  echo "<hr>";
-                                  echo "  <h3><small>sponsor: </small>" . $userFields['sponsor'] . "</h3>";
-                                echo "</div>";
-
-                            ?>
-                          </div>
-                          <div class='col-md-5 col-sm-5'>
-                            <?php
-                                echo"<div class='info'>";
-                                  echo "  <h3><small>twitter: </small><a href='https://www.twitter.com/" . $userFields['twitter'] . "'>" . $userFields['twitter'] . "</a></h3>";
-                                  echo "<hr>";
-                                  echo "  <h3><small>twitch: </small><a href='https://www.twitch.tv/" . $userFields['twitch'] . "'>" . $userFields['twitch'] . "</a></h3>";
-                                  echo "<hr>";
-                                  echo "  <h3><small>facebook: </small><a href='https://www.facebook.com/" . $userFields['facebook'] . "'>" . $userFields['facebook'] . "</a></h3>";
-                                echo "</div>";
-                            ?>
-                          </div>
-                        </div>
-
-
-                  </div>
+            <div class='col-md-5'>
+              <div class='panel panel-default'>
+                <div class='panel-heading'>
+                  Want to add yourself to our global player map?
+                </div>
+                <div class='panel-body full'>
+                  <h3> Click on the map to pin your location </h3>
+                  <div id="map-canvas"/></div>
+                </div>
+                <div class='panel-footer'>
+                    latitude
+                    <input id="latitude" name="lat" type="text" placeholder="lat" class="form-control input-md">
+                    longitude
+                    <input id="longitude" name="long" type="text" placeholder="long" class="form-control input-md">
                 </div>
               </div>
-            <?php } ?>
-
+            </div>
 
         </div>
+
+        <div class='row'>
+
+        </div>
+
       </div>
     </div>
 
