@@ -37,6 +37,7 @@
 
   $query = "SELECT * FROM userinfo WHERE userid=" . $userID;
   $hasInfo = false;
+  $hasGifs = false;
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
@@ -45,22 +46,44 @@
     $hasInfo = true;
   }
 
+  $hasLocation = false;
+  if ($userFields['latitude'] != 0) {
+    if ($userFields['longitude'] != 0) {
+      $hasLocation = true;
+    }
+  }
+
+  $query = "SELECT * FROM usergif WHERE userid=" . $userID;
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $usergifs[] = $row;
+    $hasGifs = true;
+  }
 
 
 
   if(!empty($_POST)){
 
-      updateProfile($userID, $_POST);
+      //updateProfile($userID, $_POST);
 
+      print_r($_POST);
 
       $vod = '';
       $main = $_POST['main'];
       $location = $_POST['location'];
       $vodURL = $_POST['vod'];
       $facebook = $_POST['facebook'];
-      //echo $vodURL;
-      //preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
-      //echo $matches;
+      $latitude = $_POST['lat'];
+      $longitude = $_POST['long'];
+      echo $latitude;
+      echo $longitude;
+
+      preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
+      
+      //echo($matches[1]);
+
       if (empty($matches) && $_POST['vod'] != '') {
         header("Location: /update?str=url");
         die("Redirecting to update.php");
@@ -76,6 +99,12 @@
       $params['twitter'] = $twitter;
       $params['twitch'] = $twitchId;
       $params['facebook'] = $facebook;
+      $params['latitude'] = $latitude;
+      $params['longitude'] = $longitude;
+
+      if ($matches[1] != '') {
+        $params['vod'] = $matches[1];
+      }
 
       $hasGfy = false;
 
@@ -124,15 +153,6 @@
         }
 
       } else {
-
-        /*
-        $insertString = "(main";
-        foreach ($params as $key => $item) {
-          if ($key != 'main' || $item != '') {
-            $insertString .= "," . $key . "='" . $item . "'";
-          }
-        }
-        */
 
         $query = "INSERT INTO userinfo (main, userid, facebook, location, twitch, vod, twitter) VALUES (:main, :userID, :facebook, :location, :twitch, :vod, :twitter);";
         $query_params = array(
@@ -252,32 +272,29 @@ ga('send', 'pageview');
 
 
           <div class="jumbotron banner">
-                <?php
-                    if ($alert) {
-                        alertStatus($alert);
-                    }
-                ?>
             <h1 class="lead">
               Update your profile
             </h1>
-
-
           </div>
-
+          <?php
+              if ($alert) {
+                  alertStatus($alert);
+              }
+          ?>
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
 
 
               <div class='panel panel-default'>
                 <div class='panel-heading'>
-                  <legend><h3>Modify your profile!</h3></legend>
+                  <h3>Modify your profile!</h3>
                 </div>
                 <div class='panel-body full'>
-                <form action="update.php" method="post" class="form-horizontal">
-                  <fieldset>
+                 
 
 
-
+                <div class='submit-wrapper'>
+                  <form class="form-horizontal" role="form">
                   <!-- Select Basic -->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="main">Main</label>
@@ -322,7 +339,14 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="vod">VOD</label>
                     <div class="col-md-4">
-                    <input id="vod" name="vod" type="text" placeholder="https://www.youtube.com/watch?v=UbfInBIJitM" class="form-control input-md">
+                    <input id="vod" name="vod" type="text" placeholder="https://www.youtube.com/watch?v=UbfInBIJitM" 
+                    <?php
+                      if ($hasInfo) {
+                        if ($userFields['vod'] != '') {
+                          echo " value='http://www.youtube.com/watch?v=" . $userFields['vod'] . "'";
+                        }
+                      }
+                    ?>class="form-control input-md">
                     <span class="help-block">Please link a vod you would like displayed on your profile page</span>
                     </div>
                   </div>
@@ -382,14 +406,7 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>
                     <div class="col-md-4">
-                    <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" 
-                    <?php
-                      if ($hasInfo) {
-                        if ($userFields['twitter'] != '') {
-                          echo " value='" . $userFields['twitter'] . "'";
-                        }
-                      }
-                    ?> class="form-control input-md">
+                    <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" class="form-control input-md">
                     <span class="help-block">Please enter a link to a sweet gfycat!</span>
                     </div>
                   </div>
@@ -398,42 +415,70 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="friendcode">3DS Friend Code!</label>
                     <div class="col-md-4">
-                    <input id="friendcode" name="friendcode" type="text" placeholder="friendcode" class="form-control input-md">
+                    <input id="friendcode" name="friendcode" type="text" placeholder="friendcode" class="form-control input-md" maxlength="14">
                     <span class="help-block">Your 3DS Friend Code!</span>
                     </div>
                   </div>
 
                   <hr>
+                  <input id='userid' name='userid' value='<?php echo $userID; ?>' hidden='true'>
+                  </div>
                   </div>
                   <div class='panel panel-footer'>
-
-                    <button class="btn btn-lg btn-primary btn-block bttn" type="submit">Save</button>
+                    <button class="btn btn-lg btn-primary btn-block bttn" type="submit" id="updateInfo">Save</button>
                   </div>
 
-                  </fieldset>
-                  </form>
+                  
 
                   </div>
-
+              </form>
             </div>
-            <div class='col-md-5'>
+            <div class='col-md-6'>
               <div class='panel panel-default'>
                 <div class='panel-heading'>
-                  Want to add yourself to our global player map?
+                  <h3>Want to add yourself to our global player map?</h3>
                 </div>
                 <div class='panel-body full'>
-                  <h3> Click on the map to pin your location </h3>
                   <div id="map-canvas"/></div>
+                  <h3> <small>Click on the map to pin your location </small></h3>
                 </div>
                 <div class='panel-footer'>
+                  <div class='submit-wrapper'>
+                    <form class="form-horizontal">
                     latitude
-                    <input id="latitude" name="lat" type="text" placeholder="lat" class="form-control input-md">
+                    <input id="lat" name="lat" type="text" placeholder="lat" class="form-control input-md" disabled="disabled"
+                    <?php
+                      if ($hasLocation) {
+                        if ($userFields['latitude'] != 0) {
+                          echo " value='" . $userFields['latitude'] . "'";
+                        }
+                      }
+                    ?> >
                     longitude
-                    <input id="longitude" name="long" type="text" placeholder="long" class="form-control input-md">
+                    <input id="long" name="long" type="text" placeholder="long" class="form-control input-md" disabled="disabled"
+                    <?php
+                      if ($hasLocation) {
+                        if ($userFields['longitude'] != 0) {
+                          echo " value='" . $userFields['longitude'] . "'";
+                        }
+                      }
+                    ?> >
+                    </form>
+                  </div>
+                  </div>
                 </div>
+                <?php 
+                  $counter = 0;
+                  foreach ($usergifs as $gif) {
+                    $counter++;
+                    echo "<div class='well'>";
+                      echo "<h3> Gif #" . $counter . "</h3>";
+                      echo "<img class='gfyitem' data-expand=true data-id='" . $gif['url'] . "'/>";
+                    echo "</div>";
+                  } 
+                ?>
               </div>
             </div>
-
         </div>
 
         <div class='row'>
@@ -450,13 +495,121 @@ ga('send', 'pageview');
     <script src="js/jquery.fitvids.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/toggler.js"></script>
-    <script src="js/mapInitUpdate.js"></script>
     <script>
-       $(document).ready(function(){
+      var map;
+      var marker;
+
+      function bindInfoWindow(map, infoWindow) {
+
+
+        google.maps.event.addListener(map, 'click', function( event ){
+          var lat = event.latLng.lat();
+          var lon = event.latLng.lng();
+          document.getElementById('long').value = lon.toFixed(3);
+          document.getElementById('lat').value = lat.toFixed(3);
+
+        });
+
+        google.maps.event.addListener(map, 'click', function(event) {
+          placeMarker(event.latLng, map);
+        });
+      }
+
+      function placeMarker(location, map) {
+          if (marker == undefined){
+              marker = new google.maps.Marker({
+                  position: location,
+                  map: map,
+                  animation: google.maps.Animation.DROP,
+              });
+          }
+          else{
+              marker.setPosition(location);
+          }
+          map.setCenter(location);
+      }
+
+      function initialize() {
+        var mapOptions = {
+          zoom: 4,
+          <?php 
+            if ($hasLocation) {
+              echo "center: new google.maps.LatLng(" . $userFields['latitude'] . ", " . $userFields['longitude'] . ")";
+            } else {
+              echo "center: new google.maps.LatLng(37.6, -95.665)";
+            }
+          ?>
+        };
+        var infoWindow = new google.maps.InfoWindow;
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        bindInfoWindow(map, infoWindow);
+        <?php
+          if ($hasLocation) {
+            echo "var pos = new google.maps.LatLng(
+              parseFloat(" . $userFields['latitude'] . "),
+              parseFloat(" . $userFields['longitude'] . "));";
+            echo "placeMarker(pos, map)";
+          }
+        ?>
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    <script>
+      function addDashes(f) {
+        f.value = f.value.slice(0,4)+"-"+f.value.slice(4,8) + "-" + f.value.slice(8,12);
+      }
+        $(document).ready(function(){
           // Target your .container, .wrapper, .post, etc.
 
           $(".vimeo").fitVids();
-        });
+
+          $("#friendcode").on("keypress", function(ev) {
+            //prevents users from entering non-numeric values
+            var keyCode = window.event ? ev.keyCode : ev.which;
+            //codes for 0-9
+            if (keyCode < 48 || keyCode > 57) {
+                //codes for backspace, delete, enter
+                if (keyCode != 0 && keyCode != 8 && keyCode != 13 && !ev.ctrlKey) {
+                    ev.preventDefault();
+                }
+            }
+
+            //if we got a number, let's hyphenate it on every 4 values
+            var foo = $(this).val().split("-").join(""); // remove hyphens
+            if (foo.length > 0) {
+              foo = foo.match(new RegExp('.{1,4}', 'g')).join("-");
+            }
+            $(this).val(foo);
+          });
+
+            $("#updateInfo").on("click", function(event) {
+              console.log('firing');
+              // Prevent default behavior
+              event.preventDefault();
+              var data = $(".submit-wrapper form").serialize();
+              console.log(data);
+              $.ajax({
+                url: '/techs/update.php',
+                type: 'POST',
+                data: data,
+              })
+              .done(function() {
+                window.location.replace("/update.php?str=success");
+              })
+              .fail(function() {
+                console.log('failing');
+              })
+              .always(function() {
+                // Handler for all gif submissions
+              });
+            });
+            
+          });
+
     </script>
   </body>
 </html>

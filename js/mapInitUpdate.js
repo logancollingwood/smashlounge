@@ -31,16 +31,16 @@ function placeMarker(location, map) {
     map.setCenter(location);
 }
 
-  function initialize() {
-    var mapOptions = {
-      zoom: 4,
-      center: new google.maps.LatLng(37.6, -95.665)
-    };
-    var infoWindow = new google.maps.InfoWindow;
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
+function initialize() {
+  var mapOptions = {
+    zoom: 4,
+    center: new google.maps.LatLng(37.6, -95.665)
+  };
+  var infoWindow = new google.maps.InfoWindow;
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
 
-    bindInfoWindow(map, infoWindow);
-  }
+  bindInfoWindow(map, infoWindow);
+}
 
-  google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize);
