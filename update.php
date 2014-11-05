@@ -298,7 +298,7 @@ ga('send', 'pageview');
                   <!-- Select Basic -->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="main">Main</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <select id="main" name="main" class="form-control">
                         <?php
 
@@ -322,7 +322,7 @@ ga('send', 'pageview');
                   <!-- Text input-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="location">Location</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                     <input id="location" name="location" type="text" placeholder="Santa Cruz"
                     <?php
                       if ($hasInfo) {
@@ -338,7 +338,7 @@ ga('send', 'pageview');
                   <!-- Text input-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="vod">VOD</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                     <input id="vod" name="vod" type="text" placeholder="https://www.youtube.com/watch?v=UbfInBIJitM" 
                     <?php
                       if ($hasInfo) {
@@ -354,7 +354,7 @@ ga('send', 'pageview');
                   <!-- Text input-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="facebook">facebook!</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                     <input id="facebook" name="facebook" type="text" placeholder="miom_pewpewu"
                     <?php
                       if ($hasInfo) {
@@ -371,7 +371,7 @@ ga('send', 'pageview');
                   <!-- Text input-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="twitter">Twitter!</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                     <input id="twitter" name="twitter" type="text" placeholder="miom_pewpewu" 
                     <?php
                       if ($hasInfo) {
@@ -388,7 +388,7 @@ ga('send', 'pageview');
                   <!-- Text input-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="twitch">Twitch</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                     <input id="twitch" name="twitch" type="text" placeholder="pewpewu" 
                     <?php
                       if ($hasInfo) {
@@ -405,7 +405,7 @@ ga('send', 'pageview');
                   <!-- Text input-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                     <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" class="form-control input-md">
                     <span class="help-block">Please enter a link to a sweet gfycat!</span>
                     </div>
@@ -414,7 +414,7 @@ ga('send', 'pageview');
                   <!-- Text input-->
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="friendcode">3DS Friend Code!</label>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                     <input id="friendcode" name="friendcode" type="text" placeholder="friendcode" class="form-control input-md" maxlength="14">
                     <span class="help-block">Your 3DS Friend Code!</span>
                     </div>
