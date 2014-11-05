@@ -1,7 +1,9 @@
 <?php
 	
 	$hasTwitch = false;
-	if ($hasTournament) {
+	$hasTournament = false;
+	$eventInfoz = array();
+	if ($hasGet) {
 		
 		$query = "SELECT * FROM " . $upcomingTable . " WHERE title='" . $tournament . "'";
 
@@ -10,20 +12,23 @@
 		  die('Invalid query: ' . $mysqli->error);
 		}
 		foreach ($result as $row) {
+			$hasTournament = true;
 			$eventInfoz = $row;
 		}
-		if ($eventInfoz['stream'] != '') {
-			$hasTwitch = true;
-			$twitch = $eventInfoz['stream'];
+		if ($eventInfoz) {
+			$first = $eventInfoz['first'];
+			$second = $eventInfoz['second'];
+			$third = $eventInfoz['third'];
+			$attending = $eventInfoz['attending'];
+			$host = $eventInfoz['host'];
+			$bracket = $eventInfoz['bracket'];
+			$startDate = $eventInfoz['start'];
+			$endDate = $eventInfoz['end'];
+			if ($eventInfoz['stream'] != '') {
+				$hasTwitch = true;
+				$twitch = $eventInfoz['stream'];
+			}
 		}
-		$first = $eventInfoz['first'];
-		$second = $eventInfoz['second'];
-		$third = $eventInfoz['third'];
-		$attending = $eventInfoz['attending'];
-		$host = $eventInfoz['host'];
-		$bracket = $eventInfoz['bracket'];
-		$startDate = $eventInfoz['start'];
-		$endDate = $eventInfoz['end'];
 	}
 
 

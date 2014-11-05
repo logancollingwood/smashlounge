@@ -227,15 +227,12 @@ Questions?
 
 
     <script src="/js/jquery.fitvids.js"></script>
-
-    <script src="/js/adblockzorz.js"></script>
-    <script src="/js/jquery.sticky.js"></script>
     <script src="/js/mapInitUser.js"></script>
     <script>
 
     $(document).ready(function() {  
       $(".youtube").fitVids();
-      $(".panel-default").css({'max-height':($("#map-canvas").height()+'px')});
+      $(".panel-body.userlist").css({'height':($("#map-canvas").height()-$(".panel-heading").height()+'px')});
       // Live Search
       // On Search Submit and Get Results
       function search() {
@@ -248,7 +245,6 @@ Questions?
             data: { query: query_value },
             cache: false,
             success: function(html){
-              console.log(html);
               $("ul#results").html(html);
             }
           });

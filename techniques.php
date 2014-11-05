@@ -1,5 +1,4 @@
 <?php
-  $char = isset($_GET['char'])       ? trim($_GET['char'])       : "";
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
   $submit = isset($_GET['submit'])       ? trim($_GET['submit'])       : "";
   require("techs/init.php");
@@ -45,7 +44,7 @@ Questions?
     ?>
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard_mobile.css" rel="stylesheet">
+    <link href="/css/dashboard_mobile.css" rel="stylesheet">
 
 
 
@@ -200,10 +199,8 @@ Questions?
       </div>
 
 
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/adblockzorz.js"></script>
-    <script type="text/javascript" src="js/svg.min.js"></script>
-    <script type="text/javascript" src="js/frameinput.js"></script>
+    <script type="text/javascript" src="/js/svg.min.js"></script>
+    <script type="text/javascript" src="/js/frameinput.js"></script>
 
     <script>
       $( document ).ready(function() {

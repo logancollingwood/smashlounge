@@ -141,7 +141,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       }
       echo ">";
       echo "<span style='margin-left:10%;margin-top:4%' class='badge pull-left'>". $counter . "</span>";
-      echo "<a href=characters.php?char=" . urlencode($chardata['name']) . ">";
+      echo "<a href=/characters/" . urlencode($chardata['name']) . ">";
       echo $chardata["name"];
 
       echo "</a>";
@@ -166,7 +166,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       if (strcasecmp($rec, $tech) == 0) {
         echo "class='active'";
       }
-      echo "><a href=techniques.php?tech=" . urlencode($rec) . ">";
+      echo "><a href=/technique/" . urlencode($rec) . ">";
       echo $rec . "</a></li>";
       echo "\n";
     }

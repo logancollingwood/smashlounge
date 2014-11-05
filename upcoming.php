@@ -1,8 +1,10 @@
 <?php
-  $hasTournament = false;
+  $hasGet = false;
   $tournament = isset($_GET['tournament'])       ? trim($_GET['tournament'])       : "";
+  $tournament = urldecode($tournament);
+
   if ($tournament != '') {
-    $hasTournament = true;
+    $hasGet = true;
   }
   require("techs/init.php");
   require("techs/initUpcoming.php");
@@ -196,10 +198,10 @@ Questions?
 
 
 
-    <script type="text/javascript" src="js/underscore-min.js"></script>
-    <script type="text/javascript" src="js/calendar.js"></script>
-    <script type="text/javascript" src="js/initTournament.js"></script>
-    <script type="text/javascript" src="js/jquery.challonge.js"></script>
+    <script type="text/javascript" src="/js/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/calendar.js"></script>
+    <script type="text/javascript" src="/js/initTournament.js"></script>
+    <script type="text/javascript" src="/js/jquery.challonge.js"></script>
     <script type="text/javascript">
         var calendar = $("#calendar").calendar(
             {
@@ -217,7 +219,7 @@ Questions?
                     var time = new Date(val.start);
                     
                     $(document.createElement('li'))
-                      .html('<a href="/upcoming.php?tournament=' + val.title + '">' + val.title + '</a>')
+                      .html('<a href="/tournament/' + encodeURI(val.title) + '">' + val.title + '</a>')
                       .appendTo(list);
                   });
                 },
@@ -243,13 +245,5 @@ Questions?
           });
           
     </script>
-    <script src="js/adblockzorz.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script>
-      $(document).ready(function(){
-        $("#canttouchthis").sticky({topSpacing:70});
-      });
-    </script>
-
 
   </body>

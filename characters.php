@@ -48,7 +48,7 @@ Questions?
     
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard_mobile.css" rel="stylesheet">
+    <link href="/css/dashboard_mobile.css" rel="stylesheet">
 
 
     
@@ -209,8 +209,6 @@ Questions?
         </div>
       </div>
 
-    <script src="js/adblockzorz.js"></script>
-    <script src="js/jquery.sticky.js"></script>
     <script>
       $(document).ready(function(){
         $("#canttouchthis").sticky({topSpacing:70});
