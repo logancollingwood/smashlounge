@@ -467,22 +467,23 @@ ga('send', 'pageview');
                   </div>
                   </div>
                 </div>
-                <?php 
-                  $counter = 0;
-                  foreach ($usergifs as $gif) {
-                    $counter++;
-                    echo "<div class='well'>";
-                      echo "<h3> Gif #" . $counter . "</h3>";
-                      echo "<img class='gfyitem' data-expand=true data-id='" . $gif['url'] . "'/>";
-                    echo "</div>";
-                  } 
-                ?>
               </div>
             </div>
-        </div>
-
         <div class='row'>
-
+            <?php 
+              $counter = 0;
+              foreach ($usergifs as $gif) {
+                $counter++;
+                echo "<div class='col-md-4'>";
+                  echo "<div class='well'>";
+                    echo "<h3> Gif #" . $counter . "</h3>";
+                    echo "<hr>";
+                    echo "<img class='gfyitem' data-expand=true data-id='" . $gif['url'] . "'/>";
+                  echo "</div>";
+                echo "</div>";
+              } 
+            ?>
+          </div>
         </div>
 
       </div>
