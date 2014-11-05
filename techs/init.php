@@ -574,7 +574,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
       }
     echo "' href='/users.php?username=" . $user['username'] . "'>profile</a>";
 
-    echo "    <a class='btn bttn login' href='/logout'>logout</a>";
+    echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
     echo "</div>";
 
   } else {

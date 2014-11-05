@@ -115,7 +115,7 @@ Questions?
           <?php if ($loggedIn && $user['username'] == $username) {
                   echo "<div class='alert alert-info alert-dismissible SL' role='alert'>
                           <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
-                          <a href='/update'>Modify your profile information! </a>
+                          <a href='/update.php'>Modify your profile information! </a>
                         </div>";
                 }
           ?>

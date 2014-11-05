@@ -31,7 +31,7 @@
 
 
         try {
-            echo "TRYING LOGIN";
+            //echo "TRYING LOGIN";
             // Log the user in
             Sentry::login($user, true);
         }
@@ -48,7 +48,8 @@
             header("Location: login.php?str=failed");
         }
 
-        if ($redirect != '') {
+        if ($redirect) {
+
             header("Location: /" . $redirect . ".php") ;
             die("Redirecting to: redirect");
         }
