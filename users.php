@@ -211,11 +211,8 @@ Questions?
                   echo "<div class='row'>";
                     makeAllUsers($allUsers);
                   echo "</div>";
-                  echo "<div class='row'>";
-                    
-                  echo "</div>";
                 } ?>
-
+                
             </div>
 
             <!-- This is the handler for displaying all profiles in the event that the profile is NOT found-->

@@ -284,7 +284,7 @@ function makeAllUsers($allUsers) {
           echo "<div id='map-canvas'/></div>";
         echo "</div>";
 
-
+        
 
       echo "</div>";
 

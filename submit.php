@@ -65,8 +65,8 @@ Questions?
 
   <body>
     <div id="fb-root"></div>
-    <?php include_once('submit-nav.php'); ?>
-
+    <?php //include_once('submit-nav.php'); ?>
+    <?php createNavBar(); ?>
     <div class="container-fluid">
       <div class="row">
 
@@ -83,10 +83,10 @@ Questions?
           </div>
 
             <ul class='nav nav-tabs' role='tablist' id='myTab'>
-              <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz'>Gifs</a></li>
-              <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz'>Tournaments</a></li>
-              <li><a href='#technique' role='tab' data-toggle='tab' class='tabz'>Techniques</a></li>
-              <li><a href='#group' role='tab' data-toggle='tab' class='tabz'>Regional Group</a></li>
+              <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz' data-id="gif">Gifs</a></li>
+              <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz' data-id="tournament">Tournaments</a></li>
+              <li><a href='#technique' role='tab' data-toggle='tab' class='tabz' data-id="technique">Techniques</a></li>
+              <li><a href='#group' role='tab' data-toggle='tab' class='tabz' data-id="group">Regional Group</a></li>
             </ul>
 
           <!-- Submit Form Row -->
@@ -101,10 +101,8 @@ Questions?
                     <hr>
                     <div class='well'>
                       <br>
+                      <div class='submit-wrapper'>
                       <form method="post" class="form-horizontal">
-                        <!-- Potentially Use the following hidden fields -->
-                        <input type="hidden" name="pageid" value="0" />
-                        <input type="hidden" name="dataid" value="1" />
 
 
                           <div class="form-group">
@@ -168,19 +166,10 @@ Questions?
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <label class="col-md-4 control-label" for="gif_creditsid">credit</label>
-                          <div class="col-md-4">
-                            <input id='gif_creditsid' type="text" class="form-control" maxlength="100" name="gif_credits" 
-                            <?php if($loggedIn) {
-                                echo " value=" . $user['username'];
-                              }
-                            ?> placeholder="Your Username!"/>
-                          </div>
-                        </div>
                         <button class="btn btn-default post-submissions">submit</button>
                         <br>
                       </form>
+                      </div>
                     </div>
                   </div>
 
@@ -277,27 +266,44 @@ Questions?
 
     <script>
       $(document).ready(function(){
+        var currentPage = '';
 
         $(".post-submissions").on("click", function(event) {
           // Prevent default behavior
           event.preventDefault();
+          var data = $(".submit-wrapper form-horizontal").serialize();
+
+          //this jQuery picks up what form is being submitted
+          var ref_this = $("ul.nav-tabs li.active a");
+          var key = ref_this.data("id");
+          console.log('submitting a ' + key);
+
+          //let's build our post keys array, starting with what kind of post it is
+          var data = 'key=' + key;
+          data += '&' + $(".tab-pane.active form").serialize();
+          
+          console.log('submitting this ' + data);
 
           $.ajax({
-            url: 'postSubmission.php',
+            url: '/techs/submit.php',
             type: 'POST',
-            data: $(".submit-wrapper form").serialize(),
+            data: data
           })
-          .done(function() {
-            // Place How We Should Handle Successful Gif Submissions
+          .success(function(html) {
+            if (html == 'gfycat') {
+              alert('Looks like you didn\'t sumbit a gfycat!');
+            }
+            console.log(html);
           })
           .fail(function() {
-            // Place How We Should Handle Failed Submissions
+            console.log('failing');
           })
           .always(function() {
-            // Handler for all gif submissions
+            console.log('always');
           });
         });
         
+
       });
     </script>
     <script>
