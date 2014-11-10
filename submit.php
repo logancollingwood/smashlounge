@@ -107,7 +107,7 @@ Questions?
 
                           <div class="form-group">
                             <label class="col-md-4 control-label" for="gif_selectorid">type</label>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                               <select id='gif_selectorid' name='gif_selector' class="form-control">
                                   <option value="tech">Technique Gif</option>
                                   <option value="char">Character Gif</option>
@@ -117,7 +117,7 @@ Questions?
 
                           <div class="form-group" id='techSelector'>
                             <label class="col-md-4 control-label" for="gif_techselectorid">technique</label>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                               <select id='gif_techselectorid' name='gif_techselector' class="form-control">
                                   <?php
                                     $techsList = getAllTechs($mysqli, $techTable);
@@ -133,7 +133,7 @@ Questions?
 
                           <div class="form-group" id='charSelector'>
                             <label class="col-md-4 control-label" for="gif_charselectorid">character</label>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                               <select id='gif_charselectorid' name='gif_charselector' class="form-control">
                                 <?php
 
@@ -147,21 +147,22 @@ Questions?
 
                           <div class="form-group">
                             <label class="col-md-4 control-label" for="giffyurl">gfycat url</label>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                               <input id='giffyurl' type="text" class="form-control" name="gif_url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
+                              <span class="help-block">(a valid gfycat will appear on the right after you finish typing)</span>  
                             </div>
                           </div>
 
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="gif_sourceid">original source</label>
-                          <div class="col-md-4">
+                          <div class="col-md-8">
                             <input id='gif_sourceid' type="text" class="form-control" maxlength="100" name="gif_source" placeholder="Big House 4"/>
                           </div>
                         </div>
 
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="gif_descriptionid">description</label>
-                          <div class="col-md-4">
+                          <div class="col-md-8">
                             <input id='gif_descriptionid' type="text" class="form-control" maxlength="100" name="gif_description" placeholder="Mew2King Ken Comboes a Scrub"/>
                           </div>
                         </div>
