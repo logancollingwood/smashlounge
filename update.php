@@ -14,14 +14,14 @@
     $user = Sentry::getUser();
     $userID = $user['id'];
     $username = $user['username'];
-
     $userFields = array();
     $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
 
 
   function alertStatus($submit) {
+    global $username;
         if ($submit == 'success') {
-            echo "<div class='alert alert-success alert-dismissable' role='alert'>Congratulations! Your account has been updated.";
+            echo "<div class='alert alert-success alert-dismissable' role='alert'>View your updated <a href=/users/" . $username . ">profile</a>";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'taken') {

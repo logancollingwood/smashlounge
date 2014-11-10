@@ -8,23 +8,7 @@
 //    
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 $userid = '';
 $userFields = array();
@@ -165,7 +149,7 @@ function makeMainPanel($hasMain, $main, $mysqli) {
 	if ($hasMain) {
 		echo "<div class='well'>";
         echo "        <h3><small class='pull-left labelz'>main</small>";
-        echo "        <a href='characters?char=" . urlencode($main) . "'>$main</a></h3>";
+        echo "        <a href='/characters.php?char=" . urlencode($main) . "'>$main</a></h3>";
         echo "        <div class='mainPic $main'></div>";
     echo "</div>";
 	}

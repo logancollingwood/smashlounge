@@ -166,7 +166,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       if (strcasecmp($rec, $tech) == 0) {
         echo "class='active'";
       }
-      echo "><a href=/technique/" . urlencode($rec) . ">";
+      echo "><a href=/techniques/" . urlencode($rec) . ">";
       echo $rec . "</a></li>";
       echo "\n";
     }
@@ -419,7 +419,7 @@ function createNavBar($extra = 'false') {
   echo "        <span class='icon-bar'></span>";
   echo "      </button>";
   echo "      <div class='navbar-brand spacing'>";
-  echo "        <a class='navbar-brand heddur' href='/'>smash lounge&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-gamepad fa-1x'></i></a>";
+  echo "        <a class='navbar-brand heddur' href='/'>smash lounge&nbsp;&nbsp;&nbsp;&nbsp;<img src='/img/assets/gccontroller.png' style='width:30px;height:20px'/></a>";
   echo "      </div>";
   echo "    </div>";
   echo "    <div class='navbar-collapse collapse'>";
@@ -574,7 +574,7 @@ function makeSidebar($loggedIn, $currentPage = '') {
       if ($currentPage=='login') {
         echo "active";
       }
-    echo "' href='/users.php?username=" . $user['username'] . "'>profile</a>";
+    echo "' href='/users/" . $user['username'] . "'>profile</a>";
 
     echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
     echo "</div>";
