@@ -54,6 +54,26 @@ $dbname = 'thalounge';
 $table = 'submissions';
 ```
 
+===========
+### Apache Settings
+Smashlounge uses URL rewriting provided by Apache to handle some URL requests. This allows us to use front-facing pretty URL's, such as /users/{username}, /tournaments/{tournament_name}, /characters/{character_name}, and /techniques/{tech_name}. The following code should be placed in the root directory in a file called .htaccess:
+
+```
+Options +FollowSymLinks -MultiViews
+## Turn mod_rewrite on
+RewriteEngine On
+
+
+RewriteBase /
+#
+RewriteRule ^users/([A-Za-z0-9]+)*$ ./users.php?username=$1
+
+RewriteRule ^techniques/([^/]*)$ /techniques.php?tech=$1
+
+RewriteRule ^characters/([^/]*)$ /characters.php?char=$1
+
+RewriteRule ^tournament/([^/]*)$ /upcoming.php?tournament=$1
+```
 
 <hr>
 
