@@ -1,13 +1,9 @@
 <?php
   require("techs/init.php");
   require_once("techs/sentry.php");
-    $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
-    $loggedIn = false;
-    if (Sentry::check())
-    {
-        $loggedIn = true;
-        $user = Sentry::getUser();
-    }
+  $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
+
+
 ?>
 <!--
 

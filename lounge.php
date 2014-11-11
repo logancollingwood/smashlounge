@@ -1,12 +1,9 @@
 <?php
-  $char = isset($_GET['char'])       ? trim($_GET['char'])       : "";
-  $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
-  $submit = isset($_GET['submit'])       ? trim($_GET['submit'])       : "";
-  $id = isset($_GET['id'])       ? trim($_GET['id'])       : "";
   require("techs/init.php");
   require("techs/initScenes.php");
   $listcounter = 0;
 ?>
+
 <!--
 
 ooooo                                                   
