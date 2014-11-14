@@ -42,7 +42,8 @@
       $latitude = $_POST['lat'];
       $longitude = $_POST['long'];
       $userID = $_POST['userid'];
-      
+      $friendcode = $_POST['friendcode'];
+      $friendcode = str_replace('-', '', $friendcode);
 
       preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
       
@@ -65,6 +66,11 @@
       $params['facebook'] = $facebook;
       $params['latitude'] = $latitude;
       $params['longitude'] = $longitude;
+      if (strlen($friendcode) > 12 || strlen($friendcode) < 12) {
+        header("Location: /update?str=friendcode");
+        die("Redirecting to update.php");
+      }
+      $params['friendcode'] = $friendcode;
 
       if ($matches[1] != '') {
         $params['vod'] = $matches[1];
@@ -118,7 +124,7 @@
         return true;
       } else {
 
-        $query = "INSERT INTO userinfo (main, userid, facebook, location, twitch, vod, twitter) VALUES (:main, :userID, :facebook, :location, :twitch, :vod, :twitter);";
+        $query = "INSERT INTO userinfo (main, userid, facebook, location, twitch, vod, twitter, friendcode) VALUES (:main, :userID, :facebook, :location, :twitch, :vod, :twitter, :friendcode);";
         $query_params = array(
           ':main' => $main,
           ':userID' => $userID,
@@ -126,7 +132,8 @@
           ':location' => $location,
           ':twitch' => $twitchId,
           ':vod' => $vod,
-          ':twitter' => $twitter
+          ':twitter' => $twitter,
+          ':friendcode' => $friendcode
         );
 
         try{

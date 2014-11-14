@@ -24,8 +24,8 @@
             echo "<div class='alert alert-success alert-dismissable' role='alert'>View your updated <a href=/users/" . $username . ">profile</a>";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
-        } else if ($submit == 'taken') {
-            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like that username is taken!";
+        } else if ($submit == 'error') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like there was an error updating your profile. Please try again.";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'spaces') {
@@ -213,15 +213,6 @@ Questions?
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-51481444-1', 'auto');
-ga('require', 'displayfeatures');
-ga('send', 'pageview');
-</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -236,17 +227,10 @@ ga('send', 'pageview');
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/new.css" rel="stylesheet">
-    <link href='css/users.css' rel='stylesheet'>
 
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
     </script>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 
   </head>
@@ -414,12 +398,21 @@ ga('send', 'pageview');
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="friendcode">3DS Friend Code!</label>
                     <div class="col-md-6">
-                    <input id="friendcode" name="friendcode" type="text" placeholder="friendcode" class="form-control input-md" maxlength="14">
+                    <input id="friendcode" name="friendcode" type="text" placeholder="friendcode" class="form-control input-md" maxlength="14"
+                    <?php
+                      if ($hasInfo) {
+                        if ($userFields['friendcode'] != '') {
+                          $parts = str_split($userFields['friendcode'], 4);
+                          $friendcode = $parts[0] .'-'. $parts[1] .'-'. $parts[2];
+                          echo " value='" . $friendcode . "'";
+                        }
+                      }
+                    ?>>
                     <span class="help-block">Your 3DS Friend Code!</span>
                     </div>
                   </div>
 
-                  <hr>
+                  
                   <input id='userid' name='userid' value='<?php echo $userID; ?>' hidden='true'>
                   </div>
                   </div>
@@ -440,28 +433,55 @@ ga('send', 'pageview');
                 <div class='panel-body full'>
                   <div id="map-canvas"/></div>
                   <h3> <small>Click on the map to pin your location </small></h3>
+                  <h3><small><small>This is totally optional, but will pin your location to the global map so you can connect with local players </small></small></h3>
                 </div>
                 <div class='panel-footer'>
                   <div class='submit-wrapper'>
-                    <form class="form-horizontal">
-                    latitude
-                    <input id="lat" name="lat" type="text" placeholder="lat" class="form-control input-md" disabled="disabled"
-                    <?php
+                    <form class="form-horizontal" role="form">
+                    
+                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="gfycat">Latitude:</label>
+                        <div class="col-md-6">
+                          <input id="lat" name="lat" type="text" placeholder="lat" readonly="true" class="form-control input-md"
+                          <?php
+                            if ($hasLocation) {
+                              if ($userFields['latitude'] != 0) {
+                                echo " value='" . $userFields['latitude'] . "'";
+                              }
+                            }
+                          ?>>
+                        </div>
+                      </div>
+
+
+                    <div class="form-group">
+                      <label class="col-md-4 control-label" for="gfycat">Longitude: </label>
+                      <div class="col-md-6">
+                        <input id="long" name="long" type="text" placeholder="long" readonly="true" class="form-control input-md"
+                        <?php
+                          if ($hasLocation) {
+                            if ($userFields['longitude'] != 0) {
+                              echo " value='" . $userFields['longitude'] . "'";
+                            }
+                          }
+                        ?>>
+                      </div>
+                      
+                    </div>
+                     <?php
                       if ($hasLocation) {
-                        if ($userFields['latitude'] != 0) {
-                          echo " value='" . $userFields['latitude'] . "'";
-                        }
+                        echo '<div class="form-group">';
+                        echo '  <div class="col-md-5 col-md-offset-4">';
+                        echo '   <button type="button" class="btn btn-default" id="clear" aria-label="Left Align">';
+                        echo '      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>';
+                        echo '      remove me from the map';
+                        echo '    </button>';
+                        echo '  </div>';
+                        echo '</div>';
                       }
-                    ?> >
-                    longitude
-                    <input id="long" name="long" type="text" placeholder="long" class="form-control input-md" disabled="disabled"
-                    <?php
-                      if ($hasLocation) {
-                        if ($userFields['longitude'] != 0) {
-                          echo " value='" . $userFields['longitude'] . "'";
-                        }
-                      }
-                    ?> >
+                    ?>
+
+
                     </form>
                   </div>
                   </div>
@@ -490,15 +510,13 @@ ga('send', 'pageview');
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/jquery.fitvids.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/toggler.js"></script>
+
+
     <script>
       var map;
       var marker;
-
+      var markers = [];
       function bindInfoWindow(map, infoWindow) {
 
 
@@ -526,7 +544,27 @@ ga('send', 'pageview');
           else{
               marker.setPosition(location);
           }
+          markers.push(marker);
           map.setCenter(location);
+      }
+
+      // Removes the markers from the map, but keeps them in the array.
+      function clearMarkers() {
+        setAllMap(null);
+      }
+
+
+      // Deletes all markers in the array by removing references to them.
+      function deleteMarkers() {
+        clearMarkers();
+        markers = [];
+      }
+
+      // Sets the map on all markers in the array.
+      function setAllMap(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
       }
 
       function initialize() {
@@ -559,9 +597,7 @@ ga('send', 'pageview');
 
     </script>
     <script>
-      function addDashes(f) {
-        f.value = f.value.slice(0,4)+"-"+f.value.slice(4,8) + "-" + f.value.slice(8,12);
-      }
+
         $(document).ready(function(){
           // Target your .container, .wrapper, .post, etc.
 
@@ -586,29 +622,36 @@ ga('send', 'pageview');
             $(this).val(foo);
           });
 
-            $("#updateInfo").on("click", function(event) {
-              console.log('firing');
-              // Prevent default behavior
-              event.preventDefault();
-              var data = $(".submit-wrapper form").serialize();
-              console.log(data);
-              $.ajax({
-                url: '/techs/update.php',
-                type: 'POST',
-                data: data,
-              })
-              .done(function() {
-                window.location.replace("/update.php?str=success");
-              })
-              .fail(function() {
-                console.log('failing');
-              })
-              .always(function() {
-                // Handler for all gif submissions
-              });
-            });
-            
+          //this allows the user to remove themselves from the player map assuming that they save the form
+          $("#clear").on("click", function(event) {
+            $("#lat").val(0);
+            $("#long").val(0);
+            deleteMarkers();
           });
+
+          $("#updateInfo").on("click", function(event) {
+            console.log('firing');
+            // Prevent default behavior
+            event.preventDefault();
+            var data = $(".submit-wrapper form").serialize();
+            console.log(data);
+            $.ajax({
+              url: '/techs/update.php',
+              type: 'POST',
+              data: data,
+            })
+            .done(function() {
+              window.location.replace("/update.php?str=success");
+            })
+            .fail(function() {
+              window.location.replace("/update.php?str=error");
+            })
+            .always(function() {
+              // Handler for all gif submissions
+            });
+          });
+          
+        });
 
     </script>
   </body>

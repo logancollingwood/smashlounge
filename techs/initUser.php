@@ -64,6 +64,8 @@ $twitter = '';
 $vod = '';
 $sponsor ='';
 $hasLocation = false;
+$hasFriendcode = false;
+$friendcode = '';
 $location = '';
 $usergifs = array();
 
@@ -107,6 +109,10 @@ foreach ($result as $row) {
     $hasFacebook = true;
     $facebook = $row['facebook'];
   }
+  if ($row['friendcode'] != '') {
+    $hasFriendcode = true;
+    $friendcode = $row['friendcode'];
+  }
 }
 if ($hasMain) {
   $main = getCharFromID($mysqli, $mainID);
@@ -148,7 +154,7 @@ function makeTwitterPanel($hasTwitter, $twitter) {
 function makeMainPanel($hasMain, $main, $mysqli) {
 	if ($hasMain) {
 		echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>main</small>";
+        echo "        <h3><small class='pull-left labelz'>main</small><br>";
         echo "        <a href='/characters.php?char=" . urlencode($main) . "'>$main</a></h3>";
         echo "        <div class='mainPic $main'></div>";
     echo "</div>";
@@ -158,7 +164,7 @@ function makeMainPanel($hasMain, $main, $mysqli) {
 function makeSponsorPanel($hasSponsor, $sponsor) {
     if ($hasSponsor) {
     echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>sponsor</small>";
+        echo "        <h3><small class='pull-left labelz'>sponsor</small><br>";
         echo "        $sponsor</h3>";
     echo "</div>";
   }
@@ -167,12 +173,21 @@ function makeSponsorPanel($hasSponsor, $sponsor) {
 function makeLocationPanel($hasLocation, $location) {
     if ($hasLocation) {
     echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>location</small>";
+        echo "        <h3><small class='pull-left labelz'>location</small><br>";
         echo "        $location</h3>";
     echo "</div>";
   }
 }
-
+function makeFriendcodePanel($hasFriendcode, $friendcode) {
+    if ($hasFriendcode) {
+      $parts = str_split($friendcode, 4);
+      $friendcode = $parts[0] .'-'. $parts[1] .'-'. $parts[2];
+      echo "<div class='well'>";
+          echo "        <h3><small class='pull-left labelz'>3DS friendcode</small><br>";
+          echo "        $friendcode</h3>";
+      echo "</div>";
+    }
+}
 
 
 function makePinnedPanel($hasVod, $vodType, $vod, $hasGifs, $usergifs) {

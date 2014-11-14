@@ -178,8 +178,10 @@ Questions?
                   <?php makeMainPanel($hasMain, $main, $mysqli); ?>
                   <?php makeSponsorPanel($hasSponsor, $sponsor); ?>
                   <?php makeLocationPanel($hasLocation, $location); ?>
+                  <?php makeFriendcodePanel($hasFriendcode, $friendcode); ?>
                   <?php makeTwitchPanel($hasTwitch, $twitch); ?>
                   <?php makeTwitterPanel($hasTwitter, $twitter); ?>
+
                 </div>
 
                 <div class="col-md-5">
