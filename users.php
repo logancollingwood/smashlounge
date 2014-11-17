@@ -128,7 +128,7 @@ Questions?
 
                   echo "<div class='col-md-2 vcenter'>";
                     if ($hasImage) {
-                      echo "<img id='profpic' border='0' src='".$profileImage."' width='60%' alt='$username' height='60%'>";
+                      echo "<img id='profpic' border='0' src='/img/profiles/".$profileImage."' width='60%' alt='$username' height='60%'>";
                     }
                   echo "</div>";
 

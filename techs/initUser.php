@@ -103,7 +103,7 @@ foreach ($result as $row) {
   if ($row['image'] != '') {
     $hasImage = true;
     $image = $row['image'];
-    $profileImage = "img/profiles/" . $image;
+    $profileImage = $image;
   }
   if ($row['facebook'] != '') {
     $hasFacebook = true;
@@ -180,14 +180,17 @@ function makeLocationPanel($hasLocation, $location) {
 }
 function makeFriendcodePanel($hasFriendcode, $friendcode) {
     if ($hasFriendcode) {
-      $parts = str_split($friendcode, 4);
-      $friendcode = $parts[0] .'-'. $parts[1] .'-'. $parts[2];
-      echo "<div class='well'>";
-          echo "        <h3><small class='pull-left labelz'>3DS friendcode</small><br>";
-          echo "        $friendcode</h3>";
-      echo "</div>";
+      //cancels us from trying to display empty friendcodes
+      if ($friendcode != 0) {
+        $parts = str_split($friendcode, 4);
+        $friendcode = $parts[0] .'-'. $parts[1] .'-'. $parts[2];
+        echo "<div class='well'>";
+            echo "        <h3><small class='pull-left labelz'>3DS friendcode</small><br>";
+            echo "        $friendcode</h3>";
+        echo "</div>";
+      }
     }
-}
+} 
 
 
 function makePinnedPanel($hasVod, $vodType, $vod, $hasGifs, $usergifs) {
