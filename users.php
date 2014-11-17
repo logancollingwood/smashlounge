@@ -151,7 +151,7 @@ Questions?
                     echo "</div>";
                     */
                     echo "<div class='row'>";
-                    echo "<a class='anchor' href='/usercard?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
+                    echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
                     echo "</div>";
                   echo "</div>";
 
