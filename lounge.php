@@ -2,6 +2,8 @@
   require("techs/init.php");
   require("techs/initScenes.php");
   $listcounter = 0;
+  $id = NULL;
+  $submit = NULL;
 ?>
 
 <!--
