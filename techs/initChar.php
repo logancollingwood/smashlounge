@@ -93,7 +93,7 @@ function makeTooltip($author) {
 
 function printCharData($moves, $author) {
    echo "<div class='tab-pane' id='data'>";
-    echo "<div class='row centered'>";
+    echo "<div class='row frameRow'>";
     echo "<div class='panel panel-default'>";
       echo "<div class='panel-body frameData'>";
 

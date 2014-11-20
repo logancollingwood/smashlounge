@@ -143,7 +143,9 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       }
       echo ">";
       echo "<span class='badge pull-left tier'>". $counter . "</span>";
-      echo "<a href=/characters/" . urlencode($chardata['name']) . ">";
+      echo "<a ";
+      if (strcasecmp($chardata["name"], $char) == 0) echo "class='activeNav' ";
+      echo "href=/characters/" . urlencode($chardata['name']) . ">";
       echo $chardata["name"];
 
       echo "</a>";
