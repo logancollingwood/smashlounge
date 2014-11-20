@@ -95,7 +95,7 @@ Questions?
 
                 <div class='tab-pane active' id='gif'>
                   <div class='col-md-9'>
-                    <hr>
+                    
                     <div class='well'>
                       <br>
                       <div class='submit-wrapper'>
@@ -180,7 +180,7 @@ Questions?
                 <div class='tab-pane' id='tournament'>
                   <div class='tab-pane' id='tournament'>
                   <div class='col-md-9'>
-                    <hr>
+                    
                     <div class='well SL'>
                       <br>
                       <div class='submit-wrapper'>
