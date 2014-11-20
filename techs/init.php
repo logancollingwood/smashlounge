@@ -127,7 +127,7 @@ function remove_http($url) {
 function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null', $target = '') {
   if ($key === 'char') {
     echo "<li>";
-    echo "<a id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
+    echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownChars'></span>";
     echo "&nbsp;Characters";
     echo "</a>";
@@ -154,7 +154,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "</div>";
   } else if ($key === 'tech') {
     echo "<li>";
-    echo "<a id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
+    echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownTechs'></span>";
     echo "&nbsp;Techniques";
     echo "</a>";
