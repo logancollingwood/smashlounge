@@ -1,4 +1,5 @@
 <?php
+  $scene = isset($_GET['scene'])       ? trim($_GET['scene'])       : "";
   require("techs/init.php");
   require("techs/initScenes.php");
   $listcounter = 0;

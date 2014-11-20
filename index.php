@@ -161,7 +161,7 @@ Questions?
                       echo $data['channel']['display_name'] . "<br>";
                       echo $data['viewers'] . "  <i class='fa fa-eye theme'></i>";
                       echo "</p>";
-                      echo "<hr>";
+                      if ($counter != $maxCount - 1) echo "<hr>";
                       $counter++;
                     }
                   ?>
@@ -169,7 +169,7 @@ Questions?
               </div>
 
               <?php
-              createBeg(.3);
+              createBeg(1);
               ?>
 
           </div>

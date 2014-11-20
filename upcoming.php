@@ -186,6 +186,15 @@ Questions?
                 <ul id="eventlist" class="nav nav-list"></ul>
               </div>
             </div>
+
+            <div class='panel panel-default'>
+              <div class='panel-header'>
+                <h4>Recent:</h4>
+              </div>
+              <div class='panel-body'>
+                <ul id="recentList" class="nav nav-list"></ul>
+              </div>
+            </div>
             <hr>
           </div>
 
@@ -212,8 +221,11 @@ Questions?
                   if(!events) {
                     return;
                   }
-                  var list = $('#eventlist');
-                  list.html('');
+                  var upcominglist = $('#eventlist');
+                  upcominglist.html('');
+
+                  var recentList = $('#recentList');
+                  recentList.html('');
 
                   $.each(events, function(key, val) {
                     var time = val.start;
@@ -223,7 +235,11 @@ Questions?
                     if (time >= todaysDate) {
                       $(document.createElement('li'))
                         .html('<a href="/upcoming?tournament=' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
-                        .appendTo(list);
+                        .appendTo(upcominglist);
+                    } else {
+                      $(document.createElement('li'))
+                        .html('<a href="/upcoming?tournament=' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                        .appendTo(recentList);
                     }
                   });
                 },
