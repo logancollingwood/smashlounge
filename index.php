@@ -89,7 +89,7 @@ Questions?
 
             <h1 class='lead'>smash lounge</h1>
             <hr style='width:50%;'>
-            <p class="fifty">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br>
+            <p class="fifty"><small>A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</small></br>
             <?php
               if ($displayChar) {
                 echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=characters.php?char=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";

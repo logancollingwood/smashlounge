@@ -80,7 +80,7 @@ Questions?
  
                 
                   <?php if (!$id) ?>
-                  <h1 class='lead'>Locate a group near you! <h1/><p class='fifty'>(the locations are merely for reference and do not represent actual group locations)</p>
+                  <h1 class='lead'>Locate a group near you! <h1/><p class='fifty'><small>(the locations are merely for reference and do not represent actual group locations)</small></p>
 
             </div>
             <?php if (!$id) { ?>
