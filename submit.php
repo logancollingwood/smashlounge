@@ -75,6 +75,7 @@ Questions?
           <div class="jumbotron banner">
             <div class='row'>
               <h1 class='lead'>Submit Data</h1>
+              <p class="fifty"><small>all submissions are reviewed by community moderators</small></p>
             </div>
           </div>
 
