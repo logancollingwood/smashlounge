@@ -100,8 +100,9 @@ Questions?
               echo "</p>";
             ?>
           </div>
+          
           <div class='mobilenav'>
-            <hr>
+            <div class='well'>
             <ul class='nav'>
               <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
               <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;Users</a></li>
@@ -110,13 +111,12 @@ Questions?
               <li class='home'><a href='/attending.php'><span class='glyphicon glyphicon-list pull-left'></span>&nbsp;Attending</a></li>
               <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>
               <?php
-                makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
-                makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+                makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '', 'Mobile');
+                makeCollapseNav('char', $dataChar, 'out', $char, $tech, '', 'Mobile');
               ?>
             </ul>
-            <hr>
           </div>
-
+          </div>
           <div class="row">
             <div class="col-md-8 col-sm-8">
 

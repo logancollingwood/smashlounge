@@ -122,7 +122,7 @@
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="email">email</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                     <input id="email" name="email" type="email" placeholder="support@smashlounge.com" class="form-control input-md" required>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="location">password</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                     <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required>
                                     </div>
                                 </div>

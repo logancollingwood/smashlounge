@@ -153,14 +153,14 @@
 
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="email">username</label>
-                                    <div class="col-md-4">
-                                    <input type="text" name="username" class="form-control input-md" placeholder="username" required autofocus>
+                                    <div class="col-md-6">
+                                    <input type="text" name="username" class="form-control input-md" placeholder="" required autofocus>
                                 </div>
                                 </div>
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="email">email</label>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                     <input id="email" name="email" type="email" placeholder="support@smashlounge.com" class="form-control input-md" required>
                                     </div>
                                 </div>
@@ -168,8 +168,8 @@
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="location">password</label>
-                                    <div class="col-md-4">
-                                    <input id="password" name="password" type="password" placeholder="*(#@!())(*" class="form-control input-md" required>
+                                    <div class="col-md-6">
+                                    <input id="password" name="password" type="password" placeholder="****" class="form-control input-md" required>
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -177,6 +177,7 @@
                                         <button class="btn btn-lg btn-primary SL bttn" type="submit">Register</button>
                                     </div>
                                 </div>
+                                <br />
                             </form>
 
                             <?php 

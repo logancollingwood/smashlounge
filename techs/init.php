@@ -121,16 +121,18 @@ function remove_http($url) {
    return $url;
 }
 
+//span style
+//margin-left:10%;margin-top:4%
 
-function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null') {
+function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null', $target = '') {
   if ($key === 'char') {
     echo "<li>";
-    echo "<a id='toggler' href='#' data-toggle='collapse' class='active' data-target='#chars'>";
+    echo "<a id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownChars'></span>";
     echo "&nbsp;Characters";
     echo "</a>";
     echo "<li>";
-    echo "<div id='chars' class='collapse " . $collapsed . "'>";
+    echo "<div id='chars" . $target . "' class='collapse " . $collapsed . "'>";
     echo "<ul class='nav nav-list'>";
     $counter = 0;
     foreach ($data as $chardata) {
@@ -140,7 +142,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
         echo "class='active'";
       }
       echo ">";
-      echo "<span style='margin-left:10%;margin-top:4%' class='badge pull-left'>". $counter . "</span>";
+      echo "<span class='badge pull-left tier'>". $counter . "</span>";
       echo "<a href=/characters/" . urlencode($chardata['name']) . ">";
       echo $chardata["name"];
 
@@ -152,12 +154,12 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "</div>";
   } else if ($key === 'tech') {
     echo "<li>";
-    echo "<a id='toggler' href='#' data-toggle='collapse' class='active' data-target='#techs'>";
+    echo "<a id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownTechs'></span>";
     echo "&nbsp;Techniques";
     echo "</a>";
     echo "<li>";
-    echo "<div id='techs' class='collapse " . $collapsed . "'>";
+    echo "<div id='techs" . $target . "' class='collapse " . $collapsed . "'>";
     echo "<ul class='nav nav-list'>";
     $counter = 0;
     foreach ($data as $rec) {
