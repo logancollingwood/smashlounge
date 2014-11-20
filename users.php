@@ -112,13 +112,7 @@ Questions?
 
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <?php if ($loggedIn && $user['username'] == $username) {
-                  echo "<div class='alert alert-info alert-dismissible SL' role='alert'>
-                          <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
-                          <a href='/update.php'>Modify your profile information! </a>
-                        </div>";
-                }
-          ?>
+      
           <div class="jumbotron banner">
             <?php 
 
@@ -138,11 +132,11 @@ Questions?
                     }
                   echo "</div>";
 
-                  echo "<div class='col-md-7 vcenter'>";
+                  echo "<div class='col-md-6 vcenter'>";
                     echo "<h1 class='lead' style='text-align:left;'>$username</h1> ";
                   echo "</div>";
 
-                  echo "<div class='col-md-1 vcenter'>";
+                  echo "<div class='col-md-2 vcenter'>";
                     /*
                     echo "<div class='row'>";
                     if ($hasFacebook) {
@@ -151,7 +145,12 @@ Questions?
                     echo "</div>";
                     */
                     echo "<div class='row'>";
-                    echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
+                      if ($loggedIn && $user['username'] == $username) {
+                        echo '<a href="/update.php"><button type="button" class="btn btn-default" aria-label="Left Align">
+                          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
+                        </button></a>';
+                      }
+                    //echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
                     echo "</div>";
                   echo "</div>";
 

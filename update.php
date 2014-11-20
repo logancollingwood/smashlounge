@@ -63,128 +63,6 @@
   }
 
 
-
-  if(!empty($_POST)){
-
-      //updateProfile($userID, $_POST);
-
-      print_r($_POST);
-
-      $vod = '';
-      $main = $_POST['main'];
-      $location = $_POST['location'];
-      $vodURL = $_POST['vod'];
-      $facebook = $_POST['facebook'];
-      $latitude = $_POST['lat'];
-      $longitude = $_POST['long'];
-      echo $latitude;
-      echo $longitude;
-
-      preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
-      
-      //echo($matches[1]);
-
-      if (empty($matches) && $_POST['vod'] != '') {
-        header("Location: /update?str=url");
-        die("Redirecting to update.php");
-      }
-      $twitter = $_POST['twitter'];
-      $twitchId = $_POST['twitch'];
-
-
-      $params = array();
-      $params['main'] = $main;
-      $params['location'] = $location;
-      //$params['vod'] = $matches[1];
-      $params['twitter'] = $twitter;
-      $params['twitch'] = $twitchId;
-      $params['facebook'] = $facebook;
-      $params['latitude'] = $latitude;
-      $params['longitude'] = $longitude;
-
-      if ($matches[1] != '') {
-        $params['vod'] = $matches[1];
-      }
-
-      $hasGfy = false;
-
-      if (isset($_POST['gfycat']) && $_POST['gfycat'] != '' ) {
-        $hasGfy = true;
-      }
-      if ($hasGfy) {
-        $gfyURL = remove_http($_POST['gfycat']);
-        $gfyID = grabGfyName($gfyURL);
-        if ($gfyID === '') {
-          header("Location: /update?str=url");
-          die("Redirecting to update.php");
-        }
-      }
-
-      if (preg_match("/\\s/", $params['twitter'])) {
-        header("Location: update.php?str=spaces");
-        die('redirecting');
-      }
-
-      if (preg_match("/\\s/", $params['twitch'])) {
-        header("Location: update.php?str=spaces");
-        die('redirecting');
-      }
-
-
-
-      if ($hasInfo) {
-        if (!empty($params)) {
-          $setString = "SET main ='" . $main . "'";
-        }
-
-        foreach ($params as $key => $item) {
-          if ($key != 'main' || $item != '') {
-            $setString .= "," . $key . "='" . $item . "'";
-          }
-        }
-
-
-        $query = "UPDATE userinfo " . $setString . "WHERE userid= " . $userID;
-
-        if (!$result = $mysqli->query($query)) {
-          die('Invalid query: ' . $mysqli->error);
-        } else {
-          header("Location: /update.php?str=success");
-        }
-
-      } else {
-
-        $query = "INSERT INTO userinfo (main, userid, facebook, location, twitch, vod, twitter) VALUES (:main, :userID, :facebook, :location, :twitch, :vod, :twitter);";
-        $query_params = array(
-          ':main' => $main,
-          ':userID' => $userID,
-          ':facebook' => $facebook,
-          ':location' => $location,
-          ':twitch' => $twitchId,
-          ':vod' => $vod,
-          ':twitter' => $twitter
-        );
-
-        try{
-          $stmt = $db->prepare($query);
-          $result = $stmt->execute($query_params);
-        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
-
-      }
-          $query = "INSERT INTO usergif (userid, url) VALUES (:userID, :id);";
-          $query_params = array(
-            ':userID' => $userID,
-            ':id' => $gfyID
-          );
-          try{
-            $stmt = $db->prepare($query);
-            $result = $stmt->execute($query_params);
-          } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
-
-
-      header("Location: /update.php?str=success");
-    }
-
     //print_r($userFields);
 ?>
 <!--
@@ -322,7 +200,7 @@ Questions?
                   <div class="form-group">
                     <label class="col-md-4 control-label" for="vod">VOD</label>
                     <div class="col-md-6">
-                    <input id="vod" name="vod" type="text" placeholder="https://www.youtube.com/watch?v=UbfInBIJitM" 
+                    <input id="vod" name="vod" type="text" placeholder="https://www.youtube.com/watch?v=" 
                     <?php
                       if ($hasInfo) {
                         if ($userFields['vod'] != '') {
@@ -401,7 +279,8 @@ Questions?
                     <input id="friendcode" name="friendcode" type="text" placeholder="friendcode" class="form-control input-md" maxlength="14"
                     <?php
                       if ($hasInfo) {
-                        if ($userFields['friendcode'] != '') {
+                        echo $userFields['friendcode'];
+                        if ($userFields['friendcode'] != 0) {
                           $parts = str_split($userFields['friendcode'], 4);
                           $friendcode = $parts[0] .'-'. $parts[1] .'-'. $parts[2];
                           echo " value='" . $friendcode . "'";
@@ -412,17 +291,19 @@ Questions?
                     </div>
                   </div>
 
+                  <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                    <button class="btn btn-lg btn-primary btn-block bttn" type="submit" id="updateInfo" style="width: 100%;"><span id="loader" class="glyphicon glyphicon-refresh"></span> Save</button>
+                  </div>
                   
                   <input id='userid' name='userid' value='<?php echo $userID; ?>' hidden='true'>
                   </div>
                   </div>
-                  <div class='panel panel-footer'>
-                    <button class="btn btn-lg btn-primary btn-block bttn" type="submit" id="updateInfo">Save</button>
-                  </div>
 
                   
 
                   </div>
+                </div>
               </form>
             </div>
             <div class='col-md-6'>
@@ -630,7 +511,7 @@ Questions?
           });
 
           $("#updateInfo").on("click", function(event) {
-            console.log('firing');
+            $("#loader").addClass(" glyphicon-refresh-animate");
             // Prevent default behavior
             event.preventDefault();
             var data = $(".submit-wrapper form").serialize();
@@ -647,7 +528,7 @@ Questions?
               window.location.replace("/update.php?str=error");
             })
             .always(function() {
-              // Handler for all gif submissions
+              $("#loader").removeClass(" glyphicon-refresh-animate");
             });
           });
           

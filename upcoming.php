@@ -169,7 +169,7 @@ Questions?
             <?php
               if ($hasTournament) {
                 makeTwitchPanel($hasTwitch, $twitch);
-
+                makeVods($vods);
                 if ($first || $second || $third) {
                   makeStandings($first, $second, $third);
                 }
@@ -216,11 +216,15 @@ Questions?
                   list.html('');
 
                   $.each(events, function(key, val) {
-                    var time = new Date(val.start);
-                    
-                    $(document.createElement('li'))
-                      .html('<a href="/tournament/' + encodeURI(val.title) + '">' + val.title + '</a>')
-                      .appendTo(list);
+                    var time = val.start;
+                    var startDate = new Date(time);
+                    var todaysDate = new Date();
+ 
+                    if (time >= todaysDate) {
+                      $(document.createElement('li'))
+                        .html('<a href="/upcoming?tournament=' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                        .appendTo(list);
+                    }
                   });
                 },
                 onAfterViewLoad: function(view) {

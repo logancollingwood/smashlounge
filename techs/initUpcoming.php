@@ -21,6 +21,7 @@
 			$third = $eventInfoz['third'];
 			$attending = $eventInfoz['attending'];
 			$host = $eventInfoz['host'];
+			$vods = $eventInfoz['vods'];
 			$bracket = $eventInfoz['bracket'];
 			$startDate = $eventInfoz['start'];
 			$endDate = $eventInfoz['end'];
@@ -75,6 +76,13 @@
         echo "		<iframe src='" . $link . "/module?multiplier=0.9theme=2651&show_final_results=1' width='100%'' height='500' frameborder='0' scrolling='auto' allowtransparency='true'></iframe>";
         echo"   </div>";
         echo "</div>";
+    }
+
+    function makeVods($vods) {
+    	echo "<div class='well'>";
+	  		echo "        <h3><small class='pull-left labelz'>vods</small>";
+	        echo "        <a href='https://vods.co/melee?event=" . $vods . "'>link</a></h3>";
+	    echo "</div>";
     }
 
     function makeDiscussion() {

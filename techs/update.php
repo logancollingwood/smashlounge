@@ -66,11 +66,18 @@
       $params['facebook'] = $facebook;
       $params['latitude'] = $latitude;
       $params['longitude'] = $longitude;
-      if (strlen($friendcode) > 12 || strlen($friendcode) < 12) {
-        header("Location: /update?str=friendcode");
-        die("Redirecting to update.php");
+      if ($friendcode != '') {
+        //$friendcode = str_replace('-', '', $friendcode);
+        if (strlen($friendcode) != 12) {
+          header("Location: /update.php?str=friendcode");
+          die("Redirecting to update.php");
+        } else {
+          $params['friendcode'] = $friendcode;
+        }
+      } else {
+        $params['friendcode'] = 0;
       }
-      $params['friendcode'] = $friendcode;
+     
 
       if ($matches[1] != '') {
         $params['vod'] = $matches[1];

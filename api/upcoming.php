@@ -21,8 +21,8 @@ foreach($db->query($sql) as $row) {
         'title' => $row['title'],
         'url' => "http://www.smashlounge.com/upcoming?tournament=" . urlencode($row['title']),
         'class' => $row['class'],
-        'start' => strtotime($row['start']) . '000',
-        'end' => strtotime($row['end']) .'000'
+        'start' => strtotime($row['start'])*1000,
+        'end' => strtotime($row['end'])*1000
     );
 }
 
