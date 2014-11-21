@@ -234,11 +234,11 @@ Questions?
  
                     if (time >= todaysDate) {
                       $(document.createElement('li'))
-                        .html('<a href="/upcoming?tournament=' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                        .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
                         .appendTo(upcominglist);
                     } else {
                       $(document.createElement('li'))
-                        .html('<a href="/upcoming?tournament=' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                        .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
                         .appendTo(recentList);
                     }
                   });

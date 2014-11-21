@@ -170,7 +170,9 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       if (strcasecmp($rec, $tech) == 0) {
         echo "class='active'";
       }
-      echo "><a href=/techniques/" . urlencode($rec) . ">";
+      echo "><a ";
+      if (strcasecmp($rec, $tech) == 0) echo "class='activeNav' ";
+      echo "href=/techniques/" . urlencode($rec) . ">";
       echo $rec . "</a></li>";
       echo "\n";
     }
