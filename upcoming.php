@@ -221,8 +221,8 @@ Questions?
                   if(!events) {
                     return;
                   }
-                  var upcominglist = $('#eventlist');
-                  upcominglist.html('');
+                  var upcomingList = $('#eventlist');
+                  upcomingList.html('');
 
                   var recentList = $('#recentList');
                   recentList.html('');
@@ -231,15 +231,22 @@ Questions?
                     var time = val.start;
                     var startDate = new Date(time);
                     var todaysDate = new Date();
- 
+                    var upcomingCounter = 0;
+                    var recentCounter = 0;
                     if (time >= todaysDate) {
-                      $(document.createElement('li'))
-                        .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
-                        .appendTo(upcominglist);
+                      if (!(upcomingCounter >= 5)) {
+                        $(document.createElement('li'))
+                          .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                          .appendTo(upcomingList);
+                        upcomingCounter++;
+                      }
                     } else {
-                      $(document.createElement('li'))
-                        .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
-                        .appendTo(recentList);
+                      if (!(recentCounter >= 5)) {
+                        $(document.createElement('li'))
+                          .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                          .appendTo(recentList);
+                        recentCounter++;
+                      }
                     }
                   });
                 },

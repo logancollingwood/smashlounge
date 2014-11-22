@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 11, 2014 at 01:42 AM
+-- Generation Time: Nov 22, 2014 at 02:09 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -1319,7 +1319,7 @@ CREATE TABLE `submissions` (
   `description` varchar(300) NOT NULL,
   `pageid` int(11) NOT NULL,
   `dataid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `submissions`
@@ -1339,7 +1339,11 @@ INSERT INTO `submissions` (`id`, `url`, `source`, `description`, `pageid`, `data
 (36, 'DimIckyAztecant', 'dsadsa', 'dsadsa', 0, 1),
 (37, 'SnarlingHideousGreatwhiteshark', 'dsadsa', 'dash dance 11', 0, 11),
 (38, 'SkinnyCorruptHake', 'dsad', 'dsadsa', 0, 1),
-(39, 'dimmicky', 'dsa', 'dsa', 0, 1);
+(39, 'dimmicky', 'dsa', 'dsa', 0, 1),
+(40, 'SnarlingHideousGreatwhiteshark', 'sdad', 'sdas', 1, 6),
+(41, 'SnarlingHideousGreatwhiteshark', 'sdad', 'sdas', 1, 6),
+(42, 'SnarlingHideousGreatwhiteshark', 'sdad', 'sdas', 1, 6),
+(43, 'SnarlingHideousGreatwhiteshark', 'sdad', 'sdas', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -1548,14 +1552,21 @@ CREATE TABLE `upcoming` (
   `attending` int(11) NOT NULL,
   `location` varchar(90) NOT NULL,
   `host` varchar(90) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `upcoming`
 --
 
 INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`) VALUES
-(1, 'Do You Fox Wit it', '722984804448159', 'http://Showdownesports.challonge.com/SFGameNight13/', 'event-success', '2014-11-15', '2014-11-16', '', '', '', 'showdownsmash', 0, '', 'NorCal');
+(1, 'Do You Fox Wit it', '722984804448159', 'http://Showdownesports.challonge.com/SFGameNight13/', 'event-success', '2014-11-15', '2014-11-16', '', '', '', 'showdownsmash', 0, '', 'NorCal'),
+(2, 'adsad', '', '', 'event-info', '2014-11-13', '2014-11-14', '', '', '', '', 0, '', ''),
+(3, 'sadsasdeq', '', '', 'event-info', '2014-11-03', '2014-11-05', '', '', '', '', 0, '', ''),
+(4, '21321321', '', '', 'event-info', '2014-11-02', '2014-11-08', '', '', '', '', 0, '', ''),
+(5, 'sadsa', '', '', 'event-info', '2014-11-06', '2014-11-07', '', '', '', '', 0, '', ''),
+(6, '21321', '', '', 'event-info', '2014-11-01', '2014-11-02', '', '', '', '', 0, '', ''),
+(7, 'six', '', '', 'event-info', '2014-11-03', '2014-11-04', '', '', '', '', 0, '', ''),
+(8, 'sevenupcoming', '', '', 'event-info', '2014-11-23', '2014-11-24', '', '', '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -1596,16 +1607,17 @@ CREATE TABLE `userinfo` (
   `main` int(11) NOT NULL,
   `sponsor` varchar(90) NOT NULL,
   `latitude` float NOT NULL,
-  `longitude` int(11) NOT NULL
+  `longitude` int(11) NOT NULL,
+  `friendcode` varchar(12) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userinfo`
 --
 
-INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid`, `vod`, `twitter`, `main`, `sponsor`, `latitude`, `longitude`) VALUES
-(9, 'LoganCollingwood.jpg', 'logan6694', 'Santa Cruz', 'xuaqua', 2, 'xvI-UvUo-h8', 'logan6694', 21, 'Smash Lounge', 0, 0),
-(10, '', 'MIOMPewPewU', 'Bay Area', 'pewpewu', 3, '', 'miom_pewpewu', 14, 'Melee it On Me', 0, 0);
+INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid`, `vod`, `twitter`, `main`, `sponsor`, `latitude`, `longitude`, `friendcode`) VALUES
+(9, 'LoganCollingwood.jpg', 'logan6694', 'Santa Cruz', 'xuaqua', 2, 'xvI-UvUo-h8', 'logan6694', 21, 'Smash Lounge', 0, 0, '123456789123'),
+(10, '', 'MIOMPewPewU', 'Bay Area', 'pewpewu', 3, '', 'miom_pewpewu', 14, 'Melee it On Me', 0, 0, '123456789123');
 
 -- --------------------------------------------------------
 
@@ -1636,7 +1648,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
-(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-11-05 02:56:19', '$2y$10$YJ./Q82ZC1bB3DboZwqvz.qz2gyLAeJzfMb.tgvVmMlv1Ok6R.YR6', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-11-05 10:56:19'),
+(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-11-20 23:25:35', '$2y$10$o4GCDy1KszUxEprYgEwp4uL4kWNaAYRyqgfM.ZK/jaQchOfGPauGu', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-11-21 07:25:35'),
 (3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05'),
 (4, 'austenturmel@gmail.com', 'SmashingTurnips', '$2y$10$BsKEH51LFmzs2aM0HAGnt.cO34G5QQeNdQfDzIIr01/2dzTXG3Azi', NULL, 1, NULL, NULL, '2014-10-10 13:19:36', '$2y$10$DEztY.Nii3/GrPPEst7qQO.jqP8Gmk9j.C24YkaqG5ktgZqLsiAMi', NULL, NULL, NULL, '2014-10-10 20:19:23', '2014-10-10 20:19:36');
 
@@ -1807,7 +1819,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=714;
 -- AUTO_INCREMENT for table `submissions`
 --
 ALTER TABLE `submissions`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `submissionsTournament`
 --
@@ -1837,7 +1849,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `upcoming`
 --
 ALTER TABLE `upcoming`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `usergif`
 --

@@ -79,10 +79,12 @@
     }
 
     function makeVods($vods) {
-    	echo "<div class='well'>";
-	  		echo "        <h3><small class='pull-left labelz'>vods</small>";
-	        echo "        <a href='https://vods.co/melee?event=" . $vods . "'>link</a></h3>";
-	    echo "</div>";
+    	if ($vods != '') {
+	    	echo "<div class='well'>";
+		  		echo "        <h3><small class='pull-left labelz'>vods</small>";
+		        echo "        <a href='https://vods.co/melee?event=" . $vods . "'>link</a></h3>";
+		    echo "</div>";
+		}
     }
 
     function makeDiscussion() {
