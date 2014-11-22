@@ -35,8 +35,8 @@
 
   <?php createNavBar(); ?>
 
-    <div class="container"> 
-      <div class="row">
+    <div class="container-fluid"> 
+      
 
         <div class="col-sm-3 col-md-2 sidebar">
           <?php makeSidebar($loggedIn, 'update'); ?>
@@ -57,11 +57,13 @@
             <?php require_once ('techs/initAdmin.php'); ?>
 
             <!-- Logged In -->
-            <div class="management">
-              <br>
-              <header>
-                <h1>Approve / Deny gifs</h1>
-              </header>
+            
+              <div class="jumbotron banner">
+                <div class='row'>
+                  <h1 class='lead'>Approve/Deny</h1>
+                  <p class="fifty"><small>thanks for helping out</small></p>
+                </div>
+              </div>
 
               <?php if (!$result = $mysqli->query($query)): ?>
                 <div class="adminError">
@@ -73,6 +75,7 @@
                   <tr>
                     <th>Gfycat URL</th>
                     <th>content</th>
+                    <th>category</th>
                     <th>Original Source</th>
                     <th>Description</th>
                     <th>Approve</th>
@@ -88,6 +91,19 @@
                       <td style='width: 70%;'>
                         <img class='gfyitem' data-expand=true data-id="<?php echo trim($row['url']); ?>"/>
                       </td>
+                      <td>
+                          <?php 
+                            if ($row['pageid'] == 0) {
+                              echo "<p>Technique Gif</p>";
+                              echo "<p>" . getTechFromID($mysqli, $row['dataid']) . "</p>";
+                            }
+                            else {
+                              echo "<p>Character Gif</p>";
+                              echo "<p>" . getCharFromID($mysqli, $row['dataid']) . "</p>";
+                            }
+                          ?>
+                          <?php echo $row['data-id']; ?>
+                      </td>
                       <td><?php echo $row['source']; ?></td>
                       <td><?php echo $row['description']; ?></td>
                       <td><a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a></td>
@@ -98,8 +114,8 @@
               <?php endif; ?>
             </div>
           <?php endif; ?>
-        </div>
-      </div>
+
+      
     </div> <!-- /container -->
 
 

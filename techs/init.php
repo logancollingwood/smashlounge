@@ -474,6 +474,21 @@ function getCharFromID($mysqli, $id) {
   return $main;
 }
 
+function getTechFromID($mysqli, $id) {
+  if ($id == '0') {
+    return "NO TECH";
+  }
+  $query = "SELECT * FROM techs WHERE id='". $id . "'";
+
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $tech = $row['tech'];
+  }
+  return $tech;
+}
+
 function getIDFromChar($mysqli, $name) {
   if ($name == '') {
     return "NO MAIN";
