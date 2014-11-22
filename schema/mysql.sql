@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 22, 2014 at 02:09 AM
+-- Generation Time: Nov 22, 2014 at 02:11 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `chargif`
 --
 
+DROP TABLE IF EXISTS `chargif`;
 CREATE TABLE `chargif` (
 `id` int(1) NOT NULL,
   `charid` int(2) DEFAULT NULL,
@@ -336,6 +337,7 @@ INSERT INTO `chargif` (`id`, `charid`, `url`, `description`, `source`, `pageid`)
 -- Table structure for table `charinfo`
 --
 
+DROP TABLE IF EXISTS `charinfo`;
 CREATE TABLE `charinfo` (
 `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
@@ -383,6 +385,7 @@ INSERT INTO `charinfo` (`id`, `name`, `tierdata`, `weight`, `fallspeed`, `guide`
 -- Table structure for table `chartech`
 --
 
+DROP TABLE IF EXISTS `chartech`;
 CREATE TABLE `chartech` (
 `id` int(11) NOT NULL,
   `charid` int(11) NOT NULL,
@@ -414,6 +417,7 @@ INSERT INTO `chartech` (`id`, `charid`, `techid`) VALUES
 -- Table structure for table `groups`
 --
 
+DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -428,6 +432,7 @@ CREATE TABLE `groups` (
 -- Table structure for table `locals`
 --
 
+DROP TABLE IF EXISTS `locals`;
 CREATE TABLE `locals` (
 `id` int(1) NOT NULL,
   `region` int(1) DEFAULT NULL,
@@ -612,6 +617,7 @@ INSERT INTO `locals` (`id`, `region`, `profileid`, `name`, `latitude`, `longitud
 -- Table structure for table `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
@@ -623,6 +629,7 @@ CREATE TABLE `migrations` (
 -- Table structure for table `moves`
 --
 
+DROP TABLE IF EXISTS `moves`;
 CREATE TABLE `moves` (
 `id` int(11) NOT NULL,
   `name` varchar(35) NOT NULL,
@@ -648,6 +655,7 @@ INSERT INTO `moves` (`id`, `name`, `description`) VALUES
 -- Table structure for table `movesgifs`
 --
 
+DROP TABLE IF EXISTS `movesgifs`;
 CREATE TABLE `movesgifs` (
 `id` int(11) NOT NULL,
   `charid` int(11) NOT NULL,
@@ -1312,6 +1320,7 @@ INSERT INTO `movesgifs` (`id`, `charid`, `url`, `description`, `source`, `dataid
 -- Table structure for table `submissions`
 --
 
+DROP TABLE IF EXISTS `submissions`;
 CREATE TABLE `submissions` (
 `id` int(11) NOT NULL,
   `url` varchar(90) NOT NULL,
@@ -1351,6 +1360,7 @@ INSERT INTO `submissions` (`id`, `url`, `source`, `description`, `pageid`, `data
 -- Table structure for table `submissionsTournament`
 --
 
+DROP TABLE IF EXISTS `submissionsTournament`;
 CREATE TABLE `submissionsTournament` (
 `id` int(11) NOT NULL,
   `title` varchar(90) NOT NULL,
@@ -1373,6 +1383,7 @@ CREATE TABLE `submissionsTournament` (
 -- Table structure for table `techgif`
 --
 
+DROP TABLE IF EXISTS `techgif`;
 CREATE TABLE `techgif` (
 `id` int(11) NOT NULL,
   `techID` int(11) NOT NULL,
@@ -1426,6 +1437,7 @@ INSERT INTO `techgif` (`id`, `techID`, `url`, `description`, `source`, `frameDat
 -- Table structure for table `techinfo`
 --
 
+DROP TABLE IF EXISTS `techinfo`;
 CREATE TABLE `techinfo` (
 `id` int(11) NOT NULL,
   `techID` int(11) NOT NULL,
@@ -1470,6 +1482,7 @@ INSERT INTO `techinfo` (`id`, `techID`, `description`, `smashwiki`, `inputs`) VA
 -- Table structure for table `techs`
 --
 
+DROP TABLE IF EXISTS `techs`;
 CREATE TABLE `techs` (
 `id` int(11) NOT NULL,
   `tech` varchar(32) NOT NULL
@@ -1510,6 +1523,7 @@ INSERT INTO `techs` (`id`, `tech`) VALUES
 -- Table structure for table `throttle`
 --
 
+DROP TABLE IF EXISTS `throttle`;
 CREATE TABLE `throttle` (
 `id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
@@ -1537,6 +1551,7 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 -- Table structure for table `upcoming`
 --
 
+DROP TABLE IF EXISTS `upcoming`;
 CREATE TABLE `upcoming` (
 `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -1574,6 +1589,7 @@ INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `en
 -- Table structure for table `usergif`
 --
 
+DROP TABLE IF EXISTS `usergif`;
 CREATE TABLE `usergif` (
 `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
@@ -1595,6 +1611,7 @@ INSERT INTO `usergif` (`id`, `userid`, `url`, `description`) VALUES
 -- Table structure for table `userinfo`
 --
 
+DROP TABLE IF EXISTS `userinfo`;
 CREATE TABLE `userinfo` (
 `id` int(11) NOT NULL,
   `image` varchar(130) NOT NULL,
@@ -1625,6 +1642,7 @@ INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
 `id` int(10) unsigned NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1658,6 +1676,7 @@ INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `acti
 -- Table structure for table `users_groups`
 --
 
+DROP TABLE IF EXISTS `users_groups`;
 CREATE TABLE `users_groups` (
 `id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
