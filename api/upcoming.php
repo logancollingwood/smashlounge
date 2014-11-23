@@ -32,10 +32,10 @@ foreach($db->query($sql) as $row) {
     $out[] = array(
         'id' => $row['id'],
         'title' => $row['title'],
-        'url' => "http://www.smashlounge.com/upcoming?tournament=" . urlencode($row['title']),
+        'url' => "/tournament/" . urlencode($row['title']),
         'class' => $class,
-        'start' => strtotime($row['start'])*1000,
-        'end' => strtotime($row['end'])*1000
+        'start' => strtotime($row['start'] . ' + 1 day')*1000,
+        'end' => strtotime($row['end'] . ' + 1 day')*1000
     );
 }
 

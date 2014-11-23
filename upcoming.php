@@ -227,12 +227,12 @@ Questions?
                   var recentList = $('#recentList');
                   recentList.html('');
 
+                    var upcomingCounter = 0;
+                    var recentCounter = 0;
                   $.each(events, function(key, val) {
                     var time = val.start;
                     var startDate = new Date(time);
                     var todaysDate = new Date();
-                    var upcomingCounter = 0;
-                    var recentCounter = 0;
                     if (time >= todaysDate) {
                       if (!(upcomingCounter >= 5)) {
                         $(document.createElement('li'))

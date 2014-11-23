@@ -3,6 +3,7 @@
 	$hasTwitch = false;
 	$hasTournament = false;
 	$eventInfoz = array();
+	$twitch = '';
 	if ($hasGet) {
 		
 		$query = "SELECT * FROM " . $upcomingTable . " WHERE title='" . $tournament . "'";
