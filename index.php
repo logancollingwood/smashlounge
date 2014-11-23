@@ -123,6 +123,17 @@ Questions?
                 echo "</div>";
               ?>
 
+            </div>
+
+            <div class='col-md-4 col-sm-4'>
+
+              <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-widget-id="536330140297347072">Tweets by @thesmashlounge</a>
+             
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='col-md-8'>
               <div class='panel panel-default'>
                 <div class='panel-heading'>Introducing..</div>
                 <div class='panel-body vimeo'>
@@ -132,14 +143,9 @@ Questions?
                 <h3><small>from <a href="http://vimeo.com/bobackv">boback</a></small></h3>
                 </div>
               </div>
-
             </div>
 
-            <div class='col-md-4 col-sm-4'>
-
-              <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-widget-id="536330140297347072">Tweets by @thesmashlounge</a>
-             
-                
+            <div class='col-md-4'>
               <div class='panel panel-default'>
                 <div class='panel-heading'> Live SSBM Streams </div>
                 <div class='panel-body randgifz'>
@@ -165,7 +171,7 @@ Questions?
               <?php
                 createBeg(1);
               ?>
-
+            </div>
           </div>
 
 
