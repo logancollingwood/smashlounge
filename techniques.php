@@ -211,12 +211,4 @@ Questions?
         } ?>
       });
     </script>
-
-    <script>
-      $(document).ready(function(){
-        $("#canttouchthis").sticky({topSpacing:70});
-
-
-      });
-    </script>
 </body>

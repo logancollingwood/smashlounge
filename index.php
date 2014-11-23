@@ -83,8 +83,6 @@ Questions?
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-
-
           <div class="jumbotron banner">
 
             <h1 class='lead'>smash lounge</h1>
@@ -120,16 +118,9 @@ Questions?
           <div class="row">
             <div class="col-md-8 col-sm-8">
 
-            <?php
-
-              $string_reddit = file_get_contents("http://www.reddit.com/r/smashgifs/hot.json");
-              $json = json_decode($string_reddit, true);
-              $children = $json['data']['children'];
-              $randGif = rand(0, count($children)-1);
-
+              <?php
                 echo "<div id='randomSlot' class='panel panel-default gifTainer'>";
                 echo "</div>";
-
               ?>
 
               <div class='panel panel-default'>
@@ -169,7 +160,7 @@ Questions?
               </div>
 
               <?php
-              createBeg(1);
+                createBeg(1);
               ?>
 
           </div>

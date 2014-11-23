@@ -4,16 +4,9 @@
   require_once("techs/init.php");
   require_once("techs/twitch.php");
   require_once("techs/initUser.php");
-  require_once("techs/sentry.php");
 
     $username;
     $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
-    $loggedIn = false;
-    if (Sentry::check())
-    {
-        $loggedIn = true;
-        $user = Sentry::getUser();
-    }
 
 ?>
 <!--
@@ -79,22 +72,7 @@ Questions?
   </head>
 
   <body>
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '675204735898402',
-          xfbml      : true,
-          version    : 'v2.0'
-        });
-      };
-      (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
+
 
     <?php
       createNavBar();
@@ -150,6 +128,14 @@ Questions?
                           <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
                         </button></a>';
                       }
+                      if ($loggedIn && !in_array($userid, $friends) && $user['username'] != $username) {
+                        // add as friend
+                       echo " <button type='button' id='addfriend' class='btn btn-default' aria-label='Left Align'>
+                                <i class='fa fa-plus'></i> Add as Friend
+                              </button>";
+                      } else {
+                        // unfriend
+                      }
                     //echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
                     echo "</div>";
                   echo "</div>";
@@ -180,15 +166,12 @@ Questions?
                   <?php makeFriendcodePanel($hasFriendcode, $friendcode); ?>
                   <?php makeTwitchPanel($hasTwitch, $twitch); ?>
                   <?php makeTwitterPanel($hasTwitter, $twitter); ?>
-
+                  <?php makeFriendsPanel($friends); ?>
                 </div>
 
                 <div class="col-md-5">
-                  <?php makePinnedPanel($hasVod, 'youtube', $vod, $hasGifs, $usergifs); ?>
-                </div>
-
-                <div class="col-md-4">
-                  <div class='well'>
+                  <?php makePinnedPanel($hasVod, 'youtube', $vod); ?>
+                    <div class='well'>
                     <div id="disqus_thread"></div>
                     <script type="text/javascript">
                         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -204,6 +187,10 @@ Questions?
                     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
                   </div>
+                </div>
+
+                <div class="col-md-4">
+                  <?php makePinnedGifs($hasGifs, $usergifs); ?>
                   <hr>
                   <?php createBeg(.3); ?>
                   </div>
@@ -246,8 +233,27 @@ Questions?
               $("ul#results").html(html);
             }
           });
-           
       }
+
+      $("#addfriend").on("click", function(event) {
+        console.log('clicked');
+        $.ajax({
+          type: "POST",
+          url: "/techs/friend.php",
+          data: { user_id: <?php echo $user['id'] ?>, friend_id: <?php echo $userid ?> },
+          cache: false,
+        })
+        .success(function(html) {
+          $("#addfriend").hide();
+          console.log('friends');
+        })
+        .fail(function() {
+          console.log('failed');
+        })
+        .always(function() {
+          $("#addfriend").disable();
+        });
+      });
 
       $("input#search").on("keyup", function(e) {
         // Set Timeout

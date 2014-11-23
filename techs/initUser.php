@@ -118,6 +118,9 @@ if ($hasMain) {
   $main = getCharFromID($mysqli, $mainID);
 }
 
+
+
+
 //     BUILDS USER GIFS ARRAY
 //
 //
@@ -135,8 +138,14 @@ if ($hasGifs) {
   shuffle($usergifs);
 }
 
-
-
+$friends = Array();
+$query = "SELECT * from friends WHERE myid='" . $userid . "'";
+if (!$result = $mysqli->query($query)) {
+  die('Invalid query: ' . $mysqli->error);
+}
+foreach ($result as $row) {
+  $friends[] = $row['friendid'];
+}
 
 //     Makes Twitter Panel if the player has Twitter
 //
@@ -192,8 +201,26 @@ function makeFriendcodePanel($hasFriendcode, $friendcode) {
     }
 } 
 
+function makeFriendsPanel($friends) {
+  global $mysqli;
+  echo "<div class='well'>";
+    echo "<ul>";
+      foreach ($friends as $friend) {
+        $friendName = 'Not Found';
+        $query = "SELECT * from users WHERE id='" . $friend . "'";
+        if (!$result = $mysqli->query($query)) {
+          die('Invalid query: ' . $mysqli->error);
+        }
+        foreach ($result as $foundFriend) {
+          $friendName = $foundFriend['username'];
+        }
+        echo "<li>" . $friendName . "</li>";
+      }
+    echo "</ul>";
+  echo "</div>";
+}
 
-function makePinnedPanel($hasVod, $vodType, $vod, $hasGifs, $usergifs) {
+function makePinnedPanel($hasVod, $vodType, $vod) {
   $counter = 0;
   if ($hasVod) {
     if ($vodType == 'youtube') {
@@ -202,7 +229,11 @@ function makePinnedPanel($hasVod, $vodType, $vod, $hasGifs, $usergifs) {
       echo "</div>";
     }
   }
-  if ($hasGifs) {     
+}
+
+function makePinnedGifs($hasGifs, $usergifs) {
+  $counter = 0;
+    if ($hasGifs) {     
     echo "<ul class='list-group'>";
     foreach ($usergifs as $tmpGif) {
       $counter++;
@@ -215,7 +246,6 @@ function makePinnedPanel($hasVod, $vodType, $vod, $hasGifs, $usergifs) {
     echo "</br>";
   }
 }
-
 function makeUserGifs($hasGifs, $usergifs) {
   $counter = 0;
   if ($hasGifs) {

@@ -79,7 +79,7 @@
     function alertStatus($submit) {
         if ($submit == 'success') {
             echo "<div class='alert alert-success alert-dismissable' role='alert'>Congratulations! Your account has been created.";
-            echo "    <hr><a class='btn bttn login' href='/login'>Log in</a>";
+            echo "    <hr><a class='btn bttn login' href='/login.php'>Log in</a>";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'exists') {
