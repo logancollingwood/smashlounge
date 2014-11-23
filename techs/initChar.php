@@ -66,7 +66,7 @@ foreach ($result as $row) {
 }
 arsort($chargifs);
 
-
+$storedTechz = Array();
 $query = "SELECT chartech.techid, techs.tech FROM " . $charTechTable . " INNER JOIN " . $techTable . " ON " . $charTechTable .".techid = " . $techTable . ".id" . " WHERE charid=" . $charID;
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
