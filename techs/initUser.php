@@ -203,8 +203,11 @@ function makeFriendcodePanel($hasFriendcode, $friendcode) {
 
 function makeFriendsPanel($friends) {
   global $mysqli;
+  if (sizeof($friends) == 0) return;
   echo "<div class='well'>";
-    echo "<ul>";
+    echo "<h3>Friends</h3>";
+    echo "<hr>";
+    echo "<ul class='users'>";
       foreach ($friends as $friend) {
         $friendName = 'Not Found';
         $query = "SELECT * from users WHERE id='" . $friend . "'";
@@ -214,7 +217,7 @@ function makeFriendsPanel($friends) {
         foreach ($result as $foundFriend) {
           $friendName = $foundFriend['username'];
         }
-        echo "<li>" . $friendName . "</li>";
+        echo "<li><a href='/users/" . $friendName . "'> $friendName</li>";
       }
     echo "</ul>";
   echo "</div>";
