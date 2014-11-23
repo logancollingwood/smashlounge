@@ -137,9 +137,10 @@ Questions?
 
             <div class='col-md-4 col-sm-4'>
 
+              <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-widget-id="536330140297347072">Tweets by @thesmashlounge</a>
+             
+                
               <div class='panel panel-default'>
-                <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-widget-id="536330140297347072">Tweets by @thesmashlounge</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                 <div class='panel-heading'> Live SSBM Streams </div>
                 <div class='panel-body randgifz'>
                   <?php
@@ -181,13 +182,5 @@ Questions?
     </script>
     <script src="js/randomGfycat.js"></script>
   </body>
-  <script type="text/javascript">
-  window.twttr = (function (d, s, id) {
-    var t, js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id; js.src= "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
-  }(document, "script", "twitter-wjs"));
-  </script>
+ <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </html>
