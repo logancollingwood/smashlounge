@@ -340,7 +340,7 @@ div > div.panel-body {
   background-color: #ad2121;
 }
 .event-info {
-  background-color: #1e90ff;
+  background-color: #00d4eb;
 }
 .event-warning {
   background-color: #e3bc08;
@@ -349,7 +349,7 @@ div > div.panel-body {
   background-color: #1b1b1b;
 }
 .event-success {
-  background-color: #006400;
+  background-color: #007885;
 }
 .event-special {
   background-color: #800080;
@@ -497,10 +497,10 @@ span[data-cal-date]:hover {
   background-image: url("../img/tick.png?2");
 }
 #cal-slide-content:hover {
-  background-color: rgba(0, 94, 166, 0.53);
+  background-color:  rgba(66, 182, 182, 0.89);
 }
 #cal-slide-content a.event-item {
-  color: #1a1a1a;
+  color: #FFF;
   font-weight: normal;
   line-height: 22px;
   text-align: left;
@@ -525,7 +525,7 @@ a.cal-event-week {
 
 
 .cal-event-list {
-  background-color: rgba(0, 94, 166, 0.75);
+  background-color: rgba(66, 182, 182, 0.85);
   background-image: url('/img/cal_texture.png') !important;
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }

@@ -178,16 +178,13 @@ Questions?
                 </div>
 
                 <div class='tab-pane' id='tournament'>
-                  <div class='tab-pane' id='tournament'>
+                  
                   <div class='col-md-9'>
                     
                     <div class='well SL'>
                       <br>
                       <div class='submit-wrapper'>
                       <form method="post" class="form-horizontal">
-                        <!-- Potentially Use the following hidden fields -->
-                        <input type="hidden" name="pageid" value="" />
-                        <input type="hidden" name="dataid" value="" />
 
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tournament_urlid">Tournament Name</label>
@@ -223,19 +220,54 @@ Questions?
                             <input id="tournament_challongeid" type="text" class="form-control" maxlength="100" name="tournament_challonge" placeholder="http://challonge.com/BiWeekly1"/>
                           </div>
                         </div>
-                        
+
                         <br>
                         <button class="btn btn-default post-submissions">submit</button>
                       </form>
                       </div>
                     </div>
                   </div>
-                </div>
+
 
                 </div>
 
                 <div class='tab-pane' id='technique'>
-                  TECHNIQUE
+                    <div class='col-md-9'>
+                    <div class='well SL'>
+                      <br>
+                      <div class='submit-wrapper'>
+                      <form method="post" class="form-horizontal">
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tech_nameid">Tech Name</label>
+                          <div class="col-md-8">
+                            <input id="tech_nameid" type="text" class="form-control" name="tech_name" placeholder="Wave Dash"/>
+                            <span class="help-block">(once your technique is approved come back and submit a gif)</span>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tech_descid">Description</label>
+                          <div class="col-md-8">
+                            <textarea id="tech_descid" type="text" class="form-control" maxlength="400" name="tech_desc" placeholder="A technique used to space your character properly"></textarea>
+                          </div>
+                        </div>
+
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tech_ssbwikiid">ssbwiki URL</label>
+                          <div class="col-md-8">
+                            <input id="tech_ssbwikiid" type="text" class="form-control" maxlength="100" name="tech_ssbwiki" placeholder="ssbwiki.com"/>
+                          </div>
+                        </div>
+
+                        <br>
+                        <button class="btn btn-default post-submissions">submit</button>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class='tab-pane' id='group'>
@@ -260,7 +292,6 @@ Questions?
         $(".post-submissions").on("click", function(event) {
           // Prevent default behavior
           event.preventDefault();
-          var data = $(".submit-wrapper form-horizontal").serialize();
 
           //this jQuery picks up what form is being submitted
           var ref_this = $("ul.nav-tabs li.active a");
