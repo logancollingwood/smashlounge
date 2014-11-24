@@ -261,7 +261,6 @@ div > div.panel-body {
 div.jumbotron {
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color:rgba(245,245,245,0.6);
 
   -webkit-box-shadow: 10px 10px 10px -4px @jumbotron-style;
   -moz-box-shadow: 10px 10px 10px -4px @jumbotron-style;
@@ -529,7 +528,7 @@ li.gray {
 }
 
 .nav-sidebar > li.home a:hover {
-  background-color: #00bcd4;
+  background-color: @flair-color;
   color: #FFF;
 }
 
@@ -539,14 +538,14 @@ li.gray {
 }
 
 .nav-sidebar > li.home.active a{
-  background-color: #0097a7;
+  background-color: @base-color;
   transition: all 80ms linear;
   transition-delay: 80ms;
   -webkit-transition-delay: 80ms; /* for Safari & Chrome */
   -webkit-transition-timing-function: ease;
 }
 .nav-sidebar > li.home.active a:hover{
-  background-color: #00bcd4;
+  background-color: @flair-color;
 
 }
 
@@ -612,9 +611,9 @@ li > h4.submit {
   margin-right: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
-  -webkit-box-shadow: 0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
-  -moz-box-shadow:    0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
-  box-shadow:         0px 10px 1px 0px #349191, inset 0px 0px 17px 3px rgba(66, 182, 182, 0.77);
+  -webkit-box-shadow: 0px 10px 1px 0px #349191, inset 0px 0px 17px 3px @jumbotron-style;
+  -moz-box-shadow:    0px 10px 1px 0px #349191, inset 0px 0px 17px 3px @jumbotron-style;
+  box-shadow:         0px 10px 1px 0px #349191, inset 0px 0px 17px 3px @jumbotron-style;
   background-color: rgba(66, 182, 182, 0.7);
   border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px 10px 10px 10px;
