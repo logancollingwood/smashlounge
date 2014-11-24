@@ -223,18 +223,7 @@ Questions?
                             <input id="tournament_challongeid" type="text" class="form-control" maxlength="100" name="tournament_challonge" placeholder="http://challonge.com/BiWeekly1"/>
                           </div>
                         </div>
-
-                        <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_creditsid">credits:</label>
-                          <div class="col-md-8">
-                            <input id="tournament_creditsid" type="text" class="form-control" maxlength="100" name="technique_credits" 
-                            <?php if($loggedIn) {
-                                echo " value=" . $user['username'];
-                              }
-                            ?> placeholder="Your Username!"/>
-                          </div>
-                        </div>
-
+                        
                         <br>
                         <button class="btn btn-default post-submissions">submit</button>
                       </form>
