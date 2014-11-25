@@ -32,7 +32,7 @@
 
       //updateProfile($userID, $_POST);
 
-      print_r($_POST);
+      //print_r($_POST);
 
       $vod = '';
       $main = $_POST['main'];
@@ -131,16 +131,17 @@
         return true;
       } else {
 
-        $query = "INSERT INTO userinfo (main, userid, facebook, location, twitch, vod, twitter, friendcode) VALUES (:main, :userID, :facebook, :location, :twitch, :vod, :twitter, :friendcode);";
+        $query = "INSERT INTO userinfo (main, userid, facebook, latitude, longitude, twitch, vod, twitter, friendcode) VALUES (:main, :userID, :facebook, :latitude, :longitude, :twitch, :vod, :twitter, :friendcode);";
         $query_params = array(
           ':main' => $main,
           ':userID' => $userID,
-          ':facebook' => $facebook,
-          ':location' => $location,
-          ':twitch' => $twitchId,
-          ':vod' => $vod,
-          ':twitter' => $twitter,
-          ':friendcode' => $friendcode
+          ':facebook' => $params['facebook'],
+          ':latitude' => $params['latitude'],
+          ':longitude' => $params['longitude'],
+          ':twitch' => $params['twitch'],
+          ':vod' => $params['vod'],
+          ':twitter' => $params['twitter'],
+          ':friendcode' => $params['friendcode']
         );
 
         try{

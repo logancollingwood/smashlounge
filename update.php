@@ -47,9 +47,11 @@
   }
 
   $hasLocation = false;
-  if ($userFields['latitude'] != 0) {
-    if ($userFields['longitude'] != 0) {
-      $hasLocation = true;
+  if ($userFields['latitude'] != NULL) {
+    if ($userFields['latitude'] != 0) {
+      if ($userFields['longitude'] != 0) {
+        $hasLocation = true;
+      }
     }
   }
 
