@@ -6,15 +6,6 @@
 
 
 
-
-  $loggedIn = false;
-  if (Sentry::check())
-  {
-      $loggedIn = true;
-      $user = Sentry::getUser();
-  }
-
-
 $modules = array('api', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static',
  'techs', 'vendor', '404', 'about', 'awards', 'characters', 'composer.json', 'composer.lock',
   'composer.phar', 'donate', 'error_log', 'index', 'info', 'login', 'logout', 'lounge', 'moderate',
@@ -40,6 +31,15 @@ if ($mysqli->connect_errno) {
   printf("Connect failed: %s\n", $mysqli->connect_error);
   exit();
 }
+
+  $loggedIn = false;
+  $loggedInID = -1;
+  if (Sentry::check())
+  {
+      $loggedIn = true;
+      $user = Sentry::getUser();
+      $loggedInID = getIdFromUsername($mysqli, $user['username']);
+  }
 
 
 //     BUILDS TECHS ARRAY

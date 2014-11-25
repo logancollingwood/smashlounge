@@ -139,7 +139,7 @@ if ($hasGifs) {
 }
 
 $friends = Array();
-$query = "SELECT * from friends WHERE myid='" . $userid . "'";
+$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
 }

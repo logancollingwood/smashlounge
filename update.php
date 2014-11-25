@@ -47,7 +47,7 @@
   }
 
   $hasLocation = false;
-  if ($userFields['latitude'] != NULL) {
+  if ($hasInfo) {
     if ($userFields['latitude'] != 0) {
       if ($userFields['longitude'] != 0) {
         $hasLocation = true;
@@ -55,6 +55,7 @@
     }
   }
 
+  $usergifs = array();
   $query = "SELECT * FROM usergif WHERE userid=" . $userID;
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
@@ -164,14 +165,16 @@ Questions?
                     <div class="col-md-6">
                       <select id="main" name="main" class="form-control">
                         <?php
-
-                          $selected = $userFields['main'];
-                          $recentlyMained = isset($_POST['main'])       ? trim($_POST['main'])       : "0";
+                          if ($hasInfo) {
+                            $selected = $userFields['main'];
+                          } else {
+                            $selected = 0;
+                          }
                           for ($i = 1; $i <= 26; $i++) {
                             $chars[$i] = getCharFromID($mysqli, $i);
                             echo "<option value='$i' ";
 
-                              if ($selected == $i || $i == $recentlyMained) {
+                              if ($selected == $i) {
                                 echo "selected='selected'";
                               }
                             echo ">" . $chars[$i] . "</option>";
@@ -522,14 +525,16 @@ Questions?
               url: '/techs/update.php',
               type: 'POST',
               data: data,
+              dataType: "html"
             })
-            .done(function() {
+            .done(function(html) {
               window.location.replace("/update.php?str=success");
             })
-            .fail(function() {
-              window.location.replace("/update.php?str=error");
+            .fail(function(html) {
+              console.log(html);
+              //window.location.replace("/update.php?str=error");
             })
-            .always(function() {
+            .always(function(html) {
               $("#loader").removeClass(" glyphicon-refresh-animate");
             });
           });

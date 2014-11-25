@@ -13,6 +13,7 @@
   $query = "SELECT * FROM userinfo WHERE userid=" . $userID;
   $hasInfo = false;
   $hasGifs = false;
+  $userFields = array();
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
@@ -22,10 +23,11 @@
   }
 
   $hasLocation = false;
-  if ($userFields['latitude'] != 0) {
+  if (!empty($userFields)) {
     if ($userFields['longitude'] != 0) {
       $hasLocation = true;
     }
+    $hasInfo = true;
   }
 
 	if(!empty($_POST)){
@@ -78,9 +80,12 @@
         $params['friendcode'] = 0;
       }
      
-
-      if ($matches[1] != '') {
-        $params['vod'] = $matches[1];
+      if (!empty($matches)) {
+        if ($matches[1] != '') {
+          $params['vod'] = $matches[1];
+        }
+      } else {
+        $params['vod'] = '';
       }
 
       $hasGfy = false;
@@ -110,6 +115,7 @@
 
 
       if ($hasInfo) {
+
         if (!empty($params)) {
           $setString = "SET main ='" . $main . "'";
         }
@@ -129,9 +135,26 @@
           header("Location: /update.php?str=success");
         }
         return true;
+
       } else {
 
-        $query = "INSERT INTO userinfo (main, userid, facebook, latitude, longitude, twitch, vod, twitter, friendcode) VALUES (:main, :userID, :facebook, :latitude, :longitude, :twitch, :vod, :twitter, :friendcode);";
+        $keys = "(main";
+        $values = "(:main";
+        $query_params = array();
+        $query_params[":main"] = $main;
+        $query_params[":userID"] = $userID;
+        foreach ($params as $key => $item) {
+          $keys .= " ," . $key;
+          $values .= ", :" . $key;
+          $paramz = ":" . $key;
+          $query_params[$paramz] = $item;
+        }
+        $keys .= ")";
+        $values .= ")";
+
+
+        $query = "INSERT INTO userinfo " . $keys . " VALUES " . $values;
+        /*
         $query_params = array(
           ':main' => $main,
           ':userID' => $userID,
@@ -143,9 +166,10 @@
           ':twitter' => $params['twitter'],
           ':friendcode' => $params['friendcode']
         );
+        */
 
         try{
-          $stmt = $db->prepare($query);
+          $stmt = $mysqli->prepare($query);
           $result = $stmt->execute($query_params);
         } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
 
