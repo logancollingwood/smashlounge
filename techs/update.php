@@ -1,6 +1,24 @@
 <?php
 
   require("db.php");
+
+  function grabGfyName ($url) {
+    $pattern = '/((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/';
+    $matches = array();
+   
+    preg_match ($pattern, $url, $matches);
+   
+    return $matches[4];
+  }
+  function remove_http($url) {
+   $disallowed = array('http://', 'https://');
+   foreach($disallowed as $d) {
+      if(strpos($url, $d) === 0) {
+         return str_replace($d, '', $url);
+      }
+   }
+   return $url;
+  } 
   mysqli_report(MYSQLI_REPORT_ALL);
   $mysqli = new mysqli($dahostname, $username, $password, $database);
 
@@ -144,7 +162,6 @@
         $query_params = array();
         $numParams = count($params);
         foreach ($params as $key => $item) {
-          error_log("Key: " . $key . " Value: " . $item);
           if ($counter == 0) {
             $keys .= "userid, ";
             $values .= $userID. ", ";
@@ -169,7 +186,7 @@
         $values .= ")";
 
         $query = "INSERT INTO userinfo " . $keys . " VALUES " . $values;
-        error_log($query);
+        //error_log($query);
         try{
           $stmt = $mysqli->prepare($query);
           $result = $stmt->execute();
