@@ -68,7 +68,11 @@ Questions?
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
     </script>
-
+    <meta name="twitter:card" content="smashlounge" />
+    <meta name="twitter:site" content="@thesmashlounge" />
+    <meta name="twitter:title" content="smashlounge: <?php echo $username ?>" />
+    <meta name="twitter:description" content="View this profile on smashlounge" />
+    <meta name="twitter:url" content="http://www.smashlounge.com/users/<?php echo $username ?>" />
   </head>
 
   <body>
