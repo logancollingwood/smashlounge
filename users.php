@@ -135,6 +135,9 @@ Questions?
                               </button>";
                       } else {
                         // unfriend
+                          echo " <button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
+                                <i class='fa fa-plus'></i> Remove from Friends
+                              </button>";
                       }
                     //echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
                     echo "</div>";
@@ -254,6 +257,28 @@ Questions?
           $("#addfriend").disable();
         });
       });
+
+      $("#removefriend").on("click", function(event) {
+        console.log('clicked');
+        $.ajax({
+          type: "POST",
+          url: "/techs/unfriend.php",
+          data: { user_id: <?php echo $user['id'] ?>, friend_id: <?php echo $userid ?> },
+          cache: false,
+        })
+        .success(function(html) {
+          $("#removefriend").hide();
+          console.log('removed from friends');
+        })
+        .fail(function() {
+          console.log('failed');
+        })
+        .always(function() {
+          $("#removefriend").disable();
+        });
+      });
+
+
 
       $("input#search").on("keyup", function(e) {
         // Set Timeout

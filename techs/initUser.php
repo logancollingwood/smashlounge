@@ -113,12 +113,13 @@ foreach ($result as $row) {
     $hasFriendcode = true;
     $friendcode = $row['friendcode'];
   }
+  if ($row['userid'] != '') {
+      $currUser = $row['userid'];
+  }
 }
 if ($hasMain) {
   $main = getCharFromID($mysqli, $mainID);
 }
-
-
 
 
 //     BUILDS USER GIFS ARRAY
@@ -126,6 +127,7 @@ if ($hasMain) {
 //
 //
 ////////////////////////////////////////
+
 $query = "SELECT * from usergif WHERE userid='" . $userid . "'";
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
@@ -219,6 +221,7 @@ function makeFriendsPanel($friends) {
         }
         echo "<li><a href='/users/" . $friendName . "'> $friendName</li>";
       }
+    
     echo "</ul>";
   echo "</div>";
 }
