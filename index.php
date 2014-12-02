@@ -135,23 +135,11 @@ Questions?
           <div class='row'>
             <div class='col-md-8'>
               <div class='panel panel-default'>
-                <div class='panel-heading'>Introducing..</div>
-                <div class='panel-body vimeo'>
-                  <iframe src="//player.vimeo.com/video/101609571?byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br/>
-                </div>
-                <div class='panel-footer'>
-                <h3><small>from <a href="http://vimeo.com/bobackv">boback</a></small></h3>
-                </div>
-              </div>
-            </div>
-
-            <div class='col-md-4'>
-              <div class='panel panel-default'>
                 <div class='panel-heading'> Live SSBM Streams </div>
                 <div class='panel-body randgifz'>
                   <?php
                     $counter = 0;
-                    $maxCount = 2;
+                    $maxCount = 4;
                     foreach ($activeStreams as $data) {
                       if ($counter >= $maxCount) break;
                       echo "<p>";
@@ -167,7 +155,18 @@ Questions?
                   ?>
                 </div>
               </div>
+            </div>
 
+            <div class='col-md-4'>
+              <div class='panel panel-default'>
+                <div class='panel-heading'>Introducing..</div>
+                <div class='panel-body vimeo'>
+                  <iframe src="//player.vimeo.com/video/101609571?byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br/>
+                </div>
+                <div class='panel-footer'>
+                <h3><small>from <a href="http://vimeo.com/bobackv">boback</a></small></h3>
+                </div>
+              </div>
               <?php
                 createBeg(1);
               ?>
