@@ -31,9 +31,7 @@
 
 
         try {
-            //echo "TRYING LOGIN";
-            // Log the user in
-            Sentry::login($user, true);
+            if ($user != NULL) Sentry::login($user, true);
         }
         catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
         {

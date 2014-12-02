@@ -1,7 +1,7 @@
 <?php
 
   require("db.php");
-
+  mysqli_report(MYSQLI_REPORT_ALL);
   $mysqli = new mysqli($dahostname, $username, $password, $database);
 
   if ($mysqli->connect_errno) {   
@@ -89,7 +89,7 @@
       }
 
       $hasGfy = false;
-
+      $gfyID = -1;
       if (isset($_POST['gfycat']) && $_POST['gfycat'] != '' ) {
         $hasGfy = true;
       }
@@ -138,52 +138,52 @@
 
       } else {
 
-        $keys = "(main";
-        $values = "(:main";
+        $keys = "(";
+        $values = "(";
+        $counter = 0;
         $query_params = array();
-        $query_params[":main"] = $main;
-        $query_params[":userID"] = $userID;
+        $numParams = count($params);
         foreach ($params as $key => $item) {
-          $keys .= " ," . $key;
-          $values .= ", :" . $key;
-          $paramz = ":" . $key;
-          $query_params[$paramz] = $item;
+          
+          if ($counter == 0) {
+            $keys .= "userid, ";
+            $values .= $userID. ", ";
+          }
+          if ($params[$key] == '') {
+            $params[$key] = 0;
+          }
+          if ($counter < $numParams - 1) {
+            $keys .= $key . ", ";
+            $values .= $params[$key] . ", ";
+          } else {
+            $keys .= $key;
+            $values .= $params[$key];
+          }
+          $counter++;
         }
         $keys .= ")";
         $values .= ")";
 
-
         $query = "INSERT INTO userinfo " . $keys . " VALUES " . $values;
-        /*
-        $query_params = array(
-          ':main' => $main,
-          ':userID' => $userID,
-          ':facebook' => $params['facebook'],
-          ':latitude' => $params['latitude'],
-          ':longitude' => $params['longitude'],
-          ':twitch' => $params['twitch'],
-          ':vod' => $params['vod'],
-          ':twitter' => $params['twitter'],
-          ':friendcode' => $params['friendcode']
-        );
-        */
 
+        try{
+          $stmt = $mysqli->prepare($query);
+          $result = $stmt->execute();
+        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+
+      }
+      if ($gfyID != -1) {
+        $query = "INSERT INTO usergif (userid, url) VALUES (:userID, :id);";
+        $query_params = array(
+          ':userID' => $userID,
+          ':id' => $gfyID
+        );
         try{
           $stmt = $mysqli->prepare($query);
           $result = $stmt->execute($query_params);
         } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
-
       }
-          $query = "INSERT INTO usergif (userid, url) VALUES (:userID, :id);";
-          $query_params = array(
-            ':userID' => $userID,
-            ':id' => $gfyID
-          );
-          try{
-            $stmt = $db->prepare($query);
-            $result = $stmt->execute($query_params);
-          } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
-        return true;
+    return true;
     }
-    return false;
+  return false;
 ?>
