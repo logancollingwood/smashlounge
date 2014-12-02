@@ -141,7 +141,9 @@ if ($hasGifs) {
 }
 
 $friends = Array();
-$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
+$query = "SELECT * from friends WHERE myid='" . $userid . "'";
+//$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
+
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
 }
@@ -206,6 +208,8 @@ function makeFriendcodePanel($hasFriendcode, $friendcode) {
 function makeFriendsPanel($friends) {
   global $mysqli;
   if (sizeof($friends) == 0) return;
+
+
   echo "<div class='well'>";
     echo "<h3>Friends</h3>";
     echo "<hr>";
