@@ -114,16 +114,16 @@ Questions?
                             echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
                           }
                           echo "</li>";
-                          echo "<li class='list-group-item'>";
-                          echo "<h4> <a href='/submit.php'> Submit a gif </a></h4>";
-                          //makeSubmitForm("char" , $char, $tech);
-                          echo "</li>";
                         }
                       } else {
                         echo "<li class='list-group-item'>";
                         echo  "<h4>Woops! This character has no general gifs! <br><small><a href='/submit.php'>Submit One</a></small></h4>";
                         echo "</li>";
                       }
+                  echo "<li class='list-group-item'>";
+                  echo "<h4> <a href='/submit.php'> Submit a gif </a></h4>";
+                  //makeSubmitForm("char" , $char, $tech);
+                  echo "</li>";
                   echo "</ul>";
                   echo "</td>";
                   echo "</div>";
