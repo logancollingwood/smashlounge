@@ -128,16 +128,18 @@ Questions?
                           <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
                         </button></a>';
                       }
-                      if ($loggedIn && !in_array($userid, $friends) && $user['username'] != $username) {
+                      if ($loggedIn && in_array($loggedInID, $friends) && $user['username'] != $username) {
                         // add as friend
                        echo " <button type='button' id='addfriend' class='btn btn-default' aria-label='Left Align'>
                                 <i class='fa fa-plus'></i> Add as Friend
                               </button>";
                       } else {
                         // unfriend
+                          if($user['username'] != $username){
                           echo " <button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
                                 <i class='fa fa-plus'></i> Remove from Friends
                               </button>";
+                          }
                       }
                     //echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
                     echo "</div>";
