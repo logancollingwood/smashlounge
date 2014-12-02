@@ -89,7 +89,7 @@
       }
 
       $hasGfy = false;
-      $gfyID = -1;
+      $gfyID = '';
       if (isset($_POST['gfycat']) && $_POST['gfycat'] != '' ) {
         $hasGfy = true;
       }
@@ -144,13 +144,17 @@
         $query_params = array();
         $numParams = count($params);
         foreach ($params as $key => $item) {
-          
+          error_log("Key: " . $key . " Value: " . $item);
           if ($counter == 0) {
             $keys .= "userid, ";
             $values .= $userID. ", ";
           }
-          if ($params[$key] == '') {
-            $params[$key] = 0;
+          if ($params[$key] == '' || $params[$key] == null) {
+            if ($key == 'main') {
+              $params[$key] = 0;
+            } else {
+              $params[$key] = "''";
+            }
           }
           if ($counter < $numParams - 1) {
             $keys .= $key . ", ";
@@ -165,14 +169,14 @@
         $values .= ")";
 
         $query = "INSERT INTO userinfo " . $keys . " VALUES " . $values;
-
+        error_log($query);
         try{
           $stmt = $mysqli->prepare($query);
           $result = $stmt->execute();
         } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
 
       }
-      if ($gfyID != -1) {
+      if ($hasGfy) {
         $query = "INSERT INTO usergif (userid, url) VALUES (:userID, :id);";
         $query_params = array(
           ':userID' => $userID,
