@@ -128,7 +128,7 @@ Questions?
             <div class='col-md-4 col-sm-4'>
 
               <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-widget-id="536330140297347072">Tweets by @thesmashlounge</a>
-             
+              <hr>
             </div>
           </div>
 
