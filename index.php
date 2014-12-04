@@ -159,7 +159,7 @@ Questions?
 
             <div class='col-md-4'>
               <div class='panel panel-default'>
-                <div class='panel-heading'>Introducing..</div>
+                <div class='panel-heading'>What's new?</div>
                 <div class='panel-body vimeo'>
                   <iframe src="//player.vimeo.com/video/101609571?byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br/>
                 </div>
