@@ -138,7 +138,7 @@ Questions?
                               </button>";
                       } else {
                         // unfriend
-                          if($user['username'] != $username){
+                          if($user['username'] != $username && $user['username'] != 'none') {
                           echo " <button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
                                 <i class='fa fa-plus'></i> Remove from Friends
                               </button>";
