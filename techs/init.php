@@ -34,6 +34,7 @@ if ($mysqli->connect_errno) {
 
   $loggedIn = false;
   $loggedInID = -1;
+  $user['username'] = 'none';
   if (Sentry::check())
   {
       $loggedIn = true;

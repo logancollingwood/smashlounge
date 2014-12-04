@@ -4,7 +4,6 @@
   require_once("techs/init.php");
   require_once("techs/twitch.php");
   require_once("techs/initUser.php");
-
     $username;
     $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
 
