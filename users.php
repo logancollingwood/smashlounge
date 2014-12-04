@@ -179,7 +179,11 @@ Questions?
 
                 <div class="col-md-5">
                   <?php makePinnedPanel($hasVod, 'youtube', $vod); ?>
-                    <div class='well'>
+                  <?php makePinnedGifs($hasGifs, $usergifs); ?>
+                </div>
+
+                <div class="col-md-4">
+                  <div class='well'>
                     <div id="disqus_thread"></div>
                     <script type="text/javascript">
                         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -195,10 +199,6 @@ Questions?
                     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
                   </div>
-                </div>
-
-                <div class="col-md-4">
-                  <?php makePinnedGifs($hasGifs, $usergifs); ?>
                   <hr>
                   <?php createBeg(.3); ?>
                   </div>
@@ -243,6 +243,7 @@ Questions?
           });
       }
 
+      <?php if ($user['id'] != null) { ?>
       $("#addfriend").on("click", function(event) {
         console.log('clicked');
         $.ajax({
@@ -282,7 +283,7 @@ Questions?
           $("#removefriend").disable();
         });
       });
-
+      <?php } ?>
 
 
       $("input#search").on("keyup", function(e) {

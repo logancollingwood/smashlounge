@@ -234,7 +234,7 @@ function makePinnedPanel($hasVod, $vodType, $vod) {
   $counter = 0;
   if ($hasVod) {
     if ($vodType == 'youtube') {
-      echo "<div class='well youtube'>";
+      echo "<div class='well youtube full'>";
        echo "<iframe id='ytplayer' type='text/html' src='http://www.youtube.com/embed/$vod' frameborder='0'></iframe>";
       echo "</div>";
     }
