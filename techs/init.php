@@ -740,6 +740,12 @@ function analytics() {
     </script>";
 }
 
+function printBetaMast() {
+  echo "<div class='alert alert-info' role='alert'>Thanks for testing our new features! Hit us with feedback: <br>";
+  echo"<a href='https://twitter.com/intent/tweet?button_hashtag=slbeta' class='twitter-hashtag-button' data-related='thesmashlounge'>Tweet #slbeta</a>
+       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>";
+  echo "</div>";
+}
 
 function getAllTechs($mysqli, $techTable) {
   $query = "SELECT * from " . $techTable;

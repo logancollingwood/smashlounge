@@ -72,6 +72,7 @@ Questions?
     
           
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <?php printBetaMast(); ?>
             <div class="jumbotron banner">
               <h1 class="lead"><?php 
                 if ($tech){
@@ -146,8 +147,8 @@ Questions?
                     }
 
                     echo "<li class='list-group-item'>";
-                    echo "<h4> Submit a gif: </h4>";
-                    makeSubmitForm("tech" , $char, $tech);
+                    echo "<h4> <a href='/submit.php'> Submit a gif </a></h4>";
+                    //makeSubmitForm("char" , $char, $tech);
                     echo "</li>";
                     if ($submit) {
                       alertMSG($submit);

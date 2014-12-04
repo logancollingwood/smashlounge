@@ -55,8 +55,14 @@ Questions?
     <!-- Custom styles for this template -->
     <link href="/css/dashboard_mobile.css" rel="stylesheet">
 
-    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-
+    <style>
+      #map-canvas {
+        height: 200px;
+      }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
+    </script>
   </head>
 
   <body>
@@ -72,6 +78,7 @@ Questions?
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <?php printBetaMast(); ?>
           <div class="jumbotron banner">
             <div class='row'>
               <h1 class='lead'>Submit Data</h1>
@@ -179,7 +186,7 @@ Questions?
 
                 <div class='tab-pane' id='tournament'>
                   
-                  <div class='col-md-9'>
+                  <div class='col-md-12'>
                     
                     <div class='well SL'>
                       <br>
@@ -232,7 +239,7 @@ Questions?
                 </div>
 
                 <div class='tab-pane' id='technique'>
-                    <div class='col-md-9'>
+                    <div class='col-md-12'>
                     <div class='well SL'>
                       <br>
                       <div class='submit-wrapper'>
@@ -271,7 +278,60 @@ Questions?
                 </div>
 
                 <div class='tab-pane' id='group'>
-                  GROUP
+                    <div class='col-md-12'>
+                      <div class='well SL'>
+                      <br>
+                      <div class='submit-wrapper'>
+                        <form method="post" class="form-horizontal">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="group_nameid">Group Name</label>
+                              <div class="col-md-8">
+                                <input id="group_nameid" type="text" class="form-control" name="group_name" placeholder="Santa Cruz Melee" required/>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="group_facebookid">Facebook</label>
+                              <div class="col-md-8">
+                                <textarea id="group_facebookid" type="text" class="form-control" maxlength="400" name="group_facebook" placeholder="https://www.facebook.com/groups/SantaCruzMelee/" required></textarea>
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class='col-md-6'>
+                            <div class='row'>
+                              <div class='col-md-6'>
+                                <div class="well">
+                                  <div id="map-canvas"/></div>
+                                </div>
+                              </div>
+                              <div class='col-md-6'>
+                                <div class='form-group'>
+                                  <label class="col-md-4 control-label" for="group_lat">latitude</label>
+                                  <div class="col-md-8">
+                                   <input id="group_lat" type="text" class="form-control" maxlength="100" name="group_lat" placeholder="0" disabled='disabled'/>
+                                  </div>
+                                </div>
+                                <div class='form-group'>
+                                  <label class="col-md-4 control-label" for="group_long">longitude</label>
+                                  <div class="col-md-8">
+                                    <input id="group_long" type="text" class="form-control" maxlength="100" name="group_lat" placeholder="0" disabled='disabled'/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br>
+                          <button class="btn btn-default post-submissions">submit</button>
+
+                          <div class='nullfields' hidden='true'>
+                            <h3><small>Whoops! Looks like you're missing some information</small></h3>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
               </div>
@@ -282,9 +342,57 @@ Questions?
       </div>
     </div>
 
+    <script>
+      var map;
+      var marker;
+      var markers = [];
+      function bindInfoWindow(map, infoWindow) {
 
-    <script src="js/adblockzorz.js"></script>
 
+        google.maps.event.addListener(map, 'click', function( event ){
+          var lat = event.latLng.lat();
+          var lon = event.latLng.lng();
+          document.getElementById('group_long').value = lon.toFixed(3);
+          document.getElementById('group_lat').value = lat.toFixed(3);
+
+        });
+
+        google.maps.event.addListener(map, 'click', function(event) {
+          placeMarker(event.latLng, map);
+        });
+      }
+
+      function placeMarker(location, map) {
+          if (marker == undefined){
+              marker = new google.maps.Marker({
+                  position: location,
+                  map: map,
+                  animation: google.maps.Animation.DROP,
+              });
+          }
+          else{
+              marker.setPosition(location);
+          }
+          markers.push(marker);
+          map.setCenter(location);
+      }
+
+
+      function initialize() {
+        var mapOptions = {
+          zoom: 4,
+          center: new google.maps.LatLng(37.6, -95.665),
+        };
+        var infoWindow = new google.maps.InfoWindow;
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+
+        bindInfoWindow(map, infoWindow);
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
     <script>
       $(document).ready(function(){
         var currentPage = '';
@@ -301,7 +409,11 @@ Questions?
           //let's build our post keys array, starting with what kind of post it is
           var data = 'key=' + key;
           data += '&' + $(".tab-pane.active form").serialize();
-          
+          if (key === "group") {
+            lat = document.getElementById('group_lat').value;
+            longz = document.getElementById('group_long').value
+            data += '&group_lat=' + lat + '&group_long=' + longz;
+          }
           console.log('submitting this ' + data);
 
           $.ajax({
@@ -318,7 +430,12 @@ Questions?
           .fail(function() {
             console.log('failing');
           })
-          .always(function() {
+          .always(function(html) {
+            if (html == 'nullfields') {
+              $(".nullfields").show();
+            } else {
+              $(".nullfields").hide();
+            }
             console.log('always');
           });
         });
