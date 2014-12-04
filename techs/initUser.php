@@ -12,6 +12,7 @@
 
 $userid = '';
 $userFields = array();
+$friendid = '';
 
 
 require_once("techs/db.php");
@@ -141,7 +142,7 @@ if ($hasGifs) {
 }
 
 $friends = Array();
-$query = "SELECT * from friends WHERE myid='" . $userid . "'";
+$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
 //$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
 
 if (!$result = $mysqli->query($query)) {
