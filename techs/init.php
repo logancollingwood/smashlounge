@@ -41,6 +41,16 @@ if ($mysqli->connect_errno) {
       $loggedIn = true;
       $user = Sentry::getUser();
       $loggedInID = getIdFromUsername($mysqli, $user['username']);
+      $friendsofLoggedIn = Array();
+      $query = "SELECT * from friends WHERE myid='" . $user['id'] . "'";
+      //$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
+
+      if (!$result = $mysqli->query($query)) {
+        die('Invalid query: ' . $mysqli->error);
+      }
+      foreach ($result as $row) {
+        $friendsofLoggedIn[] = $row['friendid'];
+      }
   }
 
 

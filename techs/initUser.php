@@ -152,6 +152,9 @@ foreach ($result as $row) {
   $friends[] = $row['friendid'];
 }
 
+
+
+
 //     Makes Twitter Panel if the player has Twitter
 //
 //

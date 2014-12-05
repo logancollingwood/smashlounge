@@ -6,6 +6,14 @@
   require_once("techs/initUser.php");
     $username;
     $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
+    $mypage = FALSE;
+    $friends = FALSE;
+    if ($loggedIn && $user['username'] == $username) {
+      $mypage = TRUE;
+    }
+    if ($loggedIn && in_array($userid, $friendsofLoggedIn)) {
+      $friends = TRUE;
+    }
 
 ?>
 <!--
@@ -118,34 +126,25 @@ Questions?
                   echo "</div>";
 
                   echo "<div class='col-md-2 vcenter'>";
-                    /*
                     echo "<div class='row'>";
-                    if ($hasFacebook) {
-                      echo "<div class='fb-like' data-href='https://www.facebook.com/" . $facebook ."' data-layout='box_count' data-action='like' data-show-faces='true'></div>";
-                    }
-                    echo "</div>";
-                    */
-                    echo "<div class='row'>";
-                      if ($loggedIn && $user['username'] == $username) {
-                        echo '<a href="/update.php"><button type="button" class="btn btn-default" aria-label="Left Align">
-                          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
-                        </button></a>';
-                      }
+                    //This is changed so that the correct buttons are enabled, disabled shown, and hidden by jquery
+                    //at the bottom of the page
+                      
+                    echo '<a href="/update.php"><button type="button" id="edit" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
+                          </button></a>';
+                      
                      
-                      
-                      if ($loggedIn && !in_array($userid, $friends) && $user['username'] != $username) {
-                        // add as friend
-                       echo " <button type='button' id='addfriend' class='btn btn-default' aria-label='Left Align'>
-                                <i class='fa fa-plus'></i> Add as Friend
-                              </button>";
-                      }
-                      
-                       else if($loggedIn && in_array($userid, $friends) && $user['username'] != $username){
-                        // unfriend
-                          echo " <button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
-                                <i class='fa fa-cross'></i> Remove from Friends
-                              </button>";
-                      }
+                          // add as friend
+                    echo "<button type='button' id='addfriend' class='btn btn-default' aria-label='Left Align'>
+                              <i class='fa fa-plus'></i> Add as Friend
+                            </button>";
+                        
+
+                          // unfriend
+                    echo "<button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
+                            <i class='fa fa-times'></i> Remove from Friends
+                          </button>";
                      
                     //echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
                     echo "</div>";
@@ -226,7 +225,20 @@ Questions?
     <script src="/js/mapInitUser.js"></script>
     <script>
 
-    $(document).ready(function() {  
+    $(document).ready(function() {
+      <?php 
+        if ($mypage) {
+          echo '$("#addfriend").hide();';
+          echo '$("#removefriend").hide();';
+        } else {
+          echo '$("#edit").hide();';
+        }
+        if ($friends) {
+          echo '$("#addfriend").hide();';
+        } else {
+          echo '$("#removefriend").hide();';
+        }
+      ?>
       $(".youtube").fitVids();
       $(".panel-body.userlist").css({'height':($("#map-canvas").height()-$(".panel-heading").height()+'px')});
       // Live Search
@@ -258,6 +270,7 @@ Questions?
         .success(function(html) {
           $("#addfriend").hide();
           $("#removefriend").show();
+          $("#removefriend").removeAttr('disabled');
           console.log('friends');
         })
         .fail(function() {
@@ -280,6 +293,7 @@ Questions?
         .success(function(html) {
           $("#removefriend").hide();
           $("#addfriend").show();
+          $("#addfriend").removeAttr('disabled');
           console.log('removed from friends');
         })
         .fail(function() {
