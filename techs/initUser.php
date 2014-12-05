@@ -141,15 +141,15 @@ if ($hasGifs) {
   shuffle($usergifs);
 }
 
-$friends = Array();
-$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
+$friendsofPage = Array();
+$query = "SELECT * from friends WHERE myid='" . $userid . "'";
 //$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
 
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
 }
 foreach ($result as $row) {
-  $friends[] = $row['friendid'];
+  $friendsofPage[] = $row['friendid'];
 }
 
 

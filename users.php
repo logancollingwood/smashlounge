@@ -176,7 +176,7 @@ Questions?
                   <?php makeFriendcodePanel($hasFriendcode, $friendcode); ?>
                   <?php makeTwitchPanel($hasTwitch, $twitch); ?>
                   <?php makeTwitterPanel($hasTwitter, $twitter); ?>
-                  <?php makeFriendsPanel($friends); ?>
+                  <?php makeFriendsPanel($friendsofPage); ?>
                 </div>
 
                 <div class="col-md-5">
