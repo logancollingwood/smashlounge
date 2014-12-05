@@ -246,7 +246,7 @@ Questions?
           });
       }
 
-      <?php if ($user['id'] != null) { ?>
+      <?php if ($user['id'] != -1) { ?>
       $("#addfriend").on("click", function(event) {
         console.log('clicked');
         $.ajax({
