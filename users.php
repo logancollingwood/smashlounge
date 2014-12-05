@@ -143,7 +143,7 @@ Questions?
                        else if($loggedIn && in_array($userid, $friends) && $user['username'] != $username){
                         // unfriend
                           echo " <button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
-                                <i class='fa fa-plus'></i> Remove from Friends
+                                <i class='fa fa-cross'></i> Remove from Friends
                               </button>";
                       }
                      
@@ -257,6 +257,7 @@ Questions?
         })
         .success(function(html) {
           $("#addfriend").hide();
+          $("#removefriend").show();
           console.log('friends');
         })
         .fail(function() {
@@ -278,6 +279,7 @@ Questions?
         })
         .success(function(html) {
           $("#removefriend").hide();
+          $("#addfriend").show();
           console.log('removed from friends');
         })
         .fail(function() {
