@@ -261,9 +261,10 @@ Questions?
         })
         .fail(function() {
           console.log('failed');
+          $("#addfriend").removeAttr('disabled');
         })
         .always(function() {
-          $("#addfriend").disable();
+          $("#addfriend").attr('disabled','disabled');
         });
       });
 
@@ -281,9 +282,11 @@ Questions?
         })
         .fail(function() {
           console.log('failed');
+          $("#removefriend").removeAttr('disabled');
         })
         .always(function() {
-          $("#removefriend").disable();
+          $("#removefriend").attr('disabled','disabled');
+
         });
       });
       <?php } ?>
