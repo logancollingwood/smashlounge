@@ -133,7 +133,7 @@ Questions?
           </div>
 
           <div class='row'>
-            <div class='col-md-8'>
+            <div class='col-md-6'>
               <div class='panel panel-default'>
                 <div class='panel-heading'> Live SSBM Streams </div>
                 <div class='panel-body randgifz'>
@@ -157,7 +157,7 @@ Questions?
               </div>
             </div>
 
-            <div class='col-md-4'>
+            <div class='col-md-6'>
               <div class='panel panel-default'>
                 <div class='panel-heading'>What's new?</div>
                 <div class='panel-body vimeo'>

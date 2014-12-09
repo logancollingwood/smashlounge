@@ -375,7 +375,7 @@ Questions?
               </div>
             </div>
         <div class='row'>
-            <?php 
+            <?php /*
               $numGifs = 3;
               $counter = 0;
               $size = 12/$numGifs;
@@ -383,7 +383,7 @@ Questions?
                 echo "<div class='col-md-$size'>";
                   echo "<div class='well'>";
                     echo "<h3> Gif #" . ($counter+1) . "</h3>";
-                    echo "<input id='gifholder' type='text' data-value='" . ($counter+1) . "' class='form-control input-md' value='gfycat.com/" .  $usergifs[$counter]['url'] . "'/>";
+                    echo "<input type='text' data-value='" . ($counter+1) . "' class='form-control input-md gifholder' value='gfycat.com/" .  $usergifs[$counter]['url'] . "'/>";
                     echo "<hr>";
                     echo "<div id='gif" . ($counter+1) . "'>";
                     echo "<img class='gfyitem' data-expand=true data-id='" . $usergifs[$counter]['url'] . "'/>";
@@ -511,6 +511,7 @@ Questions?
     <script>
 
         $(document).ready(function(){
+
           // Target your .container, .wrapper, .post, etc.
 
           $(".vimeo").fitVids();
@@ -564,30 +565,34 @@ Questions?
               $("#loader").removeClass(" glyphicon-refresh-animate");
             });
           });
+            var spawned = false;
+            $(".gifholder").change(function(event){
+              var url = $( this ).val();
+              var which = $( this ).data('value');
+              //$( "#gif" + which ).empty();
 
-            $("#gifholder").change(function(event){     
-              console.log('changing');
-              var url = this.val();
-              var which = this.data();
-              console.log(which);
               var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
               var str = url;
               var m = re.exec(str);
-              //console.log(m[4]);
+
+
               if (m == null) {
                 if (spawned) {
-                  $( ".spawned" ).empty();
-                  $( ".spawned" ).remove();
+                  //$( "#spawned" + which ).remove();
+                  //$( ".gif" + which ).remove();
                   spawned = false;
                 }
                 return;
               }
-              $( ".spawned" ).empty();
+              
               var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
-              $("#gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
+              //$(this).after("<div id='spawned" + which + "'><br>" + linkAndString + "</div>");
+              $( "#gif" + which ).append("<img class='gfyitem' data-expand=true data-id='" + m[4] + "' />");
               spawned = true;
+
               gfyCollection.init();
-              //return;
+              
+              
           });
 
           
