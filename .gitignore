@@ -229,6 +229,7 @@ static/dbSuper.php
 vendor
 composer.lock
 composer.phar
+
 github.php
 .cache
 .viminfo
