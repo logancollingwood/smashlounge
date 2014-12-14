@@ -388,10 +388,15 @@ Questions?
             mapOptions);
 
         bindInfoWindow(map, infoWindow);
+        $(document).ready(function(){
+         $('a[href="#group"]').on('shown.bs.tab', function(e)
+          {
+              google.maps.event.trigger(map, 'resize');
+          });
+        });
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
-
     </script>
     <script>
       $(document).ready(function(){
@@ -448,7 +453,6 @@ Questions?
         var spawned = false;
 
         $("#charSelector").hide();
-        
 
         $("#giffyurl").change(function(event){     
 
