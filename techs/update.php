@@ -7,7 +7,7 @@
     $matches = array();
    
     preg_match ($pattern, $url, $matches);
-   
+    if (!isset($matches[4])) return null;
     return $matches[4];
   }
   function remove_http($url) {
@@ -19,7 +19,8 @@
    }
    return $url;
   } 
-  mysqli_report(MYSQLI_REPORT_ALL);
+
+
   $mysqli = new mysqli($dahostname, $username, $password, $database);
 
   if ($mysqli->connect_errno) {   
@@ -108,15 +109,20 @@
 
       $hasGfy = false;
       $gfyID = '';
-      if (isset($_POST['gfycat']) && $_POST['gfycat'] != '' ) {
-        $hasGfy = true;
-      }
-      if ($hasGfy) {
-        $gfyURL = remove_http($_POST['gfycat']);
-        $gfyID = grabGfyName($gfyURL);
-        if ($gfyID === '') {
-          header("Location: /update?str=url");
-          die("Redirecting to update.php");
+      $numGifs = 3;
+      $gfys = array();
+      for ($i = 1; $i < $numGifs+1; $i++) {
+        $gfyCat = $_POST['gfy'.$i];
+        error_log($gfyCat);
+        if ($gfyCat != 'gfycat.com/') {
+          $gfyURL = remove_http($gfyCat);
+          $gfyID = grabGfyName($gfyURL);
+          if ($gfyID == null) {
+            echo "gif";
+            exit();
+          }
+          $gfys[] = $gfyID;
+          $hasGfy = true;
         }
       }
 
@@ -152,7 +158,7 @@
         } else {
           header("Location: /update.php?str=success");
         }
-        return true;
+
 
       } else {
 
@@ -193,17 +199,42 @@
         } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
 
       }
+
+      $query = "SELECT count(*) from usergif where userid=" . $userID;
+
+      $result = $mysqli->query($query);
+      $row = $result->fetch_row();
+      $count = $row[0];
+
       if ($hasGfy) {
-        $query = "INSERT INTO usergif (userid, url) VALUES (:userID, :id);";
-        $query_params = array(
-          ':userID' => $userID,
-          ':id' => $gfyID
-        );
-        try{
-          $stmt = $mysqli->prepare($query);
-          $result = $stmt->execute($query_params);
-        } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+        if ($count > 0) {
+          $query = "DELETE FROM usergif WHERE userid=" . $userID;
+          try{
+            $stmt = $mysqli->prepare($query);
+            $result = $stmt->execute();
+          } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
+        }
       }
+
+      foreach($gfys as $gfyID) {
+        error_log($gfyID);
+        $query = "INSERT INTO usergif (userid, url) VALUES (?, ?)";
+        if (!($stmt = $mysqli->prepare($query))) {
+         error_log("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
+         exit();
+        }
+        // Bind Params
+        if (!$stmt->bind_param("ss", $userID, $gfyID)) {
+          error_log("Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error);
+          exit();
+        }
+        // Execute
+        if (!$stmt->execute()) {
+            error_log("Execute failed: (" . $stmt->errno . ") " . $stmt->error);
+            exit();
+        }
+      }
+
     return true;
     }
   return false;

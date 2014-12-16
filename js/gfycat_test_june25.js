@@ -11,6 +11,8 @@
  * and re-initialize them or interact with them
  * as desired.
  */
+
+
 var gfyCollection = function () {
 
     var collection = [];
@@ -38,8 +40,10 @@ var gfyCollection = function () {
             console.log(i); 
             collection.push(gfyObj);
         }
+        console.log(collection);
         // run init _after_ all are collected, because the init function deletes and recreates
         for(var i = 0; i < collection.length; i++) {
+            if (collection[i] == null) continue;
             collection[i].init();
         }
     }
@@ -49,9 +53,15 @@ var gfyCollection = function () {
         return collection;
     }
 
+    function empty() {
+        collection = []
+        init();
+    }
+
     return {
         init: init,
-        get: get
+        get: get,
+        empty: empty
     }
 
 }();
@@ -65,6 +75,8 @@ var gfyCollection = function () {
 
 var gfyObject = function (gfyElem) {
     var gfyRootElem = gfyElem;
+    if (gfyRootElem == null) return;
+    var gfyId = gfyRootElem.getAttribute('data-id');
     var gfyId;
     // Options are set by data- attributes on tag
     var optExpand; // Option: will video grow to fill space
@@ -271,9 +283,10 @@ var gfyObject = function (gfyElem) {
     }
 
     function init() {
+        if (gfyRootElem.parentNode ==  null) return;
         isMobile = mobilecheck();
         gfyId = gfyRootElem.getAttribute('data-id');
-        console.log(gfyId);
+        if (gfyId == '') return;
         if (gfyRootElem.getAttribute('data-title') == "true")
             optTitle = true;
         if (gfyRootElem.getAttribute('data-expand') == "true")
@@ -299,6 +312,7 @@ var gfyObject = function (gfyElem) {
         loadJSONP("https://gfycat.com/cajax/get/" + gfyId, function (data) {
             if (data) {
                 gfyItem = data.gfyItem;
+                if (gfyItem == null) return;
                 gfyMp4Url = gfyItem.mp4Url;
                 gfyWebmUrl = gfyItem.webmUrl;
                 gfyFrameRate = gfyItem.frameRate;
@@ -578,7 +592,8 @@ var gfyObject = function (gfyElem) {
 
     return {
         init: init,
-        refresh: refresh
+        refresh: refresh,
+        id: gfyId
     }
 }
 

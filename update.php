@@ -268,14 +268,6 @@ Questions?
                     </div>
                   </div>
 
-                  <!-- Text input-->
-                  <div class="form-group">
-                    <label class="col-md-4 control-label" for="gfycat">Gfycat!</label>
-                    <div class="col-md-6">
-                    <input id="gfycat" name="gfycat" type="text" placeholder="gfycat.com/" class="form-control input-md">
-                    <span class="help-block">Please enter a link to a sweet gfycat!</span>
-                    </div>
-                  </div>
 
                   <!-- Text input-->
                   <div class="form-group">
@@ -383,9 +375,10 @@ Questions?
                 echo "<div class='col-md-$size'>";
                   echo "<div class='well'>";
                     echo "<h3> Gif #" . ($counter+1) . "</h3>";
-                    echo "<input type='text' data-value='" . ($counter+1) . "' class='form-control input-md gifholder' value='gfycat.com/" .  $usergifs[$counter]['url'] . "'/>";
+                    echo "<input type='text' data-value='" . ($counter+1) . "' class='form-control input-md gifholder' id='gfy".($counter+1)."' name='gfy".($counter+1)."' value='gfycat.com/" .  $usergifs[$counter]['url'] . "'/>";
                     echo "<hr>";
                     echo "<div id='gif" . ($counter+1) . "'>";
+                    if ($usergifs[$counter]['url'] != '')
                     echo "<img class='gfyitem' data-expand=true data-id='" . $usergifs[$counter]['url'] . "'/>";
                     echo "</div>";
                   echo "</div>";
@@ -547,19 +540,27 @@ Questions?
             // Prevent default behavior
             event.preventDefault();
             var data = $(".submit-wrapper form").serialize();
+            var numGifs = 3;
+            for (var i = 1; i < numGifs+1; i++) {
+              var bla = $('#gfy'+i).val();
+              console.log(bla);
+              data += "&gfy"+i+"="+bla;
+            }
+            
             console.log(data);
             $.ajax({
               url: '/techs/update.php',
               type: 'POST',
-              data: data,
-              dataType: "html"
+              data: data
             })
-            .done(function(html) {
+            .success(function(html) {
               window.location.replace("/update.php?str=success");
             })
             .fail(function(html) {
               console.log(html);
-              //window.location.replace("/update.php?str=error");
+              if (html == "gif") {
+                window.location.replace("/update.php?str=error");
+              }
             })
             .always(function(html) {
               $("#loader").removeClass(" glyphicon-refresh-animate");
@@ -574,23 +575,12 @@ Questions?
               var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
               var str = url;
               var m = re.exec(str);
-
-
-              if (m == null) {
-                if (spawned) {
-                  //$( "#spawned" + which ).remove();
-                  //$( ".gif" + which ).remove();
-                  spawned = false;
-                }
-                return;
-              }
               
               var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
-              //$(this).after("<div id='spawned" + which + "'><br>" + linkAndString + "</div>");
-              $( "#gif" + which ).append("<img class='gfyitem' data-expand=true data-id='" + m[4] + "' />");
-              spawned = true;
+              $( "#gif" + which ).html("<img class='gfyitem' data-expand=true data-id='" + m[4] + "' />");
 
-              gfyCollection.init();
+              gfyCollection.empty();
+
               
               
           });
