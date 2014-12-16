@@ -86,7 +86,7 @@ function makeTooltip($author) {
   foreach ($author as $name) {
     echo $name . " ";
   }
-  echo $author . ".</h4>";
+  echo "</h4>";
   echo "<h5>Gifs collected by Marco</h5>";
 }
 
