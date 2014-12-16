@@ -195,6 +195,10 @@ Questions?
                 <ul id="recentList" class="nav nav-list"></ul>
               </div>
             </div>
+
+            <div class='well'>
+              <h4> <a href='/submit.php#tournament'> Submit a Tournament </a></h4>
+            </div>
             <hr>
           </div>
 
