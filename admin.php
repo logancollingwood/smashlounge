@@ -94,7 +94,7 @@
                               echo "<p>" . getCharFromID($mysqli, $row['dataid']) . "</p>";
                             }
                           ?>
-                          <?php echo $row['data-id']; ?>
+                          <?php //echo $row['data-id']; ?>
                       </td>
                       <td><?php echo $row['source']; ?></td>
                       <td><?php echo $row['description']; ?></td>
