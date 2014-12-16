@@ -90,9 +90,9 @@ Questions?
             <p class="fifty"><small>A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</small></br>
             <?php
               if ($displayChar) {
-                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=characters.php?char=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
               } else if ($displayTech) {
-                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=techniques.php?tech=" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
               }
               echo "</br>";
               echo "</p>";
