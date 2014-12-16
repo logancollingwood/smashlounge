@@ -375,31 +375,19 @@ Questions?
                 echo "<div class='col-md-$size'>";
                   echo "<div class='well'>";
                     echo "<h3> Gif #" . ($counter+1) . "</h3>";
-                    echo "<input type='text' data-value='" . ($counter+1) . "' class='form-control input-md gifholder' id='gfy".($counter+1)."' name='gfy".($counter+1)."' value='gfycat.com/" .  $usergifs[$counter]['url'] . "'/>";
+                    if (isset($usergifs[$counter]['url']))
+                      echo "<input type='text' data-value='" . ($counter+1) . "' class='form-control input-md gifholder' id='gfy".($counter+1)."' name='gfy".($counter+1)."' value='gfycat.com/" .  $usergifs[$counter]['url'] . "'/>";
+                    else 
+                      echo "<input type='text' data-value='" . ($counter+1) . "' class='form-control input-md gifholder' id='gfy".($counter+1)."' name='gfy".($counter+1)."' value='gfycat.com/'/>";
                     echo "<hr>";
                     echo "<div id='gif" . ($counter+1) . "'>";
-                    if ($usergifs[$counter]['url'] != '')
-                    echo "<img class='gfyitem' data-expand=true data-id='" . $usergifs[$counter]['url'] . "'/>";
+                    if (isset($usergifs[$counter]['url']))
+                      echo "<img class='gfyitem' data-expand=true data-id='" . $usergifs[$counter]['url'] . "'/>";
                     echo "</div>";
                   echo "</div>";
                 echo "</div>";
                 $counter++;
               }
-              /*
-              foreach ($usergifs as $gif) {
-                $counter++;
-                echo "<div class='col-md-4'>";
-                  echo "<div class='well'>";
-                    echo "<h3> Gif #" . $counter . "</h3>";
-                    echo "<input id='gifholder' type='text' data-value='" . $counter . "' class='form-control input-md' value='gfycat.com/" .  $gif['url'] . "'/>";
-                    echo "<hr>";
-                    echo "<div id='gif$counter'>";
-                    echo "<img class='gfyitem' data-expand=true data-id='" . $gif['url'] . "'/>";
-                    echo "</div>";
-                  echo "</div>";
-                echo "</div>";
-              } 
-              */
             ?>
             <div class='row'>
               <div class='col-md-6 col-md-offset-3'>
