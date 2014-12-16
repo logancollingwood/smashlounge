@@ -76,7 +76,65 @@
 
 	} else if ($key == 'tournament') {
 
+		$tournamentName = $_POST['tournament_name'];
+		$tournamentStart = $_POST['tournament_start'];
+		$tournamentEnd = $_POST['tournament_end'];
+		$tournamentTwitch = $_POST['tournament_twitch'];
+		$tournamentChallonge = $_POST['tournament_challonge'];
+		$tournamentHost = $_POST['tournament_host'];
+		
+		if ($tournamentName == '' || $tournamentEnd == '' || $tournamentStart == '' 
+			|| $tournamentTwitch == '' || $tournamentChallonge == '' || $tournamentHost == '') {
+			printf("nullfields");
+			exit();
+		}
+
+		if (!($stmt = $mysqli->prepare("INSERT INTO submissionstournament (title, start, end, stream, bracket, host) VALUES (?, ?, ?, ?, ?, ?)"))) {
+		     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		     exit();
+		}
+		// Bind Params
+		if (!$stmt->bind_param("ssssss", $tournamentName, $tournamentStart, $tournamentEnd, $tournamentTwitch, $tournamentChallonge, $tournamentHost)) {
+		    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+		// Execute
+		if (!$stmt->execute()) {
+		    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+
+		printf("%d Row inserted.\n", $stmt->affected_rows);
+		$stmt->close();
+
 	} else if ($key == 'technique') {
+
+		$techname = $_POST['tech_name'];
+		$techDesc = $_POST['tech_desc'];
+		$techWiki = $_POST['tech_ssbwiki'];
+
+		if ($techname == '' || $techDesc == '' || $techWiki == '') {
+			printf("nullfields");
+			exit();
+		}
+
+		if (!($stmt = $mysqli->prepare("INSERT INTO submissionstech (name, description, ssbwiki) VALUES (?, ?, ?)"))) {
+		     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		     exit();
+		}
+		// Bind Params
+		if (!$stmt->bind_param("sss", $techname, $techDesc, $techWiki)) {
+		    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+		// Execute
+		if (!$stmt->execute()) {
+		    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+
+		printf("%d Row inserted.\n", $stmt->affected_rows);
+		$stmt->close();
 
 	} else if ($key == 'group') {
 

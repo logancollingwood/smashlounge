@@ -85,6 +85,10 @@ Questions?
               <p class="fifty"><small>all submissions are reviewed by community moderators</small></p>
             </div>
           </div>
+            <div class="alert alert-danger alert-dismissible" id="nullfields" role="alert" hidden='true'>
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <strong>Whoops!</strong> Looks like you forgot to fill out some fields
+            </div>
 
             <ul class='nav nav-tabs' role='tablist' id='myTab'>
               <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz' data-id="gif">Gifs</a></li>
@@ -171,7 +175,7 @@ Questions?
                           </div>
                         </div>
 
-                        <button class="btn btn-default post-submissions">submit</button>
+                        <button id="submitgif" class="btn btn-default post-submissions">submit</button>
                         <br>
                       </form>
                       </div>
@@ -194,9 +198,16 @@ Questions?
                       <form method="post" class="form-horizontal">
 
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_urlid">Tournament Name</label>
+                          <label class="col-md-4 control-label" for="tournament_nameid">Tournament Name</label>
                           <div class="col-md-8">
-                            <input id="tournament_urlid" type="text" class="form-control" name="tournament_name" placeholder="Do You Fox With It?"/>
+                            <input id="tournament_nameid" type="text" class="form-control" name="tournament_name" placeholder="Do You Fox With It?"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_hostid">Tournament Host</label>
+                          <div class="col-md-8">
+                            <input id="tournament_hostid" type="text" class="form-control" name="tournament_host" placeholder="NorCal Melee"/>
                           </div>
                         </div>
 
@@ -229,7 +240,7 @@ Questions?
                         </div>
 
                         <br>
-                        <button class="btn btn-default post-submissions">submit</button>
+                        <button id="submittournament" class="btn btn-default post-submissions">submit</button>
                       </form>
                       </div>
                     </div>
@@ -269,7 +280,7 @@ Questions?
                         </div>
 
                         <br>
-                        <button class="btn btn-default post-submissions">submit</button>
+                        <button id="submittech" class="btn btn-default post-submissions">submit</button>
                       </form>
                       </div>
                     </div>
@@ -283,7 +294,7 @@ Questions?
                       <br>
                       <div class='submit-wrapper'>
                         <form method="post" class="form-horizontal">
-                          <div class='col-md-6'>
+                          <div class='col-md-12'>
                             <div class="form-group">
                               <label class="col-md-4 control-label" for="group_nameid">Group Name</label>
                               <div class="col-md-8">
@@ -297,37 +308,30 @@ Questions?
                                 <textarea id="group_facebookid" type="text" class="form-control" maxlength="400" name="group_facebook" placeholder="https://www.facebook.com/groups/SantaCruzMelee/" required></textarea>
                               </div>
                             </div>
-
-                          </div>
-                          <div class='col-md-6'>
-                            <div class='row'>
-                              <div class='col-md-6'>
-                                <div class="well">
-                                  <div id="map-canvas"/></div>
-                                </div>
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="group_facebookid">Pin your group to our map</label>
+                              <div class="col-md-8">
+                                <div id="map-canvas"/></div>
                               </div>
-                              <div class='col-md-6'>
-                                <div class='form-group'>
-                                  <label class="col-md-4 control-label" for="group_lat">latitude</label>
-                                  <div class="col-md-8">
-                                   <input id="group_lat" type="text" class="form-control" maxlength="100" name="group_lat" placeholder="0" disabled='disabled'/>
-                                  </div>
-                                </div>
-                                <div class='form-group'>
-                                  <label class="col-md-4 control-label" for="group_long">longitude</label>
-                                  <div class="col-md-8">
-                                    <input id="group_long" type="text" class="form-control" maxlength="100" name="group_lat" placeholder="0" disabled='disabled'/>
-                                  </div>
-                                </div>
+                            </div>
+                            <div class='form-group'>
+                              <label class="col-md-4 control-label" for="group_lat">latitude</label>
+                              <div class="col-md-8">
+                               <input id="group_lat" type="text" class="form-control" maxlength="100" name="group_lat" placeholder="0" disabled='disabled'/>
+                              </div>
+                            </div>
+                            <div class='form-group'>
+                              <label class="col-md-4 control-label" for="group_long">longitude</label>
+                              <div class="col-md-8">
+                                <input id="group_long" type="text" class="form-control" maxlength="100" name="group_lat" placeholder="0" disabled='disabled'/>
                               </div>
                             </div>
                           </div>
-                          <br>
-                          <button class="btn btn-default post-submissions">submit</button>
 
-                          <div class='nullfields' hidden='true'>
-                            <h3><small>Whoops! Looks like you're missing some information</small></h3>
-                          </div>
+                          <br>
+                          <button id='submitgroup' class="btn btn-default post-submissions">submit</button>
+
+
                         </form>
                       </div>
                     </div>
@@ -335,9 +339,8 @@ Questions?
                 </div>
 
               </div>
-            
-          </div>
 
+          </div>
         </div>
       </div>
     </div>
@@ -380,7 +383,7 @@ Questions?
 
       function initialize() {
         var mapOptions = {
-          zoom: 4,
+          zoom: 3,
           center: new google.maps.LatLng(37.6, -95.665),
         };
         var infoWindow = new google.maps.InfoWindow;
@@ -389,9 +392,8 @@ Questions?
 
         bindInfoWindow(map, infoWindow);
         $(document).ready(function(){
-         $('a[href="#group"]').on('shown.bs.tab', function(e)
-          {
-              google.maps.event.trigger(map, 'resize');
+          $('a[href="#group"]').on('shown.bs.tab', function(e) {
+            google.maps.event.trigger(map, 'resize');
           });
         });
       }
@@ -427,7 +429,12 @@ Questions?
             data: data
           })
           .success(function(html) {
+            $("#submit" + key).html('Thanks!');
+            $("#submit" + key).attr("disabled","disabled");
+
             if (html == 'gfycat') {
+              $("#submit" + key).html('submit');
+              $("#submit" + key).removeAttr("disabled");
               alert('Looks like you didn\'t sumbit a gfycat!');
             }
             console.log(html);
@@ -437,9 +444,11 @@ Questions?
           })
           .always(function(html) {
             if (html == 'nullfields') {
-              $(".nullfields").show();
+              $("#nullfields").show();
+              $("#submit" + key).html('submit');
+              $("#submit" + key).removeAttr("disabled");
             } else {
-              $(".nullfields").hide();
+              $("#nullfields").hide();
             }
             console.log('always');
           });
@@ -477,7 +486,9 @@ Questions?
             gfyCollection.init();
             //return;
         });
-
+        $('#myTab').bind('click', function (e) {
+           $("#nullfields").hide();
+        });
         $("#gif_selectorid").change(function () {
           if ($( "#gif_selectorid" ).val() == 'tech') {
             $("#charSelector").hide();

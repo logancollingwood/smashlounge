@@ -375,7 +375,7 @@ Questions?
               </div>
             </div>
         <div class='row'>
-            <?php /*
+            <?php 
               $numGifs = 3;
               $counter = 0;
               $size = 12/$numGifs;
