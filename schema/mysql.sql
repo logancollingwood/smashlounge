@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Dec 16, 2014 at 04:37 AM
+-- Generation Time: Dec 16, 2014 at 07:17 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -1365,14 +1365,6 @@ CREATE TABLE `submissionsgroup` (
   `longitude` float NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `submissionsgroup`
---
-
-INSERT INTO `submissionsgroup` (`id`, `name`, `fb`, `latitude`, `longitude`) VALUES
-(10, 'To', 'submitTech', 20.779, -30.35),
-(11, 'Ssadsa', 'dsa', 19.958, -74.839);
-
 -- --------------------------------------------------------
 
 --
@@ -1409,14 +1401,6 @@ CREATE TABLE `submissionstournament` (
   `location` varchar(50) NOT NULL,
   `host` varchar(65) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `submissionstournament`
---
-
-INSERT INTO `submissionstournament` (`id`, `title`, `fb_id`, `bracket`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`) VALUES
-(1, 'fux', 0, 'dsajiodsa.com', '2014-01-01', '2014-01-02', '', '', '', 'tiwthc.dsad', 0, '', ''),
-(2, 'sadsa', 0, 'dsadsa', '2014-04-02', '2014-02-01', '', '', '', 'sadsa', 0, '', 'dsadsa');
 
 -- --------------------------------------------------------
 
@@ -1622,7 +1606,7 @@ CREATE TABLE `upcoming` (
 --
 
 INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`, `vods`) VALUES
-(1, 'Do You Fox Wit it', '722984804448159', 'http://dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', '', '', '', 'showdownsmash', 0, '', 'NorCal', '3048');
+(1, 'Do You Fox Wit it', '722984804448159', 'http://dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', 'Hax', 'Silentwolf', 'SFAT', 'showdownsmash', 250, 'Oakland', 'NorCal', '3048');
 
 -- --------------------------------------------------------
 
@@ -1636,17 +1620,18 @@ CREATE TABLE `usergif` (
   `userid` int(11) NOT NULL,
   `url` varchar(90) NOT NULL,
   `description` varchar(130) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usergif`
 --
 
 INSERT INTO `usergif` (`id`, `userid`, `url`, `description`) VALUES
-(5, 2, 'MeaslyOddballCowrie', ''),
-(6, 2, 'MeaslyOddballCowrie', ''),
 (7, 3, 'GenerousThriftyArieltoucan', ''),
-(8, 3, 'InsistentSilverArawana', '');
+(8, 3, 'InsistentSilverArawana', ''),
+(18, 2, 'SkinnyCorruptHake', ''),
+(19, 2, 'DimIckyAztecant', ''),
+(20, 2, 'SkinnyCorruptHake', '');
 
 -- --------------------------------------------------------
 
@@ -1711,7 +1696,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
-(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-12-09 23:05:56', '$2y$10$JFuGEixZOS1PLEytx0plxuUTWgtjl.hAFw/ZsCmzHpwm75JbYRMsO', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-12-10 07:05:56'),
+(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-12-16 05:52:41', '$2y$10$U061lsMn1osKafIZIIL2Huer.pT.IkIxVNdwjb9wMZMJkjUYbJZpq', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-12-16 13:52:41'),
 (3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05');
 
 -- --------------------------------------------------------
@@ -1837,7 +1822,7 @@ ALTER TABLE `upcoming`
 -- Indexes for table `usergif`
 --
 ALTER TABLE `usergif`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD KEY `id_2` (`id`), ADD KEY `id_3` (`id`);
 
 --
 -- Indexes for table `userinfo`
@@ -1950,7 +1935,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `usergif`
 --
 ALTER TABLE `usergif`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
