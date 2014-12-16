@@ -113,7 +113,7 @@
       $gfys = array();
       for ($i = 1; $i < $numGifs+1; $i++) {
         $gfyCat = $_POST['gfy'.$i];
-        error_log($gfyCat);
+        //error_log($gfyCat);
         if ($gfyCat != 'gfycat.com/') {
           $gfyURL = remove_http($gfyCat);
           $gfyID = grabGfyName($gfyURL);
@@ -217,7 +217,7 @@
       }
 
       foreach($gfys as $gfyID) {
-        error_log($gfyID);
+        //error_log($gfyID);
         $query = "INSERT INTO usergif (userid, url) VALUES (?, ?)";
         if (!($stmt = $mysqli->prepare($query))) {
          error_log("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
