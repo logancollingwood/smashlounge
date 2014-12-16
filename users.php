@@ -1,10 +1,8 @@
 <?php
 
-  
   require_once("techs/init.php");
   require_once("techs/twitch.php");
   require_once("techs/initUser.php");
-    $username;
     $username = isset($_GET['username'])       ? trim($_GET['username'])       : "";
     $mypage = FALSE;
     $friends = FALSE;
@@ -240,7 +238,7 @@ Questions?
         }
       ?>
       $(".youtube").fitVids();
-      $(".panel-body.userlist").css({'height':($("#map-canvas").height()-$(".panel-heading").height()+'px')});
+      $(".panel-body.userlist").css({'height':($("#map-canvas").height()-$(".panel-heading").height()-20+'px')});
       // Live Search
       // On Search Submit and Get Results
       function search() {
@@ -258,53 +256,53 @@ Questions?
           });
       }
 
-      <?php if ($user['id'] != -1) { ?>
-      $("#addfriend").on("click", function(event) {
-        console.log('clicked');
-        $.ajax({
-          type: "POST",
-          url: "/techs/friend.php",
-          data: { user_id: <?php echo $user['id'] ?>, friend_id: <?php echo $userid ?> },
-          cache: false,
-        })
-        .success(function(html) {
-          $("#addfriend").hide();
-          $("#removefriend").show();
-          $("#removefriend").removeAttr('disabled');
-          console.log('friends');
-        })
-        .fail(function() {
-          console.log('failed');
-          $("#addfriend").removeAttr('disabled');
-        })
-        .always(function() {
-          $("#addfriend").attr('disabled','disabled');
+      <?php if ($loggedIn && $user['id'] != -1 && $userid != '') { ?>
+        $("#addfriend").on("click", function(event) {
+          console.log('clicked');
+          $.ajax({
+            type: "POST",
+            url: "/techs/friend.php",
+            data: { user_id: <?php echo $user['id'] ?>, friend_id: <?php echo $userid ?> },
+            cache: false,
+          })
+          .success(function(html) {
+            $("#addfriend").hide();
+            $("#removefriend").show();
+            $("#removefriend").removeAttr('disabled');
+            console.log('friends');
+          })
+          .fail(function() {
+            console.log('failed');
+            $("#addfriend").removeAttr('disabled');
+          })
+          .always(function() {
+            $("#addfriend").attr('disabled','disabled');
+          });
         });
-      });
 
-      $("#removefriend").on("click", function(event) {
-        console.log('clicked');
-        $.ajax({
-          type: "POST",
-          url: "/techs/unfriend.php",
-          data: { user_id: <?php echo $user['id'] ?>, friend_id: <?php echo $userid ?> },
-          cache: false,
-        })
-        .success(function(html) {
-          $("#removefriend").hide();
-          $("#addfriend").show();
-          $("#addfriend").removeAttr('disabled');
-          console.log('removed from friends');
-        })
-        .fail(function() {
-          console.log('failed');
-          $("#removefriend").removeAttr('disabled');
-        })
-        .always(function() {
-          $("#removefriend").attr('disabled','disabled');
+        $("#removefriend").on("click", function(event) {
+          console.log('clicked');
+          $.ajax({
+            type: "POST",
+            url: "/techs/unfriend.php",
+            data: { user_id: <?php echo $user['id'] ?>, friend_id: <?php echo $userid ?> },
+            cache: false,
+          })
+          .success(function(html) {
+            $("#removefriend").hide();
+            $("#addfriend").show();
+            $("#addfriend").removeAttr('disabled');
+            console.log('removed from friends');
+          })
+          .fail(function() {
+            console.log('failed');
+            $("#removefriend").removeAttr('disabled');
+          })
+          .always(function() {
+            $("#removefriend").attr('disabled','disabled');
 
+          });
         });
-      });
       <?php } ?>
 
 
