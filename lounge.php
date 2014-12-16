@@ -137,8 +137,7 @@ Questions?
               <div class="row">
                   <?php
                     echo "<li class='list-group-item gray'>";
-                    echo "<h4> Submit a scene! </h4>";
-                    makeSubmitSceneForm($regions);
+                    echo "<h4> <a href='/submit.php#group'>Submit a scene! </a></h4>";
                     echo "</li>";
                     if ($submit) {
                       alertMSG($submit);
