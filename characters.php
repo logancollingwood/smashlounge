@@ -122,7 +122,7 @@ Questions?
                         echo "</li>";
                       }
                   echo "<li class='list-group-item'>";
-                  echo "<h4> <a href='/submit.php'> Submit a gif </a></h4>";
+                  echo "<h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
                   //makeSubmitForm("char" , $char, $tech);
                   echo "</li>";
                   echo "</ul>";
@@ -139,8 +139,6 @@ Questions?
                     }
                     echo "</ul>";
                     echo "</div>";
-
-
                   echo "</div>";
               }
               echo "</div>";

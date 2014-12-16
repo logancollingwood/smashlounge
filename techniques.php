@@ -147,7 +147,7 @@ Questions?
                     }
 
                     echo "<li class='list-group-item'>";
-                    echo "<h4> <a href='/submit.php#technique'> Submit a gif </a></h4>";
+                    echo "<h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
                     //makeSubmitForm("char" , $char, $tech);
                     echo "</li>";
                     if ($submit) {
