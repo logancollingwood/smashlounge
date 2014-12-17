@@ -38,6 +38,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
+    @media (min-width: 768px) {
+      .row {
+        margin-top: 0%;
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+    }
     .gray {
       color: #f64497;
     }
@@ -91,7 +98,7 @@
 
           <div class='row'>
             <br>
-            <div class='col-md-7'>
+            <div class='col-md-5'>
               <div class="panel panel-default donate">
                 <div class='panel-heading'>
                   <h3> Donate with Bitcoin <i class="fa fa-btc fa-1x"></i></h3>
@@ -140,7 +147,7 @@
               <h3 style="color:#FFF;"> OR </h3>
             </div>
 
-            <div class='col-md-3 donate'>
+            <div class='col-md-5 donate'>
               <div class='panel panel-default donate'>
                 <div class='panel-heading'>
                   <h3> Donate with Paypal <i class="fa fa-money fa-1x"></i></h3>
