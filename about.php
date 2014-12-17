@@ -1,6 +1,5 @@
 <?php
 
-
   require("techs/init.php");
 
 ?>
@@ -17,74 +16,183 @@
 
     <title>About</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main Dependencies -->
+    <?php
 
-    <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+      printLibraries();
+
+    ?>
+
     <link href="css/new.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
+  <style type='text/css'>
+    #intro { 
+      background: url(img/assets/BG_twit.jpg) 50% 0 fixed; 
+      height: 60%;
+      top: 5%;
+      margin: 0 auto; 
+      width: 100%; 
+      position: relative; 
+      /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
+      padding: 200px 0;
+    }
+    #home { 
+        background: url(img/home.jpg) 50% 0 fixed; 
+        background-color: #329c90;
+        background-image: url(img/assets/arches.png);
+        /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */        
+        height: auto;  
+        margin: 0 auto; 
+        width: 100%; 
+        position: relative; 
+        /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
+        padding: 50px 0;
+    }
+    img {
+      width: 100%;
+    }
+    .panel-body img {
 
+    }
+    .panel-body h3 {
+      font-family: 'raleway';
+      color: #000;
+    }
+    h1 {
+      color:#fff;
+      text-align: center;
+    }
+    .panel-heading {
+      text-align: center;
+    }
+    hr {
+      width: 65%;
+    }
+    .panel-default {
+      max-width: 100%;
+    }
+    .col-md-3 {
+      /*margin-left: 10%;*/
+    }
+    .panel-footer .fa {
+      color: #6e6e6e;
+      margin-left: 10%;
+    }
+  </style>
   <body>
 
       <?php
         createNavBar('about');
       ?>
-        <div class="cover-container">
-
-
-          <div class="inner cover">
-            <div class='row'>
-              <h1 class="cover-heading">Smash Lounge</h1>
-              <p class="lead">is an online compendium for Super Smash Brothers Melee</p>
+      <!-- Section 1 -->
+      <section id="intro" data-speed="6" data-type="background">
+      </section>
+      <!-- Section 2 -->
+      <section id="home" data-speed="8" data-type="background">
+        <div class='row'>
+            <h1> TSL </h1>
+            <hr>
+            <br>
+        </div>
+                <div class='row'>
+          <div class='col-md-2 col-md-offset-1'>
+            <div class='panel panel-default'>
+              <div class='panel-heading'>Logan Collingwood</div>
+              <div class='panel-body vimeo'>
+                <img src='/img/profiles/lc.jpg' />
+                <h3>Co-Founder, Lead Developer</h3>
+              </div>
+              <div class='panel-footer'>
+                <i class="fa fa-facebook-square fa-3x"></i>
+                <i class="fa fa-twitter-square fa-3x"></i>
+                <i class="fa fa-github-square fa-3x"></i>
+              </div>
             </div>
-            <p class="lead">
-              Code by <a href="http://www.logancollingwood.com"> Logan Collingwood </a> <a href="http://www.twitter.com/logan6694"> @logan6694 </a>
-              <br />
-              Knowledge from Kevin Toy <a href="https://twitter.com/miom_pewpewu">@MIOM_PewPewU</a>
-              <br />
-              Scripting and programming assistance from Marco Salazar 
-              <br />
-              Graphic design and promotional videos by Boback Vakili
-              <br />
-
-              <p style="font-size: 16px; margin-top: 45px">
-              Most descriptions taken from smashWiki or from professional sources. There are destined to be innacuracies in the information provided, so feel free to email me to get it fixed
-              <address>
-                <a href="mailto:smashlounge@gmail.com">smashlounge@gmail.com</a>
-              </address> 
-              </p>
-            </p>
           </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p></p>
+          <div class='col-md-2'>
+            <div class='panel panel-default'>
+              <div class='panel-heading'>Kevin <br>Toy</div>
+              <div class='panel-body vimeo'>
+                <img src='/img/profiles/kt.jpg' />
+                <h3>Co-Founder, Knowledge-Base, Social Media</h3>
+              </div>
+              <div class='panel-footer'>
+                <i class="fa fa-facebook-square fa-3x"></i>
+                <i class="fa fa-twitter-square fa-3x"></i>
+                <i class="fa fa-github-square fa-3x"></i>
+              </div>
+            </div>
+          </div>
+          <div class='col-md-2'>
+            <div class='panel panel-default'>
+              <div class='panel-heading'>Marco Salazar</div>
+              <div class='panel-body vimeo'>
+                <img src='/img/profiles/ms.jpeg' />
+                <h3>Developer, Programming Guru</h3>
+              </div>
+              <div class='panel-footer'>
+                <i class="fa fa-facebook-square fa-3x"></i>
+                <i class="fa fa-twitter-square fa-3x"></i>
+                <i class="fa fa-github-square fa-3x"></i>
+              </div>
+            </div>
+          </div>
+          <div class='col-md-2'>
+            <div class='panel panel-default'>
+              <div class='panel-heading'>Boback <br>Vakili</div>
+              <div class='panel-body vimeo'>
+                <img src='/img/profiles/bv.jpg' />
+                <h3>Motion Graphics, Branding</h3>
+              </div>
+              <div class='panel-footer'>
+                <i class="fa fa-facebook-square fa-3x"></i>
+                <i class="fa fa-twitter-square fa-3x"></i>
+                <i class="fa fa-github-square fa-3x"></i>
+              </div>
+            </div>
+          </div>
+          <div class='col-md-2'>
+            <div class='panel panel-default'>
+              <div class='panel-heading'>Dan <br>Pagharion</div>
+              <div class='panel-body vimeo'>
+                <img src='/img/profiles/dp.jpg' />
+                <h3>Developer</h3>
+              </div>
+              <div class='panel-footer'>
+                <i class="fa fa-facebook-square fa-3x"></i>
+                <i class="fa fa-twitter-square fa-3x"></i>
+                <i class="fa fa-github-square fa-3x"></i>
+              </div>
             </div>
           </div>
 
         </div>
-
-
-
-    </div>
+      </section>
+      <section id="about" data-speed="4" data-type="background">
+      </section>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
+    <script>
+      $(document).ready(function(){
+         $window = $(window);
+       
+         $('section[data-type="background"]').each(function(){
+
+           var $scroll = $(this);
+                           
+            $(window).scroll(function() {                       
+              var yPos = -($window.scrollTop() / $scroll.data('speed')); 
+              var coords = '50% '+ yPos + 'px';
+       
+              $scroll.css({ backgroundPosition: coords });    
+            });
+         });  
+      }); 
+    </script>
   </body>
 </html>
