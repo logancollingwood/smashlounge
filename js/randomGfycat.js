@@ -14,6 +14,8 @@ function drawRandomGif() {
       title = item['data']['title'];
     });
 
+    url = url.replace('#', '');
+
     var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
     var m = re.exec(url);
 
@@ -21,7 +23,7 @@ function drawRandomGif() {
       drawRandomGif();
     }
 
-    var panelHeading = "<a href='" + permalink + "'>Enjoy a random r/smashgif</a>&nbsp;-&nbsp;<button type='button' class='btn btn-default btn-lg' id='drawgif'>another?</button><br>"; 
+    var panelHeading = "<a href='//www.reddit.com/r/smashgifs'>Enjoy a random r/smashgif</a>&nbsp;-&nbsp;<button type='button' class='btn btn-default btn-lg' id='drawgif'>another?</button><br>"; 
     var panelBody = "<img class='gfyitem' data-expand=true data-id='" + m[4] + "' />";
     var panelFooter = "<h4 randGifDesc><a href='" + permalink + "'>" +  title + "</a></h4>"
     $('#randomSlot').empty();
