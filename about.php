@@ -80,6 +80,19 @@
       color: #6e6e6e;
       margin-left: 10%;
     }
+    .panel-footer .fa:hover {
+      color: #000;
+      margin-left: 10%;
+    }
+    #main {
+      display: table;
+    }
+
+    #main .panel {
+        float: none;
+        display: table-cell;
+        vertical-align: top;
+    }
   </style>
   <body>
 
@@ -96,7 +109,7 @@
             <hr>
             <br>
         </div>
-                <div class='row'>
+        <div class='row' id='main'>
           <div class='col-md-2 col-md-offset-1'>
             <div class='panel panel-default'>
               <div class='panel-heading'>Logan Collingwood</div>
@@ -105,9 +118,15 @@
                 <h3>Co-Founder, Lead Developer</h3>
               </div>
               <div class='panel-footer'>
-                <i class="fa fa-facebook-square fa-3x"></i>
-                <i class="fa fa-twitter-square fa-3x"></i>
-                <i class="fa fa-github-square fa-3x"></i>
+                <a href='https://www.facebook.com/logancollingwood'>
+                  <i class="fa fa-facebook-square fa-3x"></i>
+                </a>
+                <a href='https://twitter.com/__logan_c__'>
+                  <i class="fa fa-twitter-square fa-3x"></i>
+                </a>
+                <a href='https://github.com/logancollingwood/'>
+                  <i class="fa fa-github-square fa-3x"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -119,9 +138,12 @@
                 <h3>Co-Founder, Knowledge-Base, Social Media</h3>
               </div>
               <div class='panel-footer'>
-                <i class="fa fa-facebook-square fa-3x"></i>
-                <i class="fa fa-twitter-square fa-3x"></i>
-                <i class="fa fa-github-square fa-3x"></i>
+                <a href='https://www.facebook.com/MIOMPewPewU'>
+                  <i class="fa fa-facebook-square fa-3x"></i>
+                </a>
+                <a href='https://twitter.com/MIOM_pewpewu'>
+                  <i class="fa fa-twitter-square fa-3x"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -133,9 +155,15 @@
                 <h3>Developer, Programming Guru</h3>
               </div>
               <div class='panel-footer'>
-                <i class="fa fa-facebook-square fa-3x"></i>
-                <i class="fa fa-twitter-square fa-3x"></i>
-                <i class="fa fa-github-square fa-3x"></i>
+                <a href='https://www.facebook.com/marceux'>
+                  <i class="fa fa-facebook-square fa-3x"></i>
+                </a>
+                <a href='https://twitter.com/marceux'>
+                  <i class="fa fa-twitter-square fa-3x"></i>
+                </a>
+                <a href='https://github.com/marceux/'>
+                  <i class="fa fa-github-square fa-3x"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -147,9 +175,15 @@
                 <h3>Motion Graphics, Branding</h3>
               </div>
               <div class='panel-footer'>
-                <i class="fa fa-facebook-square fa-3x"></i>
-                <i class="fa fa-twitter-square fa-3x"></i>
-                <i class="fa fa-github-square fa-3x"></i>
+                <a href='https://www.facebook.com/boback.vakili'>
+                  <i class="fa fa-facebook-square fa-3x"></i>
+                </a>
+                <a href='https://twitter.com/boba_ck'>
+                  <i class="fa fa-twitter-square fa-3x"></i>
+                </a>
+                <a href='http://vimeo.com/bobackv'>
+                  <i class="fa fa-vimeo-square fa-3x"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -161,9 +195,15 @@
                 <h3>Developer</h3>
               </div>
               <div class='panel-footer'>
-                <i class="fa fa-facebook-square fa-3x"></i>
-                <i class="fa fa-twitter-square fa-3x"></i>
-                <i class="fa fa-github-square fa-3x"></i>
+                <a href='https://www.facebook.com/daniel.pagharion'>
+                  <i class="fa fa-facebook-square fa-3x"></i>
+                </a>
+                <a href='https://twitter.com/dspagharion'>
+                  <i class="fa fa-twitter-square fa-3x"></i>
+                </a>
+                <a href='https://github.com/dpaghari/'>
+                  <i class="fa fa-github-square fa-3x"></i>
+                </a>
               </div>
             </div>
           </div>
