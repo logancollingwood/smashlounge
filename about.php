@@ -51,6 +51,12 @@
         /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
         padding: 50px 0;
     }
+    h3 {
+      font-family: 'raleway';
+      font-size: 24px;
+      text-align: center;
+      color: #FFF;
+    }
     img {
       width: 100%;
     }
@@ -64,6 +70,17 @@
     h1 {
       color:#fff;
       text-align: center;
+    }
+    p {
+      font-family: 'raleway';
+      color: #fff;
+      text-align: center;
+    }
+    p a {
+      color: #000;
+    }
+    p a:hover {
+      color: #333;
     }
     .panel-heading {
       text-align: center;
@@ -209,6 +226,23 @@
             </div>
           </div>
 
+        </div>
+        <div class='row'>
+          <hr>
+          <div class='col-md-6 col-md-offset-3'>
+            <h3> smashlounge is an online compendium for super smash brothers. We
+              strive to organize and categorize all data for the super smash brothers
+              franchise and to provide an open, transparent interface for accessing all
+              information.
+            </h3>
+            <p>
+              If you would like to work with us (and please, feel free), email us at
+              <a href='mailto:smashlounge@gmail.com'> smashlounge@gmail.com </a>
+            </p>
+            <br>
+          </div>
+          <hr>
+          </div>
         </div>
       </section>
       <section id="about" data-speed="4" data-type="background">
