@@ -36,7 +36,8 @@
       width: 100%; 
       position: relative; 
       /*box-shadow: 0 0 50px rgba(0,0,0,0.8);*/
-      padding: 200px 0;
+      padding-top: 200px;
+      padding-bottom: 250px;
     }
     #home { 
         background: url(img/home.jpg) 50% 0 fixed; 
