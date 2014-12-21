@@ -83,6 +83,27 @@
   }
   $json['techs'] = $techData;
 
+  $query = "SELECT * FROM " . $techTable . " WHERE tech='Tech'";
+  if (!$result = $mysqli->query($query)) {
+      die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $name =  $row["tech"];
+    $id = $row['id'];
+  }
+  $json['techniques_full'] = $name;
+
+  $query = "SELECT * FROM techinfo WHERE techid = " . $id;
+  if (!$result = $mysqli->query($query)) {
+      die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    unset($row['id']);
+    unset($row['techid']);
+    $data = $row;
+  }
+  $json['techniques_full'] = $data;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,7 +209,20 @@
           echo "</pre>";
  
         ?>
+
       </div>
+
+      <h3>Specify a technique using GET to find relevant info!</h3>
+      <p>Example api url: <a href='http://www.smashlounge.com/api/techniques?tech=Jump+Canceled+Grab'>http://www.smashlounge.com/api/techniques?tech=Jump+Canceled+Grab</a></p>
+      <h4>response</h4>
+      <div class="well">
+        <?php
+          echo "<pre>";
+          echo json_encode($json['techniques_full'], JSON_PRETTY_PRINT);
+          echo "</pre>";
+        ?>
+      </div>
+
       <h3>Gather all regional groups via XML</h3>
       <p>Example api url: <a href='http://www.smashlounge.com/api/scenesXML.php'>http://www.smashlounge.com/api/scenesXML.php</a></p>
       <hr>

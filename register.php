@@ -13,7 +13,10 @@
                 exit();
             }
         }
-
+        if (strcmp($_POST['password'], $_POST['password2']) != 0) {
+            header("Location: register.php?str=pass");
+            exit();
+        }
         $username = $_POST['username'];
 
         $query = "SELECT * FROM users WHERE username='". $username . "'";
@@ -50,28 +53,31 @@
         }catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
         {
             echo 'Login field is required.';
+            exit();
         }
         catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
         {
             echo 'Password field is required.';
+            exit();
         }
         catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
         {
             header("Location: register.php?str=spaces");
-            die('redirecting');
+            exit();
         }
         catch (Cartalyst\Sentry\Users\UserExistsException $e)
         {
             header("Location: register.php?str=exists");
-            die('redirecting');
+            exit();
         }
         if ($user == NULL) {
             header("Location: register.php?str=taken");
-            die('redirecting');
+            exit();
         }
+        
+        // SUCCESSFUL sign up
         $_GET['str'] = 'success';
-        //header("Location: login"); 
-        //die("Redirecting to update"); 
+
     } 
     $alert = isset($_GET['str'])       ? trim($_GET['str'])       : "";
 
@@ -104,6 +110,10 @@
             echo "</div>";
         } else if ($submit == 'fields') {
             echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like you're missing some fields.";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
+        } else if ($submit == 'pass') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like you're passwords don't match.";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         }
@@ -167,9 +177,16 @@
 
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="location">password</label>
+                                    <label class="col-md-4 control-label" for="password">password</label>
                                     <div class="col-md-6">
                                     <input id="password" name="password" type="password" placeholder="****" class="form-control input-md" required>
+                                    </div>
+                                </div>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="password2">confirm password</label>
+                                    <div class="col-md-6">
+                                    <input id="password2" name="password2" type="password" placeholder="****" class="form-control input-md" required>
                                     </div>
                                 </div>
                                 <div class="control-group">

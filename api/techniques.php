@@ -8,39 +8,67 @@
 	//
 	////////////////////////////////////////
 
-	$connection=mysql_connect ($dahostname, $username, $password);
-	if (!$connection) {  die('Not connected : ' . mysql_error());}
+	
+	//     BUILDS DATABASE CONNCETION
+	//
+	////////////////////////////////////////
 
-	// Set the active MySQL database
-
-	$db_selected = mysql_select_db($database, $connection);
-	if (!$db_selected) {
-	  die ('Can\'t use db : ' . mysql_error());
-	}
+	$mysqli = new mysqli($dahostname, $username, $password, $database);
+	if ($mysqli->connect_errno) {   
+      	printf("Connect failed: %s\n", $mysqli->connect_error);
+    	exit();
+    }
 
 	
 	$techCount = 0;
-
+	$tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
+	$json;
 
 	//     BUILDS TECHS ARRAY
 	//
 	//
 	//
 	////////////////////////////////////////
+	if ($tech == '') {
+		$query = "SELECT * from " . $techTable;
+		if (!$result = $mysqli->query($query)) {
+   			die('Invalid query: ' . $mysqli->error);
+		}
+		foreach ($result as $row) {
+		  $dataTech[] =  $row["tech"];
+		  $techCount++;
+		}
+		asort($dataTech);
 
-	$query = "SELECT * from " . $techTable;
-	$result = mysql_query($query);
-	if (!$result) {
-	  die('Invalid query: ' . mysql_error());
-	}
-	while ($row = mysql_fetch_assoc($result)) { 
-	  $dataTech[] =  $row["tech"];
-	  $techCount++;
-	}
-	asort($dataTech);
+		echo "<pre>";
+		echo json_encode($dataTech, JSON_PRETTY_PRINT);
+		echo "</pre>";
+	} else {
 
-	echo "<pre>";
-	echo json_encode($dataTech, JSON_PRETTY_PRINT);
-	echo "</pre>";
+		$query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
+		if (!$result = $mysqli->query($query)) {
+   			die('Invalid query: ' . $mysqli->error);
+		}
+		foreach ($result as $row) {
+		  $name =  $row["tech"];
+		  $id = $row['id'];
+		}
+		$json[] = $name;
+
+		$query = "SELECT * FROM techinfo WHERE techid = " . $id;
+		if (!$result = $mysqli->query($query)) {
+   			die('Invalid query: ' . $mysqli->error);
+		}
+		foreach ($result as $row) {
+		  unset($row['id']);
+		  unset($row['techid']);
+		  $data = $row;
+		}
+		$json[] = $data;
+
+		echo "<pre>";
+		echo json_encode($json, JSON_PRETTY_PRINT);
+		echo "</pre>";
+	}
 
 ?>

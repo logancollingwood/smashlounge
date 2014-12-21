@@ -8,7 +8,7 @@
     {
         $user = Sentry::getUser();
         // User is logged in
-        header("Location: /users/" . $user['username']);
+        header("Location: /update.php");
         die("Redirecting to index.php");
     }
 
@@ -47,7 +47,6 @@
         }
 
         if ($redirect) {
-
             header("Location: /" . $redirect . ".php") ;
             die("Redirecting to: redirect");
         }
