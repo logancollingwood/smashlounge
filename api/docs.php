@@ -1,6 +1,6 @@
 <?php
   require("../techs/db.php");
-  require("../techs/init.php");
+  //require("../techs/init.php");
 
   $mysqli = new mysqli($dahostname, $username, $password, $database);
   if ($mysqli->connect_errno) {   
@@ -102,7 +102,7 @@
     <!-- Custom styles for this template -->
     <link href="/css/grid.css" rel="stylesheet">
     <link href="/css/dashboard.css" rel="stylesheet">
-    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/new.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -142,7 +142,8 @@
 
       <div class="page-header">
         <h1>Smashlounge API Docs</h1>
-        <p class="lead">Building documentation for API. (STILL A WORK IN PROGRESS)</p>
+        <br>
+        <p class="lead"><small>Building documentation for API. (STILL A WORK IN PROGRESS)</small></p>
       </div>
 
       <h2>characters</h2>
@@ -188,7 +189,8 @@
  
         ?>
       </div>
-
+      <h3>Gather all regional groups via XML</h3>
+      <p>Example api url: <a href='http://www.smashlounge.com/api/scenesXML.php'>http://www.smashlounge.com/api/scenesXML.php</a></p>
       <hr>
 
 

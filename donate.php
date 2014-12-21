@@ -38,13 +38,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-    @media (min-width: 768px) {
-      .row {
-        margin-top: 0%;
-        margin-left: 10%;
-        margin-right: 10%;
-      }
-    }
     .gray {
       color: #f64497;
     }

@@ -87,15 +87,19 @@ Questions?
 
             <h1 class='lead'>smash lounge</h1>
             <hr style='width:50%;'>
-            <p class="fifty"><small>A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</small></br>
-            <?php
-              if ($displayChar) {
-                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
-              } else if ($displayTech) {
-                echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
-              }
-              echo "</br>";
-              echo "</p>";
+            <p class="fifty"><small>A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</small></br></p>
+
+                <?php
+                  if ($displayChar) {
+                    echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                  } else if ($displayTech) {
+                    echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                  }
+                //echo "<div style='width:2px;height:150px;background-color:#fff;'>&nbsp;</div>";
+                echo "&nbsp";
+                echo "<a class='btn btn-primary btn-lg bttn rand' href='submit.php'><span class='glyphicon glyphicon-cloud-upload pull-left'></span> Contribute</a>";
+                echo "</br>";
+            echo "</br>";
             ?>
           </div>
           
