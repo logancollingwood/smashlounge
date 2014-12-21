@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Dec 16, 2014 at 07:17 AM
+-- Generation Time: Dec 21, 2014 at 10:04 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -1559,7 +1559,7 @@ CREATE TABLE `throttle` (
   `last_attempt_at` timestamp NULL DEFAULT NULL,
   `suspended_at` timestamp NULL DEFAULT NULL,
   `banned_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `throttle`
@@ -1574,7 +1574,8 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 (6, 8, NULL, 0, 0, 0, NULL, NULL, NULL),
 (7, 9, NULL, 0, 0, 0, NULL, NULL, NULL),
 (8, 10, NULL, 0, 0, 0, NULL, NULL, NULL),
-(9, 11, NULL, 0, 0, 0, NULL, NULL, NULL);
+(9, 11, NULL, 0, 0, 0, NULL, NULL, NULL),
+(10, 5, NULL, 0, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1620,7 +1621,7 @@ CREATE TABLE `usergif` (
   `userid` int(11) NOT NULL,
   `url` varchar(90) NOT NULL,
   `description` varchar(130) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usergif`
@@ -1655,16 +1656,15 @@ CREATE TABLE `userinfo` (
   `longitude` int(11) NOT NULL,
   `friendcode` varchar(12) NOT NULL,
   `garpr` varchar(90) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userinfo`
 --
 
 INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid`, `vod`, `twitter`, `main`, `sponsor`, `latitude`, `longitude`, `friendcode`, `garpr`) VALUES
-(9, '', 'logan6694', 'Santa Cruz', 'xuaqua', 2, 'QtTpszuKXqA', 'logan6694', 21, 'Smash Lounge', 36.985, -122, '123456789124', ''),
-(10, '', 'MIOMPewPewU', 'Bay Area', 'pewpewu', 3, 'BMlxvpOhK7o', 'miom_pewpewu', 14, 'Melee it On Me', 0, 0, '123456789123', '1'),
-(11, '', 'logan6694', 'Santa Cruz', 'xuaqua', 4, '-n25Jvp0zK8', 'logan6694', 6, '', 0, 0, '123213213213', '');
+(9, '', 'logan6694', 'Santa Cruz', 'xuaqua', 2, 'ZKsyg8iw5sk', 'logan6694', 21, 'Smash Lounge', 36.985, -122, '123456789124', ''),
+(10, '', 'MIOMPewPewU', 'Bay Area', 'pewpewu', 3, 'BMlxvpOhK7o', 'miom_pewpewu', 14, 'Melee it On Me', 0, 0, '123456789123', '1');
 
 -- --------------------------------------------------------
 
@@ -1689,7 +1689,7 @@ CREATE TABLE `users` (
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -1925,7 +1925,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 -- AUTO_INCREMENT for table `throttle`
 --
 ALTER TABLE `throttle`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `upcoming`
 --
@@ -1935,17 +1935,17 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `usergif`
 --
 ALTER TABLE `usergif`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `userinfo`
 --
 ALTER TABLE `userinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
