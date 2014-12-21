@@ -154,7 +154,7 @@
             <li><a href="https://www.facebook.com/SmashLounge"><i class="fa fa-facebook"></i></a></li>
             <li class='here'><a href="/api/docs">api</a></li>
             <li><a href="/donate.php">donate</a></li>
-            <li><a href="/about.html">about</a></li>
+            <li><a href="/about.php">about</a></li>
           </ul>
         </div>
       </div>
