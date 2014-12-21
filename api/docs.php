@@ -120,7 +120,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic|Quicksand:400,700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link href="/css/grid.css" rel="stylesheet">
     <link href="/css/dashboard.css" rel="stylesheet">
