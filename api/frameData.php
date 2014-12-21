@@ -1,12 +1,12 @@
 <?php
 	
 	$char = isset($_GET['charz'])       ? trim($_GET['charz'])       : "";
-  	$tech = isset($_GET["tech"])       ? trim($_GET["tech"])       : "";
-  	$amount = isset($_GET['amount'])       ? trim($_GET['amount'])       : "";
+	$tech = isset($_GET["tech"])       ? trim($_GET["tech"])       : "";
+	$amount = isset($_GET['amount'])       ? trim($_GET['amount'])       : "";
 
-  	$char = urldecode($char);
-  	$tech = urldecode($tech);
-  	$amount = urldecode($amount);
+	$char = urldecode($char);
+	$tech = urldecode($tech);
+	$amount = urldecode($amount);
 	header('Content-type: application/json');
 
 	$DOWN = array('270', '100');
@@ -262,7 +262,25 @@
     for ($i = 68; $i < 77; $i++) {
       $json['gif'][0][] = array('frame' => $i, 'buttons' => array(''), 'ctrlStick' => $LEFT);
     }
+    echo json_encode($json);
+    return true;
+  } else if ($tech == 'Tech') {
+    $json['status'] = 'success';
+    for ($i = 37; $i < 54; $i++) {
+      $json['gif'][0][] = array('frame' => $i, 'buttons' => array('l'), 'ctrlStick' => '');
+    }
 
+    for ($i = 50; $i < 63; $i++) {
+      $json['gif'][1][] = array('frame' => $i, 'buttons' => array('l'), 'ctrlStick' => $RIGHT);
+    }
+
+    for ($i = 43; $i < 54; $i++) {
+      $json['gif'][2][] = array('frame' => $i, 'buttons' => array('l'), 'ctrlStick' => $LEFT);
+    }
+
+
+    echo json_encode($json);
+    return true;
   }
 
 	$json['status'] = 'failure';
