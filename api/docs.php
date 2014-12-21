@@ -13,7 +13,8 @@
   //Defines the amount of API response examples to render in documentation
   $examples = 2;
   $counter = 0;
-
+  $char;
+  $charCount;
 
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
