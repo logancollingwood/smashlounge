@@ -232,7 +232,7 @@
           <div class='col-md-6 col-md-offset-3'>
             <h3> smashlounge is an online compendium for super smash brothers. We
               strive to organize and categorize all data for the super smash brothers
-              franchise and to provide an open, transparent interface for accessing all
+              franchise and to provide an open, transparent interface for accessing
               information.
             </h3>
             <p>
