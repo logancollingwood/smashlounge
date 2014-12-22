@@ -546,7 +546,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending', 'submit');
+  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending', 'submit', 'TMG');
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
@@ -578,7 +578,11 @@ function makeSidebar($loggedIn, $currentPage = '') {
     } else {
       echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
     }
-  
+    if ($currentPage == 'TMG') {
+      echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='30px'>&nbsp;TMG</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='30px'>&nbsp;TMG</a></li>";
+    }
     if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
       makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
       makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
@@ -729,7 +733,7 @@ function printLibraries() {
   echo "<link href='http://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic|Quicksand:400,700' rel='stylesheet' type='text/css'>";
   echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
   echo "<script src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
-  echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet'>";
+  echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
   echo "<link href='/css/new.css' rel='stylesheet'>";
   echo "<link href='/css/users.css' rel='stylesheet'>";
 
