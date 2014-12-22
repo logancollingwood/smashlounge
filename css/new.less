@@ -128,12 +128,29 @@ div.panel-body.vimeo {
 .navbar .heddur:hover {
   color: #ccc;
 }
+.navbar-brand > .heddur:hover {
+  border-bottom: 3px solid @white;
+  padding-bottom: 25px;
+  width: 145px;
+}
 .navbar-brand > .heddur {
+    transition: all 120ms ease;
+    transition-delay: 80ms;
+    -webkit-transition-delay: 80ms; /* for Safari & Chrome */
+    -webkit-transition-timing-function: ease;
     padding-top: 7px;
-    padding-bottom: 7px;
+    padding-bottom: 20px;
     height: auto;
-	border-bottom: 1px solid;
+	border-bottom: 1px solid transparent;
 	border-color: @white;
+	
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 3px solid transparent;    
+    width: 0px;
+    transition: 0.5s ease;
+    white-space: nowrap;
+    height: 25px;
 }
 .navbar>.container-fluid .navbar-brand.spacing {
     margin-left: 5px;
