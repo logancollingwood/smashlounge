@@ -152,7 +152,7 @@ Questions?
 
             <div class='col-md-4'>
               <div class='panel panel-default'>
-                <div class='panel-heading'> Live SSBM Streams </div>
+                <div class='panel-heading'> Live SSB Streams </div>
                 <div class='panel-body randgifz'>
                   <?php
                     $counter = 0;
