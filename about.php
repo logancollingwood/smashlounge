@@ -90,6 +90,7 @@
     }
     .panel-default {
       max-width: 100%;
+      min-width: 200px;
     }
     .col-md-3 {
       /*margin-left: 10%;*/
