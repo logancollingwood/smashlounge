@@ -5,7 +5,7 @@ global $author;
 
 
 $query = "SELECT * FROM " . $charTable . " WHERE name='" . $char . "'";
-
+$charID = -1;
 $charnotFound = FALSE;
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
@@ -13,7 +13,7 @@ if (!$result = $mysqli->query($query)) {
 foreach ($result as $row) {
   $charID = $row["id"];
 }
-if (!$charID) {
+if ($charID == -1) {
   $charnotFound = TRUE;
 }
 

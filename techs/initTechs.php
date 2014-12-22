@@ -1,16 +1,15 @@
 <?php
 $query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
-
+  $techID = -1;
+  $notFound = TRUE;
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
   foreach ($result as $row) {
     $techID = $row["id"];
   }
-  if (!$techID) {
-    $notFound = TRUE;
-  } else {
-    $notFound = false;
+  if ($techID != -1) {
+    $notFound = FALSE;
   }
 
 

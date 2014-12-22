@@ -100,15 +100,15 @@
                   <form class='form-horizontal' action="https://bitpay.com/checkout" method="post" onsubmit="return bp.validateMobileCheckoutForm($('#donate'));" role='form'>
                     <input name="action" type="hidden" value="checkout">
                     <div class="form-group">
-                      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                      <div class="col-sm-10">
+                      <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                      <div class="col-sm-8">
                         <input name="orderID" id='inputEmail' type="email" placeholder="Email address (optional)" style="width: 100%;">
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label for="amount" class="col-sm-2 control-label">Amount</label>
-                      <div class="col-sm-8">
+                      <label for="amount" class="col-sm-4 control-label">Amount</label>
+                      <div class="col-sm-6">
                         <input name="price" id='amount' type="number" placeholder="Amount" value="10.00"  style="width: 100%;"/>
                       </div>
                       <div class='col-sm-2'>
