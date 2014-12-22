@@ -133,7 +133,7 @@ Questions?
                     echo "<ul class='list-group chars'>";
                     foreach ($dataChar as $charRec) {
                             echo "<li class='list-group-item list-group-item-info'>";
-                            echo "<a href=characters.php?char=" . urlencode($charRec['name']) . ">";
+                            echo "<a href=/characters/" . urlencode($charRec['name']) . ">";
                             echo $charRec['name'] . "</a></li>";
                             echo "\n";
                     }
