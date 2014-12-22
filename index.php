@@ -97,6 +97,7 @@ Questions?
                   }
                 //echo "<div style='width:2px;height:150px;background-color:#fff;'>&nbsp;</div>";
                 echo "&nbsp";
+                echo "&nbsp";
                 echo "<a class='btn btn-primary btn-lg bttn rand' href='submit.php'><span class='glyphicon glyphicon-cloud-upload pull-left'></span> Contribute</a>";
                 echo "</br>";
             echo "</br>";
