@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Dec 22, 2014 at 07:50 AM
+-- Generation Time: Dec 22, 2014 at 11:38 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -424,13 +424,6 @@ CREATE TABLE `friends` (
   `friendid` int(50) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `friends`
---
-
-INSERT INTO `friends` (`id`, `myid`, `friendid`) VALUES
-(31, 2, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -444,7 +437,14 @@ CREATE TABLE `groups` (
   `permissions` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `permissions`, `created_at`, `updated_at`) VALUES
+(1, 'Moderator', '{"admin":1}', '2014-12-22 19:17:36', '2014-12-22 19:17:36');
 
 -- --------------------------------------------------------
 
@@ -1608,7 +1608,7 @@ CREATE TABLE `upcoming` (
 
 INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`, `vods`) VALUES
 (1, 'Do You Fox Wit it', '722984804448159', 'http://dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', 'Hax', 'Silentwolf', 'SFAT', 'showdownsmash', 250, 'Oakland', 'NorCal', '3048'),
-(9, 'TMG Columbia (NYC) vs UMass Boston (Boston)', '//www.facebook.com/TheMeleeGames', '//themeleegames.challonge.com/TS', 'event-info', '2015-01-31', '2015-02-02', '', '', '', '', 0, 'Secaucus, NJ', 'Apex 2015', '');
+(9, 'TMG Columbia vs UMass Boston', '//www.facebook.com/TheMeleeGames', '//themeleegames.challonge.com/TS', 'event-info', '2015-01-31', '2015-02-02', '', '', '', '', 0, 'Secaucus, NJ', 'Apex 2015', '');
 
 -- --------------------------------------------------------
 
@@ -1690,14 +1690,14 @@ CREATE TABLE `users` (
   `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
-(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-12-16 05:52:41', '$2y$10$U061lsMn1osKafIZIIL2Huer.pT.IkIxVNdwjb9wMZMJkjUYbJZpq', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-12-16 13:52:41'),
+(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2014-12-22 11:37:53', '$2y$10$KAtz8ST2e.A6MtOWbpqn/ObV.FUbkb0rnZncNynL7yiOA1vAoPWey', NULL, NULL, NULL, '2014-09-07 06:29:24', '2014-12-22 19:37:53'),
 (3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05');
 
 -- --------------------------------------------------------
@@ -1711,7 +1711,14 @@ CREATE TABLE `users_groups` (
 `id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
   `group_id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users_groups`
+--
+
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
+(1, 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -1871,7 +1878,7 @@ MODIFY `id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `locals`
 --
@@ -1946,9 +1953,9 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;

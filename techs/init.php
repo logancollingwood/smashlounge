@@ -16,7 +16,7 @@ $techCount = 0;
 $charCount = 0;
 $datazCount = 0;
 $listCounter = 0;
-
+$moderatorFlag = -1;
 
 //     BUILDS DATABASE CONNCETION
 //
@@ -50,6 +50,9 @@ if ($mysqli->connect_errno) {
       }
       foreach ($result as $row) {
         $friendsofLoggedIn[] = $row['friendid'];
+      }
+      if ($user->hasAccess('admin')) {
+        $moderatorFlag = 1;
       }
   }
 
@@ -427,6 +430,7 @@ function makeLoungeList($scene, $title, $listCounter) {
 }
 
 function createNavBar($extra = 'false') {
+  global $moderatorFlag;
   echo "<div class='navbar navbar-inverse navbar-fixed-top' role='navigation'>";
   echo "  <div class='container-fluid heddur'>";
   echo "    <div class='navbar-header'>";
@@ -453,6 +457,7 @@ function createNavBar($extra = 'false') {
   echo "          <li ";
   if ($extra == 'about') echo ' class="here"';
   echo "><a href='/about.php'>about</a></li>";
+  if ($moderatorFlag == 1) echo "<li><a href='/admin.php'>moderate</a></li>";
   echo "      </ul>";
   echo "    </div>";
   echo "  </div>";

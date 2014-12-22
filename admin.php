@@ -1,7 +1,20 @@
 <?php 
 
   require_once ('techs/init.php');
-
+    // Check if the user has the 'admin' permission. Also,
+    // multiple permissions may be used by passing an array
+    // This logged in user can be assigned to be a mod -- if theyre approved-
+    // by visiting /techs/god_mode.php
+    // this will assign them to the moderator group which will grant them this 'admin' flag
+    if ($user->hasAccess('admin'))
+    {
+        //echo "has access";
+    }
+    else
+    {
+        echo "Whoops! You're not a mod!";
+        die();
+    }
 ?>
 
 <!DOCTYPE html>
