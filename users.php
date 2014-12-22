@@ -224,17 +224,18 @@ Questions?
     <script>
 
     $(document).ready(function() {
+      $("#addfriend").hide();
+      $("#removefriend").hide();
+      $("#edit").hide();
       <?php 
-        if ($mypage) {
-          echo '$("#addfriend").hide();';
-          echo '$("#removefriend").hide();';
-        } else {
-          echo '$("#edit").hide();';
-        }
-        if ($friends) {
-          echo '$("#addfriend").hide();';
-        } else {
-          echo '$("#removefriend").hide();';
+        if ($loggedIn && $user['id'] != -1 && $userid != '') {
+          if ($mypage) {
+            echo '$("#edit").show();';
+          } else if ($friends) {
+            echo '$("#removefriend").show();';
+          } else if (!$friends) {
+            echo '$("#addfriend").show();';
+          }
         }
       ?>
       $(".youtube").fitVids();
