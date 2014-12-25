@@ -135,8 +135,27 @@
           event.preventDefault();
 
           var $approveLink = $(this);
-
+          var submitNum = "id=";
+          submitNum += $approveLink.closest('.submission').attr('data-id');
+          console.log(submitNum);
           $approveLink.closest('.submission').remove();
+
+          $.ajax({
+            url: '/techs/submitAdd.php',
+            type: 'POST',
+            data: submitNum
+          })
+          .success(function(html) {
+
+            console.log(html);
+          })
+          .fail(function() {
+            console.log('failing');
+          })
+          .always(function(html) {
+
+            console.log('always');
+          });
         });
 
         $('.delete-link').on('click', function(event) {
