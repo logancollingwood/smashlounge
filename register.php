@@ -164,7 +164,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="tag">tag</label>
                                     <div class="col-md-6">
-                                    <input type="text" name="tag" class="form-control input-md" placeholder="" required autofocus>
+                                    <input type="text" name="tag" class="form-control input-md" placeholder="pewpewu" required autofocus>
                                 </div>
                                 </div>
                                 <!-- Text input-->
