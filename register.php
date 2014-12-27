@@ -162,9 +162,9 @@
                                 <h2 class="form-signin-heading">Please Register</h2>
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="email">username</label>
+                                    <label class="col-md-4 control-label" for="tag">tag</label>
                                     <div class="col-md-6">
-                                    <input type="text" name="username" class="form-control input-md" placeholder="" required autofocus>
+                                    <input type="text" name="tag" class="form-control input-md" placeholder="" required autofocus>
                                 </div>
                                 </div>
                                 <!-- Text input-->
