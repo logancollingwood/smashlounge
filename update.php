@@ -366,6 +366,9 @@ Questions?
                 </div>
               </div>
             </div>
+                            <div class='well'>
+                <p> To add a sponsor, contact us via an official facebook or twitter account that is verifiable. </p>
+                </div>
         <div class='row'>
             <?php 
               $numGifs = 3;
