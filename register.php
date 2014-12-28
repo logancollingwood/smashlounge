@@ -37,6 +37,10 @@
             header("Location: register.php?str=chars");
             die('redirecting');
         }
+        if (strpos($username, ".") == true) {
+            header("Location: register.php?str=chars");
+            die('redirecting');
+        }
         if (preg_match("/\\s/", $username)) {
             header("Location: register.php?str=spaces");
             die('redirecting');
