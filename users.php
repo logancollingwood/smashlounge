@@ -47,8 +47,13 @@ Questions?
     <meta name="description" content="">
     <meta name="author" content="">
     
-
-    <title>Smash Lounge: <?php echo $username ?></title>
+    <?php 
+    if ($username != '') {
+      echo "<title>Smash Lounge: $username</title>";
+    } else {
+      echo "<title>Smash Lounge: Global Player Database</title>";
+    }
+    ?>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
