@@ -19,7 +19,8 @@
    }
    return $url;
   } 
-
+  $varcharFields = Array('image', 'facebook', 'location',
+    'twitch', 'vod', 'twitter', 'sponsor', 'friendcode', 'garpr');
 
   $mysqli = new mysqli($dahostname, $username, $password, $database);
 
@@ -68,11 +69,11 @@
 
       preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
       
-      //echo($matches[1]);
-
-      if (empty($matches) && $_POST['vod'] != '') {
-        header("Location: /update?str=url");
-        die("Redirecting to update.php");
+      
+      if (!isset($matches[1]) && $_POST['vod'] != '') {
+        error_log("Missing a vod match!");
+        echo "vod";
+        exit();
       }
       $twitter = $_POST['twitter'];
       $twitchId = $_POST['twitch'];
@@ -181,10 +182,18 @@
           }
           if ($counter < $numParams - 1) {
             $keys .= $key . ", ";
-            $values .= $params[$key] . ", ";
+            if (in_array($key, $varcharFields) && $params[$key] != "''") {
+              $values .= "'" . $params[$key] . "', ";
+            } else {
+              $values .= $params[$key] . ", ";
+            }
           } else {
             $keys .= $key;
-            $values .= $params[$key];
+            if (in_array($key, $varcharFields) && $params[$key] != "''") {
+              $values .= "'" . $params[$key] . "'";
+            } else {
+              $values .= $params[$key];
+            }
           }
           $counter++;
         }
@@ -192,7 +201,7 @@
         $values .= ")";
 
         $query = "INSERT INTO userinfo " . $keys . " VALUES " . $values;
-        //error_log($query);
+        error_log($query);
         try{
           $stmt = $mysqli->prepare($query);
           $result = $stmt->execute();

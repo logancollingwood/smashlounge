@@ -32,6 +32,14 @@
             echo "<div class='alert alert-danger alert-dismissable' role='alert'>Please make sure your username contains no whitespace!";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
+        } else if ($submit == 'url') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Please make sure your vod url is a youtube link!";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
+        } else if ($submit == 'gif') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>It looks like you've tried to attach non-gfycat gifs! Please convert them and try again!";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
         }
   }
 
@@ -545,12 +553,22 @@ Questions?
               data: data
             })
             .success(function(html) {
-              window.location.replace("/update.php?str=success");
+              console.log(html);
+              if (html == "gif") {
+                window.location.replace("/update.php?str=gif");
+              } else if (html == 'vod') {
+                console.log("vod issue");
+                window.location.replace("/update.php?str=url");
+              } else {
+                window.location.replace("/update.php?str=success");
+              }
             })
             .fail(function(html) {
               console.log(html);
               if (html == "gif") {
-                window.location.replace("/update.php?str=error");
+                window.location.replace("/update.php?str=gif");
+              } else if (html == 'vod') {
+                window.location.replace("/update.php?str=vod");
               }
             })
             .always(function(html) {
