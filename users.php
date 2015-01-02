@@ -155,7 +155,7 @@ Questions?
 
                 echo "</div>";  
             } else { 
-              $allUsers = getAllUsers($mysqli);
+                $allUsers = getAllUsers($mysqli);
                 echo "<div class='row'>";
                   echo "<h1 class='lead'>global directory</h1>";
                 echo "</div>"; 

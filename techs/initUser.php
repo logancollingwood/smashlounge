@@ -278,14 +278,19 @@ function makeUserGifs($hasGifs, $usergifs) {
 }
 
 function getAllUsers($mysqli) {
+  $users = Array();
   $query = "SELECT users.username, userinfo.sponsor FROM users LEFT JOIN userinfo on users.id=userinfo.userid";
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
   foreach ($result as $row) {
-   $users[] = $row;
+    if ($row['sponsor'] != '') {
+      array_unshift($users, $row);
+    } else {
+      array_push($users, $row);
+      //$users[] = $row;
+    }
   }
-
   return $users;
 }
 
