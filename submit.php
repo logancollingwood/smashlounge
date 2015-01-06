@@ -78,7 +78,7 @@ Questions?
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <?php printBetaMast(); ?>
+          <?php //printBetaMast(); ?>
           <div class="jumbotron banner">
             <div class='row'>
               <h1 class='lead'>Submit Data</h1>

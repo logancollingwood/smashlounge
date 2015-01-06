@@ -6,7 +6,7 @@
 
 
 
-$modules = array('api', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static',
+$modules = array('api', 'admin', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static',
  'techs', 'vendor', '404', 'about', 'awards', 'characters', 'composer.json', 'composer.lock',
   'composer.phar', 'donate', 'error_log', 'index', 'info', 'login', 'logout', 'lounge', 'moderate',
    'register', 'techniques', 'upcoming', 'update', 'users'); 
@@ -551,7 +551,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending', 'submit', 'TMG');
+  $pages = array('home', 'admin', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending', 'submit', 'TMG');
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
