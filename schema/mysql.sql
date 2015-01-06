@@ -698,8 +698,8 @@ INSERT INTO `locals` (`id`, `region`, `profileid`, `name`, `latitude`, `longitud
 (160, 3, 'https://www.facebook.com/groups/230511403809562/', 'Third Lake', 42.3739110, -88.0109120, 0),
 (161, 5, 'https://www.facebook.com/groups/279945308796732/', 'Long Beach', 33.7700500, -118.1937390, 0),
 (162, 1, 'https://www.facebook.com/groups/417873421648323/', 'Bedford, MA', 42.4906230, -71.2760090, 2),
-(163, 2, 'https://www.facebook.com/groups/159610307409216/', 'Dothan', 31.2232310, -85.3904890, 4);
-
+(163, 2, 'https://www.facebook.com/groups/159610307409216/', 'Dothan', 31.2232310, -85.3904890, 4),
+(164, 5, 'https://www.facebook.com/groups/EWASmashBros/', 'Eastern Washington', 47.6520000, -117.4330000, 0);
 -- --------------------------------------------------------
 
 --
