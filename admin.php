@@ -180,6 +180,7 @@
                         <th>Facebook</th>
                         <th>Lat</th>
                         <th>Long</th>
+                        <th>Region</th>
                         <th>Approve</th>
                         <th>Deny</th>
                       </tr>
@@ -196,6 +197,9 @@
                           </td>
                           <td>
                             <?php echo trim($row['longitude']); ?>
+                          </td>
+                          <td>
+                            <?php echo trim($row['region']); ?>
                           </td>
                           <td><!--<a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a>--></td>
                           <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
@@ -219,7 +223,10 @@
         $('.approve-link').on('click', function(event) {
           // Prevent Default Behavior
           event.preventDefault();
-
+          var r = confirm('Are you sure you want to accept this submission?');
+          if (r == false) {
+              return;
+          }
           var $approveLink = $(this);
           var submitNum = "key=" + key;
           submitNum += "&id=";
@@ -245,6 +252,12 @@
         });
 
         $('.delete-link').on('click', function(event) {
+
+          var r = confirm('Are you sure you want to delete this submission?');
+          if (r == false) {
+              return;
+          }
+
           // Prevent Default Behavior
           event.preventDefault();
 

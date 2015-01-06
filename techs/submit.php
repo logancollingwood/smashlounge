@@ -140,18 +140,19 @@
 
 		$group = $_POST['group_name'];
 		$group_fb = $_POST['group_facebook'];
+		$region = $_POST['group_region'];
 		if ($group == '' || $group_fb == '') {
 			printf("nullfields");
 			exit();
 		}
 		$group_lat = isset($_POST['group_lat'])       ? trim($_POST['group_lat'])       : 0;
 		$group_long = isset($_POST['group_long'])       ? trim($_POST['group_long'])       : 0;
-		if (!($stmt = $mysqli->prepare("INSERT INTO submissionsgroup (name, fb, latitude, longitude) VALUES (?, ?, ?, ?)"))) {
+		if (!($stmt = $mysqli->prepare("INSERT INTO submissionsgroup (name, fb, latitude, longitude, region) VALUES (?, ?, ?, ?, ?)"))) {
 		     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		     exit();
 		}
 		// Bind Params
-		if (!$stmt->bind_param("ssss", $group, $group_fb, $group_lat, $group_long)) {
+		if (!$stmt->bind_param("sssss", $group, $group_fb, $group_lat, $group_long, $region)) {
 		    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 		    exit();
 		}

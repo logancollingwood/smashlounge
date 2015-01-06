@@ -56,10 +56,12 @@
 	    	$sceneSW[] = $row;
 	    } else if ($regionID == 5) {
 	    	$sceneWESTCOASTBESTCOAST[] = $row;
+	    } else if ($regionID == 6) {
+	    	$international[] = $row;
 	    }
 
 	}
-	$regions = array('Atlantic North', 'Atlantic South', 'MidWest', 'South and Southwest', 'West Coast');
+	$regions = array('Atlantic North', 'Atlantic South', 'MidWest', 'South and Southwest', 'West Coast', 'International');
 
 
 

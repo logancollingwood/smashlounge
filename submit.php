@@ -308,6 +308,21 @@ Questions?
                                 <textarea id="group_facebookid" type="text" class="form-control" maxlength="400" name="group_facebook" placeholder="https://www.facebook.com/groups/SantaCruzMelee/" required></textarea>
                               </div>
                             </div>
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="group_regionid">Region</label>
+                              <div class="col-md-8">
+                                <select class="form-control" id="group_regionid" name="group_region">
+                                  <option value="1">Atlantic North</option>
+                                  <option value="2">Atlantic South</option>
+                                  <option value="3">MidWest</option>
+                                  <option value="4">SouthWest</option>
+                                  <option value="5">West Coast</option>
+                                  <option value="6">International</option>
+                                </select>
+                              </div>
+                            </div>
+
                             <div class="form-group">
                               <label class="col-md-4 control-label" for="group_facebookid">Pin your group to our map</label>
                               <div class="col-md-8">
