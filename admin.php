@@ -84,7 +84,7 @@
                         <th>Original Source</th>
                         <th>Description</th>
                         <th>Approve</th>
-                        <th>Delete</th>
+                        <th>Deny</th>
                       </tr>
                       <?php foreach ($gifSubmission as $row): ?>
                         <tr class="submission" data-id="<?php echo $row['id']; ?>">
@@ -126,7 +126,7 @@
                         <th>Challonge</th>
                         <th>Twitch</th>
                         <th>Approve</th>
-                        <th>Delete</th>
+                        <th>Deny</th>
                       </tr>
                        <?php foreach ($tournamentSubmission as $row): ?>
                         <tr class="submission" data-id="<?php echo $row['id']; ?>">
@@ -142,7 +142,7 @@
                           <td><?php echo $row['bracket']; ?></td>
                           <td><?php echo $row['stream']; ?></td>
                           <td><!--<a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a>--></td>
-                          <td><!--<a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a>--></td>
+                          <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
                         </tr>
                       <?php endforeach; ?>
                     </table>
@@ -154,7 +154,7 @@
                         <th>Description</th>
                         <th>SSBwiki</th>
                         <th>Approve</th>
-                        <th>Delete</th>
+                        <th>Deny</th>
                       </tr>
                       <?php foreach ($techSubmission as $row): ?>
                         <tr class="submission" data-id="<?php echo $row['id']; ?>">
@@ -168,7 +168,7 @@
                             <?php echo trim($row['ssbwiki']); ?>
                           </td>
                           <td><!--<a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a>--></td>
-                          <td><!--<a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a>--></td>
+                          <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
                         </tr>
                       <?php endforeach; ?>
                     </table>
@@ -181,7 +181,7 @@
                         <th>Lat</th>
                         <th>Long</th>
                         <th>Approve</th>
-                        <th>Delete</th>
+                        <th>Deny</th>
                       </tr>
                       <?php foreach ($groupSubmission as $row): ?>
                         <tr class="submission" data-id="<?php echo $row['id']; ?>">
@@ -198,7 +198,7 @@
                             <?php echo trim($row['longitude']); ?>
                           </td>
                           <td><!--<a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a>--></td>
-                          <td><!--<a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a>--></td>
+                          <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
                         </tr>
                       <?php endforeach; ?>
                     </table>
@@ -221,10 +221,10 @@
           event.preventDefault();
 
           var $approveLink = $(this);
-          var submitNum = "id=";
+          var submitNum = "key=" + key;
+          submitNum += "&id=";
           submitNum += $approveLink.closest('.submission').attr('data-id');
           console.log(submitNum);
-          $approveLink.closest('.submission').remove();
 
           $.ajax({
             url: '/techs/submitAdd.php',
@@ -232,7 +232,7 @@
             data: submitNum
           })
           .success(function(html) {
-
+            $approveLink.closest('.submission').remove();
             console.log(html);
           })
           .fail(function() {
@@ -249,8 +249,27 @@
           event.preventDefault();
 
           var $deleteLink = $(this);
-
-          $deleteLink.closest('.submission').remove();
+          var ref_this = $("ul.nav-tabs li.active a");
+          var key = ref_this.data("id");
+          var submitNum = "key=" + key;
+          submitNum += "&id=";
+          submitNum += $deleteLink.closest('.submission').attr('data-id');
+          console.log(submitNum);
+          $.ajax({
+            url: '/techs/submitDelete.php',
+            type: 'POST',
+            data: submitNum
+          })
+          .success(function(html) {
+            $deleteLink.closest('.submission').remove();
+            console.log(html);
+          })
+          .fail(function() {
+            console.log('failing');
+          })
+          .always(function(html) {
+            console.log('always');
+          });
         });
       });
     </script>
