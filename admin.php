@@ -8,7 +8,7 @@
     // This logged in user can be assigned to be a mod -- if theyre approved-
     // by visiting /techs/god_mode.php
     // this will assign them to the moderator group which will grant them this 'admin' flag
-    if ($user != NULL) {
+    if (!is_array($user)) {
       if ($user->hasAccess('admin'))
       {
           //echo "has access";
@@ -141,7 +141,7 @@
                           </td>
                           <td><?php echo $row['bracket']; ?></td>
                           <td><?php echo $row['stream']; ?></td>
-                          <td><!--<a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a>--></td>
+                          <td><a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a></td>
                           <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
                         </tr>
                       <?php endforeach; ?>
@@ -167,7 +167,7 @@
                           <td>
                             <?php echo trim($row['ssbwiki']); ?>
                           </td>
-                          <td><!--<a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a>--></td>
+                          <td><a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a></td>
                           <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
                         </tr>
                       <?php endforeach; ?>
@@ -181,6 +181,7 @@
                         <th>Lat</th>
                         <th>Long</th>
                         <th>Region</th>
+                        <th>Game</th>
                         <th>Approve</th>
                         <th>Deny</th>
                       </tr>
@@ -201,7 +202,14 @@
                           <td>
                             <?php echo trim($row['region']); ?>
                           </td>
-                          <td><!--<a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a>--></td>
+                          <td>
+                            <?php 
+                              $gameid = $row['game'];
+
+                              echo getGameFromID($gameid); 
+                            ?>
+                          </td>
+                          <td><a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a></td>
                           <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
                         </tr>
                       <?php endforeach; ?>
@@ -227,6 +235,8 @@
           if (r == false) {
               return;
           }
+          var ref_this = $("ul.nav-tabs li.active a");
+          var key = ref_this.data("id");
           var $approveLink = $(this);
           var submitNum = "key=" + key;
           submitNum += "&id=";
@@ -247,7 +257,7 @@
           })
           .always(function(html) {
 
-            console.log('always');
+            //console.log('always');
           });
         });
 

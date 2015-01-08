@@ -768,6 +768,23 @@ function printBetaMast() {
   echo "</div>";
 }
 
+function getGameFromID($id) {
+        switch ($id) {
+            case 0:
+                return "All Games";
+            case 1:
+                return "Smash64";
+            case 2:
+                return "Smash Melee";
+            case 3:
+                return "Smash Brawl";
+            case 4:
+                return "Project M";
+            case 5:
+                return "Smash 4";
+        }
+}
+
 function getAllTechs($mysqli, $techTable) {
   $query = "SELECT * from " . $techTable;
   if (!$result = $mysqli->query($query)) {

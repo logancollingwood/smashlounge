@@ -280,7 +280,7 @@ Questions?
                         </div>
 
                         <br>
-                        <button id="submittech" class="btn btn-default post-submissions">submit</button>
+                        <button id="submittechnique" class="btn btn-default post-submissions">submit</button>
                       </form>
                       </div>
                     </div>
@@ -319,6 +319,20 @@ Questions?
                                   <option value="4">SouthWest</option>
                                   <option value="5">West Coast</option>
                                   <option value="6">International</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="group_gameid">Game</label>
+                              <div class="col-md-8">
+                                <select class="form-control" id="group_gameid" name="group_game">
+                                  <option value="0">All Games</option>
+                                  <option value="1">Smash64</option>
+                                  <option value="2">Melee</option>
+                                  <option value="3">Brawl</option>
+                                  <option value="4">Project M</option>
+                                  <option value="5">Smash 4</option>
                                 </select>
                               </div>
                             </div>
