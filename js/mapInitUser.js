@@ -36,7 +36,7 @@ function initialize() {
     for (var i = 0; i < markers.length; i++) {
       var name = markers[i].getAttribute("name");
       var link = markers[i].getAttribute("href");
-      var region = markers[i].getAttribute("region");
+      //var region = markers[i].getAttribute("region");
       var type = markers[i].getAttribute("type");
       var point = new google.maps.LatLng(
         parseFloat(markers[i].getAttribute("lat")),
@@ -44,7 +44,7 @@ function initialize() {
       var html = "<b>" + name + "</b><br/>"
       html += type + "<br/>"
       html += "<a href='" + link + "'>Profile" + "</a><br/>"; 
-      html += region + "<br/>";
+      //html += region + "<br/>";
       var icon = customIcons[type] || {};
       var marker = new google.maps.Marker({
         map: map,
