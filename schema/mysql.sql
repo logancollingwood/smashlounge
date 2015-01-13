@@ -675,7 +675,7 @@ INSERT INTO `locals` (`id`, `region`, `profileid`, `name`, `latitude`, `longitud
 (137, 5, 'https://www.facebook.com/groups/702PROJECTM/', 'Nevada - Las Vegas', 36.1683680, -115.0968930, 4),
 (138, 5, 'https://www.facebook.com/groups/619057094778540/', 'Nevada - Reno', 39.5296330, -119.8138030, 0),
 (139, 5, 'https://www.facebook.com/groups/641344915919224/', 'Sacramento Smash', 38.5815720, -121.4944000, 0),
-(140, 5, 'https://www.facebook.com/groups/245900615456533/', 'Official Washington New World Order of Melee', 47.1000450, -119.8828130, 0),
+(140, 5, 'https://www.facebook.com/groups/245900615456533/', 'Official Washington Melee', 47.6, -122.332, 0),
 (141, 5, 'https://www.facebook.com/groups/642114992487346/', 'Irvine', 33.6839470, -117.7946940, 0),
 (142, 5, 'https://www.facebook.com/groups/340535089298820/', 'Portland', 45.5234520, -122.6762070, 0),
 (143, 5, 'https://www.facebook.com/groups/283358348346303/', 'Eugene', 44.0520690, -123.0867540, 0),
