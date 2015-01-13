@@ -53,7 +53,7 @@
 				$output = str_replace('nameString', $display_name, $html);
 
 				// Insert Sponsor
-				if ($result['sponsor'] != '') {
+				if (isset($result['sponsor'])) {
 					$secondout = str_replace('no sponsor', $result['sponsor'], $output);
 				} else {
 					$secondout = str_replace('no sponsor', '', $output);
@@ -65,9 +65,11 @@
 				// Output
 				echo($final);
 		    }
-		}else{
+		} else{
 	    	// Format No Results Output
+
 			$output = str_replace('urlString', 'javascript:void(0);', $html);
+			$output = str_replace('<h4><small>no sponsor</small></h4>', '', $html);
 			$output = str_replace('nameString', '<b>No Results Found.</b>', $output);
 			$output = str_replace('functionString', 'Sorry :(', $output);
 
