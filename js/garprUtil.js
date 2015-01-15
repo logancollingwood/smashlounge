@@ -6,7 +6,7 @@ function QueryRankingByRegion(region) {
       var name = rankings[i]['name'];
       var rank = rankings[i]['rank'];
         $('#'+region+' tr:last').after('<tr><td class="rank">' + rank + '</td><td class="name">' + name + '</td></tr>');
-        console.log(rankings[i]);
+        //console.log(rankings[i]);
     }  
 
   });
