@@ -1,3 +1,0 @@
-[05-Jun-2014 19:43:04 UTC] PHP Fatal error:  Call to undefined function session_register() in /home/vaplounge/public_html/techs/auth.php on line 47
-[22-Jul-2014 04:11:20 UTC] PHP Notice:  Undefined index: char in /home/vaplounge/public_html/techs/submit.php on line 10
-[26-Jul-2014 01:39:38 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/vaplounge/public_html/techs/submit.php on line 86

@@ -1,6 +1,7 @@
 <?php
 
-  require("db.php");
+  require("dbSuper.php");
+  header('Content-type: text/html');
 
   function grabGfyName ($url) {
     $pattern = '/((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/';
@@ -10,6 +11,7 @@
     if (!isset($matches[4])) return null;
     return $matches[4];
   }
+
   function remove_http($url) {
    $disallowed = array('http://', 'https://');
    foreach($disallowed as $d) {
@@ -19,10 +21,11 @@
    }
    return $url;
   } 
+
   $varcharFields = Array('image', 'facebook', 'location',
     'twitch', 'vod', 'twitter', 'sponsor', 'friendcode', 'garpr');
 
-  $mysqli = new mysqli($dahostname, $username, $password, $database);
+  $mysqli = new mysqli($dahostname, $username, $password, $dbname);
 
   if ($mysqli->connect_errno) {   
     printf("Connect failed: %s\n", $mysqli->connect_error);
@@ -31,6 +34,7 @@
   
   $userID = $_POST['userid'];
   $query = "SELECT * FROM userinfo WHERE userid=" . $userID;
+
   $hasInfo = false;
   $hasGifs = false;
   $userFields = array();
@@ -67,14 +71,7 @@
       $friendcode = $_POST['friendcode'];
       $friendcode = str_replace('-', '', $friendcode);
 
-      preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vodURL, $matches);
       
-      
-      if (!isset($matches[1]) && $_POST['vod'] != '') {
-        error_log("Missing a vod match!");
-        echo "vod";
-        exit();
-      }
       $twitter = $_POST['twitter'];
       $twitchId = $_POST['twitch'];
 
@@ -88,6 +85,8 @@
       $params['facebook'] = $facebook;
       $params['latitude'] = $latitude;
       $params['longitude'] = $longitude;
+      $params['vod'] = $vodURL;
+
       if ($friendcode != '') {
         //$friendcode = str_replace('-', '', $friendcode);
         if (strlen($friendcode) != 12) {
@@ -99,14 +98,6 @@
       } else {
         $params['friendcode'] = 0;
       }
-     
-      if (!empty($matches)) {
-        if ($matches[1] != '') {
-          $params['vod'] = $matches[1];
-        }
-      } else {
-        $params['vod'] = '';
-      }
 
       $hasGfy = false;
       $gfyID = '';
@@ -114,26 +105,17 @@
       $gfys = array();
       for ($i = 1; $i < $numGifs+1; $i++) {
         $gfyCat = $_POST['gfy'.$i];
-        //error_log($gfyCat);
-        if ($gfyCat != 'gfycat.com/') {
-          $gfyURL = remove_http($gfyCat);
-          $gfyID = grabGfyName($gfyURL);
-          if ($gfyID == null) {
-            echo "gif";
-            exit();
-          }
-          $gfys[] = $gfyID;
-          $hasGfy = true;
-        }
+        $gfys[] = $gfyCat;
+        $hasGfy = true;
       }
 
       if (preg_match("/\\s/", $params['twitter'])) {
-        header("Location: update.php?str=spaces");
+        //header("Location: update.php?str=spaces");
         die('redirecting');
       }
 
       if (preg_match("/\\s/", $params['twitch'])) {
-        header("Location: update.php?str=spaces");
+        //header("Location: update.php?str=spaces");
         die('redirecting');
       }
 
@@ -157,7 +139,7 @@
         if (!$result = $mysqli->query($query)) {
           die('Invalid query: ' . $mysqli->error);
         } else {
-          header("Location: /update.php?str=success");
+          //header("Location: /update.php?str=success");
         }
 
 
@@ -202,9 +184,9 @@
 
         $query = "INSERT INTO userinfo " . $keys . " VALUES " . $values;
         error_log($query);
+
         try{
-          $stmt = $mysqli->prepare($query);
-          $result = $stmt->execute();
+          mysqli_query($mysqli, $query);
         } catch(PDOException $ex){ die("Failed to run query: " . $ex->getMessage()); }
 
       }

@@ -22,6 +22,7 @@
 		echo "damn";
 		return;
 	}
+	
 	// Get Search
 	$search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_POST['query']);
 	$search_string = $mysqli->real_escape_string($search_string);
@@ -65,11 +66,11 @@
 				// Output
 				echo($final);
 		    }
-		} else{
+		} else {
 	    	// Format No Results Output
 
 			$output = str_replace('urlString', 'javascript:void(0);', $html);
-			$output = str_replace('<h4><small>no sponsor</small></h4>', '', $html);
+			$output = str_replace('<h4><small>no sponsor</small></h4>', '<br>', $html);
 			$output = str_replace('nameString', '<b>No Results Found.</b>', $output);
 			$output = str_replace('functionString', 'Sorry :(', $output);
 

@@ -505,7 +505,15 @@ Questions?
         $(document).ready(function(){
 
           // Target your .container, .wrapper, .post, etc.
-
+          function youtube_parser(url){
+            var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+            var match = url.match(regExp);
+            if (match&&match[7].length==11){
+                return match[7];
+            }else{
+                return "";
+            }
+          }
           $(".vimeo").fitVids();
 
           $("#friendcode").on("keypress", function(ev) {
@@ -535,6 +543,15 @@ Questions?
           });
 
           $("#updateInfo").on("click", function(event) {
+            var vod = $("#vod").val();
+            var video_id = youtube_parser(vod);
+            $("#vod").val(video_id)
+
+
+
+
+            console.log(video_id);
+            console.log(vod);
             $("#loader").addClass(" glyphicon-refresh-animate");
             // Prevent default behavior
             event.preventDefault();
@@ -543,13 +560,22 @@ Questions?
             for (var i = 1; i < numGifs+1; i++) {
               var bla = $('#gfy'+i).val();
               console.log(bla);
-              data += "&gfy"+i+"="+bla;
+              var id;
+              var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
+              var str = bla;
+              var m = re.exec(str);
+              console.log(m);
+              if (m === null) id = '';
+              else id = m[4];
+              data += "&gfy"+i+"="+id;
             }
             
             console.log(data);
             $.ajax({
               url: '/techs/update.php',
               type: 'POST',
+              contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+              dataType: 'html',
               data: data
             })
             .success(function(html) {
@@ -592,7 +618,7 @@ Questions?
 
               
               
-          });
+            });
 
           
         });

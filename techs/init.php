@@ -551,7 +551,7 @@ function getYoutubeIdFromUrl($url) {
 }
 
 function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'admin', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending', 'submit', 'TMG');
+  $pages = array('home', 'admin', 'lounge', 'upcoming', 'users', 'login', 'moderate', 'register', 'update', 'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings');
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech;
   $user = Sentry::getUser();
@@ -577,6 +577,11 @@ function makeSidebar($loggedIn, $currentPage = '') {
       echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
     } else {
       echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>";
+    }
+    if ($currentPage == 'rankings') {
+      echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;Rankings</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;Rankings</a></li>";
     }
     if ($currentPage == 'upcoming') {
       echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>";
@@ -762,9 +767,7 @@ function analytics() {
 }
 
 function printBetaMast() {
-  echo "<div class='alert alert-info' role='alert'>Thanks for testing our new features! Hit us with feedback: <br><br>";
-  echo"<a href='https://twitter.com/intent/tweet?button_hashtag=slbeta' class='twitter-hashtag-button' data-related='thesmashlounge'>Tweet #slbeta</a>
-       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>";
+  echo "<div class='alert alert-info' role='alert'>There's an issue we're investigating which causes updating profiles to not work properly. Follow us on twitter for updates!<br><br>";
   echo "</div>";
 }
 
