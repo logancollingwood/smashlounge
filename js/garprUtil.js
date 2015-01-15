@@ -5,7 +5,7 @@ function QueryRankingByRegion(region) {
     for (var i = 0; i < rankings.length; i++) {
       var name = rankings[i]['name'];
       var rank = rankings[i]['rank'];
-        $('#'+region+' tr:last').after('<tr><td>' + name + '</td><td>' + rank + '</td></tr>');
+        $('#'+region+' tr:last').after('<tr><td class="rank">' + rank + '</td><td class="name">' + name + '</td></tr>');
         console.log(rankings[i]);
     }  
 

@@ -49,7 +49,7 @@ Questions?
 
 	    <!-- Custom styles for this template -->
 	    <link href="css/dashboard.css" rel="stylesheet">
-
+	    <link href="css/rankings.css" rel="stylesheet">
 
 
 	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -92,44 +92,54 @@ Questions?
 			            </ul>
 						<div class='tab-content'>
 		                	<div class='tab-pane active' id='norcalTab'>
-			      				<table id="norcal" class="table table-striped">
-			      					<tr>
-			      						<td> Player </td>
-			      						<td> Rank </td>
-			      					</tr>
-								</table>
+		                		<div class='well'>
+				      				<table id="norcal" class="table table-bordered table-striped table-hover">
+				      					<tr>
+				      						<th class='rank'> Rank </th>
+				      						<th class='name'> Player </th>
+				      					</tr>
+									</table>
+								</div>
 							</div>
-							<div class='tab-pane active' id='austinTab'>
-	      						<table id="austin" class="table table-striped">
-			      					<tr>
-			      						<td> Player </td>
-			      						<td> Rank </td>
-			      					</tr>
-								</table>
+							<div class='tab-pane' id='austinTab'>
+								<div class='well'>
+		      						<table id="austin" class="table table-bordered table-striped table-hover">
+				      					<tr>
+				      						<th class='rank'> Rank </th>
+				      						<th class='name'> Player </th>
+				      					</tr>
+									</table>
+								</div>
 							</div>
-							<div class='tab-pane active' id='nycTab'>
-	      						<table id="nyc" class="table table-striped">
-			      					<tr>
-			      						<td> Player </td>
-			      						<td> Rank </td>
-			      					</tr>
-								</table>
+							<div class='tab-pane' id='nycTab'>
+								<div class='well'>
+		      						<table id="nyc" class="table table-bordered table-striped table-hover">
+				      					<tr>
+				      						<th class='rank'> Rank </th>
+				      						<th class='name'> Player </th>
+				      					</tr>
+									</table>
+								</div>
 							</div>
-							<div class='tab-pane active' id='newenglandTab'>
-	      						<table id="newengland" class="table table-striped">
-			      					<tr>
-			      						<td> Player </td>
-			      						<td> Rank </td>
-			      					</tr>
-								</table>
+							<div class='tab-pane' id='newenglandTab'>
+								<div class='well'>
+		      						<table id="newengland" class="table table-bordered table-striped table-hover">
+				      					<tr>
+				      						<th class='rank'> Rank </th>
+				      						<th class='name'> Player </th>
+				      					</tr>
+									</table>
+								</div>
 							</div>	
-							<div class='tab-pane active' id='newjerseyTab'>
-	      						<table id="newjersey" class="table table-striped">
-			      					<tr>
-			      						<td> Player </td>
-			      						<td> Rank </td>
-			      					</tr>
-								</table>
+							<div class='tab-pane' id='newjerseyTab'>
+								<div class='well'>
+		      						<table id="newjersey" class="table table-bordered table-striped table-hover">
+				      					<tr>
+				      						<th class='rank'> Rank </th>
+				      						<th class='name'> Player </th>
+				      					</tr>
+									</table>
+								</div>
 							</div>	
 						</div>
 
