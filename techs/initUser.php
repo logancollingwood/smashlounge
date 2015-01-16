@@ -169,11 +169,15 @@ function makeTwitterPanel($hasTwitter, $twitter) {
 }
 
 function makeMainPanel($hasMain, $main, $mysqli) {
+  $imageSource = "/img/Characters/";
+  $charString = $main;
+  $charString = preg_replace("/[^A-Za-z0-9&]/", "", $charString);
+  $imageSource .= $charString . "HeadSSBM.png";
 	if ($hasMain) {
 		echo "<div class='well'>";
-        echo "        <h3><small class='pull-left labelz'>main</small><br>";
-        echo "        <a href='/characters/" . urlencode($main) . "'>$main</a></h3>";
-        echo "        <div class='mainPic $main'></div>";
+        echo "        <h3><small class='pull-left labelz'>main</small></h3>";
+        echo "        <h3><a href='/characters/" . urlencode($main) . "'>$main</a><img src='$imageSource' style='margin-left: 20%'/></h3>";
+
     echo "</div>";
 	}
 }

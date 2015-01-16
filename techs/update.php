@@ -208,6 +208,7 @@
       }
 
       foreach($gfys as $gfyID) {
+        if ($gfyID = '') continue;
         //error_log($gfyID);
         $query = "INSERT INTO usergif (userid, url) VALUES (?, ?)";
         if (!($stmt = $mysqli->prepare($query))) {
