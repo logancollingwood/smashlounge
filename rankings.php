@@ -83,11 +83,11 @@ Questions?
 
 	      			<div class='col-md-12'>
 			            <ul class='nav nav-tabs' role='tablist' id='myTab'>
-			              <li class='active'><a href='#norcalTab' role='tab' data-toggle='tab' class='tabz' data-id="gif">NorCal</a></li>
-			              <li><a href='#austinTab' role='tab' data-toggle='tab' class='tabz' data-id="tournament">Austin</a></li>
-			              <li><a href='#nycTab' role='tab' data-toggle='tab' class='tabz' data-id="technique">NYC</a></li>
-			              <li><a href='#newenglandTab' role='tab' data-toggle='tab' class='tabz' data-id="group">New England</a></li>
-			          	  <li><a href='#newjerseyTab' role='tab' data-toggle='tab' class='tabz' data-id="group">New Jersey</a></li>
+			              <li class='active'><a href='#norcalTab' role='tab' data-toggle='tab' class='tabz'>NorCal</a></li>
+			              <li><a href='#austinTab' role='tab' data-toggle='tab' class='tabz'>Austin</a></li>
+			              <li><a href='#nycTab' role='tab' data-toggle='tab' class='tabz'>NYC</a></li>
+			              <li><a href='#newenglandTab' role='tab' data-toggle='tab' class='tabz'>New England</a></li>
+			          	  <li><a href='#newjerseyTab' role='tab' data-toggle='tab' class='tabz'>New Jersey</a></li>
 
 			            </ul>
 						<div class='tab-content'>
