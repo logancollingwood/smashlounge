@@ -39,7 +39,7 @@ Questions?
     <meta name="author" content="">
 
 
-    <title>Dev - An Example Submit Form</title>
+    <title>smashlounge - submit</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -450,6 +450,11 @@ Questions?
             longz = document.getElementById('group_long').value
             data += '&group_lat=' + lat + '&group_long=' + longz;
           }
+
+          //strip http & https off string for godaddy 406 error
+          data = data.replace('http%3A%2F%2F','');
+          data = data.replace('https%3A%2F%2F','');
+
           console.log('submitting this ' + data);
 
           $.ajax({

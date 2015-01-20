@@ -67,6 +67,7 @@
       $facebook = $_POST['facebook'];
       $latitude = $_POST['lat'];
       $longitude = $_POST['long'];
+      
       $userID = $_POST['userid'];
       $friendcode = $_POST['friendcode'];
       $friendcode = str_replace('-', '', $friendcode);
