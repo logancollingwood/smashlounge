@@ -140,7 +140,7 @@ Questions?
                           } else if ($tmpGif['source']) {
                             echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
                           }
-                          echo  "<span class='badge'>". $counter . "</span>";
+                          //echo  "<span class='badge'>". $counter . "</span>";
                         }
                       $counter++;
                       echo "</li>";
