@@ -174,7 +174,7 @@ Questions?
                   makeStandings($first, $second, $third);
                 }
                 
-                makeInfo($host, $attending);
+                makeInfo($host, $attending, $location);
               }
             ?>
 

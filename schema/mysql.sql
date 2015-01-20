@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.0.10.6
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Dec 30, 2014 at 06:21 AM
--- Server version: 5.5.38
--- PHP Version: 5.6.2
+-- Host: localhost
+-- Generation Time: Jan 19, 2015 at 06:06 PM
+-- Server version: 5.5.36-cll-lve
+-- PHP Version: 5.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `thalounge`
@@ -21,14 +27,15 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `chargif`;
-CREATE TABLE `chargif` (
-`id` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `chargif` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `charid` int(2) DEFAULT NULL,
   `url` varchar(44) DEFAULT NULL,
   `description` varchar(160) DEFAULT NULL,
   `source` varchar(12) DEFAULT NULL,
-  `pageid` int(1) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=302 DEFAULT CHARSET=latin1;
+  `pageid` int(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=305 ;
 
 --
 -- Dumping data for table `chargif`
@@ -329,7 +336,10 @@ INSERT INTO `chargif` (`id`, `charid`, `url`, `description`, `source`, `pageid`)
 (298, 25, 'FittingZanyHagfish', 'Jab 2', 'Stratocaster', 1),
 (299, 25, 'GrandInferiorHammerheadshark', 'Jab 3', 'Stratocaster', 1),
 (300, 25, 'DishonestVapidCicada', 'U Air', 'Stratocaster', 1),
-(301, 25, 'SingleImmediateGermanshepherd', 'Up B', 'Stratocaster', 1);
+(301, 25, 'SingleImmediateGermanshepherd', 'Up B', 'Stratocaster', 1),
+(302, 8, 'OilyMinorAcaciarat', 'Irish covering all the options', 'S@DZ25', 0),
+(303, 26, 'EmbellishedFalseInvisiblerail', 'Nair breaking Falcons grab combo', 'S@DZ 25', 0),
+(304, 26, 'AggravatingOddImperialeagle', 'Zelda 0 - death on Peach', 'S@DZ 21', 0);
 
 -- --------------------------------------------------------
 
@@ -338,14 +348,15 @@ INSERT INTO `chargif` (`id`, `charid`, `url`, `description`, `source`, `pageid`)
 --
 
 DROP TABLE IF EXISTS `charinfo`;
-CREATE TABLE `charinfo` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `charinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
   `tierdata` int(11) DEFAULT NULL,
   `weight` varchar(11) NOT NULL,
   `fallspeed` varchar(11) NOT NULL,
-  `guide` varchar(500) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+  `guide` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `charinfo`
@@ -386,11 +397,12 @@ INSERT INTO `charinfo` (`id`, `name`, `tierdata`, `weight`, `fallspeed`, `guide`
 --
 
 DROP TABLE IF EXISTS `chartech`;
-CREATE TABLE `chartech` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `chartech` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `charid` int(11) NOT NULL,
-  `techid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `techid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `chartech`
@@ -418,11 +430,12 @@ INSERT INTO `chartech` (`id`, `charid`, `techid`) VALUES
 --
 
 DROP TABLE IF EXISTS `framedatamoves`;
-CREATE TABLE `framedatamoves` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `framedatamoves` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(90) NOT NULL,
-  `description` varchar(130) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
+  `description` varchar(130) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `framedatamoves`
@@ -483,30 +496,19 @@ INSERT INTO `framedatamoves` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `friends`
---
-
-DROP TABLE IF EXISTS `friends`;
-CREATE TABLE `friends` (
-`id` int(50) NOT NULL,
-  `myid` int(50) NOT NULL,
-  `friendid` int(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `groups`
 --
 
 DROP TABLE IF EXISTS `groups`;
-CREATE TABLE `groups` (
-`id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `permissions` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `groups_name_unique` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `groups`
@@ -522,184 +524,194 @@ INSERT INTO `groups` (`id`, `name`, `permissions`, `created_at`, `updated_at`) V
 --
 
 DROP TABLE IF EXISTS `locals`;
-CREATE TABLE `locals` (
-`id` int(1) NOT NULL,
+CREATE TABLE IF NOT EXISTS `locals` (
+  `id` int(1) NOT NULL AUTO_INCREMENT,
   `region` int(1) DEFAULT NULL,
-  `profileid` varchar(64) DEFAULT NULL,
+  `profileid` varchar(130) DEFAULT NULL,
   `name` varchar(44) DEFAULT NULL,
   `latitude` decimal(10,7) DEFAULT NULL,
   `longitude` decimal(11,7) DEFAULT NULL,
-  `game` int(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=latin1;
+  `game` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=173 ;
 
 --
 -- Dumping data for table `locals`
 --
 
 INSERT INTO `locals` (`id`, `region`, `profileid`, `name`, `latitude`, `longitude`, `game`) VALUES
-(2, 1, 'https://www.facebook.com/groups/269052529786948', 'East Coast', 37.9500000, -84.0000000, 2),
-(3, 1, 'https://www.facebook.com/groups/134497873392355', 'East Coast', 37.9470848, -83.7225060, 1),
-(4, 1, 'https://www.facebook.com/groups/430811007000487', 'Delaware', 39.1564159, -75.5134199, 0),
-(5, 1, 'https://www.facebook.com/groups/DMVSSBM', 'Maryland / Virginia / DC', 37.0000000, -79.0145760, 2),
-(6, 1, 'https://www.facebook.com/groups/mdvasmash', 'Maryland / Virginia / DC', 37.5000000, -77.0000000, 3),
-(7, 1, 'https://www.facebook.com/groups/projectmdva', 'Maryland / Virginia / DC', 38.0000000, -76.5000000, 4),
-(8, 1, 'https://www.facebook.com/groups/395469233833958', 'Maryland - College Park', 38.9875571, -76.9361836, 0),
-(9, 1, 'https://www.facebook.com/groups/489536424485533', 'Massachusetts - Fall River', 41.6855955, -71.1019620, 4),
-(10, 1, 'https://www.facebook.com/groups/167824956563375', 'New England', 42.2499739, -71.2378280, 2),
-(11, 1, 'https://www.facebook.com/groups/356948471051413', 'New England', 42.2499739, -71.0000000, 3),
-(12, 1, 'https://www.facebook.com/groups/262747973827544', 'New Jersey - Rutgers University', 40.4786710, -74.4317890, 2),
-(13, 1, 'https://www.facebook.com/groups/156948507708078', 'New Jersey - South', 40.0583240, -74.4056610, 0),
-(14, 1, 'https://www.facebook.com/groups/408295942538051', 'New Jersey - Central', 39.8297280, -74.9789590, 0),
-(15, 1, 'https://www.facebook.com/groups/211900915585963', 'New Jersey / New York', 40.4636660, -74.4406130, 3),
-(16, 1, 'https://www.facebook.com/groups/350071671730817', 'New Jersey / New York', 40.5305020, -74.3389890, 4),
-(17, 1, 'https://www.facebook.com/groups/1386041018274455', 'New Jersey / New York', 40.6056120, -74.2236330, 5),
-(18, 1, 'https://www.facebook.com/groups/2200028280', 'New York - Ithaca / Cornell', 42.4534490, -76.4735030, 0),
-(19, 1, 'https://www.facebook.com/groups/224824577625283', 'New York - Long Island', 40.7891420, -73.1349600, 2),
-(20, 1, 'https://www.facebook.com/groups/364349146941224', 'New York - Long Island', 40.7763820, -73.2843020, 3),
-(21, 1, 'https://www.facebook.com/groups/smashingatempire', 'New York - Long Island', 40.7139560, -73.6358640, 0),
-(22, 1, 'https://www.facebook.com/groups/279511975480441', 'New York - NYC', 40.7127840, -74.0059410, 2),
-(23, 1, 'https://www.facebook.com/groups/310533642332998', 'New York - NYU', 40.7272480, -73.9954510, 0),
-(24, 1, 'https://www.facebook.com/groups/385718644870094', 'New York - Schenectady', 42.8142430, -73.9395690, 0),
-(25, 1, 'https://www.facebook.com/groups/639367622752544', 'New York - Syracuse', 43.0481220, -76.1474240, 0),
-(26, 1, 'https://www.facebook.com/groups/46230006858', 'New York - Upstate / RIT', 40.7127840, -74.0059410, 0),
-(27, 1, 'https://www.facebook.com/groups/centralPennSSB', 'Pennsylvania - Central', 41.2967480, -76.3729960, 0),
-(28, 1, 'https://www.facebook.com/groups/108078502591099', 'Pennsylvania - Philadelphia', 39.9523350, -75.1637890, 2),
-(29, 1, 'https://www.facebook.com/groups/NEOHBURGH', 'Pennsylvania - Pittsburgh / Northeast Ohio', 40.3565090, -79.9192700, 2),
-(30, 1, 'https://www.facebook.com/groups/182267851790715', 'Southern Virginia', 37.0592750, -81.5377010, 2),
-(31, 1, 'https://www.facebook.com/groups/452275474823750', 'Charlottesville, Virginia', 38.0293060, -78.4766780, 2),
-(32, 1, 'https://www.facebook.com/groups/596361677123724', 'Charlottesville, Virginia', 38.0283520, -78.4880450, 4),
-(33, 1, 'https://www.facebook.com/groups/182267851790715', 'Norfolk/Virginia Beach', 36.8823350, -76.2999060, 0),
-(34, 1, 'https://www.facebook.com/groups/1386540904893386', 'Southwest Virginia', 37.4315730, -78.6568940, 0),
-(35, 1, 'https://www.facebook.com/groups/204825246197520', 'Virginia - VCU', 37.5446450, -77.4479900, 0),
-(36, 1, 'https://www.facebook.com/groups/408805205918060', 'West Virginia', 38.5976260, -80.4549030, 0),
-(37, 2, 'https://www.facebook.com/groups/269052529786948/', 'East Coast', 36.0313320, -72.6855470, 2),
-(38, 2, 'https://www.facebook.com/groups/134497873392355/', 'East Coast', 34.4522180, -73.0371090, 1),
-(39, 2, 'https://www.facebook.com/groups/336726723087447/', 'Atlantic South General', 41.4016300, -94.9908060, 4),
-(40, 2, 'https://www.facebook.com/AlabamaSmashLeague', 'Alabama', 32.3182310, -86.9022980, 0),
-(41, 2, 'https://www.facebook.com/groups/285926091523241/', 'Arkansas', 35.2010500, -91.8318330, 0),
-(42, 2, 'https://www.facebook.com/groups/304489126305123/', 'Florida', 27.6648270, -81.5157540, 0),
-(43, 2, 'https://www.facebook.com/groups/138478079554384/', 'Florida - Central Florida', 27.7127100, -81.5405270, 2),
-(44, 2, 'https://www.facebook.com/groups/456656917699611/', 'Florida - Gainesville', 29.6516340, -82.3248260, 3),
-(45, 2, 'https://www.facebook.com/groups/247383341960804/', 'Florida - Jacksonville', 30.3321840, -81.6556510, 0),
-(46, 2, 'https://www.facebook.com/groups/134182206752487/', 'Florida - Pensacola', 30.4213090, -87.2169150, 0),
-(47, 2, 'https://www.facebook.com/groups/1440737036160195/', 'Florida - South Florida 1', 27.4602270, -82.6676730, 0),
-(48, 2, 'https://www.facebook.com/pages/Smash-In-Progress/706760066011314', 'Florida - South Florida 2', 27.4504470, -82.5773760, 0),
-(49, 2, 'https://www.facebook.com/VersusGamingCenter', 'Florida - South Florida 3', 27.9064690, -81.5740650, 0),
-(50, 2, 'https://www.facebook.com/groups/159234920826366/', 'Florida - South Florida', 27.6648270, -81.5157540, 2),
-(51, 2, 'https://www.facebook.com/groups/193697467326040/', 'Florida - South West Florida', 27.6656460, -81.5116450, 0),
-(52, 2, 'https://www.facebook.com/groups/357576900984630/', 'Florida - Tallahassee', 30.4382560, -84.2807330, 0),
-(53, 2, 'https://www.facebook.com/groups/483669795064224/', 'Florida - Tampa Bay', 27.7028710, -82.5834950, 2),
-(54, 2, 'https://www.facebook.com/groups/TampaSmash/', 'Florida - Tampa Bay', 27.8366470, -82.5032040, 3),
-(55, 2, 'https://www.facebook.com/groups/125733910821001/', 'Florida - University of Florida 2', 25.7885490, -80.3796260, 0),
-(56, 2, 'https://www.facebook.com/groups/209198555783942/', 'Georgia', 32.1656220, -82.9000750, 2),
-(57, 2, 'https://www.facebook.com/groups/179381782079932/', 'Georgia', 30.3229140, -93.1854220, 3),
-(58, 2, 'https://www.facebook.com/groups/1392554534335836/', 'Georgia', 33.1947030, -84.2845670, 4),
-(59, 2, 'https://www.facebook.com/groups/133034603414177/', 'Louisiana', 30.9842980, -91.9623330, 0),
-(60, 2, 'https://www.facebook.com/groups/352469348160468/', 'Louisiana', 30.0827880, -92.6747630, 2),
-(61, 2, 'https://www.facebook.com/LSUSmash', 'Louisiana - LSU', 30.4132580, -91.1800020, 0),
-(62, 2, 'https://www.facebook.com/groups/512742878766152/', 'Louisiana - New Orleans', 29.9510660, -90.0715320, 2),
-(63, 2, 'https://www.facebook.com/groups/276445842390059/', 'North Carolina', 35.7595730, -79.0193000, 2),
-(64, 2, 'https://www.facebook.com/groups/164944006930835/', 'North Carolina', 35.1934210, -77.0334180, 3),
-(65, 2, 'https://www.facebook.com/groups/290202017736245/', 'South Carolina', 33.8360810, -81.1637250, 2),
-(66, 2, 'https://www.facebook.com/groups/MiddleTNProjectM/', 'Tennessee', 35.5174910, -86.5804470, 2),
-(67, 3, 'https://www.facebook.com/groups/mwsmash/', 'Midwest General 1', 39.9097360, -93.5156250, 0),
-(68, 3, 'https://www.facebook.com/groups/257285400975347/', 'Midwest General 2', 39.9013090, -92.5872800, 0),
-(69, 3, 'https://www.facebook.com/groups/380188912048431/', 'Illinois - Champaign', 40.1164200, -88.2433830, 0),
-(70, 3, 'https://www.facebook.com/groups/126804630735563/', 'Illinois - Chicago', 41.8781140, -87.6297980, 2),
-(71, 3, 'https://www.facebook.com/groups/1399023747004983/', 'Illinois- Springfield', 39.7817210, -89.6501480, 0),
-(72, 3, 'https://www.facebook.com/groups/129015017194089/', 'Illinois South, Kentucky West, Missouri East', 37.5097260, -88.7695310, 0),
-(73, 3, 'https://www.facebook.com/groups/171453176258373/', 'Indiana - Carmel', 39.9783710, -86.1180430, 2),
-(74, 3, 'https://www.facebook.com/groups/611364705589048/', 'Indiana - Indianapolis', 39.7684030, -86.1580680, 0),
-(75, 3, 'https://www.facebook.com/groups/247658661961971/', 'Indiana - Fort Wayne', 41.0792730, -85.1393510, 0),
-(76, 3, 'https://www.facebook.com/groups/PurdueSSBO/', 'Indiana - Purdue', 40.4237050, -86.9211950, 0),
-(77, 3, 'https://www.facebook.com/groups/382901415171283', 'Indiana - IU Bloomington', 39.1691360, -86.5149050, 0),
-(78, 3, 'https://www.facebook.com/groups/1421302704757453/', 'Iowa', 41.8780030, -93.0977020, 0),
-(79, 3, 'https://www.facebook.com/groups/ksssb', 'Kansas', 39.0119020, -98.4842460, 0),
-(80, 3, 'https://www.facebook.com/groups/734815379867767/', 'Kansas City', 39.0997270, -94.5785670, 4),
-(81, 3, 'https://www.facebook.com/groups/271575972914386/', 'Kentucky/Ohio/Indiana', 38.7883450, -84.5507810, 0),
-(82, 3, 'https://www.facebook.com/groups/umsmash/', 'Michigan', 42.2808260, -83.7430380, 2),
-(83, 3, 'https://www.facebook.com/groups/406757282795167/', 'Michigan', 42.3443350, -83.8201900, 3),
-(84, 3, 'https://www.facebook.com/groups/WestMISmash/', 'Michigan - West', 43.8028190, -86.0449220, 0),
-(85, 3, 'https://www.facebook.com/groups/258765404305007/', 'Michigan', 42.3849230, -83.5702510, 4),
-(86, 3, 'https://www.facebook.com/groups/540421182680998/', 'Minnesota', 46.7295530, -94.6859000, 0),
-(87, 3, 'https://www.facebook.com/groups/176623759034371/', 'Minnesota - UMM', 45.5892070, -95.9033780, 0),
-(88, 3, 'https://www.facebook.com/groups/323513011041633/', 'Missouri - St. Louis', 38.6270030, -90.1994040, 2),
-(89, 3, 'https://www.facebook.com/groups/414566191955018/', 'Missouri - St. Louis', 38.6218030, -90.2365320, 3),
-(90, 3, 'https://www.facebook.com/groups/338517279512871/', 'Missouri - Springfield', 37.2089570, -93.2922990, NULL),
-(91, 3, 'https://www.facebook.com/groups/199063406858260/', 'Nebraska', 41.4925370, -99.9018130, 2),
-(92, 3, 'https://www.facebook.com/groups/105843859488387/', 'Ohio', 40.4172870, -82.9071230, 0),
-(93, 3, 'https://www.facebook.com/groups/677137102305269/', 'Ohio - Cincinnati', 39.1031180, -84.5120200, 0),
-(94, 3, 'https://www.facebook.com/groups/133757653398073/', 'Ohio - Columbus', 39.9611760, -82.9987940, 2),
-(95, 3, 'https://www.facebook.com/groups/302630169803625/', 'Ohio - Columbus', 39.9596880, -83.0074600, 3),
-(96, 3, 'https://www.facebook.com/groups/1396649643918505/', 'Ohio - Northwest', 40.8138090, -83.8256840, 2),
-(97, 3, 'https://www.facebook.com/groups/470817746279509/', 'Western PA / Northeast OH', 41.2447720, -80.4858400, 0),
-(98, 3, 'https://www.facebook.com/groups/466886533331712/', 'South Dakota', 43.9695150, -99.9018130, 0),
-(99, 3, 'https://www.facebook.com/groups/411431608918302/', 'Wisconsin', 43.0327610, -87.9071040, 0),
-(100, 4, 'https://www.facebook.com/groups/190510254334113/', 'Arizona', 33.4406090, -112.0935060, 2),
-(101, 4, 'https://www.facebook.com/groups/252928971439205/', 'Arizona', 32.1384090, -110.9179690, 3),
-(102, 4, 'https://www.facebook.com/groups/248367238515394/', 'Colorado', 39.7325380, -104.9688720, 0),
-(103, 4, 'https://www.facebook.com/groups/541859482565869/', 'Oklahoma', 35.4675600, -97.5164280, 0),
-(104, 4, 'https://www.facebook.com/groups/326887317543/', 'Texas - Amarillo', 35.2219970, -101.8312970, 0),
-(105, 4, 'https://www.facebook.com/groups/476448669077840/', 'Texas - Austin', 30.2671530, -97.7430610, 1),
-(106, 4, 'https://www.facebook.com/groups/Austin.Melee/', 'Texas - Austin', 30.2680370, -97.7365640, 2),
-(107, 4, 'https://www.facebook.com/groups/426773497467785/', 'Texas - Austin', 30.2604020, -97.7520560, 4),
-(108, 4, 'http://www.facebook.com/groups/bcsmelee', 'Texas - Bryan-College Station', 30.6275730, -96.3348200, 0),
-(109, 4, 'https://www.facebook.com/groups/205428649667016/', 'Texas - College Station', 30.6224020, -96.3410000, 0),
-(110, 4, 'https://www.facebook.com/groups/350398944989752/', 'Texas - Dallas-Fort Worth', 32.7554880, -97.3307660, 2),
-(111, 4, 'https://www.facebook.com/groups/673233716043745/', 'Texas - El Paso', 31.7699560, -106.4968050, 0),
-(112, 4, 'https://www.facebook.com/groups/554204308010763/', 'Texas - Fort Worth', 32.7554880, -97.3307660, 0),
-(113, 4, 'https://www.facebook.com/groups/223986011009934/', 'Texas - Houston', 29.7601930, -95.3693900, 2),
-(114, 4, 'https://www.facebook.com/groups/197481713674782', 'Texas - San Antonio', 29.4241220, -98.4936280, 2),
-(115, 4, 'https://www.facebook.com/groups/122102801187160/', 'Texas - Rio Grande Valley', 26.1502960, -97.9767720, 0),
-(116, 4, 'https://www.facebook.com/UtahSmash', 'Utah', 40.7472570, -111.8627930, 0),
-(117, 4, 'https://www.facebook.com/groups/35208405538/', 'Utah - Provo/Orem', 40.2617130, -111.6773990, 0),
-(118, 4, 'https://www.facebook.com/groups/507726149334644/', 'New Mexico', 35.0659730, -106.6223140, 0),
-(119, 5, 'https://www.facebook.com/groups/CentralCaliSmash/', 'CA - Central Cali', 36.6331620, -119.7290040, 0),
-(120, 5, 'http://www.facebook.com/groups/276813632366412/', 'CA - NorCal', 37.7446570, -122.4371340, 2),
-(121, 5, 'https://www.facebook.com/groups/NorcalBrawl/', 'CA - NorCal', 37.3133830, -121.8988040, 3),
-(122, 5, 'https://www.facebook.com/groups/700200659991734/', 'CA - NorCal', 37.3308570, -121.8905640, 4),
-(123, 5, 'https://www.facebook.com/groups/SantaCruzMelee/', 'CA - Santa Cruz', 36.9696440, -122.0224000, 2),
-(124, 5, 'https://www.facebook.com/groups/124711994367202/', 'CA - Berkeley', 37.8715930, -122.2727470, 2),
-(125, 5, 'https://www.facebook.com/groups/251905601637936/', 'CA - Humboldt', 40.7450050, -123.8695090, 0),
-(126, 5, 'https://www.facebook.com/groups/479162355483578', 'CA - Orange County', 33.7174710, -117.8311430, 2),
-(127, 5, 'https://www.facebook.com/groups/78151322382/', 'CA - San Diego', 32.7157380, -117.1610840, 2),
-(128, 5, 'http://www.facebook.com/groups/358902214188040/', 'CA - Santa Barbara', 34.4208310, -119.6981900, 2),
-(129, 5, 'https://www.facebook.com/groups/593635670694883/', 'CA - SoCal', 34.0344530, -118.4710690, 1),
-(130, 5, 'http://www.facebook.com/groups/368704663144095/', 'CA - SoCal', 34.0299000, -118.2568360, 2),
-(131, 5, 'https://www.facebook.com/groups/SSBBsocal/', 'CA - SoCal', 34.2027160, -118.5699460, 3),
-(132, 5, 'https://www.facebook.com/groups/SSBPMsocal/', 'CA - SoCal', 33.9205720, -117.4108890, 4),
-(133, 5, 'https://www.facebook.com/groups/611100575632206/', 'CA - South Bay', 37.3395920, -121.9235230, 2),
-(134, 5, 'https://www.facebook.com/groups/480597648717885/', 'CA - Thousand Oaks', 34.1705610, -118.8375940, 0),
-(135, 5, 'https://www.facebook.com/groups/MELEE702/', 'Nevada - Las Vegas', 36.1699410, -115.1398300, 2),
-(136, 5, 'https://www.facebook.com/groups/BRAWL702/', 'Nevada - Las Vegas', 36.1728030, -115.2095030, 3),
-(137, 5, 'https://www.facebook.com/groups/702PROJECTM/', 'Nevada - Las Vegas', 36.1683680, -115.0968930, 4),
-(138, 5, 'https://www.facebook.com/groups/619057094778540/', 'Nevada - Reno', 39.5296330, -119.8138030, 0),
-(139, 5, 'https://www.facebook.com/groups/641344915919224/', 'Sacramento Smash', 38.5815720, -121.4944000, 0),
-(140, 5, 'https://www.facebook.com/groups/245900615456533/', 'Official Washington Melee', 47.6, -122.332, 0),
-(141, 5, 'https://www.facebook.com/groups/642114992487346/', 'Irvine', 33.6839470, -117.7946940, 0),
-(142, 5, 'https://www.facebook.com/groups/340535089298820/', 'Portland', 45.5234520, -122.6762070, 0),
-(143, 5, 'https://www.facebook.com/groups/283358348346303/', 'Eugene', 44.0520690, -123.0867540, 0),
-(144, 5, 'https://www.facebook.com/groups/224872027544762/', 'Corvallis', 44.5645660, -123.2620440, 0),
-(145, 5, 'https://www.facebook.com/groups/SCVSSBM/ ', 'Santa Clarita Valley', 34.3796510, -118.5305980, 2),
-(146, 1, 'https://www.facebook.com/groups/WorcesterSmashBros/', 'Worcester', 42.2625930, -71.8022930, 0),
-(147, 4, 'https://www.facebook.com/groups/350398944989752/', 'DFW', 32.7554880, -97.0000000, 0),
-(148, 2, 'https://www.facebook.com/groups/731966200177831/', 'Asheville', 35.5950580, -82.5514870, 0),
-(149, 1, 'https://www.facebook.com/groups/46230006858/', 'Rochester ', 43.1610300, -77.6109220, 0),
-(150, 5, 'https://www.facebook.com/groups/790683467608502/', 'Fremont', 37.5482700, -121.9885720, 2),
-(151, 5, 'https://www.facebook.com/groups/251629451659962/', 'San Luis Obispo', 35.2827520, -120.6596160, 0),
-(152, 3, 'https://www.facebook.com/groups/124366774346574/', 'Wichita', 37.6888890, -97.3361110, 2),
-(153, 5, 'https://www.facebook.com/groups/everythingsmash/', 'CA - VENTURA COUNTY', 34.2685660, -119.2284390, 0),
-(154, 4, 'https://www.facebook.com/groups/GAMelee/', 'Atlanta', 33.7489950, -84.3879820, 2),
-(155, 5, 'https://www.facebook.com/groups/1419390711611336/', 'High Desert', 35.1440470, -106.4869710, 2),
-(156, 5, 'https://www.facebook.com/groups/619057094778540/', 'Reno', 39.5296330, -119.8138030, 0),
-(157, 5, 'https://www.facebook.com/groups/707melee/', '707', 38.2918590, -122.4580360, 2),
-(158, 3, 'https://www.facebook.com/groups/KyOhWVa.Smash/', 'Ironton, Ohio', 38.5367470, -82.6829410, 2),
-(159, 2, 'https://www.facebook.com/groups/235912859946393', 'Buford', 34.1206560, -84.0043510, 2),
-(160, 3, 'https://www.facebook.com/groups/230511403809562/', 'Third Lake', 42.3739110, -88.0109120, 0),
-(161, 5, 'https://www.facebook.com/groups/279945308796732/', 'Long Beach', 33.7700500, -118.1937390, 0),
-(162, 1, 'https://www.facebook.com/groups/417873421648323/', 'Bedford, MA', 42.4906230, -71.2760090, 2),
-(163, 2, 'https://www.facebook.com/groups/159610307409216/', 'Dothan', 31.2232310, -85.3904890, 4),
-(164, 5, 'https://www.facebook.com/groups/EWASmashBros/', 'Eastern Washington', 47.6520000, -117.4330000, 0);
+(2, 1, 'https://www.facebook.com/groups/269052529786948', 'East Coast', '37.9500000', '-84.0000000', 2),
+(3, 1, 'https://www.facebook.com/groups/134497873392355', 'East Coast', '37.9470848', '-83.7225060', 1),
+(4, 1, 'https://www.facebook.com/groups/430811007000487', 'Delaware', '39.1564159', '-75.5134199', 0),
+(5, 1, 'https://www.facebook.com/groups/DMVSSBM', 'Maryland / Virginia / DC', '37.0000000', '-79.0145760', 2),
+(6, 1, 'https://www.facebook.com/groups/mdvasmash', 'Maryland / Virginia / DC', '37.5000000', '-77.0000000', 3),
+(7, 1, 'https://www.facebook.com/groups/projectmdva', 'Maryland / Virginia / DC', '38.0000000', '-76.5000000', 4),
+(8, 1, 'https://www.facebook.com/groups/395469233833958', 'Maryland - College Park', '38.9875571', '-76.9361836', 0),
+(9, 1, 'https://www.facebook.com/groups/489536424485533', 'Massachusetts - Fall River', '41.6855955', '-71.1019620', 4),
+(10, 1, 'https://www.facebook.com/groups/167824956563375', 'New England', '42.2499739', '-71.2378280', 2),
+(11, 1, 'https://www.facebook.com/groups/356948471051413', 'New England', '42.2499739', '-71.0000000', 3),
+(12, 1, 'https://www.facebook.com/groups/262747973827544', 'New Jersey - Rutgers University', '40.4786710', '-74.4317890', 2),
+(13, 1, 'https://www.facebook.com/groups/156948507708078', 'New Jersey - South', '40.0583240', '-74.4056610', 0),
+(14, 1, 'https://www.facebook.com/groups/408295942538051', 'New Jersey - Central', '39.8297280', '-74.9789590', 0),
+(15, 1, 'https://www.facebook.com/groups/211900915585963', 'New Jersey / New York', '40.4636660', '-74.4406130', 3),
+(16, 1, 'https://www.facebook.com/groups/350071671730817', 'New Jersey / New York', '40.5305020', '-74.3389890', 4),
+(17, 1, 'https://www.facebook.com/groups/1386041018274455', 'New Jersey / New York', '40.6056120', '-74.2236330', 5),
+(18, 1, 'https://www.facebook.com/groups/2200028280', 'New York - Ithaca / Cornell', '42.4534490', '-76.4735030', 0),
+(19, 1, 'https://www.facebook.com/groups/224824577625283', 'New York - Long Island', '40.7891420', '-73.1349600', 2),
+(20, 1, 'https://www.facebook.com/groups/364349146941224', 'New York - Long Island', '40.7763820', '-73.2843020', 3),
+(21, 1, 'https://www.facebook.com/groups/smashingatempire', 'New York - Long Island', '40.7139560', '-73.6358640', 0),
+(22, 1, 'https://www.facebook.com/groups/279511975480441', 'New York - NYC', '40.7127840', '-74.0059410', 2),
+(23, 1, 'https://www.facebook.com/groups/310533642332998', 'New York - NYU', '40.7272480', '-73.9954510', 0),
+(24, 1, 'https://www.facebook.com/groups/385718644870094', 'New York - Schenectady', '42.8142430', '-73.9395690', 0),
+(25, 1, 'https://www.facebook.com/groups/639367622752544', 'New York - Syracuse', '43.0481220', '-76.1474240', 0),
+(26, 1, 'https://www.facebook.com/groups/46230006858', 'New York - Upstate / RIT', '40.7127840', '-74.0059410', 0),
+(27, 1, 'https://www.facebook.com/groups/centralPennSSB', 'Pennsylvania - Central', '41.2967480', '-76.3729960', 0),
+(28, 1, 'https://www.facebook.com/groups/108078502591099', 'Pennsylvania - Philadelphia', '39.9523350', '-75.1637890', 2),
+(29, 1, 'https://www.facebook.com/groups/NEOHBURGH', 'Pennsylvania - Pittsburgh / Northeast Ohio', '40.3565090', '-79.9192700', 2),
+(30, 1, 'https://www.facebook.com/groups/182267851790715', 'Southern Virginia', '37.0592750', '-81.5377010', 2),
+(31, 1, 'https://www.facebook.com/groups/452275474823750', 'Charlottesville, Virginia', '38.0293060', '-78.4766780', 2),
+(32, 1, 'https://www.facebook.com/groups/596361677123724', 'Charlottesville, Virginia', '38.0283520', '-78.4880450', 4),
+(33, 1, 'https://www.facebook.com/groups/182267851790715', 'Norfolk/Virginia Beach', '36.8823350', '-76.2999060', 0),
+(34, 1, 'https://www.facebook.com/groups/1386540904893386', 'Southwest Virginia', '37.4315730', '-78.6568940', 0),
+(35, 1, 'https://www.facebook.com/groups/204825246197520', 'Virginia - VCU', '37.5446450', '-77.4479900', 0),
+(36, 1, 'https://www.facebook.com/groups/408805205918060', 'West Virginia', '38.5976260', '-80.4549030', 0),
+(37, 2, 'https://www.facebook.com/groups/269052529786948/', 'East Coast', '36.0313320', '-72.6855470', 2),
+(38, 2, 'https://www.facebook.com/groups/134497873392355/', 'East Coast', '34.4522180', '-73.0371090', 1),
+(39, 2, 'https://www.facebook.com/groups/336726723087447/', 'Atlantic South General', '41.4016300', '-94.9908060', 4),
+(40, 2, 'https://www.facebook.com/AlabamaSmashLeague', 'Alabama', '32.3182310', '-86.9022980', 0),
+(41, 2, 'https://www.facebook.com/groups/285926091523241/', 'Arkansas', '35.2010500', '-91.8318330', 0),
+(42, 2, 'https://www.facebook.com/groups/304489126305123/', 'Florida', '27.6648270', '-81.5157540', 0),
+(43, 2, 'https://www.facebook.com/groups/138478079554384/', 'Florida - Central Florida', '27.7127100', '-81.5405270', 2),
+(44, 2, 'https://www.facebook.com/groups/456656917699611/', 'Florida - Gainesville', '29.6516340', '-82.3248260', 3),
+(45, 2, 'https://www.facebook.com/groups/247383341960804/', 'Florida - Jacksonville', '30.3321840', '-81.6556510', 0),
+(46, 2, 'https://www.facebook.com/groups/134182206752487/', 'Florida - Pensacola', '30.4213090', '-87.2169150', 0),
+(47, 2, 'https://www.facebook.com/groups/1440737036160195/', 'Florida - South Florida 1', '27.4602270', '-82.6676730', 0),
+(48, 2, 'https://www.facebook.com/pages/Smash-In-Progress/706760066011314', 'Florida - South Florida 2', '27.4504470', '-82.5773760', 0),
+(49, 2, 'https://www.facebook.com/VersusGamingCenter', 'Florida - South Florida 3', '27.9064690', '-81.5740650', 0),
+(50, 2, 'https://www.facebook.com/groups/159234920826366/', 'Florida - South Florida', '27.6648270', '-81.5157540', 2),
+(51, 2, 'https://www.facebook.com/groups/193697467326040/', 'Florida - South West Florida', '27.6656460', '-81.5116450', 0),
+(52, 2, 'https://www.facebook.com/groups/357576900984630/', 'Florida - Tallahassee', '30.4382560', '-84.2807330', 0),
+(53, 2, 'https://www.facebook.com/groups/483669795064224/', 'Florida - Tampa Bay', '27.7028710', '-82.5834950', 2),
+(54, 2, 'https://www.facebook.com/groups/TampaSmash/', 'Florida - Tampa Bay', '27.8366470', '-82.5032040', 3),
+(55, 2, 'https://www.facebook.com/groups/125733910821001/', 'Florida - University of Florida 2', '25.7885490', '-80.3796260', 0),
+(56, 2, 'https://www.facebook.com/groups/209198555783942/', 'Georgia', '32.1656220', '-82.9000750', 2),
+(57, 2, 'https://www.facebook.com/groups/179381782079932/', 'Georgia', '30.3229140', '-93.1854220', 3),
+(58, 2, 'https://www.facebook.com/groups/1392554534335836/', 'Georgia', '33.1947030', '-84.2845670', 4),
+(59, 2, 'https://www.facebook.com/groups/133034603414177/', 'Louisiana', '30.9842980', '-91.9623330', 0),
+(60, 2, 'https://www.facebook.com/groups/352469348160468/', 'Louisiana', '30.0827880', '-92.6747630', 2),
+(61, 2, 'https://www.facebook.com/LSUSmash', 'Louisiana - LSU', '30.4132580', '-91.1800020', 0),
+(62, 2, 'https://www.facebook.com/groups/512742878766152/', 'Louisiana - New Orleans', '29.9510660', '-90.0715320', 2),
+(63, 2, 'https://www.facebook.com/groups/276445842390059/', 'North Carolina', '35.7595730', '-79.0193000', 2),
+(64, 2, 'https://www.facebook.com/groups/164944006930835/', 'North Carolina', '35.1934210', '-77.0334180', 3),
+(65, 2, 'https://www.facebook.com/groups/290202017736245/', 'South Carolina', '33.8360810', '-81.1637250', 2),
+(66, 2, 'https://www.facebook.com/groups/MiddleTNProjectM/', 'Tennessee', '35.5174910', '-86.5804470', 2),
+(67, 3, 'https://www.facebook.com/groups/mwsmash/', 'Midwest General 1', '39.9097360', '-93.5156250', 0),
+(68, 3, 'https://www.facebook.com/groups/257285400975347/', 'Midwest General 2', '39.9013090', '-92.5872800', 0),
+(69, 3, 'https://www.facebook.com/groups/380188912048431/', 'Illinois - Champaign', '40.1164200', '-88.2433830', 0),
+(70, 3, 'https://www.facebook.com/groups/126804630735563/', 'Illinois - Chicago', '41.8781140', '-87.6297980', 2),
+(71, 3, 'https://www.facebook.com/groups/1399023747004983/', 'Illinois- Springfield', '39.7817210', '-89.6501480', 0),
+(72, 3, 'https://www.facebook.com/groups/129015017194089/', 'Illinois South, Kentucky West, Missouri East', '37.5097260', '-88.7695310', 0),
+(73, 3, 'https://www.facebook.com/groups/171453176258373/', 'Indiana - Carmel', '39.9783710', '-86.1180430', 2),
+(74, 3, 'https://www.facebook.com/groups/611364705589048/', 'Indiana - Indianapolis', '39.7684030', '-86.1580680', 0),
+(75, 3, 'https://www.facebook.com/groups/247658661961971/', 'Indiana - Fort Wayne', '41.0792730', '-85.1393510', 0),
+(76, 3, 'https://www.facebook.com/groups/PurdueSSBO/', 'Indiana - Purdue', '40.4237050', '-86.9211950', 0),
+(77, 3, 'https://www.facebook.com/groups/382901415171283', 'Indiana - IU Bloomington', '39.1691360', '-86.5149050', 0),
+(78, 3, 'https://www.facebook.com/groups/1421302704757453/', 'Iowa', '41.8780030', '-93.0977020', 0),
+(79, 3, 'https://www.facebook.com/groups/ksssb', 'Kansas', '39.0119020', '-98.4842460', 0),
+(80, 3, 'https://www.facebook.com/groups/734815379867767/', 'Kansas City', '39.0997270', '-94.5785670', 4),
+(81, 3, 'https://www.facebook.com/groups/271575972914386/', 'Kentucky/Ohio/Indiana', '38.7883450', '-84.5507810', 0),
+(82, 3, 'https://www.facebook.com/groups/umsmash/', 'Michigan', '42.2808260', '-83.7430380', 2),
+(83, 3, 'https://www.facebook.com/groups/406757282795167/', 'Michigan', '42.3443350', '-83.8201900', 3),
+(84, 3, 'https://www.facebook.com/groups/WestMISmash/', 'Michigan - West', '43.8028190', '-86.0449220', 0),
+(85, 3, 'https://www.facebook.com/groups/258765404305007/', 'Michigan', '42.3849230', '-83.5702510', 4),
+(86, 3, 'https://www.facebook.com/groups/540421182680998/', 'Minnesota', '46.7295530', '-94.6859000', 0),
+(87, 3, 'https://www.facebook.com/groups/176623759034371/', 'Minnesota - UMM', '45.5892070', '-95.9033780', 0),
+(88, 3, 'https://www.facebook.com/groups/323513011041633/', 'Missouri - St. Louis', '38.6270030', '-90.1994040', 2),
+(89, 3, 'https://www.facebook.com/groups/414566191955018/', 'Missouri - St. Louis', '38.6218030', '-90.2365320', 3),
+(90, 3, 'https://www.facebook.com/groups/338517279512871/', 'Missouri - Springfield', '37.2089570', '-93.2922990', NULL),
+(91, 3, 'https://www.facebook.com/groups/199063406858260/', 'Nebraska', '41.4925370', '-99.9018130', 2),
+(92, 3, 'https://www.facebook.com/groups/105843859488387/', 'Ohio', '40.4172870', '-82.9071230', 0),
+(93, 3, 'https://www.facebook.com/groups/677137102305269/', 'Ohio - Cincinnati', '39.1031180', '-84.5120200', 0),
+(94, 3, 'https://www.facebook.com/groups/133757653398073/', 'Ohio - Columbus', '39.9611760', '-82.9987940', 2),
+(95, 3, 'https://www.facebook.com/groups/302630169803625/', 'Ohio - Columbus', '39.9596880', '-83.0074600', 3),
+(96, 3, 'https://www.facebook.com/groups/1396649643918505/', 'Ohio - Northwest', '40.8138090', '-83.8256840', 2),
+(97, 3, 'https://www.facebook.com/groups/470817746279509/', 'Western PA / Northeast OH', '41.2447720', '-80.4858400', 0),
+(98, 3, 'https://www.facebook.com/groups/466886533331712/', 'South Dakota', '43.9695150', '-99.9018130', 0),
+(99, 3, 'https://www.facebook.com/groups/411431608918302/', 'Wisconsin', '43.0327610', '-87.9071040', 0),
+(100, 4, 'https://www.facebook.com/groups/190510254334113/', 'Arizona', '33.4406090', '-112.0935060', 2),
+(101, 4, 'https://www.facebook.com/groups/252928971439205/', 'Arizona', '32.1384090', '-110.9179690', 3),
+(102, 4, 'https://www.facebook.com/groups/248367238515394/', 'Colorado', '39.7325380', '-104.9688720', 0),
+(103, 4, 'https://www.facebook.com/groups/541859482565869/', 'Oklahoma', '35.4675600', '-97.5164280', 0),
+(104, 4, 'https://www.facebook.com/groups/326887317543/', 'Texas - Amarillo', '35.2219970', '-101.8312970', 0),
+(105, 4, 'https://www.facebook.com/groups/476448669077840/', 'Texas - Austin', '30.2671530', '-97.7430610', 1),
+(106, 4, 'https://www.facebook.com/groups/Austin.Melee/', 'Texas - Austin', '30.2680370', '-97.7365640', 2),
+(107, 4, 'https://www.facebook.com/groups/426773497467785/', 'Texas - Austin', '30.2604020', '-97.7520560', 4),
+(108, 4, 'http://www.facebook.com/groups/bcsmelee', 'Texas - Bryan-College Station', '30.6275730', '-96.3348200', 0),
+(109, 4, 'https://www.facebook.com/groups/205428649667016/', 'Texas - College Station', '30.6224020', '-96.3410000', 0),
+(110, 4, 'https://www.facebook.com/groups/350398944989752/', 'Texas - Dallas-Fort Worth', '32.7554880', '-97.3307660', 2),
+(111, 4, 'https://www.facebook.com/groups/673233716043745/', 'Texas - El Paso', '31.7699560', '-106.4968050', 0),
+(112, 4, 'https://www.facebook.com/groups/554204308010763/', 'Texas - Fort Worth', '32.7554880', '-97.3307660', 0),
+(113, 4, 'https://www.facebook.com/groups/223986011009934/', 'Texas - Houston', '29.7601930', '-95.3693900', 2),
+(114, 4, 'https://www.facebook.com/groups/197481713674782', 'Texas - San Antonio', '29.4241220', '-98.4936280', 2),
+(115, 4, 'https://www.facebook.com/groups/122102801187160/', 'Texas - Rio Grande Valley', '26.1502960', '-97.9767720', 0),
+(116, 4, 'https://www.facebook.com/UtahSmash', 'Utah', '40.7472570', '-111.8627930', 0),
+(117, 4, 'https://www.facebook.com/groups/35208405538/', 'Utah - Provo/Orem', '40.2617130', '-111.6773990', 0),
+(118, 4, 'https://www.facebook.com/groups/507726149334644/', 'New Mexico', '35.0659730', '-106.6223140', 0),
+(119, 5, 'https://www.facebook.com/groups/CentralCaliSmash/', 'CA - Central Cali', '36.6331620', '-119.7290040', 0),
+(120, 5, 'http://www.facebook.com/groups/276813632366412/', 'CA - NorCal', '37.7446570', '-122.4371340', 2),
+(121, 5, 'https://www.facebook.com/groups/NorcalBrawl/', 'CA - NorCal', '37.3133830', '-121.8988040', 3),
+(122, 5, 'https://www.facebook.com/groups/700200659991734/', 'CA - NorCal', '37.3308570', '-121.8905640', 4),
+(123, 5, 'https://www.facebook.com/groups/SantaCruzMelee/', 'CA - Santa Cruz', '36.9696440', '-122.0224000', 2),
+(124, 5, 'https://www.facebook.com/groups/124711994367202/', 'CA - Berkeley', '37.8715930', '-122.2727470', 2),
+(125, 5, 'https://www.facebook.com/groups/251905601637936/', 'CA - Humboldt', '40.7450050', '-123.8695090', 0),
+(126, 5, 'https://www.facebook.com/groups/479162355483578', 'CA - Orange County', '33.7174710', '-117.8311430', 2),
+(127, 5, 'https://www.facebook.com/groups/78151322382/', 'CA - San Diego', '32.7157380', '-117.1610840', 2),
+(128, 5, 'http://www.facebook.com/groups/358902214188040/', 'CA - Santa Barbara', '34.4208310', '-119.6981900', 2),
+(129, 5, 'https://www.facebook.com/groups/593635670694883/', 'CA - SoCal', '34.0344530', '-118.4710690', 1),
+(130, 5, 'http://www.facebook.com/groups/368704663144095/', 'CA - SoCal', '34.0299000', '-118.2568360', 2),
+(131, 5, 'https://www.facebook.com/groups/SSBBsocal/', 'CA - SoCal', '34.2027160', '-118.5699460', 3),
+(132, 5, 'https://www.facebook.com/groups/SSBPMsocal/', 'CA - SoCal', '33.9205720', '-117.4108890', 4),
+(133, 5, 'https://www.facebook.com/groups/611100575632206/', 'CA - South Bay', '37.3395920', '-121.9235230', 2),
+(134, 5, 'https://www.facebook.com/groups/480597648717885/', 'CA - Thousand Oaks', '34.1705610', '-118.8375940', 0),
+(135, 5, 'https://www.facebook.com/groups/MELEE702/', 'Nevada - Las Vegas', '36.1699410', '-115.1398300', 2),
+(136, 5, 'https://www.facebook.com/groups/BRAWL702/', 'Nevada - Las Vegas', '36.1728030', '-115.2095030', 3),
+(137, 5, 'https://www.facebook.com/groups/702PROJECTM/', 'Nevada - Las Vegas', '36.1683680', '-115.0968930', 4),
+(138, 5, 'https://www.facebook.com/groups/619057094778540/', 'Nevada - Reno', '39.5296330', '-119.8138030', 0),
+(139, 5, 'https://www.facebook.com/groups/641344915919224/', 'Sacramento Smash', '38.5815720', '-121.4944000', 0),
+(140, 5, 'https://www.facebook.com/groups/245900615456533/', 'Official Washington Melee', '47.6000000', '-122.3320000', 0),
+(141, 5, 'https://www.facebook.com/groups/642114992487346/', 'Irvine', '33.6839470', '-117.7946940', 0),
+(142, 5, 'https://www.facebook.com/groups/340535089298820/', 'Portland', '45.5234520', '-122.6762070', 0),
+(143, 5, 'https://www.facebook.com/groups/283358348346303/', 'Eugene', '44.0520690', '-123.0867540', 0),
+(144, 5, 'https://www.facebook.com/groups/224872027544762/', 'Corvallis', '44.5645660', '-123.2620440', 0),
+(145, 5, 'https://www.facebook.com/groups/SCVSSBM/ ', 'Santa Clarita Valley', '34.3796510', '-118.5305980', 2),
+(146, 1, 'https://www.facebook.com/groups/WorcesterSmashBros/', 'Worcester', '42.2625930', '-71.8022930', 0),
+(147, 4, 'https://www.facebook.com/groups/350398944989752/', 'DFW', '32.7554880', '-97.0000000', 0),
+(148, 2, 'https://www.facebook.com/groups/731966200177831/', 'Asheville', '35.5950580', '-82.5514870', 0),
+(149, 1, 'https://www.facebook.com/groups/46230006858/', 'Rochester ', '43.1610300', '-77.6109220', 0),
+(150, 5, 'https://www.facebook.com/groups/790683467608502/', 'Fremont', '37.5482700', '-121.9885720', 2),
+(151, 5, 'https://www.facebook.com/groups/251629451659962/', 'San Luis Obispo', '35.2827520', '-120.6596160', 0),
+(152, 3, 'https://www.facebook.com/groups/124366774346574/', 'Wichita', '37.6888890', '-97.3361110', 2),
+(153, 5, 'https://www.facebook.com/groups/everythingsmash/', 'CA - VENTURA COUNTY', '34.2685660', '-119.2284390', 0),
+(154, 4, 'https://www.facebook.com/groups/GAMelee/', 'Atlanta', '33.7489950', '-84.3879820', 2),
+(155, 5, 'https://www.facebook.com/groups/1419390711611336/', 'High Desert', '35.1440470', '-106.4869710', 2),
+(156, 5, 'https://www.facebook.com/groups/619057094778540/', 'Reno', '39.5296330', '-119.8138030', 0),
+(157, 5, 'https://www.facebook.com/groups/707melee/', '707', '38.2918590', '-122.4580360', 2),
+(158, 3, 'https://www.facebook.com/groups/KyOhWVa.Smash/', 'Ironton, Ohio', '38.5367470', '-82.6829410', 2),
+(159, 2, 'https://www.facebook.com/groups/235912859946393', 'Buford', '34.1206560', '-84.0043510', 2),
+(160, 3, 'https://www.facebook.com/groups/230511403809562/', 'Third Lake', '42.3739110', '-88.0109120', 0),
+(161, 5, 'https://www.facebook.com/groups/279945308796732/', 'Long Beach', '33.7700500', '-118.1937390', 0),
+(162, 1, 'https://www.facebook.com/groups/417873421648323/', 'Bedford, MA', '42.4906230', '-71.2760090', 2),
+(163, 2, 'https://www.facebook.com/groups/159610307409216/', 'Dothan', '31.2232310', '-85.3904890', 4),
+(164, 5, 'https://www.facebook.com/groups/EWASmashBros/', 'Eastern Washington', '47.6520000', '-117.4330000', 0),
+(165, 6, 'https://www.facebook.com/groups/calgarysmash/', 'Calgary Smash Brothers Community', '51.0780000', '-114.1340000', 0),
+(166, 6, 'https://www.facebook.com/groups/edmontonsmash/', 'Edmonton Smash Bros Community', '53.5320000', '-113.4900000', 0),
+(167, 1, 'https://www.facebook.com/groups/212152128989881/', 'Smash Bros. at William & Mary', '37.2730000', '-76.7140000', 0),
+(168, 6, 'https://www.facebook.com/groups/SmashUK/', 'Smash UK', '51.4540000', '-0.0680000', 0),
+(169, 6, 'https://www.facebook.com/groups/614361821964340/', 'Solent Smash', '50.9030000', '-1.3980000', 0),
+(170, 6, 'https://www.facebook.com/groups/674542725954277/', 'Asker/BÃ¦rum Smash', '59.8630000', '10.4860000', 0),
+(171, 5, 'http://smashboards.com/threads/osc-oregon-players-events-all-the-info-you-need.66978/', 'Oregon Smash Community', '44.0390000', '-123.0760000', 0),
+(172, 6, 'https://www.facebook.com/groups/194535274054492/?fref=ts', 'Smash Scotland', '55.8740000', '-4.2340000', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -707,7 +719,7 @@ INSERT INTO `locals` (`id`, `region`, `profileid`, `name`, `latitude`, `longitud
 --
 
 DROP TABLE IF EXISTS `migrations`;
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -719,11 +731,12 @@ CREATE TABLE `migrations` (
 --
 
 DROP TABLE IF EXISTS `moves`;
-CREATE TABLE `moves` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `moves` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(35) NOT NULL,
-  `description` varchar(90) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `description` varchar(90) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `moves`
@@ -745,15 +758,16 @@ INSERT INTO `moves` (`id`, `name`, `description`) VALUES
 --
 
 DROP TABLE IF EXISTS `movesgifs`;
-CREATE TABLE `movesgifs` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `movesgifs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `charid` int(11) NOT NULL,
   `url` varchar(100) NOT NULL,
   `description` varchar(30) NOT NULL,
   `source` varchar(90) NOT NULL,
   `dataid` int(11) NOT NULL,
-  `framedataid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=714 DEFAULT CHARSET=latin1;
+  `framedataid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=714 ;
 
 --
 -- Dumping data for table `movesgifs`
@@ -1411,14 +1425,15 @@ INSERT INTO `movesgifs` (`id`, `charid`, `url`, `description`, `source`, `dataid
 --
 
 DROP TABLE IF EXISTS `submissions`;
-CREATE TABLE `submissions` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `submissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(90) NOT NULL,
   `source` varchar(30) NOT NULL,
   `description` varchar(300) NOT NULL,
   `pageid` int(11) NOT NULL,
-  `dataid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `dataid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 -- --------------------------------------------------------
 
@@ -1427,13 +1442,16 @@ CREATE TABLE `submissions` (
 --
 
 DROP TABLE IF EXISTS `submissionsgroup`;
-CREATE TABLE `submissionsgroup` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `submissionsgroup` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(130) NOT NULL,
   `fb` varchar(290) NOT NULL,
   `latitude` float NOT NULL,
-  `longitude` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `longitude` float NOT NULL,
+  `region` int(11) NOT NULL DEFAULT '0',
+  `game` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -1442,12 +1460,13 @@ CREATE TABLE `submissionsgroup` (
 --
 
 DROP TABLE IF EXISTS `submissionstech`;
-CREATE TABLE `submissionstech` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `submissionstech` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(90) NOT NULL,
-  `description` varchar(300) NOT NULL,
-  `ssbwiki` varchar(180) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `description` varchar(650) NOT NULL,
+  `ssbwiki` varchar(180) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -1456,8 +1475,8 @@ CREATE TABLE `submissionstech` (
 --
 
 DROP TABLE IF EXISTS `submissionstournament`;
-CREATE TABLE `submissionstournament` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `submissionstournament` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(90) NOT NULL,
   `fb_id` int(60) NOT NULL,
   `bracket` varchar(150) NOT NULL,
@@ -1469,8 +1488,9 @@ CREATE TABLE `submissionstournament` (
   `stream` varchar(45) NOT NULL,
   `attending` int(11) NOT NULL,
   `location` varchar(50) NOT NULL,
-  `host` varchar(65) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `host` varchar(65) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -1479,14 +1499,15 @@ CREATE TABLE `submissionstournament` (
 --
 
 DROP TABLE IF EXISTS `techgif`;
-CREATE TABLE `techgif` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `techgif` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `techID` int(11) NOT NULL,
   `url` varchar(120) NOT NULL,
   `description` varchar(300) NOT NULL,
   `source` varchar(120) DEFAULT NULL,
-  `frameDataJson` text NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+  `frameDataJson` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `techgif`
@@ -1524,7 +1545,8 @@ INSERT INTO `techgif` (`id`, `techID`, `url`, `description`, `source`, `frameDat
 (33, 24, 'IdenticalThirstyDog', 'The Peach on the right uses L canceling, while the Peach on the left uses Float Canceling. Notice how the amount of landing lag is the same!', NULL, ''),
 (34, 25, 'WideBlushingDiamondbackrattlesnake', 'MewTwo performing a Jab Reset in order to push Fox into a neutral position to continue a combo', NULL, ''),
 (35, 26, 'DeepColorfulAfricanwilddog', 'S2J demonstrating tech chasing by predicting where his opponent is going to tech and adjusting accordingly', NULL, ''),
-(36, 27, 'LegalInnocentEastrussiancoursinghounds', 'A frame perfect Fox Wave Shine', NULL, '');
+(36, 27, 'LegalInnocentEastrussiancoursinghounds', 'A frame perfect Fox Wave Shine', NULL, ''),
+(39, 28, 'PaleHollowLamb', 'Captain Falcon moonwalks across the stage', '', '');
 
 -- --------------------------------------------------------
 
@@ -1533,13 +1555,15 @@ INSERT INTO `techgif` (`id`, `techID`, `url`, `description`, `source`, `frameDat
 --
 
 DROP TABLE IF EXISTS `techinfo`;
-CREATE TABLE `techinfo` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `techinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `techID` int(11) NOT NULL,
   `description` varchar(400) DEFAULT NULL,
   `smashwiki` varchar(90) DEFAULT NULL,
-  `inputs` varchar(45) DEFAULT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1 COMMENT='Table used to store general information regarding a technique.';
+  `inputs` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `techID` (`techID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Table used to store general information regarding a technique.' AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `techinfo`
@@ -1569,7 +1593,8 @@ INSERT INTO `techinfo` (`id`, `techID`, `description`, `smashwiki`, `inputs`) VA
 (22, 24, 'Float canceling is a bug relating to floating. If Peach uses an aerial attack while floating, landing during the attack (whether still floating or not) will skip landing lag entirely and result in a normal landing instead.', 'http://www.ssbwiki.com/Floating#Float_canceling', NULL),
 (23, 25, 'Jab resets is a technique that is performed by jabbing an opponent while they are knocked down. The jab will force the opponent to stand up, where the opponent can then hit them with almost any move they desire', 'http://www.ssbwiki.com/jab_reset', NULL),
 (24, 26, 'tech chasing is the act of following your opponent after a knockdown. There are three options of techs, left roll, right roll, and neutral. Tech chasing is the act of punishing either of the three options with an attack', 'http://www.ssbwiki.com/Tech-chasing', ''),
-(25, 27, 'A wave shine is a wavedash done immediately out of a shine. It can be done by Fox and Falco.', 'http://www.ssbwiki.com/Waveshine', '(Down + B) followed by (Wave Dash)');
+(25, 27, 'A wave shine is a wavedash done immediately out of a shine. It can be done by Fox and Falco.', 'http://www.ssbwiki.com/Waveshine', '(Down + B) followed by (Wave Dash)'),
+(26, 28, 'A technique that allows for the character to move in the opposite direction while dashing. This move can be done by all characters, and is often used to gain backwards momentum for a jump. If done correctly, it can be crucial for edgeguarding and ledge grabbing.\n', 'http://www.ssbwiki.com/Moonwalk', NULL);
 
 -- --------------------------------------------------------
 
@@ -1578,10 +1603,11 @@ INSERT INTO `techinfo` (`id`, `techID`, `description`, `smashwiki`, `inputs`) VA
 --
 
 DROP TABLE IF EXISTS `techs`;
-CREATE TABLE `techs` (
-`id` int(11) NOT NULL,
-  `tech` varchar(32) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `techs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tech` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `techs`
@@ -1610,7 +1636,8 @@ INSERT INTO `techs` (`id`, `tech`) VALUES
 (24, 'Float Canceling'),
 (25, 'Jab Reset'),
 (26, 'Tech Chasing'),
-(27, 'Wave Shine');
+(27, 'Wave Shine'),
+(28, 'Moonwalk');
 
 -- --------------------------------------------------------
 
@@ -1619,8 +1646,8 @@ INSERT INTO `techs` (`id`, `tech`) VALUES
 --
 
 DROP TABLE IF EXISTS `throttle`;
-CREATE TABLE `throttle` (
-`id` int(10) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `throttle` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `ip_address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `attempts` int(11) NOT NULL DEFAULT '0',
@@ -1628,8 +1655,10 @@ CREATE TABLE `throttle` (
   `banned` tinyint(4) NOT NULL DEFAULT '0',
   `last_attempt_at` timestamp NULL DEFAULT NULL,
   `suspended_at` timestamp NULL DEFAULT NULL,
-  `banned_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `banned_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=152 ;
 
 --
 -- Dumping data for table `throttle`
@@ -1645,7 +1674,148 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 (7, 9, NULL, 0, 0, 0, NULL, NULL, NULL),
 (8, 10, NULL, 0, 0, 0, NULL, NULL, NULL),
 (9, 11, NULL, 0, 0, 0, NULL, NULL, NULL),
-(10, 5, NULL, 0, 0, 0, NULL, NULL, NULL);
+(10, 5, NULL, 0, 0, 0, NULL, NULL, NULL),
+(11, 65, NULL, 0, 0, 0, NULL, NULL, NULL),
+(12, 66, NULL, 0, 0, 0, NULL, NULL, NULL),
+(13, 67, NULL, 0, 0, 0, NULL, NULL, NULL),
+(14, 69, NULL, 0, 0, 0, NULL, NULL, NULL),
+(15, 68, NULL, 0, 0, 0, NULL, NULL, NULL),
+(16, 70, NULL, 0, 0, 0, NULL, NULL, NULL),
+(17, 71, NULL, 0, 0, 0, NULL, NULL, NULL),
+(18, 72, NULL, 0, 0, 0, NULL, NULL, NULL),
+(19, 73, NULL, 0, 0, 0, NULL, NULL, NULL),
+(20, 74, NULL, 0, 0, 0, NULL, NULL, NULL),
+(21, 29, NULL, 0, 0, 0, NULL, NULL, NULL),
+(22, 75, NULL, 0, 0, 0, NULL, NULL, NULL),
+(23, 76, NULL, 0, 0, 0, NULL, NULL, NULL),
+(24, 77, NULL, 0, 0, 0, NULL, NULL, NULL),
+(25, 78, NULL, 0, 0, 0, NULL, NULL, NULL),
+(26, 79, NULL, 0, 0, 0, NULL, NULL, NULL),
+(27, 80, NULL, 0, 0, 0, NULL, NULL, NULL),
+(28, 81, NULL, 0, 0, 0, NULL, NULL, NULL),
+(29, 82, NULL, 0, 0, 0, NULL, NULL, NULL),
+(30, 83, NULL, 0, 0, 0, NULL, NULL, NULL),
+(31, 84, NULL, 0, 0, 0, NULL, NULL, NULL),
+(32, 85, NULL, 0, 0, 0, NULL, NULL, NULL),
+(33, 86, NULL, 0, 0, 0, NULL, NULL, NULL),
+(34, 87, NULL, 0, 0, 0, NULL, NULL, NULL),
+(35, 88, NULL, 0, 0, 0, NULL, NULL, NULL),
+(36, 89, NULL, 0, 0, 0, NULL, NULL, NULL),
+(37, 90, NULL, 0, 0, 0, NULL, NULL, NULL),
+(38, 91, NULL, 0, 0, 0, NULL, NULL, NULL),
+(39, 92, NULL, 0, 0, 0, NULL, NULL, NULL),
+(40, 93, NULL, 0, 0, 0, NULL, NULL, NULL),
+(41, 94, NULL, 0, 0, 0, NULL, NULL, NULL),
+(42, 95, NULL, 0, 0, 0, NULL, NULL, NULL),
+(43, 96, NULL, 0, 0, 0, NULL, NULL, NULL),
+(44, 97, NULL, 0, 0, 0, NULL, NULL, NULL),
+(45, 35, NULL, 0, 0, 0, NULL, NULL, NULL),
+(46, 98, NULL, 0, 0, 0, NULL, NULL, NULL),
+(47, 99, NULL, 0, 0, 0, NULL, NULL, NULL),
+(48, 100, NULL, 0, 0, 0, NULL, NULL, NULL),
+(49, 101, NULL, 0, 0, 0, NULL, NULL, NULL),
+(50, 102, NULL, 0, 0, 0, NULL, NULL, NULL),
+(51, 103, NULL, 0, 0, 0, NULL, NULL, NULL),
+(52, 104, NULL, 0, 0, 0, NULL, NULL, NULL),
+(53, 106, NULL, 0, 0, 0, NULL, NULL, NULL),
+(54, 107, NULL, 0, 0, 0, NULL, NULL, NULL),
+(55, 108, NULL, 0, 0, 0, NULL, NULL, NULL),
+(56, 109, NULL, 0, 0, 0, NULL, NULL, NULL),
+(57, 110, NULL, 0, 0, 0, NULL, NULL, NULL),
+(58, 111, NULL, 0, 0, 0, NULL, NULL, NULL),
+(59, 112, NULL, 0, 0, 0, NULL, NULL, NULL),
+(60, 113, NULL, 0, 0, 0, NULL, NULL, NULL),
+(61, 114, NULL, 0, 0, 0, NULL, NULL, NULL),
+(62, 115, NULL, 0, 0, 0, NULL, NULL, NULL),
+(63, 116, NULL, 0, 0, 0, NULL, NULL, NULL),
+(64, 117, NULL, 0, 0, 0, NULL, NULL, NULL),
+(65, 118, NULL, 0, 0, 0, NULL, NULL, NULL),
+(66, 119, NULL, 0, 0, 0, NULL, NULL, NULL),
+(67, 120, NULL, 0, 0, 0, NULL, NULL, NULL),
+(68, 121, NULL, 0, 0, 0, NULL, NULL, NULL),
+(69, 122, NULL, 0, 0, 0, NULL, NULL, NULL),
+(70, 123, NULL, 0, 0, 0, NULL, NULL, NULL),
+(71, 125, NULL, 0, 0, 0, NULL, NULL, NULL),
+(72, 126, NULL, 0, 0, 0, NULL, NULL, NULL),
+(73, 127, NULL, 0, 0, 0, NULL, NULL, NULL),
+(74, 124, NULL, 0, 0, 0, NULL, NULL, NULL),
+(75, 128, NULL, 0, 0, 0, NULL, NULL, NULL),
+(76, 129, NULL, 0, 0, 0, NULL, NULL, NULL),
+(77, 130, NULL, 0, 0, 0, NULL, NULL, NULL),
+(78, 131, NULL, 0, 0, 0, NULL, NULL, NULL),
+(79, 132, NULL, 0, 0, 0, NULL, NULL, NULL),
+(80, 133, NULL, 0, 0, 0, NULL, NULL, NULL),
+(81, 134, NULL, 0, 0, 0, NULL, NULL, NULL),
+(82, 135, NULL, 0, 0, 0, NULL, NULL, NULL),
+(83, 136, NULL, 0, 0, 0, NULL, NULL, NULL),
+(84, 137, NULL, 0, 0, 0, NULL, NULL, NULL),
+(85, 138, NULL, 0, 0, 0, NULL, NULL, NULL),
+(86, 139, NULL, 0, 0, 0, NULL, NULL, NULL),
+(87, 140, NULL, 0, 0, 0, NULL, NULL, NULL),
+(88, 141, NULL, 0, 0, 0, NULL, NULL, NULL),
+(89, 142, NULL, 0, 0, 0, NULL, NULL, NULL),
+(90, 143, NULL, 0, 0, 0, NULL, NULL, NULL),
+(91, 144, NULL, 0, 0, 0, NULL, NULL, NULL),
+(92, 145, NULL, 0, 0, 0, NULL, NULL, NULL),
+(93, 146, NULL, 0, 0, 0, NULL, NULL, NULL),
+(94, 147, NULL, 0, 0, 0, NULL, NULL, NULL),
+(95, 148, NULL, 0, 0, 0, NULL, NULL, NULL),
+(96, 149, NULL, 0, 0, 0, NULL, NULL, NULL),
+(97, 150, NULL, 0, 0, 0, NULL, NULL, NULL),
+(98, 151, NULL, 0, 0, 0, NULL, NULL, NULL),
+(99, 152, NULL, 0, 0, 0, NULL, NULL, NULL),
+(100, 153, NULL, 0, 0, 0, NULL, NULL, NULL),
+(101, 154, NULL, 0, 0, 0, NULL, NULL, NULL),
+(102, 155, NULL, 0, 0, 0, NULL, NULL, NULL),
+(103, 156, NULL, 0, 0, 0, NULL, NULL, NULL),
+(104, 157, NULL, 0, 0, 0, NULL, NULL, NULL),
+(105, 158, NULL, 0, 0, 0, NULL, NULL, NULL),
+(106, 159, NULL, 0, 0, 0, NULL, NULL, NULL),
+(107, 160, NULL, 0, 0, 0, NULL, NULL, NULL),
+(108, 161, NULL, 0, 0, 0, NULL, NULL, NULL),
+(109, 162, NULL, 0, 0, 0, NULL, NULL, NULL),
+(110, 163, NULL, 0, 0, 0, NULL, NULL, NULL),
+(111, 164, NULL, 0, 0, 0, NULL, NULL, NULL),
+(112, 165, NULL, 0, 0, 0, NULL, NULL, NULL),
+(113, 166, NULL, 0, 0, 0, NULL, NULL, NULL),
+(114, 167, NULL, 0, 0, 0, NULL, NULL, NULL),
+(115, 168, NULL, 0, 0, 0, NULL, NULL, NULL),
+(116, 169, NULL, 0, 0, 0, NULL, NULL, NULL),
+(117, 170, NULL, 0, 0, 0, NULL, NULL, NULL),
+(118, 171, NULL, 0, 0, 0, NULL, NULL, NULL),
+(119, 172, NULL, 0, 0, 0, NULL, NULL, NULL),
+(120, 58, NULL, 0, 0, 0, NULL, NULL, NULL),
+(121, 173, NULL, 0, 0, 0, NULL, NULL, NULL),
+(122, 174, NULL, 0, 0, 0, NULL, NULL, NULL),
+(123, 175, NULL, 0, 0, 0, NULL, NULL, NULL),
+(124, 176, NULL, 0, 0, 0, NULL, NULL, NULL),
+(125, 14, NULL, 0, 0, 0, NULL, NULL, NULL),
+(126, 177, NULL, 0, 0, 0, NULL, NULL, NULL),
+(127, 178, NULL, 0, 0, 0, NULL, NULL, NULL),
+(128, 179, NULL, 0, 0, 0, NULL, NULL, NULL),
+(129, 180, NULL, 0, 0, 0, NULL, NULL, NULL),
+(130, 181, NULL, 0, 0, 0, NULL, NULL, NULL),
+(131, 184, NULL, 0, 0, 0, NULL, NULL, NULL),
+(132, 186, NULL, 0, 0, 0, NULL, NULL, NULL),
+(133, 185, NULL, 0, 0, 0, NULL, NULL, NULL),
+(134, 187, NULL, 0, 0, 0, NULL, NULL, NULL),
+(135, 188, NULL, 0, 0, 0, NULL, NULL, NULL),
+(136, 191, NULL, 0, 0, 0, NULL, NULL, NULL),
+(137, 192, NULL, 0, 0, 0, NULL, NULL, NULL),
+(138, 193, NULL, 0, 0, 0, NULL, NULL, NULL),
+(139, 194, NULL, 0, 0, 0, NULL, NULL, NULL),
+(140, 195, NULL, 0, 0, 0, NULL, NULL, NULL),
+(141, 196, NULL, 0, 0, 0, NULL, NULL, NULL),
+(142, 197, NULL, 0, 0, 0, NULL, NULL, NULL),
+(143, 198, NULL, 0, 0, 0, NULL, NULL, NULL),
+(144, 199, NULL, 0, 0, 0, NULL, NULL, NULL),
+(145, 200, NULL, 0, 0, 0, NULL, NULL, NULL),
+(146, 201, NULL, 0, 0, 0, NULL, NULL, NULL),
+(147, 202, NULL, 0, 0, 0, NULL, NULL, NULL),
+(148, 203, NULL, 0, 0, 0, NULL, NULL, NULL),
+(149, 17, NULL, 0, 0, 0, NULL, NULL, NULL),
+(150, 204, NULL, 0, 0, 0, NULL, NULL, NULL),
+(151, 205, NULL, 0, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1654,8 +1824,8 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 --
 
 DROP TABLE IF EXISTS `upcoming`;
-CREATE TABLE `upcoming` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `upcoming` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `fb_id` varchar(130) NOT NULL,
   `bracket` varchar(250) NOT NULL,
@@ -1669,16 +1839,19 @@ CREATE TABLE `upcoming` (
   `attending` int(11) NOT NULL,
   `location` varchar(90) NOT NULL,
   `host` varchar(90) NOT NULL,
-  `vods` varchar(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `vods` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `upcoming`
 --
 
 INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`, `vods`) VALUES
-(1, 'Do You Fox Wit it', '722984804448159', 'http://dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', 'Hax', 'Silentwolf', 'SFAT', 'showdownsmash', 250, 'Oakland', 'NorCal', '3048'),
-(9, 'TMG Columbia vs UMass Boston', '//www.facebook.com/TheMeleeGames', '//themeleegames.challonge.com/TS', 'event-info', '2015-01-31', '2015-02-02', '', '', '', '', 0, 'Secaucus, NJ', 'Apex 2015', '');
+(1, 'Do You Fox Wit it', '722984804448159', '//dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', 'Hax', 'Silentwolf', 'SFAT', 'showdownsmash', 250, 'Oakland', 'NorCal', '3048'),
+(9, 'TMG Columbia vs UMass Boston', '//www.facebook.com/TheMeleeGames', '//themeleegames.challonge.com/TS', 'event-info', '2015-01-31', '2015-02-02', '', '', '', '', 0, 'Secaucus, NJ', 'Apex 2015', ''),
+(10, 'Paragon', '1502519116670412', '//paragon.challonge.com', 'event-info', '2015-01-17', '2015-01-18', '', '', '', 'vgbootcamp', 150, 'Orlando, FL', 'Versus Gaming Center / Gaming Knights', ''),
+(11, 'APEX 2015', '301539433342834', '', 'event-info', '2015-01-30', '2015-02-01', '', '', '', 'http://www.twitch.tv/vgbootcamp', 1025, 'Secaucus, NJ', 'APEX', '');
 
 -- --------------------------------------------------------
 
@@ -1687,12 +1860,16 @@ INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `en
 --
 
 DROP TABLE IF EXISTS `usergif`;
-CREATE TABLE `usergif` (
-`id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usergif` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `url` varchar(90) NOT NULL,
-  `description` varchar(130) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+  `description` varchar(130) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `id_2` (`id`),
+  KEY `id_3` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=352 ;
 
 --
 -- Dumping data for table `usergif`
@@ -1701,298 +1878,71 @@ CREATE TABLE `usergif` (
 INSERT INTO `usergif` (`id`, `userid`, `url`, `description`) VALUES
 (7, 3, 'GenerousThriftyArieltoucan', ''),
 (8, 3, 'InsistentSilverArawana', ''),
-(18, 2, 'SkinnyCorruptHake', ''),
-(19, 2, 'DimIckyAztecant', ''),
-(20, 2, 'SkinnyCorruptHake', '');
+(27, 74, 'HelpfulDependentAmbushbug', ''),
+(76, 151, 'TenderNeighboringCentipede', ''),
+(94, 155, 'SeriousConsciousHeron', ''),
+(106, 82, 'ActiveKeenHornedviper', ''),
+(115, 160, 'ReadyAshamedBluewhale', ''),
+(116, 160, 'RipeUniformClumber', ''),
+(145, 167, 'TidyScaryAzurevase', ''),
+(146, 167, 'SmugOilyAmericanquarterhorse', ''),
+(147, 167, 'FittingBouncyAfricanpiedkingfisher', ''),
+(151, 162, 'TeemingHonoredHuman', ''),
+(152, 162, 'DistortedDownrightEagle', ''),
+(153, 162, 'EasyAdorableKite', ''),
+(190, 172, 'WearyGranularCockatoo', ''),
+(191, 172, 'DiligentBronzeFalcon', ''),
+(192, 172, 'ApprehensiveIncompatibleBluet', ''),
+(244, 185, 'SpotlessDefiniteDoe', ''),
+(245, 185, 'RealisticRespectfulBear', ''),
+(246, 185, 'DefensiveConfusedBlackmamba', ''),
+(274, 2, 'CommonImmenseBlackrhino', ''),
+(275, 2, 'CommonImmenseBlackrhino', ''),
+(276, 2, 'CommonImmenseBlackrhino', ''),
+(280, 188, 'GrossUnhealthyEyra', ''),
+(295, 196, '', ''),
+(296, 196, '', ''),
+(297, 196, '', ''),
+(301, 58, '', ''),
+(302, 58, '', ''),
+(303, 58, '', ''),
+(304, 197, '', ''),
+(305, 197, '', ''),
+(306, 197, '', ''),
+(316, 198, '', ''),
+(317, 198, '', ''),
+(318, 198, '', ''),
+(319, 199, '', ''),
+(320, 199, '', ''),
+(321, 199, '', ''),
+(322, 200, '', ''),
+(323, 200, '', ''),
+(324, 200, '', ''),
+(328, 201, '', ''),
+(329, 201, '', ''),
+(330, 201, '', ''),
+(331, 202, '', ''),
+(332, 202, '', ''),
+(333, 202, '', ''),
+(334, 170, '', ''),
+(335, 170, '', ''),
+(336, 170, '', ''),
+(337, 98, '', ''),
+(338, 98, '', ''),
+(339, 98, '', ''),
+(340, 203, '', ''),
+(341, 203, '', ''),
+(342, 203, '', ''),
+(343, 17, '', ''),
+(344, 17, '', ''),
+(345, 17, '', ''),
+(346, 204, '', ''),
+(347, 204, '', ''),
+(348, 204, '', ''),
+(349, 205, '', ''),
+(350, 205, '', ''),
+(351, 205, '', '');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `userinfo`
---
-
-DROP TABLE IF EXISTS `userinfo`;
-CREATE TABLE `userinfo` (
-`id` int(11) NOT NULL,
-  `image` varchar(130) NOT NULL,
-  `facebook` varchar(90) NOT NULL,
-  `location` varchar(130) NOT NULL,
-  `twitch` varchar(90) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `vod` varchar(130) NOT NULL,
-  `twitter` varchar(90) NOT NULL,
-  `main` int(11) NOT NULL,
-  `sponsor` varchar(90) NOT NULL,
-  `latitude` float NOT NULL,
-  `longitude` int(11) NOT NULL,
-  `friendcode` varchar(12) NOT NULL,
-  `garpr` varchar(90) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `userinfo`
---
-
-INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid`, `vod`, `twitter`, `main`, `sponsor`, `latitude`, `longitude`, `friendcode`, `garpr`) VALUES
-(9, '', 'logan6694', 'Santa Cruz', 'xuaqua', 2, 'ZKsyg8iw5sk', 'logan6694', 21, 'Smash Lounge', 36.985, -122, '123456789124', ''),
-(10, '', 'MIOMPewPewU', 'Bay Area', 'pewpewu', 3, 'BMlxvpOhK7o', 'miom_pewpewu', 14, 'Melee it On Me', 0, 0, '123456789123', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users_groups`
---
-
-DROP TABLE IF EXISTS `users_groups`;
-CREATE TABLE `users_groups` (
-`id` int(10) unsigned NOT NULL,
-  `user_id` int(10) unsigned NOT NULL,
-  `group_id` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `users_groups`
---
-
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(1, 2, 1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `chargif`
---
-ALTER TABLE `chargif`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `charinfo`
---
-ALTER TABLE `charinfo`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `chartech`
---
-ALTER TABLE `chartech`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `framedatamoves`
---
-ALTER TABLE `framedatamoves`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `friends`
---
-ALTER TABLE `friends`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `groups`
---
-ALTER TABLE `groups`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `groups_name_unique` (`name`);
-
---
--- Indexes for table `locals`
---
-ALTER TABLE `locals`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `moves`
---
-ALTER TABLE `moves`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `movesgifs`
---
-ALTER TABLE `movesgifs`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissions`
---
-ALTER TABLE `submissions`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissionsgroup`
---
-ALTER TABLE `submissionsgroup`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissionstech`
---
-ALTER TABLE `submissionstech`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissionstournament`
---
-ALTER TABLE `submissionstournament`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `techgif`
---
-ALTER TABLE `techgif`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `techinfo`
---
-ALTER TABLE `techinfo`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `techID` (`techID`);
-
---
--- Indexes for table `techs`
---
-ALTER TABLE `techs`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `throttle`
---
-ALTER TABLE `throttle`
- ADD PRIMARY KEY (`id`), ADD KEY `fk_user_id` (`user_id`);
-
---
--- Indexes for table `upcoming`
---
-ALTER TABLE `upcoming`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `usergif`
---
-ALTER TABLE `usergif`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD KEY `id_2` (`id`), ADD KEY `id_3` (`id`);
-
---
--- Indexes for table `userinfo`
---
-ALTER TABLE `userinfo`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `userid` (`userid`);
-
---
--- Indexes for table `users_groups`
---
-ALTER TABLE `users_groups`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `chargif`
---
-ALTER TABLE `chargif`
-MODIFY `id` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=302;
---
--- AUTO_INCREMENT for table `charinfo`
---
-ALTER TABLE `charinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
---
--- AUTO_INCREMENT for table `chartech`
---
-ALTER TABLE `chartech`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `framedatamoves`
---
-ALTER TABLE `framedatamoves`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
---
--- AUTO_INCREMENT for table `friends`
---
-ALTER TABLE `friends`
-MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `groups`
---
-ALTER TABLE `groups`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `locals`
---
-ALTER TABLE `locals`
-MODIFY `id` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=164;
---
--- AUTO_INCREMENT for table `moves`
---
-ALTER TABLE `moves`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `movesgifs`
---
-ALTER TABLE `movesgifs`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=714;
---
--- AUTO_INCREMENT for table `submissions`
---
-ALTER TABLE `submissions`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `submissionsgroup`
---
-ALTER TABLE `submissionsgroup`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `submissionstech`
---
-ALTER TABLE `submissionstech`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `submissionstournament`
---
-ALTER TABLE `submissionstournament`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `techgif`
---
-ALTER TABLE `techgif`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT for table `techinfo`
---
-ALTER TABLE `techinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
---
--- AUTO_INCREMENT for table `techs`
---
-ALTER TABLE `techs`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT for table `throttle`
---
-ALTER TABLE `throttle`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `upcoming`
---
-ALTER TABLE `upcoming`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT for table `usergif`
---
-ALTER TABLE `usergif`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT for table `userinfo`
---
-ALTER TABLE `userinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `users_groups`
---
-ALTER TABLE `users_groups`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

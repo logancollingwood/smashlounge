@@ -5,7 +5,8 @@ function QueryRankingByRegion(region) {
     for (var i = 0; i < rankings.length; i++) {
       var name = rankings[i]['name'];
       var rank = rankings[i]['rank'];
-        $('#'+region+' tr:last').after('<tr><td class="rank">' + rank + '</td><td class="name">' + name + '</td></tr>');
+      var hash = rankings[i]['id'];
+        $('#'+region+' tr:last').after('<tr><td class="rank">' + rank + '</td><td class="name"><a href="http://www.garpr.com/#/' + region + '/players/' + hash + '">' + name + '</a></td></tr>');
         //console.log(rankings[i]);
     }  
 

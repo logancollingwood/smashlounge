@@ -91,10 +91,17 @@ Questions?
             <div class="container-fluid">
 
               <div class="row">
-                <div class="alignSides">
+                <div class="col-md-6 twoColumn">
                   <!--West Coast-->
                   <?php 
                     makeLoungeList($sceneWESTCOASTBESTCOAST, 'West Coast', $listcounter);
+                    $listcounter++;
+                  ?>
+                </div>
+                <div class="col-md-6 twoColumn">
+                  <!--West Coast-->
+                  <?php 
+                    makeLoungeList($international, 'International', $listcounter);
                     $listcounter++;
                   ?>
                 </div>

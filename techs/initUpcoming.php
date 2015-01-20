@@ -26,6 +26,7 @@
 			$bracket = $eventInfoz['bracket'];
 			$startDate = $eventInfoz['start'];
 			$endDate = $eventInfoz['end'];
+			$location = $eventInfoz['location'];
 			if ($eventInfoz['stream'] != '') {
 				$hasTwitch = true;
 				$twitch = $eventInfoz['stream'];
@@ -35,13 +36,16 @@
 
 
     
-    function makeInfo($host, $entrants) {
+    function makeInfo($host, $entrants, $location) {
 	  	echo "<div class='well'>";
 	  		echo "        <h3><small class='pull-left labelz'>presented by</small>";
 	        echo "        $host</h3>";
 	        echo "		  <hr>";
 	        echo "        <h3><small class='pull-left labelz'>entrants</small>";
 	        echo "        $entrants</h3>";
+	        echo "		  <hr>";
+	        echo "        <h3><small class='pull-left labelz'>location</small>";
+	        echo "        $location</h3>";
 	    echo "</div>";
 	}
 
@@ -74,7 +78,7 @@
     	//echo $link;
     	echo "<div class='well'>";
         echo "  <div class='challonge_bracket_real' style='width:100%;height:500px;'>";
-        echo "		<iframe src='" . $link . "/module?multiplier=0.9theme=2651' width='100%'' height='500' frameborder='0' scrolling='auto' allowtransparency='true'></iframe>";
+        echo "		<iframe src='" . $link . "' width='100%'' height='500' frameborder='0' scrolling='auto' allowtransparency='true'></iframe>";
         echo"   </div>";
         echo "</div>";
     }

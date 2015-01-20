@@ -267,7 +267,7 @@ Questions?
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tech_descid">Description</label>
                           <div class="col-md-8">
-                            <textarea id="tech_descid" type="text" class="form-control" maxlength="400" name="tech_desc" placeholder="A technique used to space your character properly"></textarea>
+                            <textarea id="tech_descid" type="text" class="form-control" maxlength="650" name="tech_desc" placeholder="A technique used to space your character properly"></textarea>
                           </div>
                         </div>
 
