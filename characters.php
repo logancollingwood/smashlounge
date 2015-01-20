@@ -108,13 +108,25 @@ Questions?
                         foreach ($chargifs as $tmpGif) {
                           $counter++;
                           echo "<li class='list-group-item'>";
-                          echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                          echo  "<h4>Example #" . $counter . "</h4>";
-                          echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
+                          echo "  <div class='row'>";
+                          echo "    <div class='col-md-11'>";
+                          echo "      <img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
+                          echo "      <h4>Example #" . $counter . "</h4>";
+                          echo "      <span class='text-muted'>" . $tmpGif['description'] . "</span>";
                           if ($tmpGif['source']) {
-                            echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
+                            echo "    <br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</a></span>";
                           }
-                          echo "</li>";
+                          echo "    </div>";
+                          /* Voting Controls */
+                          echo "    <div class='col-md-1 voteBlock'>";
+                          echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+                          echo "      <hr>";
+                          echo "      <h4>". $tmpGif['score'] . "</h3>";
+                          echo "      <hr>";
+                          echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";
+                          echo "    </div>";
+                          echo "  </div>";
+                          echo " </li>";
                         }
                       } else {
                         echo "<li class='list-group-item'>";
@@ -208,6 +220,6 @@ Questions?
           </div>
         </div>
       </div>
-
+  <script src="/js/voting.js"></script>
   </body>
 </html>
