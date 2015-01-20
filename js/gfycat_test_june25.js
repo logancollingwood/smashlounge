@@ -313,9 +313,16 @@ var gfyObject = function (gfyElem) {
             if (data) {
                 gfyItem = data.gfyItem;
                 if (gfyItem == null) return;
+
                 gfyMp4Url = gfyItem.mp4Url;
+                gfyMp4Url = gfyMp4Url.replace('http:\/\/','https://');
+
                 gfyWebmUrl = gfyItem.webmUrl;
+                gfyWebmUrl = gfyWebmUrl.replace('http:\/\/','https://');
+
                 gfyFrameRate = gfyItem.frameRate;
+
+
                 if (document.createElement('video').canPlayType) {
                     createVidTag();
                     setWrapper();
@@ -343,6 +350,10 @@ var gfyObject = function (gfyElem) {
             } else {}
         });
 
+    }
+
+    function replaceHttpHttps(link) {
+        link.replace('http://','https://');
     }
 
     function loadJSONP(url, callback, context) {
