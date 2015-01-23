@@ -61,15 +61,20 @@
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'taken') {
-            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Looks like that username is taken!";
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Whoops! Looks like that username is taken!";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'failed') {
-            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! Look like the information you entered is incorrect.";
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Whoops! Look like the information you entered is incorrect.";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         } else if ($submit == 'login') {
-            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Woops! You need to be logged in to access that page.";
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Whoops! You need to be logged in to access that page.";
+            echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+            echo "</div>";
+        }
+        else if ($submit == 'mod') {
+            echo "<div class='alert alert-danger alert-dismissable' role='alert'>Whoops! You need to be a moderator to view that page.";
             echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
             echo "</div>";
         }

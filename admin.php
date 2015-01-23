@@ -19,7 +19,7 @@
           die();
       }
     } else {
-      echo "Please login first before visiting this page.";
+      header('Location: /login.php?str=login');
       die();
     }
 ?>

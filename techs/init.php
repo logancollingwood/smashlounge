@@ -746,7 +746,16 @@ function printLibraries() {
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
   echo "<link href='/css/new.css' rel='stylesheet'>";
   echo "<link href='/css/users.css' rel='stylesheet'>";
-
+  //Open Graph Properties
+  echo '
+  <meta property="og:description" 
+    content="Smashlounge: An open knowledgebase for Super Smash Brothers" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="smashlounge" />
+  <meta property="og:url" content="http://www.smashlounge.com" />
+  <meta property="og:site_name" content="smashlounge" />
+  <meta property="og:image" content="http://smashlounge.com/img/assets/BG_twit.jpg" />
+  <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
 
   echo "<script src='/js/bootstrap.min.js'></script>";
   echo "<script src='/js/toggler.js'></script>";
