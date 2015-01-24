@@ -57,5 +57,6 @@ $query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
   foreach ($result as $row) {
     $gifs[] = $row;
   }
+  ksort($gifs['score']);
 ?>
 

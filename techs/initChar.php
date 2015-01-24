@@ -64,7 +64,7 @@ if (!$result = $mysqli->query($query)) {
 foreach ($result as $row) { 
   $chargifs[] = $row;
 }
-if (count($chargifs) != 0) arsort($chargifs);
+if (count($chargifs) != 0) $chargifs = array_sort($chargifs, 'score', SORT_DESC);
 
 $storedTechz = Array();
 $query = "SELECT chartech.techid, techs.tech FROM " . $charTechTable . " INNER JOIN " . $techTable . " ON " . $charTechTable .".techid = " . $techTable . ".id" . " WHERE charid=" . $charID;
