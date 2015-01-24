@@ -19,7 +19,7 @@
           die();
       }
     } else {
-      header('Location: /login.php?str=login');
+      header('Location: /login.php?str=mod');
       die();
     }
 ?>
