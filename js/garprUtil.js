@@ -1,6 +1,6 @@
 function QueryRankingByRegion(region) {
 
-  $.getJSON("http://api.garpr.com/" + region + "/rankings", function( data ) {
+  $.getJSON("https://api.garpr.com/" + region + "/rankings", function( data ) {
     var rankings = data['ranking'];
     for (var i = 0; i < rankings.length; i++) {
       var name = rankings[i]['name'];
