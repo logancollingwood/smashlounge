@@ -106,9 +106,8 @@ Questions?
                   if ($gifs) {
                     echo "<ul class='list-group techzz'>";
                     foreach ($gifs as $tmpGif) {
-                     
                       echo "<li class='list-group-item'>";
-                        if ($tmpGif['frameDataJson'] != NULL) {
+                      if ($tmpGif['frameDataJson'] != NULL) {
                           echo "<div class='row'>";
                             echo "<div class='col-md-8'>";
                               echo "<div id=gif" . $tmpGif['id'] . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
