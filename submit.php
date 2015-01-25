@@ -110,56 +110,57 @@ Questions?
                     <div class='well'>
                       <br>
                       <div class='submit-wrapper'>
-                      <form method="post" class="form-horizontal">
 
+                      <!-- ID Added, Consider Renaming -->
+                      <form id="submit-gif-form" method="post" class="form-horizontal">
 
-                          <div class="form-group">
-                            <label class="col-md-4 control-label" for="gif_selectorid">type</label>
-                            <div class="col-md-8">
-                              <select id='gif_selectorid' name='gif_selector' class="form-control">
-                                  <option value="tech">Technique Gif</option>
-                                  <option value="char">Character Gif</option>
-                              </select>
-                            </div>
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="gif_selectorid">type</label>
+                          <div class="col-md-8">
+                            <select id='gif_selectorid' name='gif_selector' class="form-control">
+                                <option value="tech">Technique Gif</option>
+                                <option value="char">Character Gif</option>
+                            </select>
                           </div>
+                        </div>
 
-                          <div class="form-group" id='techSelector'>
-                            <label class="col-md-4 control-label" for="gif_techselectorid">technique</label>
-                            <div class="col-md-8">
-                              <select id='gif_techselectorid' name='gif_techselector' class="form-control">
-                                  <?php
-                                    $techsList = getAllTechs($mysqli, $techTable);
-
-                                    foreach($techsList as $tech) {
-                                      
-                                      echo "<option value='" . $tech['id'] . "'>" . $tech['tech'] . "</option>";
-                                    }
-                                  ?>
-                              </select>
-                            </div>
-                          </div>
-
-                          <div class="form-group" id='charSelector'>
-                            <label class="col-md-4 control-label" for="gif_charselectorid">character</label>
-                            <div class="col-md-8">
-                              <select id='gif_charselectorid' name='gif_charselector' class="form-control">
+                        <div class="form-group" id='techSelector'>
+                          <label class="col-md-4 control-label" for="gif_techselectorid">technique</label>
+                          <div class="col-md-8">
+                            <select id='gif_techselectorid' name='gif_techselector' class="form-control">
                                 <?php
+                                  $techsList = getAllTechs($mysqli, $techTable);
 
-                                  foreach($dataChar as $char) {
-                                    echo "<option value='" . $char['id'] . "'>" . $char['name'] . "</option>";
+                                  foreach($techsList as $tech) {
+                                    
+                                    echo "<option value='" . $tech['id'] . "'>" . $tech['tech'] . "</option>";
                                   }
                                 ?>
-                              </select>
-                            </div>
+                            </select>
                           </div>
+                        </div>
 
-                          <div class="form-group">
-                            <label class="col-md-4 control-label" for="giffyurl">gfycat url</label>
-                            <div class="col-md-8">
-                              <input id='giffyurl' type="text" class="form-control" name="gif_url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
-                              <span class="help-block">(a valid gfycat will appear on the right after you finish typing)</span>  
-                            </div>
+                        <div class="form-group" id='charSelector'>
+                          <label class="col-md-4 control-label" for="gif_charselectorid">character</label>
+                          <div class="col-md-8">
+                            <select id='gif_charselectorid' name='gif_charselector' class="form-control">
+                              <?php
+
+                                foreach($dataChar as $char) {
+                                  echo "<option value='" . $char['id'] . "'>" . $char['name'] . "</option>";
+                                }
+                              ?>
+                            </select>
                           </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="giffyurl">gfycat url</label>
+                          <div class="col-md-8">
+                            <input id='giffyurl' type="text" class="form-control" name="gif_url" placeholder="gfycat.com/AcceptableWelllitFruitbat"/>
+                            <span class="help-block">(a valid gfycat will appear on the right after you finish typing)</span>  
+                          </div>
+                        </div>
 
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="gif_sourceid">original source</label>
@@ -175,15 +176,70 @@ Questions?
                           </div>
                         </div>
 
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_nameid">Include Frame Data?</label>
+                          <div class="col-md-8">
+                            <input id="boolean-framedata" type="checkbox" class="form-control" name="boolean-framedata"/>
+                          </div>
+                        </div>
+
                         <button id="submitgif" class="btn btn-default post-submissions">submit</button>
                         <br>
+                      </form>
+
+                      <!-- GIF Frame Data Form; Hidden Then Shown After GIF Submission -->
+                      <form id="gifFrameData" method="post" class="form-horizontal" style="display: none">
+                        <p>Find the frame, and describe the input used at that frame.</p>
+                        <div id="gfyFrameTarget" class="gfyLocation"></div>
+                        
+                        <div class="form-group">
+                          <div class="col-md-4 text-right">
+                            <span>Frame:</span>
+                          </div>
+                          <div class="pull-left">
+                            <span id="frame-number">#</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="col-md-4 control-label">Button(s) Pressed:</label>
+                          <div class="pull-left">
+                            <label class="checkbox-inline">
+                              <input type="checkbox" value="button-a"> A
+                            </label>
+                            <label class="checkbox-inline">
+                              <input type="checkbox" value="button-b"> B
+                            </label>
+                            <label class="checkbox-inline">
+                              <input type="checkbox" value="button-x"> X
+                            </label>
+                            <label class="checkbox-inline">
+                              <input type="checkbox" value="button-y"> Y
+                            </label>
+                            <label class="checkbox-inline">
+                              <input type="checkbox" value="button-l"> L
+                            </label>
+                            <label class="checkbox-inline">
+                              <input type="checkbox" value="button-r"> R
+                            </label>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_nameid">Control Stick Angle (Degrees):</label>
+                          <div class="pull-left">
+                            <input id="boolean-framedata" type="number" class="form-control" name="boolean-framedata" placeholder="360"/>
+                          </div>
+                        </div>
+
+                        <button class="btn btn-default post-submission">Submit Frame Data</button>
                       </form>
                       </div>
                     </div>
                   </div>
 
                   <div class='col-md-3'>
-                    <div id='gfyLocation'>
+                    <div class='gfyLocation'>
                     </div>
                   </div>
                 </div>
@@ -464,14 +520,19 @@ Questions?
           })
           .success(function(html) {
             $("#submit" + key).html('Thanks!');
-            $("#submit" + key).attr("disabled","disabled");
+            $("#submit" + key).prop("disabled", true);
 
             if (html == 'gfycat') {
-              $("#submit" + key).html('submit');
-              $("#submit" + key).removeAttr("disabled");
+              $("#submit" + key).html('Submit');
+              $("#submit" + key).prop("disabled", false);
               alert('Looks like you didn\'t sumbit a gfycat!');
+            } else {
+              console.log('Success');
+              if ($('#boolean-framedata').prop('checked') == true) {
+                $('#submit-gif-form').hide('fast');
+                $('#gifFrameData').show('fast');
+              }
             }
-            console.log(html);
           })
           .fail(function() {
             console.log('failing');
@@ -484,7 +545,6 @@ Questions?
             } else {
               $("#nullfields").hide();
             }
-            console.log('always');
           });
         });
         
@@ -518,7 +578,7 @@ Questions?
             }
             $( ".spawned" ).empty();
             var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
-            $("#gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
+            $(".gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
             spawned = true;
             gfyCollection.init();
             //return;
