@@ -30,15 +30,20 @@
 	//
 	////////////////////////////////////////
 	if ($tech == '') {
-		$query = "SELECT * from " . $techTable;
+		$query = "SELECT * 
+			FROM techs AS ts
+			INNER JOIN techinfo AS ti
+			WHERE ti.techID = ts.id";
+
 		if (!$result = $mysqli->query($query)) {
    			die('Invalid query: ' . $mysqli->error);
 		}
 		foreach ($result as $row) {
-		  $dataTech[] =  $row["tech"];
+			echo $row;
+		  $dataTech[] = $row;
 		  $techCount++;
 		}
-		asort($dataTech);
+		//asort($dataTech);
 
 		echo "<pre>";
 		echo json_encode($dataTech, JSON_PRETTY_PRINT);

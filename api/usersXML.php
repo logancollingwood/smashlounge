@@ -40,10 +40,10 @@
     foreach ($result as $rowInner) {
         $username = $rowInner['username'];
     }
-    $profileHref = "/users/" . $username;
+    $profileHref = "/users/$username";
 
     $region = "";
-    /*
+    
     switch ($row['region']) {
     case 1:
         $region = "Atlantic North";
@@ -61,38 +61,17 @@
         $region = "West Coast";
         break;
     }
-    */
+    
     $node = $dom->createElement("marker");
     $newnode = $parnode->appendChild($node);
-    $newnode->setAttribute("name", $username);
-    //$newnode->setAttribute("region", $region);
+    $newnode->setAttribute("name", htmlspecialchars($username));
+    $newnode->setAttribute("region", $region);
     $newnode->setAttribute("lat", $row['latitude']);
     $newnode->setAttribute("lng", $row['longitude']);
     $newnode->setAttribute("href", $profileHref);
 
     $game = "Loves all games!";
-    /*
-    switch ($row['game']) {
-    case 0:
-        $game = "All";
-        break;
-    case 1:
-        $game = "Smash 64";
-        break;
-    case 2:
-        $game = "Smash Melee";
-        break;
-    case 3:
-        $game = "Smash Brawl";
-        break;
-    case 4:
-        $game = "Project M";
-        break;
-    case 5:
-        $game = "Smash 4";
-        break;
-    }
-    */
+
     $newnode->setAttribute("type", $game);
   }
 
