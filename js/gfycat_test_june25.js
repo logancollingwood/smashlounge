@@ -40,7 +40,7 @@ var gfyCollection = function () {
             console.log(i); 
             collection.push(gfyObj);
         }
-        console.log(collection);
+        //console.log(collection);
         // run init _after_ all are collected, because the init function deletes and recreates
         for(var i = 0; i < collection.length; i++) {
             if (collection[i] == null) continue;

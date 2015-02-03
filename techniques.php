@@ -107,7 +107,9 @@ Questions?
                     echo "<ul class='list-group techzz'>";
                     foreach ($gifs as $tmpGif) {
                       echo "<li class='list-group-item'>";
-                      if ($tmpGif['frameDataJson'] != NULL) {
+                      $frameData = getFrameDataForGif($tmpGif['id']);
+
+                      if ($frameData != '') {
                           echo "<div class='row'>";
                             echo "<div class='col-md-8'>";
                               echo "<div id=gif" . $tmpGif['id'] . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
@@ -205,10 +207,12 @@ Questions?
     <script>
       $( document ).ready(function() {
         <?php foreach ($gifs as $tmpGif) { 
-          if ($tmpGif['frameDataJson'] != NULL) { ?>
-          $('#controller-<?php echo $tmpGif["id"]; ?>').frameinputs( <?php echo $tmpGif['frameDataJson']; ?> );
-        <?php }
-        } ?>
+                $frameData = getFrameDataForGif($tmpGif['id']);
+
+                if ($frameData != '') { ?>
+                  $('#controller-<?php echo $tmpGif["id"]; ?>').frameinputs( <?php echo $frameData; ?> );
+        <?php   }
+              } ?>
       });
     </script>
 </body>

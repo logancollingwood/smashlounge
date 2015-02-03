@@ -34,7 +34,7 @@
 			exit();
 		}
 		if ($pageKey == 0) {
-			$query = "INSERT INTO techgif (techID, url, description, source) values (?, ?, ?, ?)";
+			$query = "INSERT INTO gifs (dataid, url, description, source, typeid) values (?, ?, ?, ?, 2)";
 			
 			if (!($stmt = $mysqli->prepare($query))) {
 			     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -67,7 +67,7 @@
 			exit();
 
 		} else if ($pageKey == 1) {
-			$query = "INSERT INTO chargif (charid, url, description, source) values (?, ?, ?, ?)";
+			$query = "INSERT INTO gifs (dataid, url, description, source, typeid) values (?, ?, ?, ?, 0)";
 			
 			if (!($stmt = $mysqli->prepare($query))) {
 			     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;

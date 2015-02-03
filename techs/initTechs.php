@@ -49,7 +49,7 @@ $query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
   }
 
 
-  $query = "SELECT * FROM " . $gif . " WHERE techID='" . $techID . "'";
+  $query = "SELECT * FROM gifs WHERE dataid='" . $techID . "' AND typeid=2";
 
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
@@ -57,7 +57,7 @@ $query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
   foreach ($result as $row) {
     $gifs[] = $row;
   }
-  ksort($gifs['score']);
-  
+  //ksort($gifs);
+
 ?>
 

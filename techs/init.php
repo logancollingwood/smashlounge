@@ -809,4 +809,20 @@ function getAllTechs($mysqli, $techTable) {
   return $techs;
 }
 
+function getFrameDataForGif($id) {
+  global $mysqli;
+
+  $ret = '';
+
+  $query = "SELECT * from framedatajson WHERE gifid=" . $id;
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $ret = $row['json_text'];
+  }
+
+  return $ret;
+}
+
 ?>
