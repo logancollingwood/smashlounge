@@ -1,5 +1,5 @@
 <?php
-$query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
+  $query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
   $techID = -1;
   $notFound = TRUE;
   if (!$result = $mysqli->query($query)) {
@@ -7,46 +7,12 @@ $query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
   }
   foreach ($result as $row) {
     $techID = $row["id"];
+    $techInfo = $row;
   }
   if ($techID != -1) {
     $notFound = FALSE;
   }
 
-
-  $query = "SELECT * FROM " . $techInfo . " WHERE techID='" . $techID . "'";
-
-  if (!$result = $mysqli->query($query)) {
-    die('Invalid query: ' . $mysqli->error);
-  }
-  foreach ($result as $row) {
-    $description = $row["description"];
-    $input = $row["inputs"];
-    $wiki = $row["smashwiki"];
-  }
-  if (!$description) {
-    $description = "No description found for " . $tech;
-  }
-
-  $query = "SELECT * FROM " . $techInfo . " WHERE techID='" . $techID . "'";
-
-  if (!$result = $mysqli->query($query)) {
-    die('Invalid query: ' . $mysqli->error);
-  }
-  foreach ($result as $row) {
-    $input = $row["inputs"];
-  }
-  if (!$description) {
-    $input = "No inputs found for " . $tech;
-  }
-
-  $query = "SELECT * FROM " . $techInfo . " WHERE techID='" . $techID . "'";
-
-  if (!$result = $mysqli->query($query)) {
-    die('Invalid query: ' . $mysqli->error);
-  }
-  foreach ($result as $row) {
-    $wiki = $row["smashwiki"];
-  }
 
 
   $query = "SELECT * FROM gifs WHERE dataid='" . $techID . "' AND typeid=2";

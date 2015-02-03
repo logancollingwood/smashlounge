@@ -31,15 +31,15 @@
 	////////////////////////////////////////
 	if ($tech == '') {
 		$query = "SELECT * 
-			FROM techs AS ts
-			INNER JOIN techinfo AS ti
-			WHERE ti.techID = ts.id";
+			FROM techs";
 
 		if (!$result = $mysqli->query($query)) {
    			die('Invalid query: ' . $mysqli->error);
 		}
 		foreach ($result as $row) {
-			echo $row;
+		  unset($row["id"]);
+		  $dataTech[] = $row["tech"];
+		  unset($row["tech"]);
 		  $dataTech[] = $row;
 		  $techCount++;
 		}
@@ -50,26 +50,17 @@
 		echo "</pre>";
 	} else {
 
-		$query = "SELECT * FROM " . $techTable . " WHERE tech='" . $tech . "'";
+		$query = "SELECT * FROM techs WHERE tech='$tech'";
 		if (!$result = $mysqli->query($query)) {
    			die('Invalid query: ' . $mysqli->error);
 		}
 		foreach ($result as $row) {
-		  $name =  $row["tech"];
-		  $id = $row['id'];
+  		  $json[] = $row["tech"];
+		  unset($row["id"]);
+		  unset($row["tech"]);
+		  $json[] = $row;
 		}
-		$json[] = $name;
 
-		$query = "SELECT * FROM techinfo WHERE techid = " . $id;
-		if (!$result = $mysqli->query($query)) {
-   			die('Invalid query: ' . $mysqli->error);
-		}
-		foreach ($result as $row) {
-		  unset($row['id']);
-		  unset($row['techid']);
-		  $data = $row;
-		}
-		$json[] = $data;
 
 		echo "<pre>";
 		echo json_encode($json, JSON_PRETTY_PRINT);

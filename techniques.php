@@ -75,8 +75,8 @@ Questions?
             <?php //printBetaMast(); ?>
             <div class="jumbotron banner">
               <h1 class="lead"><?php 
-                if ($tech){
-                  echo $tech; 
+                if ($techInfo["tech"]){
+                  echo $techInfo["tech"]; 
                 } else {
                   echo "Check out one of these techs!";
                 }
@@ -84,15 +84,15 @@ Questions?
               </h1>
               <p class="fifty">
               <?php
-                if ($description) {
-                 echo $description;
+                if ($techInfo["description"] != "") {
+                 echo $techInfo["description"];
                 }
               ?>
               </p>
-              <?php if ($input)
-               echo "<p class='fifty2'>Inputs: <br />" . $input . "</p>";
-               if ($wiki) 
-               echo "<p><a class='btn btn-primary btn-lg bttn' role='button' href='" . $wiki . "'>Learn More</a></p>";
+              <?php
+               echo "<p class='fifty2'>Inputs: <br />" . $techInfo["inputs"] . "</p>";
+               if ($techInfo["smashwiki"] != ''); 
+               echo "<p><a class='btn btn-primary btn-lg bttn' role='button' href='" . $techInfo["smashwiki"] . "'>Learn More</a></p>";
               ?>
             </div>
             <div class='row'>
@@ -155,17 +155,22 @@ Questions?
                       alertMSG($submit);
                     }
                   } else {
-                    echo "<ul class='list-group'>";
-                    foreach ($dataTech as $techRec) {
-                          echo "<li class='list-group-item list-group-item-info'>";
-                          echo "<a href=techs.php?tech=" . urlencode($techRec) . ">";
-                          echo $techRec . "</a></li>";
-                          echo "\n";
-                    }
+                    echo "<div class='well'>";
+                    echo "  <h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
+                    echo "</div>";
                   }
+                } else {
+                  echo "<ul class='list-group'>";
+                  foreach ($dataTech as $techRec) {
+                        echo "<li class='list-group-item list-group-item-info'>";
+                        echo "<a href=techs.php?tech=" . urlencode($techRec) . ">";
+                        echo $techRec . "</a></li>";
+                        echo "\n";
+                  }
+                }
                   echo "</ul>";
                   echo "</div>";
-                }
+                
 
                 ?>
               </div>

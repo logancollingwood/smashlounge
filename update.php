@@ -64,7 +64,7 @@
   }
 
   $usergifs = array();
-  $query = "SELECT * FROM usergif WHERE userid=" . $userID;
+  $query = "SELECT * FROM gifs WHERE dataid=$userID and typeid=3";
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }

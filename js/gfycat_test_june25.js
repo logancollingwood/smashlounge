@@ -37,7 +37,7 @@ var gfyCollection = function () {
         elem_coll = byClass("gfyitem", document);
         for (var i = 0; i < elem_coll.length; i++) {
             var gfyObj = new gfyObject(elem_coll[i]);
-            console.log(i); 
+            //console.log(i); 
             collection.push(gfyObj);
         }
         //console.log(collection);
