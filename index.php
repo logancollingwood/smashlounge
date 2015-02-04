@@ -57,6 +57,13 @@ Questions?
     <link href="css/dashboard.css" rel="stylesheet">
 
 
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
   </head>
 
   <body>
@@ -133,12 +140,25 @@ Questions?
           <div class='row'>
             <div class='col-md-8'>
               <div class='panel panel-default'>
-                <div class='panel-heading'>What's new?</div>
-                <div class='panel-body vimeo'>
-                  <iframe src="//player.vimeo.com/video/101609571?byline=0&amp;portrait=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br/>
+                <div class='panel-heading'>From the <a href="https://www.youtube.com/playlist?list=PLhHSkxk_9ky44HiUFCkX7LSv4ID5E7Wis">SmashLounge Invitational</a>&nbsp;<button type='button' class='btn btn-default btn-lg' id='newVod' aria-label='Left Align'>next-></button></div>
+                <div class='panel-body full'>
+                  <div id="vod">
+                    <div id="player"></div>
+                  </div>
+                  <br>            
                 </div>
                 <div class='panel-footer'>
-                <h3><small>from <a href="http://vimeo.com/bobackv">boback</a></small></h3>
+                  <div class='row'>
+                    <div class='col-md-6'>
+                
+                        <h3><small>Subscribe to us on youtube!</small></h3>
+                      
+                    </div>
+                    <div class='col-md-6' style="margin-top:1.5%;">
+                        <div class="g-ytsubscribe" data-channelid="UC27ZDkjVXXMSt315LTvgISw" data-layout="full" data-count="hidden"></div>
+                    </div>
+                  </div>
+                  <br>  
                 </div>
               </div>
             </div>
@@ -178,12 +198,75 @@ Questions?
 
     <script src="js/jquery.fitvids.js"></script>
     <script>
+    // 2. This code loads the IFrame Player API code asynchronously.
+          var tag = document.createElement('script');
+
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+          // 3. This function creates an <iframe> (and YouTube player)
+          //    after the API code downloads.
+          var player;
+          function onYouTubeIframeAPIReady() {
+            var id = getRandomVod();
+            player = new YT.Player('player', {
+              height: '390',
+              width: '640',
+              videoId: id,
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+            });
+          }
+          var vods = ['iNjzXdPj0s8', 'MCcJ8QPW3wA', 'CjlMagFQNCE', '5Y0opIt4nqc', 'IpIWmRev2fw', '1LUBCbqAK5g', '-kFClkXgfUs', '2TqKzVDb7pE', '2TqKzVDb7pE', 'pM13h34KUCg', 'IY2pTqKz36c', '6QKRlmzCOUI', 'xXrErJsA4ck', 'JTABgDjRnA0', 'kVO3YZh1KXs', 'HDGBYiErj9M'];
+          var index = 0;
+
+          function getRandomVod() {
+            if (index >= vods.length) index = 0;
+            var vodID = vods[index];
+            index++;
+            return vodID;
+          }
+          // 4. The API will call this function when the video player is ready.
+          function onPlayerReady(event) {
+            //event.target.playVideo();
+            $("#vod").fitVids();
+            player.setPlaybackQuality('hd720');
+          }
+
+          function playNewVideo() {
+            var id = getRandomVod();
+            player.loadVideoById(id);
+            player.setPlaybackQuality('hd720');
+          }
+
+          // 5. The API calls this function when the player's state changes.
+          //    The function indicates that when playing a video (state=1),
+          //    the player should play for six seconds and then stop.
+          var done = false;
+          function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+              setTimeout(stopVideo, 6000);
+              done = true;
+            }
+          }
+          function stopVideo() {
+            player.stopVideo();
+          }
+    </script>
+    <script>
        $(document).ready(function(){
           // Target your .container, .wrapper, .post, etc.
-          $(".vimeo").fitVids();
+          console.log("fired");
+          $(document).on("click", "#newVod", function(e) {
+            playNewVideo();
+          });
         });
     </script>
     <script src="js/randomGfycat.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
   </body>
  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </html>
