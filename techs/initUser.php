@@ -129,7 +129,7 @@ if ($hasMain) {
 //
 ////////////////////////////////////////
 
-$query = "SELECT * from gifs WHERE dataid=" . $userid . " AND typeid=3";
+$query = "SELECT * from gifs WHERE dataid='" . $userid . "' AND typeid=3";
 if (!$result = $mysqli->query($query)) {
   die('Invalid query: ' . $mysqli->error);
 }
