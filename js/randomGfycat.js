@@ -9,7 +9,7 @@ function drawRandomGif() {
     var item;
     var spawned = false;
     var url = found['url'];
-    var permalink = found['permalink'];
+    var permalink = "http://www.reddit.com" + found['permalink'];
     var title = found['title'];
 
 
