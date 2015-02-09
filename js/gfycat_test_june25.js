@@ -80,7 +80,7 @@ var gfyObject = function (gfyElem) {
     // Options are set by data- attributes on tag
     var optExpand; // Option: will video grow to fill space
     var optTitle; // Option: display title on hover over
-    var optCtrls; // Option: add controls to bottom right corner
+    var optCtrls = true; // Option: add controls to bottom right corner
     var optAutoplay = true; // Option: automatically play video when loaded
     // references to each html element
     var ctrlBox;
