@@ -461,6 +461,8 @@ Questions?
       var markers = [];
 
       var submittedFrameData = [{}];
+      var gfyObj;
+      var gfyEl;
 
       function bindInfoWindow(map, infoWindow) {
 
@@ -543,6 +545,7 @@ Questions?
             $( ".spawned" ).empty();
             var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
             $(".gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
+            $("#gfyFrameTarget").append("<div class='well'><div id='submittedGfy' data-autoplay=false data-expand=true data-id='" + m[4] + "'></div></div>")
             spawned = true;
             gfyCollection.init();
             //return;
@@ -600,7 +603,9 @@ Questions?
             } else {
               if ($('#boolean-framedata').prop('checked') == true) {
                 $('#submit-gif-form').hide('fast');
-                $('#gifFrameData').show('fast');
+                $('#gifFrameData').show('fast', function() {
+                  loadGfySettings();
+                });
               }
             }
           })
@@ -616,9 +621,29 @@ Questions?
             }
           });
         });
+
+        // Frame Selection Event Handlers, Functions, and Init
         
-        // Frame Selection Event Handlers
-        function storeFrameData( currentFrame, $form ) {
+        function loadGfySettings() {
+          // Set gfyEl
+          gfyEl = $( '#submittedGfy' )[ 0 ];
+
+          // Initialize gfyObject
+          gfyObj = gfyObject( gfyEl );
+          gfyObj.init();
+          $( '#frame-number' ).text(gfyObj.getFrame());
+        }
+
+        function storeFrameData() {
+          // Set form jquery object
+          var $form = $( '#gifFrameData' );
+
+          // Set jquery object for number span
+          var $numberSpan = $form.find( '#frame-number' );
+
+          // Set current frame
+          currentFrame = gfyObj.getFrame();
+
           // Create Object for Current Frame Data
           var currentFrameData = {};
 
@@ -660,16 +685,25 @@ Questions?
           // Set control stick inputs
           currentFrameData[ 'ctrlStick' ] = controlStickInputs;
 
-          submittedFrameData[ currentFrame - 1 ] = currentFrameData;
+          submittedFrameData[ currentFrame ] = currentFrameData;
         }
 
-        function loadFrameData( newFrame, $form, $span ) {
+        function loadFrameData() {
+          // Set form jquery object
+          var $form = $( '#gifFrameData' );
+
+          // Set jquery object for number span
+          var $span = $form.find( '#frame-number' );
+
+          // Set current frame
+          newFrame = gfyObj.getFrame();
+
           // Set dom elements to display new frame data
           $span.data( 'framenumber', newFrame );
           $span.text( newFrame );
 
           // Set object that holds frame data
-          newFrameData = submittedFrameData[ newFrame - 1 ];
+          newFrameData = submittedFrameData[ newFrame ];
 
           // If newFrameData is undefined...
           if ( newFrameData === undefined ) {
@@ -697,10 +731,6 @@ Questions?
               }
             });
 
-            console.log( newFrameData );
-            console.log( newFrameData[ 'ctrlStick' ][ 0 ] );
-            console.log( newFrameData[ 'ctrlStick' ][ 1 ] );
-
             if ( newFrameData[ 'ctrlStick' ][ 0 ] == undefined ) {
               $form.find( '#controlstick-degrees' ).val( '' );  
             } else {
@@ -715,51 +745,75 @@ Questions?
           }
         }
 
-        $( "#prevFrame" ).on( 'click', function() {
+        $( '#toggleGfy' ).on( 'click', function() {
           event.preventDefault();
 
           // Set form jquery object
           var $form = $( '#gifFrameData' );
 
-          // Set jquery object for number span
-          var $numberSpan = $form.find( '#frame-number' );
+          // If play is clicked...
+          if ( $( this ).find( '.fa-play' ).length > 0 ) {
+            $( this ).html( '<i class="fa fa-pause"></i>' );
 
-          // Get current frame #
-          var currentFrame = $numberSpan.data( 'framenumber' );
+            // Save Frame Data
+            storeFrameData();
+
+            // Disable Input Fields
+            $form.find( 'input' ).prop( 'disabled', true );
+
+            // Play / Pause the gfyCat
+            gfyObj.toggle();
+
+          // Else if pause is clicked...
+          } else {
+            
+            // Play / Pause the gfyCat
+            gfyObj.toggle();
+
+            $( this ).html( '<i class="fa fa-play"></i>' );
+
+            // Set jquery object for number span
+            var $numberSpan = $form.find( '#frame-number' );
+
+            // Re-enable Input Fields
+            $form.find( 'input' ).prop( 'disabled', false );
+
+            // Load frame data for new frame
+            loadFrameData();
+          }
+        });
+
+        $( "#prevFrame" ).on( 'click', function() {
+          event.preventDefault();
 
           // Store Current Frame Data
-          storeFrameData( currentFrame, $form );
+          storeFrameData();
 
-          // Decrease frame by 1
-          currentFrame--;
+          // Move gfy one frame backward
+          gfyObj.stepBackward();
 
           // Load Previous Frame
-          loadFrameData( currentFrame, $form, $numberSpan );
-
+          loadFrameData();
         });
 
         $( "#nextFrame" ).on( 'click', function() {
           event.preventDefault();
 
-          // Set form jquery object
-          var $form = $('#gifFrameData');
-
-          // Set jquery object for number span
-          var $numberSpan = $form.find('#frame-number');
-
-          // Get current frame #
-          var currentFrame = $numberSpan.data('framenumber');
-
           // Store Current Frame Data
-          storeFrameData( currentFrame, $form );
+          storeFrameData();
 
-          // Increase frame by 1
-          currentFrame++;
+          // Move gfy one frame backward
+          gfyObj.stepForward();
 
           // Load frame data for new frame
-          loadFrameData(currentFrame, $form, $numberSpan);
+          loadFrameData();
         });
 
+        $( "#submitFrameData" ).on( 'click', function() {
+
+          // Make an AJAX call to submit frame data.
+
+        });
       });
     </script>
   </body>
