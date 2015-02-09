@@ -192,7 +192,7 @@
 
       }
 
-      $query = "SELECT count(*) from usergif where userid=" . $userID;
+      $query = "SELECT count(*) from gifs where dataid='" . $userID . "' and typeid='3'";
 
       $result = $mysqli->query($query);
       $row = $result->fetch_row();
@@ -200,7 +200,7 @@
 
       if ($hasGfy) {
         if ($count > 0) {
-          $query = "DELETE FROM usergif WHERE userid=" . $userID;
+          $query = "DELETE FROM gifs WHERE dataid=" . $userID . " and typeid=3";
           try{
             $stmt = $mysqli->prepare($query);
             $result = $stmt->execute();
@@ -209,9 +209,10 @@
       }
 
       foreach($gfys as $gfyID) {
-        if ($gfyID = '') continue;
+        echo $gfyID;
+        if ($gfyID == '') continue;
         //error_log($gfyID);
-        $query = "INSERT INTO usergif (userid, url) VALUES (?, ?)";
+        $query = "INSERT INTO gifs (dataid, url, typeid) VALUES (?, ?, 3)";
         if (!($stmt = $mysqli->prepare($query))) {
          error_log("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
          exit();
