@@ -38,7 +38,6 @@ Questions?
     <meta name="description" content="">
     <meta name="author" content="">
 
-
     <title>smashlounge - submit</title>
 
     <!-- Bootstrap core CSS -->
@@ -456,6 +455,9 @@ Questions?
       var map;
       var marker;
       var markers = [];
+
+      var submittedFrameData = [{}];
+
       function bindInfoWindow(map, infoWindow) {
 
 
@@ -506,10 +508,56 @@ Questions?
       }
 
       google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-    <script>
+
       $(document).ready(function(){
         var currentPage = '';
+        
+        var hash = window.location.hash;
+        hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+          
+        var spawned = false;
+
+        $("#charSelector").hide();
+
+        $("#giffyurl").change(function(event){
+
+            var url = $("#giffyurl").val();
+
+            var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
+            var str = url;
+            var m = re.exec(str);
+
+            if (m == null) {
+              if (spawned) {
+                $( ".spawned" ).empty();
+                $( ".spawned" ).remove();
+                spawned = false;
+              }
+              return;
+            }
+
+            $( ".spawned" ).empty();
+            var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
+            $(".gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
+            spawned = true;
+            gfyCollection.init();
+            //return;
+        });
+
+        $('#myTab').bind('click', function (e) {
+           $("#nullfields").hide();
+        });
+
+        $("#gif_selectorid").change(function () {
+          if ($( "#gif_selectorid" ).val() == 'tech') {
+            $("#charSelector").hide();
+            $("#techSelector").show();
+          }
+          if ($( "#gif_selectorid" ).val() == 'char') {
+            $("#charSelector").show();
+            $("#techSelector").hide();
+          }
+        });
 
         $(".post-submissions").on("click", function(event) {
           // Prevent default behavior
@@ -518,7 +566,6 @@ Questions?
           //this jQuery picks up what form is being submitted
           var ref_this = $("ul.nav-tabs li.active a");
           var key = ref_this.data("id");
-          console.log('submitting a ' + key);
 
           //let's build our post keys array, starting with what kind of post it is
           var data = 'key=' + key;
@@ -532,8 +579,6 @@ Questions?
           //strip http & https off string for godaddy 406 error
           data = data.replace('http%3A%2F%2F','');
           data = data.replace('https%3A%2F%2F','');
-
-          console.log('submitting this ' + data);
 
           $.ajax({
             url: '/techs/submit.php',
@@ -549,7 +594,6 @@ Questions?
               $("#submit" + key).prop("disabled", false);
               alert('Looks like you didn\'t sumbit a gfycat!');
             } else {
-              console.log('Success');
               if ($('#boolean-framedata').prop('checked') == true) {
                 $('#submit-gif-form').hide('fast');
                 $('#gifFrameData').show('fast');
@@ -557,7 +601,6 @@ Questions?
             }
           })
           .fail(function() {
-            console.log('failing');
           })
           .always(function(html) {
             if (html == 'nullfields') {
@@ -570,57 +613,150 @@ Questions?
           });
         });
         
+        // Frame Selection Event Handlers
+        function storeFrameData( currentFrame, $form ) {
+          // Create Object for Current Frame Data
+          var currentFrameData = {};
+
+          // Set default structures for 'buttons' and 'ctrlStick' array
+          currentFrameData[ 'buttons' ] = [];
+
+          // ...Iterate over all button input fields
+          $form.find( "input[id^='button-']" ).each(function( index, el ){
+
+            // Set jQuery object for element
+            $el = $( el );
+
+            // If input element is "checked"...
+            if ( $el.prop( "checked" ) ) {
+              currentFrameData[ 'buttons' ].push( $el.val() );
+            }
+          });
+
+          // Set variables for values from control stick inputs
+          degrees = $form.find( '#controlstick-degrees' ).val();
+          // ... ternary operator to make sure default is 100 in case of undefined
+          amount = $form.find( '#controlstick-amount' ).val() ? $form.find( '#controlstick-amount' ).val() : 100;
+
+          // If degrees undefined...
+          if ( degrees == undefined || degrees == null ) {
+            // ... property will be an empty array
+            constrolStickInputs = [];
+          } else {
+            // ... property will equal values
+            controlStickInputs = [
+              $form.find( '#controlstick-degrees' ).val(), 
+              $form.find( '#controlstick-amount' ).val()
+            ];            
+          }
+
+          // Set frame data for current frame based on inputs
+          currentFrameData[ 'frame' ] = currentFrame;
+
+          // Set control stick inputs
+          currentFrameData[ 'ctrlStick' ] = controlStickInputs;
+
+          submittedFrameData[ currentFrame - 1 ] = currentFrameData;
+        }
+
+        function loadFrameData( newFrame, $form, $span ) {
+          // Set dom elements to display new frame data
+          $span.data( 'framenumber', newFrame );
+          $span.text( newFrame );
+
+          // Set object that holds frame data
+          newFrameData = submittedFrameData[ newFrame - 1 ];
+
+          // If newFrameData is undefined...
+          if ( newFrameData === undefined ) {
+            // Set input fields to default values
+            $form.find( "input[id^='button-']" ).prop( "checked", false );
+            $form.find( '#controlstick-degrees' ).val( '' );
+            $form.find( '#controlstick-amount' ).val( '' );
+          } else {
+            // Iterate over all button input fields
+            $form.find( "input[id^='button-']" ).each(function( index, el ){
+
+              // Set jQuery object for element
+              $el = $( el );
+
+              // Set Current Button Name
+              btnName = $el.attr( 'id' ).slice( -1 );
+
+              // If button exists in frame data array...
+              if ( newFrameData[ 'buttons' ].indexOf( btnName ) > -1 ) {
+                // Mark the checkbox...
+                $el.prop( "checked", true );
+              } else {
+                // Unmark the checkbox...
+                $el.prop( "checked", false );
+              }
+            });
+
+            console.log( newFrameData );
+            console.log( newFrameData[ 'ctrlStick' ][ 0 ] );
+            console.log( newFrameData[ 'ctrlStick' ][ 1 ] );
+
+            if ( newFrameData[ 'ctrlStick' ][ 0 ] == undefined ) {
+              $form.find( '#controlstick-degrees' ).val( '' );  
+            } else {
+              $form.find( '#controlstick-degrees' ).val(newFrameData[ 'ctrlStick' ][ 0 ]);
+            }
+
+            if ( newFrameData[ 'ctrlStick' ][ 1 ] == undefined ) {
+              $form.find( '#controlstick-amount' ).val( '' );  
+            } else {
+              $form.find( '#controlstick-amount' ).val(newFrameData[ 'ctrlStick' ][ 1 ]);
+            }
+          }
+        }
+
+        $( "#prevFrame" ).on( 'click', function() {
+          event.preventDefault();
+
+          // Set form jquery object
+          var $form = $( '#gifFrameData' );
+
+          // Set jquery object for number span
+          var $numberSpan = $form.find( '#frame-number' );
+
+          // Get current frame #
+          var currentFrame = $numberSpan.data( 'framenumber' );
+
+          // Store Current Frame Data
+          storeFrameData( currentFrame, $form );
+
+          // Decrease frame by 1
+          currentFrame--;
+
+          // Load Previous Frame
+          loadFrameData( currentFrame, $form, $numberSpan );
+
+        });
+
+        $( "#nextFrame" ).on( 'click', function() {
+          event.preventDefault();
+
+          // Set form jquery object
+          var $form = $('#gifFrameData');
+
+          // Set jquery object for number span
+          var $numberSpan = $form.find('#frame-number');
+
+          // Get current frame #
+          var currentFrame = $numberSpan.data('framenumber');
+
+          // Store Current Frame Data
+          storeFrameData( currentFrame, $form );
+
+          // Increase frame by 1
+          currentFrame++;
+
+          // Load frame data for new frame
+          loadFrameData(currentFrame, $form, $numberSpan);
+        });
 
       });
     </script>
-    <script>
-      $(document).ready(function(){
-        var hash = window.location.hash;
-        hash && $('ul.nav a[href="' + hash + '"]').tab('show');
-          
-        var spawned = false;
-
-        $("#charSelector").hide();
-
-        $("#giffyurl").change(function(event){     
-
-            var url = $("#giffyurl").val();
-
-            var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
-            var str = url;
-            var m = re.exec(str);
-            //console.log(m[4]);
-            if (m == null) {
-              if (spawned) {
-                $( ".spawned" ).empty();
-                $( ".spawned" ).remove();
-                spawned = false;
-              }
-              return;
-            }
-            $( ".spawned" ).empty();
-            var linkAndString = "<a href='http://www.gfycat.com/" + m[4] + "'><p class='fifty2'>" + m[4] + "</p></a>"; 
-            $(".gfyLocation").append("<div class='spawned'><br>" + linkAndString + "<hr><div class='well'><img class='gfyitem' data-expand=true data-id='" + m[4] + "' /></div></div>");
-            spawned = true;
-            gfyCollection.init();
-            //return;
-        });
-        $('#myTab').bind('click', function (e) {
-           $("#nullfields").hide();
-        });
-        $("#gif_selectorid").change(function () {
-          if ($( "#gif_selectorid" ).val() == 'tech') {
-            $("#charSelector").hide();
-            $("#techSelector").show();
-          }
-          if ($( "#gif_selectorid" ).val() == 'char') {
-            $("#charSelector").show();
-            $("#techSelector").hide();
-          }
-        });
-
-      })
-    </script>
-    
   </body>
 </html>
