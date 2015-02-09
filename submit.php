@@ -193,15 +193,24 @@ Questions?
 
                       <!-- GIF Frame Data Form; Hidden Then Shown After GIF Submission -->
                       <form id="gifFrameData" method="post" class="form-horizontal" style="display: none">
-                        <p>Find the frame, and describe the input used at that frame.</p>
                         <div id="gfyFrameTarget" class="gfyLocation"></div>
                         
+                        <p>Find the frame, and describe the input used at that frame.</p>
+
+                        <button id="prevFrame" class="btn btn-default">
+                          <i class="fa fa-arrow-left"></i>
+                        </button>
+                        
+                        <button id="nextFrame" class="btn btn-default">
+                          <i class="fa fa-arrow-right"></i>
+                        </button>
+
                         <div class="form-group">
                           <div class="col-md-4 text-right">
                             <span>Frame:</span>
                           </div>
                           <div class="pull-left">
-                            <span id="frame-number">#</span>
+                            <span id="frame-number" data-framenumber="1">#1</span>
                           </div>
                         </div>
                         
@@ -209,22 +218,25 @@ Questions?
                           <label class="col-md-4 control-label">Button(s) Pressed:</label>
                           <div class="pull-left">
                             <label class="checkbox-inline">
-                              <input type="checkbox" value="button-a"> A
+                              <input id="button-a" type="checkbox" value="a"> A
                             </label>
                             <label class="checkbox-inline">
-                              <input type="checkbox" value="button-b"> B
+                              <input id="button-b" type="checkbox" value="b"> B
                             </label>
                             <label class="checkbox-inline">
-                              <input type="checkbox" value="button-x"> X
+                              <input id="button-x" type="checkbox" value="x"> X
                             </label>
                             <label class="checkbox-inline">
-                              <input type="checkbox" value="button-y"> Y
+                              <input id="button-y" type="checkbox" value="y"> Y
                             </label>
                             <label class="checkbox-inline">
-                              <input type="checkbox" value="button-l"> L
+                              <input id="button-z" type="checkbox" value="z"> Z
                             </label>
                             <label class="checkbox-inline">
-                              <input type="checkbox" value="button-r"> R
+                              <input id="button-l" type="checkbox" value="l"> L
+                            </label>
+                            <label class="checkbox-inline">
+                              <input id="button-r" type="checkbox" value="r"> R
                             </label>
                           </div>
                         </div>
@@ -232,7 +244,14 @@ Questions?
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tournament_nameid">Control Stick Angle (Degrees):</label>
                           <div class="pull-left">
-                            <input id="boolean-framedata" type="number" class="form-control" name="boolean-framedata" placeholder="360"/>
+                            <input id="controlstick-degrees" type="number" class="form-control" min="0" max="360" placeholder="360"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-md-4 control-label" for="tournament_nameid">Control Stick Amount (Percent):</label>
+                          <div class="pull-left">
+                            <input id="controlstick-amount" type="number" class="form-control" min="0" max="100" placeholder="100"/>
                           </div>
                         </div>
 
@@ -243,8 +262,7 @@ Questions?
                   </div>
 
                   <div class='col-md-3'>
-                    <div class='gfyLocation'>
-                    </div>
+                    <!--<div class='gfyLocation'></div>-->
                   </div>
                 </div>
 
