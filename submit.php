@@ -60,6 +60,10 @@ Questions?
         height: 200px;
       }
     </style>
+    
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="/js/jquery.min.js"></script>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
     </script>
