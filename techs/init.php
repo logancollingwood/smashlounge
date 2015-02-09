@@ -441,7 +441,9 @@ function createNavBar($extra = 'false') {
   echo "        <span class='icon-bar'></span>";
   echo "      </button>";
   echo "      <div class='navbar-brand spacing'>";
-  echo "        <a class='navbar-brand heddur' href='/'>smashlounge&nbsp;&nbsp;&nbsp;&nbsp;<img src='/img/assets/gccontroller.png' style='width:30px;height:20px'/></a>";
+  echo "        <a class='navbar-brand heddur' href='/'>smashlounge&nbsp;&nbsp;";
+  if ($extra == 'vods') echo ":vods";
+  echo "          &nbsp;&nbsp;<img src='/img/assets/gccontroller.png' style='width:30px;height:20px'/></a>";
   echo "      </div>";
   echo "    </div>";
   echo "    <div class='navbar-collapse collapse'>";
@@ -678,6 +680,125 @@ function makeSidebar($loggedIn, $currentPage = '') {
             */
 }
 
+function sidebar($currentPage = '') {
+  $pages = array('home', 'admin', 'lounge', 'upcoming', 
+    'users', 'login', 'moderate', 'register', 'update', 
+    'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
+    'vods');
+  $specials = array('techs', 'chars');
+  global $dataTech, $dataChar, $char, $tech;
+  $user = Sentry::getUser();
+
+  echo '
+            <!-- sidebar -->
+            <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+              
+                <ul class="nav">
+                  <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                </ul>
+               <div class="expander">
+                <ul class="nav hidden-xs" id="lg-menu">';
+                echo '<h1 class="pull-left">smashlounge</h1><hr>';
+                      if ($currentPage == 'home') {
+                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
+                      }
+                      if ($currentPage == 'TMG') {
+                        echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
+                      }
+                      
+                      if ($currentPage == 'vods') {
+                        echo "     <li class='home active'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
+                      } else {
+                        echo "     <li class='home'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
+                      } 
+                      if ($currentPage == 'users') {
+                        echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
+                      } else {
+                        echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
+                      }    
+                      if ($currentPage == 'submit') {
+                        echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
+                      }
+                      if ($currentPage == 'lounge') {
+                        echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
+                      }
+                      if ($currentPage == 'rankings') {
+                        echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
+                      }
+                      if ($currentPage == 'upcoming') {
+                        echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
+                      }
+            if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+            } else if ($currentPage == 'techs') {
+              makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+            } else if ($currentPage == 'chars') {
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+              makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
+            }
+  echo '        </ul>
+              </div>';
+
+                if ($loggedIn) {
+                    echo "<div class='loginbox'>";
+                    echo "    <hr class='login'>";
+
+                    echo "    <a class='btn bttn login ";
+                      if ($currentPage=='login') {
+                        echo "active";
+                      }
+                    echo "' href='/users/" . $user['username'] . "'>profile</a>";
+
+                    echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
+                    echo "</div>";
+
+                  } else {
+                    echo "<div class='loginbox'>";
+                    echo "    <hr class='login'>";
+                    echo "    <a class='btn bttn login ";
+                      if ($currentPage=='login') {
+                        echo "active";
+                      }
+                    echo "' href='/login.php'>login</a>";
+
+
+                    echo "    <a class='btn bttn login ";
+                      if ($currentPage=='register') {
+                        echo "active";
+                      }
+                    echo "' href='/register.php'>register</a>";
+
+                    echo "</div>";
+                  }
+  echo ' 
+              
+                <!-- tiny only nav-->
+                <ul class="nav visible-xs" id="xs-menu">
+                    <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+                    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+                </ul>
+              
+            </div>
+            <!-- /sidebar -->
+     ';
+}
+
 function hasSubdomain($url) {
     $parsed = parse_url($url);
     $exploded = explode('.', $parsed["host"]);
@@ -753,8 +874,8 @@ function printLibraries() {
   echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
-  echo "<link href='/css/new.css' rel='stylesheet'>";
-  echo "<link href='/css/users.css' rel='stylesheet'>";
+  //echo "<link href='/css/new.css' rel='stylesheet'>";
+  //echo "<link href='/css/users.css' rel='stylesheet'>";
   //Open Graph Properties
   echo '
   <meta property="og:description" 
