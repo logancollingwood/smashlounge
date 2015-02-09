@@ -874,8 +874,8 @@ function printLibraries() {
   echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
-  //echo "<link href='/css/new.css' rel='stylesheet'>";
-  //echo "<link href='/css/users.css' rel='stylesheet'>";
+  echo "<link href='/css/new.css' rel='stylesheet'>";
+  echo "<link href='/css/users.css' rel='stylesheet'>";
   //Open Graph Properties
   echo '
   <meta property="og:description" 
