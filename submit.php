@@ -192,16 +192,20 @@ Questions?
 
                       <!-- GIF Frame Data Form; Hidden Then Shown After GIF Submission -->
                       <form id="gifFrameData" method="post" class="form-horizontal" style="display: none">
-                        <div id="gfyFrameTarget" class="gfyLocation"></div>
+                        <div id="gfyFrameTarget"></div>
                         
                         <p>Find the frame, and describe the input used at that frame.</p>
 
                         <button id="prevFrame" class="btn btn-default">
-                          <i class="fa fa-arrow-left"></i>
+                          <i class="fa fa-step-backward"></i>
+                        </button>
+
+                        <button id="toggleGfy" class="btn btn-default">
+                          <i class="fa fa-play"></i>
                         </button>
                         
                         <button id="nextFrame" class="btn btn-default">
-                          <i class="fa fa-arrow-right"></i>
+                          <i class="fa fa-step-forward"></i>
                         </button>
 
                         <div class="form-group">
@@ -209,7 +213,7 @@ Questions?
                             <span>Frame:</span>
                           </div>
                           <div class="pull-left">
-                            <span id="frame-number" data-framenumber="1">#1</span>
+                            <span id="frame-number" data-framenumber="1">0</span>
                           </div>
                         </div>
                         
@@ -254,7 +258,7 @@ Questions?
                           </div>
                         </div>
 
-                        <button class="btn btn-default post-submission">Submit Frame Data</button>
+                        <button id="submitFrameData" class="btn btn-default post-submission">Submit Frame Data</button>
                       </form>
                       </div>
                     </div>
