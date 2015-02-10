@@ -36,7 +36,7 @@ Questions?
     	<title>Smash Lounge: Vods</title>
 
     	<!-- Main Dependencies -->
-    	<?php printLibraries(); ?>
+    	<?php printNewLibraries(); ?>
 
     	<!-- Custom styles for this template -->
     	<!-- <link href="css/dashboard_mobile.css" rel="stylesheet"> -->
@@ -112,7 +112,13 @@ Questions?
                     <div class="full col-sm-9">
                       
                         <!-- content -->   
-                                           
+                        <div class="jumbotron banner">
+
+                          <h1 class='lead'>smash lounge</h1>
+                          <hr style='width:50%;'>
+                          <p class="fifty"><small>A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</small></br></p>
+
+                        </div>
                         <!--/row-->
                       
                         <div class="row">

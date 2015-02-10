@@ -152,11 +152,11 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     $counter = 0;
     foreach ($data as $chardata) {
       $counter++;
-      echo "<li ";
+      echo "<li class='list-dd";
       if (strcasecmp($chardata["name"], $char) == 0) {
-        echo "class='active'";
+        echo " active";
       }
-      echo ">";
+      echo "'>";
       echo "<span class='badge pull-left tier'>". $counter . "</span>";
       echo "<a ";
       if (strcasecmp($chardata["name"], $char) == 0) echo "class='activeNav' ";
@@ -181,11 +181,12 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     $counter = 0;
     foreach ($data as $rec) {
       $counter++;
-      echo "<li ";
+      echo "<li class='list-dd";
       if (strcasecmp($rec, $tech) == 0) {
-        echo "class='active'";
+        echo " active";
       }
-      echo "><a ";
+      echo "'>";
+      echo "<a ";
       if (strcasecmp($rec, $tech) == 0) echo "class='activeNav' ";
       echo "href=/techniques/" . urlencode($rec) . ">";
       echo $rec . "</a></li>";
@@ -883,6 +884,37 @@ function printLibraries() {
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
   echo "<link href='/css/new.css' rel='stylesheet'>";
+  echo "<link href='/css/users.css' rel='stylesheet'>";
+  //Open Graph Properties
+  echo '
+  <meta property="og:description" 
+    content="Smashlounge: An open knowledgebase for Super Smash Brothers" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="smashlounge" />
+  <meta property="og:url" content="http://www.smashlounge.com" />
+  <meta property="og:site_name" content="smashlounge" />
+  <meta property="og:image" content="http://smashlounge.com/img/assets/BG_twit.jpg" />
+  <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
+
+  echo "<script src='/js/bootstrap.min.js'></script>";
+  echo "<script src='/js/toggler.js'></script>";
+  echo "<!--  -->";
+  echo "\n";
+}
+
+
+function printNewLibraries() {
+  echo "<!-- PRINTING DEPENDENCIES -->";
+  echo "\n";
+  analytics();
+  echo "<link rel='shortcut icon' href='/img/favicon.ico'>";
+  echo "<!-- Bootstrap core CSS -->";
+  echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";
+  echo "<link href='https://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic|Quicksand:400,700' rel='stylesheet' type='text/css'>";
+  echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
+  echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
+  echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
+  //echo "<link href='/css/new.css' rel='stylesheet'>";
   echo "<link href='/css/users.css' rel='stylesheet'>";
   //Open Graph Properties
   echo '
