@@ -62,7 +62,7 @@ Questions?
     
     <link href="/css/font-awesome.min.css" rel="stylesheet">
 
-    <script src="/js/jquery.min.js"></script>
+    <!-- <script src="/js/jquery.min.js"></script> -->
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
     </script>
@@ -265,7 +265,7 @@ Questions?
                   </div>
 
                   <div class='col-md-3'>
-                    <!--<div class='gfyLocation'></div>-->
+                    <div class='gfyLocation'></div>
                   </div>
                 </div>
 
@@ -526,13 +526,13 @@ Questions?
         $("#charSelector").hide();
 
         $("#giffyurl").change(function(event){
-
+          console.log("fired");
             var url = $("#giffyurl").val();
 
             var re = /((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/; 
             var str = url;
             var m = re.exec(str);
-
+            console.log(m);
             if (m == null) {
               if (spawned) {
                 $( ".spawned" ).empty();

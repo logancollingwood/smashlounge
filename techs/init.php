@@ -143,7 +143,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
   if ($key === 'char') {
     echo "<li>";
     echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
-    echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownChars'></span>";
+    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownChars'></span>";
     echo "&nbsp;Characters";
     echo "</a>";
     echo "<li>";
@@ -172,7 +172,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
   } else if ($key === 'tech') {
     echo "<li>";
     echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
-    echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownTechs'></span>";
+    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
     echo "&nbsp;Techniques";
     echo "</a>";
     echo "<li>";
@@ -698,47 +698,48 @@ function sidebar($currentPage = '') {
                 </ul>
                <div class="expander">
                 <ul class="nav hidden-xs" id="lg-menu">';
-                echo '<h1 class="pull-left">smashlounge</h1><hr>';
+                echo '<h1 class="sidebar"><a href="/">smashlounge</a></h1><hr>';
                       if ($currentPage == 'home') {
-                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
+                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
                       } else {
-                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
+                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
                       }
+                      /*
                       if ($currentPage == 'TMG') {
-                        echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
+                        echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='sidebarico' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
                       } else {
-                        echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
+                        echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' class='sidebarico' alt='TMG' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
                       }
-                      
+                      */
                       if ($currentPage == 'vods') {
-                        echo "     <li class='home active'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
+                        echo "     <li class='home active'><a href='/vods.php'><i class='fa fa-youtube-play sidebarico'></i>&nbsp;vods</a></li>";
                       } else {
-                        echo "     <li class='home'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
+                        echo "     <li class='home'><a href='/vods.php'><i class='fa fa-youtube-play sidebarico'></i>&nbsp;vods</a></li>";
                       } 
                       if ($currentPage == 'users') {
-                        echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
+                        echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user sidebarico'></span>&nbsp;users</a></li>";
                       } else {
-                        echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
+                        echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user sidebarico'></span>&nbsp;users</a></li>";
                       }    
                       if ($currentPage == 'submit') {
-                        echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
+                        echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox sidebarico'></span>&nbsp;submit</a></li>";
                       } else {
-                        echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
+                        echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox sidebarico'></span>&nbsp;submit</a></li>";
                       }
                       if ($currentPage == 'lounge') {
-                        echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
+                        echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe sidebarico'></span>&nbsp;lounge</a></li>";
                       } else {
-                        echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
+                        echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe sidebarico'></span>&nbsp;lounge</a></li>";
                       }
                       if ($currentPage == 'rankings') {
-                        echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
+                        echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate sidebarico'></span>&nbsp;rankings</a></li>";
                       } else {
-                        echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
+                        echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate sidebarico'></span>&nbsp;rankings</a></li>";
                       }
                       if ($currentPage == 'upcoming') {
-                        echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
+                        echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar sidebarico'></span>&nbsp;upcoming</a></li>";
                       } else {
-                        echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
+                        echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar sidebarico'></span>&nbsp;upcoming</a></li>";
                       }
             if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
@@ -754,34 +755,41 @@ function sidebar($currentPage = '') {
               </div>';
 
                 if ($loggedIn) {
-                    echo "<div class='loginbox'>";
-                    echo "    <hr class='login'>";
-
-                    echo "    <a class='btn bttn login ";
-                      if ($currentPage=='login') {
-                        echo "active";
-                      }
-                    echo "' href='/users/" . $user['username'] . "'>profile</a>";
-
-                    echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
+                    echo "<div class='row'>";
+                      echo "<div class='loginbox'>";
+                      echo "    <hr class='login'>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login ";
+                          if ($currentPage=='login') {
+                            echo "active";
+                          }
+                        echo "' href='/users/" . $user['username'] . "'>profile</a>";
+                      echo "</div>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
+                      echo "</div>";
+                      echo "</div>";
                     echo "</div>";
 
                   } else {
-                    echo "<div class='loginbox'>";
-                    echo "    <hr class='login'>";
-                    echo "    <a class='btn bttn login ";
-                      if ($currentPage=='login') {
-                        echo "active";
-                      }
-                    echo "' href='/login.php'>login</a>";
-
-
-                    echo "    <a class='btn bttn login ";
-                      if ($currentPage=='register') {
-                        echo "active";
-                      }
-                    echo "' href='/register.php'>register</a>";
-
+                    echo "<div class='row'>";
+                      echo "<div class='loginbox'>";
+                      echo "    <hr class='login'>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login ";
+                          if ($currentPage=='login') {
+                            echo "active";
+                          }
+                        echo "' href='/login.php'>login</a>";
+                      echo "</div>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login ";
+                          if ($currentPage=='register') {
+                            echo "active";
+                          }
+                        echo "' href='/register.php'>register</a>";
+                      echo "</div>";
+                      echo "</div>";
                     echo "</div>";
                   }
   echo ' 

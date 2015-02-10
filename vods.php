@@ -39,7 +39,7 @@ Questions?
     	<?php printLibraries(); ?>
 
     	<!-- Custom styles for this template -->
-    	<link href="css/dashboard_mobile.css" rel="stylesheet">
+    	<!-- <link href="css/dashboard_mobile.css" rel="stylesheet"> -->
       <link href="css/rich.css" rel="stylesheet">
 
 
@@ -57,6 +57,7 @@ Questions?
                       
           
             <?php sidebar('vods'); ?>
+
             <!-- main right col -->
             <div class="column col-sm-10 col-xs-11" id="main">
                 
@@ -69,7 +70,7 @@ Questions?
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a href="/" class="navbar-brand logo">s</a>
+                      <a href="/" class="navbar-brand gccontroller"><img src='/img/assets/gccontroller.png' style='width:30px;height:20px'/></a>
                     </div>
                     <nav class="collapse navbar-collapse" role="navigation">
                     <form class="navbar-form navbar-left">
