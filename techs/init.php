@@ -687,7 +687,7 @@ function sidebar($currentPage = '') {
     'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
     'vods');
   $specials = array('techs', 'chars');
-  global $dataTech, $dataChar, $char, $tech;
+  global $dataTech, $dataChar, $char, $tech, $loggedIn;
   $user = Sentry::getUser();
 
   echo '
@@ -929,6 +929,7 @@ function printNewLibraries() {
 
   echo "<script src='/js/bootstrap.min.js'></script>";
   echo "<script src='/js/toggler.js'></script>";
+  echo "<script src='/js/jquery.nicescroll.min.js'></script>";
   echo "<!--  -->";
   echo "\n";
 }
