@@ -157,10 +157,11 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
         echo " active";
       }
       echo "'>";
-      echo "<span class='badge pull-left tier'>". $counter . "</span>";
+
       echo "<a ";
       if (strcasecmp($chardata["name"], $char) == 0) echo "class='activeNav' ";
       echo "href=/characters/" . urlencode($chardata['name']) . ">";
+      echo "<span class='badge pull-left tier'>". $counter . "</span>";
       echo $chardata["name"];
 
       echo "</a>";
@@ -808,6 +809,80 @@ function sidebar($currentPage = '') {
      ';
 }
 
+function navbar() {
+  echo '<div class="navbar navbar-sl navbar-static-top">  
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand gccontroller"><img src="/img/assets/gccontroller.png" style="width:30px;height:20px;bottom:3px;"/></a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+    <form class="navbar-form navbar-left">
+        <div class="input-group input-group-sm" style="max-width:360px;">
+          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+        </div>
+    </form>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+      </li>
+      <li>
+        <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
+      </li>
+      <li>
+        <a href="#"><span class="badge">badge</span></a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+        </ul>
+      </li>
+    </ul>
+    </nav>
+  </div>';
+}
+function footer() {
+  $links = array(
+    "twitter" => array("https://www.twitter.com/thesmashlounge", "fa-twitter-square"),
+    "facebook" => array("https://www.facebook.com/SmashLounge", "fa-facebook-square"),
+    "reddit" => array("https://www.reddit.com/r/SmashLounge", "fa-reddit-square"),
+    "about" => array("/about.php", "fa-info-circle"),
+
+  );
+  echo '
+  <div class="row footer">
+    <ul class="nav navbar-nav">';
+    foreach ($links as $key => $rec) {
+      echo '<li>';
+        echo '<a href="' . $rec[0] . '" target="_blank">';
+          echo '<i class="fa ' . $rec[1] . ' fa-2x"></i>';
+          echo '&nbsp;';
+          echo $key;
+        echo '</a>';
+      echo "</li>";
+    }
+    /*
+      <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter-square fa-2x"></i>&nbsp;twitter</a></li>
+      <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter-square fa-2x"></i>&nbsp;twitter</a></li>
+    */
+  echo '  </ul>
+  </div>
+  ';
+}
 function hasSubdomain($url) {
     $parsed = parse_url($url);
     $exploded = explode('.', $parsed["host"]);

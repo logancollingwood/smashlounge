@@ -52,7 +52,7 @@ Questions?
   	</head>
   	<body>
   		<div class="wrapper">
-    <div class="box">
+        <div class="box">
         <div class="row row-offcanvas row-offcanvas-left">
                       
           
@@ -151,10 +151,9 @@ Questions?
                 </div><!-- /padding -->
             </div>
             <!-- /main -->
-          
-        </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
     <!--post modal-->
