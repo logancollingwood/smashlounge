@@ -90,7 +90,7 @@ Questions?
               ?>
               </p>
               <?php
-               if ($techInfo["inputs"] != ''); 
+               if (!empty($techInfo["inputs"]))  
                echo "<p class='fifty2'>Inputs: <br />" . $techInfo["inputs"] . "</p>";
                if ($techInfo["smashwiki"] != ''); 
                echo "<p><a class='btn btn-primary btn-lg bttn' role='button' href='" . $techInfo["smashwiki"] . "'>Learn More</a></p>";

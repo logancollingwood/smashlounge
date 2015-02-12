@@ -168,13 +168,13 @@
 			printf("Unable to find record in submissions table. Exiting.");
 			exit();
 		}
-		$query = "INSERT INTO techs (tech) values (?)";
+		$query = "INSERT INTO techs (tech, description, smashwiki) values (?, ?, ?)";
 		if (!($stmt = $mysqli->prepare($query))) {
 	     	echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
 	     	exit();
 		}
 		// Bind Params
-		if (!$stmt->bind_param("s", $name)) {
+		if (!$stmt->bind_param("sss", $name, $description, $wiki)) {
 		    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 		    exit();
 		}
@@ -185,26 +185,6 @@
 		}
 		printf("%d Row inserted.\n", $stmt->affected_rows);
 		$stmt->close();
-		$insertID = $mysqli->insert_id;
-
-		$query = "INSERT INTO techinfo (techid, description, smashwiki) values ($insertID, ?, ?)";
-		if (!($stmt = $mysqli->prepare($query))) {
-	     	echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
-	     	exit();
-		}
-		// Bind Params
-		if (!$stmt->bind_param("ss", $description, $wiki)) {
-		    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-		    exit();
-		}
-		// Execute
-		if (!$stmt->execute()) {
-		    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-		    exit();
-		}
-		printf("%d Row inserted.\n", $stmt->affected_rows);
-		$stmt->close();
-
 
 		$query = "DELETE FROM submissionstech WHERE id =" . $_POST['id'];
 		if (!($stmt = $mysqli->prepare($query))) {

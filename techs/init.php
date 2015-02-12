@@ -141,7 +141,7 @@ function remove_http($url) {
 
 function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null', $target = '') {
   if ($key === 'char') {
-    echo "<li>";
+    echo "<li id='charsAnchor'>";
     echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownChars'></span>";
     echo "&nbsp;Characters";
@@ -170,7 +170,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "</ul>";
     echo "</div>";
   } else if ($key === 'tech') {
-    echo "<li>";
+    echo "<li id='techsAnchor'>";
     echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
     echo "&nbsp;Techniques";
@@ -928,8 +928,10 @@ function printNewLibraries() {
   <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
 
   echo "<script src='/js/bootstrap.min.js'></script>";
-  echo "<script src='/js/toggler.js'></script>";
   echo "<script src='/js/jquery.nicescroll.min.js'></script>";
+  echo "<script src='/js/jquery.scrollTo.min.js'></script>";
+  
+  echo "<script src='/js/toggler.js'></script>";
   echo "<!--  -->";
   echo "\n";
 }
