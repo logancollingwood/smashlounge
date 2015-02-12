@@ -757,8 +757,8 @@ function sidebar($currentPage = '') {
               </div>';
 
                 if ($loggedIn) {
-                    echo "<div class='row'>";
-                      echo "<div class='loginbox'>";
+                    echo "<div class='loginbox'>";
+                      echo "<div class='row'>";
                       echo "    <hr class='login'>";
                       echo "<div class='col-md-6'>";
                         echo "    <a class='btn bttn login ";
@@ -774,9 +774,9 @@ function sidebar($currentPage = '') {
                     echo "</div>";
 
                   } else {
-                    echo "<div class='row'>";
-                      echo "<div class='loginbox'>";
+                    echo "<div class='loginbox'>";
                       echo "    <hr class='login'>";
+                      echo "<div class='row'>";
                       echo "<div class='col-md-6'>";
                         echo "    <a class='btn bttn login ";
                           if ($currentPage=='login') {
@@ -821,9 +821,15 @@ function navbar() {
       <a href="/" class="navbar-brand gccontroller"><img src="/img/assets/gccontroller.png" style="width:30px;height:20px;bottom:3px;"/></a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
-    <form class="navbar-form navbar-left">
-        <div class="input-group input-group-sm" style="max-width:360px;">
+    <form class="navbar-form navbar-left search">
+        <div class="input-group input-group-sm" style="width:300px;">
           <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+          <ul class="results" >
+            <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+            <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+            <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+            <li><a href="index.html">Search Result #4</a></li>
+          </ul>
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
           </div>
@@ -990,7 +996,7 @@ function printNewLibraries() {
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
   //echo "<link href='/css/new.css' rel='stylesheet'>";
-  echo "<link href='/css/users.css' rel='stylesheet'>";
+  //echo "<link href='/css/users.css' rel='stylesheet'>";
   //Open Graph Properties
   echo '
   <meta property="og:description" 
