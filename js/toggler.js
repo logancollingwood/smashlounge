@@ -6,6 +6,8 @@ $(document).ready(function(){
       which += "Anchor";
       console.log(which);
       $(which).scrollintoview();
+      var rowpos = $(which).position();
+      $('#sidebar').scrollTop(rowpos.top);
 	})
 
 	 $('#chars').on('shown.bs.collapse', function () {

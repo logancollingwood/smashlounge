@@ -796,9 +796,15 @@ function navbar() {
       <a href="/" class="navbar-brand gccontroller"><img src="/img/assets/gccontroller.png" style="width:30px;height:20px;bottom:3px;"/></a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
-    <form class="navbar-form navbar-left">
-        <div class="input-group input-group-sm" style="max-width:360px;">
+    <form class="navbar-form navbar-left search">
+        <div class="input-group input-group-sm" style="width:300px;">
           <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+          <ul class="results" >
+            <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
+            <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+            <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
+            <li><a href="index.html">Search Result #4</a></li>
+          </ul>
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
           </div>
@@ -968,7 +974,6 @@ function printNewLibraries() {
   //echo "<link href='/css/users.css' rel='stylesheet'>";
   echo "<link href='/css/hover/css/hover-min.css' rel='stylesheet'>";
   echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
-
 
   //Open Graph Properties
   echo '
