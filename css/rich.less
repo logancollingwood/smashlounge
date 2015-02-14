@@ -1,6 +1,6 @@
 /* Dark - Primary Color */
 
-@theme: #0097a7;
+@theme: #00a6b8;
 /* Light - Highlight Color */
 
 @flair-color: #00bcd4;
@@ -90,7 +90,7 @@ h1 {
 	margin-top:32px;
 }
 hr.login {
-    border-top: 2px solid #00bcd4;
+    border-top: 2px solid @theme;
     width: 90%;
     margin-top: 0px;
 }
@@ -336,11 +336,13 @@ small.text-muted {
     
 */
 #sidebar {
+    overflow: hidden;
     padding:0px;
 	padding-top:15px;
 }
 
 #sidebar, #sidebar a, #sidebar-footer a {
+    opacity: 1;
     color:#ffffff;
     background-color:transparent;
 	text-shadow:0 0 2px #000000;
@@ -379,13 +381,13 @@ small.text-muted {
     bottom: 70px;
     width: auto;
     position: absolute;
-    top: 3%;
+    top: 9%;
     bottom: 0;
     left: 0;
     right: 0;
     overflow: hidden;
     overflow-y: scroll;
-    padding-bottom: 30px;
+    padding-bottom: 0px !important;
     margin-bottom: 100px;
 }
 
@@ -408,7 +410,9 @@ a.bttn.login {
     font-family: 'Raleway';
     text-transform: uppercase;
 }
-
+#mCSB_1_scrollbar_vertical {
+    margin-top: 15px;
+}
 /*
     jumbotron
 */

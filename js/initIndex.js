@@ -61,4 +61,9 @@ $(document).ready(function(){
   $(document).on("click", "#newVod", function(e) {
     playNewVideo();
   });
+  $('.expander').css({'overflow':'auto'});
+  $(".expander").mCustomScrollbar({
+    theme: "light-thin",
+    scrollButtons: {enable:true},
+  });
 });

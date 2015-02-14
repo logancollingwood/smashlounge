@@ -144,7 +144,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "<li id='charsAnchor'>";
     echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownChars'></span>";
-    echo "&nbsp;Characters";
+    echo "&nbsp;characters";
     echo "</a>";
     echo "<li>";
     echo "<div id='chars" . $target . "' class='collapse " . $collapsed . "'>";
@@ -174,7 +174,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "<li id='techsAnchor'>";
     echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
-    echo "&nbsp;Techniques";
+    echo "&nbsp;techniques";
     echo "</a>";
     echo "<li>";
     echo "<div id='techs" . $target . "' class='collapse " . $collapsed . "'>";
@@ -652,34 +652,6 @@ function makeSidebar($loggedIn, $currentPage = '') {
 
     echo "</div>";
   }
-
-/*
-  <div class='loginbox'>
-    <div class='row'>
-                  <div class='col-md-12'>
-                    <ul class='nav nav-sidebar loginbox'>
-                     <li class='home login active'><a href='/login'><span class='glyphicon glyphicon-send pull-left'></span>&nbsp;Log in</a></li>
-                    </ul>
-                  </div>
-                </div>
-
-                <?php if ($loggedIn) { ?>
-                    <div class='row'>
-                      <div class='col-md-6'>
-                        <ul class='nav nav-sidebar loginbox'>
-                          <li class='home login'><a href='/update'>&nbsp;Update</a></li>
-                        </ul>
-                      </div>
-                      <div class='col-md-6'>
-                        <ul class='nav nav-sidebar loginbox'>
-                          <li class='home login'><a href='/static/logout'>&nbsp;logout</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                <?php } ?>
-
-            </div>
-            */
 }
 
 function sidebar($currentPage = '') {
@@ -697,10 +669,13 @@ function sidebar($currentPage = '') {
               
                 <ul class="nav">
                   <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
-                </ul>
-               <div class="expander">
+                </ul>';
+                echo '<div class="row">';
+                echo '<h1 class="sidebar"><a href="/" class="hvr-underline-from-center">smashlounge</a></h1>';
+                echo "</div>";
+                echo '<div class="row">';
+               echo '<div class="expander">
                 <ul class="nav hidden-xs" id="lg-menu">';
-                echo '<h1 class="sidebar"><a href="/">smashlounge</a></h1><hr>';
                       if ($currentPage == 'home') {
                         echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
                       } else {
@@ -744,22 +719,22 @@ function sidebar($currentPage = '') {
                         echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar sidebarico'></span>&nbsp;upcoming</a></li>";
                       }
             if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
-              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
             } else if ($currentPage == 'techs') {
-              makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
-            } else if ($currentPage == 'chars') {
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
-              makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
+            } else if ($currentPage == 'chars') {
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
             }
   echo '        </ul>
               </div>';
-
+              echo "</div>";
                 if ($loggedIn) {
                     echo "<div class='row'>";
-                      echo "<div class='loginbox'>";
-                      echo "    <hr class='login'>";
+                      echo "<div class='loginbox' style='padding-top:30px;'>";
+                      //echo "    <hr class='login'>";
                       echo "<div class='col-md-6'>";
                         echo "    <a class='btn bttn login ";
                           if ($currentPage=='login') {
@@ -775,8 +750,8 @@ function sidebar($currentPage = '') {
 
                   } else {
                     echo "<div class='row'>";
-                      echo "<div class='loginbox'>";
-                      echo "    <hr class='login'>";
+                      echo "<div class='loginbox' style='padding-top:30px;'>";
+                      //echo "    <hr class='login'>";
                       echo "<div class='col-md-6'>";
                         echo "    <a class='btn bttn login ";
                           if ($currentPage=='login') {
@@ -990,7 +965,11 @@ function printNewLibraries() {
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
   //echo "<link href='/css/new.css' rel='stylesheet'>";
-  echo "<link href='/css/users.css' rel='stylesheet'>";
+  //echo "<link href='/css/users.css' rel='stylesheet'>";
+  echo "<link href='/css/hover/css/hover-min.css' rel='stylesheet'>";
+  echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
+
+
   //Open Graph Properties
   echo '
   <meta property="og:description" 
@@ -1003,7 +982,7 @@ function printNewLibraries() {
   <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
 
   echo "<script src='/js/bootstrap.min.js'></script>";
-  echo "<script src='/js/jquery.nicescroll.min.js'></script>";
+  echo "<script src='/js/scrollbar/jquery.mCustomScrollbar.min.js'></script>";
   echo "<script src='/js/jquery.scrollTo.min.js'></script>";
   
   echo "<script src='/js/toggler.js'></script>";
