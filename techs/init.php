@@ -666,7 +666,9 @@ function sidebar($currentPage = '') {
   echo '
             <!-- sidebar -->
             <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
-              
+                <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+                ...
+                </nav>
                 <ul class="nav">
                   <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
                 </ul>';
@@ -968,7 +970,6 @@ function printNewLibraries() {
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
 
-  //echo "<link href='/css/users.css' rel='stylesheet'>";
   echo "<link href='/css/hover/css/hover-min.css' rel='stylesheet'>";
   echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
 
