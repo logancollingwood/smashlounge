@@ -800,7 +800,7 @@ function navbar() {
     <nav class="collapse navbar-collapse" role="navigation">
     <form class="navbar-form navbar-left search">
         <div class="input-group input-group-sm" style="width:300px;">
-          <input type="text" placeholder="Search" name="srch-term" id="srch-term">
+          <input type="text" class="form-control" placeholder="Search for..." name="search">
           <ul class="results" >
 
           </ul>
