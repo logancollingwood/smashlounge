@@ -61,16 +61,16 @@ Questions?
                 <div class="padding">
                     <div class="full col-sm-9">
                       
-                        <div class="jumbotron banner">
-                          <h1 class='lead'>smash lounge</h1>
-                          <hr style='width:50%;'>
-                          <p class="fifty"><small>A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</small></br></p>
+                        <div class="jumbotron">
+                          <div class='header'>smash lounge</div>
+                          <hr>
+                          <div class="description">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br></div>
 
                               <?php
                                 if ($displayChar) {
-                                  echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                                  echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
                                 } else if ($displayTech) {
-                                  echo "<hr style='width:50%;'><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                                  echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
                                 }
                               //echo "<div style='width:2px;height:150px;background-color:#fff;'>&nbsp;</div>";
                               echo "&nbsp";

@@ -667,17 +667,28 @@ function sidebar($currentPage = '') {
             <!-- sidebar -->
             <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
                 <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-                
-                </nav>
-                <ul class="nav">
+                <ul class="nav" id="navSideToggle">
                   <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
-                </ul>';
+                </ul>
+                 
+                <ul class="nav hidden-xs" id="lg-menu">';
+                      if ($currentPage == 'home') {
+                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
+                      }
+                    /*<li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
+                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>*/
+          echo '</ul>
+                </nav>';
                 echo '<div class="row">';
                 echo '<h1 class="sidebar"><a href="/" class="hvr-underline-from-center">smashlounge</a></h1>';
                 echo "</div>";
                 echo '<div class="row">';
                echo '<div class="expander">
-                <ul class="nav hidden-xs" id="lg-menu">';
+                <ul class="nav" id="lg-menu">';
                       if ($currentPage == 'home') {
                         echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
                       } else {
@@ -800,9 +811,9 @@ function navbar() {
     <nav class="collapse navbar-collapse" role="navigation">
     <form class="navbar-form navbar-left search">
         <div class="input-group input-group-sm" style="width:300px;">
-          <input type="text" class="form-control" placeholder="Search for..." name="search">
+          <input type="text" class="form-control search" placeholder="Search for..." name="search">
           <ul class="results" >
-
+            <li>LOL</li>
           </ul>
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>

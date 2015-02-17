@@ -327,8 +327,13 @@ small.text-muted {
   #sidebar, #sidebar a, #sidebar-footer a {
     padding-left:3px;
   }
+#sidebar h1 a {
+      display: none;
+  }
 }
-
+.hidden-xs {
+    display: none;
+}
 
 /*
 
@@ -417,10 +422,22 @@ a.bttn.login {
     jumbotron
 */
 .jumbotron {
+    background: rgba(102, 102, 102, 0.55);
+    text-align: center;
+    border-radius: 5px;
 }
 .jumbotron .header {
+    font-size: 36px;
+    font-family: 'Quicksand';
+    color: #fff;
+}
+.jumbotron hr {
+    color: @theme;
 }
 .jumbotron .description {
+    font-size: 20px;
+    color: #fff;
+    
 }
 .jumbotron .buttons {
 }
