@@ -49,7 +49,7 @@ Questions?
         <div class="row row-offcanvas row-offcanvas-left">
                       
           
-            <?php sidebar('vods'); ?>
+            <?php sidebar('home'); ?>
 
             <!-- main right col -->
             <div class="column col-sm-10 col-xs-11" id="main">
