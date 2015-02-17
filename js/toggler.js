@@ -7,7 +7,7 @@ $(document).ready(function(){
       console.log(which);
       $(which).scrollintoview();
       var rowpos = $(which).position();
-      $('#sidebar').scrollTop(rowpos.top);
+      //$('#sidebar').scrollTop(rowpos.top);
 	})
 
 	 $('#chars').on('shown.bs.collapse', function () {

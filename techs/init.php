@@ -798,7 +798,7 @@ function navbar() {
     <nav class="collapse navbar-collapse" role="navigation">
     <form class="navbar-form navbar-left search">
         <div class="input-group input-group-sm" style="width:300px;">
-          <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+          <input type="text" placeholder="Search" name="srch-term" id="srch-term">
           <ul class="results" >
             <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
             <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
@@ -970,8 +970,8 @@ function printNewLibraries() {
   echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
-  //echo "<link href='/css/new.css' rel='stylesheet'>";
-  //echo "<link href='/css/users.css' rel='stylesheet'>";
+
+  echo "<link href='/css/users.css' rel='stylesheet'>";
   echo "<link href='/css/hover/css/hover-min.css' rel='stylesheet'>";
   echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
 
@@ -991,7 +991,6 @@ function printNewLibraries() {
   echo "<script src='/js/jquery.scrollTo.min.js'></script>";
   
   echo "<script src='/js/toggler.js'></script>";
-  echo "<!--  -->";
   echo "\n";
 }
 
