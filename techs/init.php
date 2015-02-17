@@ -968,7 +968,7 @@ function printNewLibraries() {
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
 
-  echo "<link href='/css/users.css' rel='stylesheet'>";
+  //echo "<link href='/css/users.css' rel='stylesheet'>";
   echo "<link href='/css/hover/css/hover-min.css' rel='stylesheet'>";
   echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
 
