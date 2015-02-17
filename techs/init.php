@@ -800,10 +800,7 @@ function navbar() {
         <div class="input-group input-group-sm" style="width:300px;">
           <input type="text" placeholder="Search" name="srch-term" id="srch-term">
           <ul class="results" >
-            <li><a href="index.html">Search Result #1<br /><span>Description...</span></a></li>
-            <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
-            <li><a href="index.html">Search Result #3<br /><span>Description...</span></a></li>
-            <li><a href="index.html">Search Result #4</a></li>
+
           </ul>
           <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
