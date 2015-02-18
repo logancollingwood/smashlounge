@@ -34,7 +34,7 @@ Questions?
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="A compendium for Super Smash Bros">
       <meta name="author" content="smashlounge">
-      <title>Smash Lounge: Vods</title>
+      <title>Smash Lounge</title>
 
       <!-- Main Dependencies -->
       <?php printNewLibraries(); ?>
