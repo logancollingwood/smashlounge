@@ -1,12 +1,22 @@
 <?php
 
-require("db.php");
+  require_once("techs/sentry.php");
+  require_once("techs/tables.php");
+  require_once("techs/db.php");
+
+
+
+$modules = array('api', 'admin', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js', 'static',
+ 'techs', 'vendor', '404', 'about', 'awards', 'characters', 'composer.json', 'composer.lock',
+  'composer.phar', 'donate', 'error_log', 'index', 'info', 'login', 'logout', 'lounge', 'moderate',
+   'register', 'techniques', 'upcoming', 'update', 'users'); 
 
 
 $techCount = 0;
 $charCount = 0;
 $datazCount = 0;
 $listCounter = 0;
+$moderatorFlag = -1;
 
 //     BUILDS DATABASE CONNCETION
 //
@@ -14,11 +24,37 @@ $listCounter = 0;
 //
 ////////////////////////////////////////
 
+
 $mysqli = new mysqli($dahostname, $username, $password, $database);
+
 if ($mysqli->connect_errno) {   
   printf("Connect failed: %s\n", $mysqli->connect_error);
   exit();
 }
+
+  $loggedIn = false;
+  $loggedInID = -1;
+  $user['username'] = 'none';
+  $user['id'] = -1;
+  if (Sentry::check())
+  {
+      $loggedIn = true;
+      $user = Sentry::getUser();
+      $loggedInID = getIdFromUsername($mysqli, $user['username']);
+      $friendsofLoggedIn = Array();
+      $query = "SELECT * from friends WHERE myid='" . $user['id'] . "'";
+      //$query = "SELECT * from friends WHERE myid='" . $loggedInID . "'";
+
+      if (!$result = $mysqli->query($query)) {
+        die('Invalid query: ' . $mysqli->error);
+      }
+      foreach ($result as $row) {
+        $friendsofLoggedIn[] = $row['friendid'];
+      }
+      if ($user->hasAccess('admin')) {
+        $moderatorFlag = 1;
+      }
+  }
 
 
 //     BUILDS TECHS ARRAY
@@ -38,16 +74,10 @@ foreach ($result as $row) {
 if ($techCount = 0) $notFound = true;
 asort($dataTech);
 
-//     BUILDS RANDOM HOMEPAGE GIF
-//
-//
-//
-////////////////////////////////////////
 
 
-$randomTech = $dataTech[array_rand($dataTech)];
 
-$randGif = rand(0, 10);
+
 
 //     BUILDS CHARACTER ARRAY
 //
@@ -68,26 +98,72 @@ if ($charCount = 0) $charnotFound = true;
 
 
 
-function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null') {
+//     BUILDS RANDOM LINK
+//
+//
+//
+////////////////////////////////////////
+$displayChar = false;
+$displayTech = false;
+
+$which = rand(0,1);
+if ($which < 0.5) {
+  $displayChar = true;
+  $randomChar = $dataChar[array_rand($dataChar)];
+  $randomLink = $randomChar['name'];
+} else {
+  $displayTech = true;
+  $randomLink = $dataTech[array_rand($dataTech)];
+}
+  
+
+function grabGfyName ($url) {
+  $pattern = '/((https?:)?\/\/)?(.+?\.)?gfycat\.com\/(.+)/';
+  $matches = array();
+ 
+  preg_match ($pattern, $url, $matches);
+ 
+  return $matches[4];
+}
+
+function remove_http($url) {
+   $disallowed = array('http://', 'https://');
+   foreach($disallowed as $d) {
+      if(strpos($url, $d) === 0) {
+         return str_replace($d, '', $url);
+      }
+   }
+   return $url;
+}
+
+//span style
+//margin-left:10%;margin-top:4%
+
+function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null', $target = '') {
   if ($key === 'char') {
-    echo "<li>";
-    echo "<a id='toggler' href='#' data-toggle='collapse' class='active' data-target='#chars'>";
-    echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownChars'></span>";
-    echo "&nbsp;Characters";
+    echo "<li id='charsAnchor'>";
+    echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
+    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownChars'></span>";
+    echo "&nbsp;characters";
     echo "</a>";
     echo "<li>";
-    echo "<div id='chars' class='collapse " . $collapsed . "'>";
+    echo "<div id='chars" . $target . "' class='collapse " . $collapsed . "'>";
     echo "<ul class='nav nav-list'>";
     $counter = 0;
     foreach ($data as $chardata) {
       $counter++;
-      echo "<li ";
+      echo "<li class='list-dd";
       if (strcasecmp($chardata["name"], $char) == 0) {
-        echo "class='active'";
+        echo " active";
       }
-      echo "><a href=characters.php?char=" . urlencode($chardata['name']) . ">";
+      echo "'>";
+
+      echo "<a ";
+      if (strcasecmp($chardata["name"], $char) == 0) echo "class='activeNav' ";
+      echo "href=/characters/" . urlencode($chardata['name']) . ">";
+      echo "<span class='badge pull-left tier'>". $counter . "</span>";
       echo $chardata["name"];
-      echo "<span class='badge pull-right'>". $counter . "</span>";
+
       echo "</a>";
       echo "</li>";
       echo "\n";
@@ -95,22 +171,25 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "</ul>";
     echo "</div>";
   } else if ($key === 'tech') {
-    echo "<li>";
-    echo "<a id='toggler' href='#' data-toggle='collapse' class='active' data-target='#techs'>";
-    echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownTechs'></span>";
-    echo "&nbsp;Techniques";
+    echo "<li id='techsAnchor'>";
+    echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
+    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
+    echo "&nbsp;techniques";
     echo "</a>";
     echo "<li>";
-    echo "<div id='techs' class='collapse " . $collapsed . "'>";
+    echo "<div id='techs" . $target . "' class='collapse " . $collapsed . "'>";
     echo "<ul class='nav nav-list'>";
     $counter = 0;
     foreach ($data as $rec) {
       $counter++;
-      echo "<li ";
+      echo "<li class='list-dd";
       if (strcasecmp($rec, $tech) == 0) {
-        echo "class='active'";
+        echo " active";
       }
-      echo "><a href=techniques?tech=" . urlencode($rec) . ">";
+      echo "'>";
+      echo "<a ";
+      if (strcasecmp($rec, $tech) == 0) echo "class='activeNav' ";
+      echo "href=/techniques/" . urlencode($rec) . ">";
       echo $rec . "</a></li>";
       echo "\n";
     }
@@ -353,6 +432,7 @@ function makeLoungeList($scene, $title, $listCounter) {
 }
 
 function createNavBar($extra = 'false') {
+  global $moderatorFlag;
   echo "<div class='navbar navbar-inverse navbar-fixed-top' role='navigation'>";
   echo "  <div class='container-fluid heddur'>";
   echo "    <div class='navbar-header'>";
@@ -362,7 +442,11 @@ function createNavBar($extra = 'false') {
   echo "        <span class='icon-bar'></span>";
   echo "        <span class='icon-bar'></span>";
   echo "      </button>";
-  echo "      <a class='navbar-brand heddur' href='/'>smash lounge&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-gamepad fa-1x'></i></a>";
+  echo "      <div class='navbar-brand spacing'>";
+  echo "        <a class='navbar-brand heddur' href='/'>smashlounge&nbsp;&nbsp;";
+  if ($extra == 'vods') echo ":vods";
+  echo "          &nbsp;&nbsp;<img src='/img/assets/gccontroller.png' style='width:30px;height:20px'/></a>";
+  echo "      </div>";
   echo "    </div>";
   echo "    <div class='navbar-collapse collapse'>";
   echo "      <ul class='nav navbar-nav navbar-right'>";
@@ -370,32 +454,615 @@ function createNavBar($extra = 'false') {
   echo "          <li><a href='https://www.facebook.com/SmashLounge'><i class='fa fa-facebook'></i></a></li>";
   echo "          <li><a href='http://www.reddit.com/r/smashlounge'><i class='fa fa-reddit'></i></a></li>";
   echo "          <li><a href='http://www.github.com/logancollingwood/smashlounge'><i class='fa fa-github-alt'></i></a></li>";
-  echo "          <li><a href='/api/docs'>api</a></li>";
-  echo "          <li><a href='/donate.php'>donate</a></li>";
-  echo "          <li><a href='/about.html'>about</a></li>";
-  if ($extra == 'logout') {
-  echo "          <li><a href='static/logout.php'>logout</a></li>";
-  } else if ($extra =='register') {
-  echo "          <li><a href='/admin/register'>register</a></li>";
-  } else if ($extra == 'moderate') {
-  echo "          <li><a href='/admin'>moderate</a></li>";
-  }
+  echo "          <li><a href='/api/docs.php'>api</a></li>";
+  echo "          <li ";
+  if ($extra == 'donate') echo ' class="here"';
+  echo " ><a href='/donate.php'>donate</a></li>";
+  echo "          <li ";
+  if ($extra == 'about') echo ' class="here"';
+  echo "><a href='/about.php'>about</a></li>";
+  if ($moderatorFlag == 1) echo "<li><a href='/admin.php'>moderate</a></li>";
   echo "      </ul>";
   echo "    </div>";
   echo "  </div>";
   echo "</div>";
 }
 
-// Creates a well asking for code contributions or donations
-// $cap defines what percentage of pages you want your ad to be shown on.
-// ie $cap = .5 will generate this ad on 50% of page requests.
 function createBeg($cap) {
+  $quotes = array('smashlounge was created in a college dorm room', 'smashlounge was created by two full time students', 'smashlounge is open source for the community','smashlounge costs about $30/month to run: all contributions are useful','smashlounge exists for the community, and is open to all improvements');
+
   $rand = rand(0, 10) / 10;
   if ($rand < $cap) {
     echo "<div class='well full'>";
-    echo "  <h3>Want to support us? </h3><h4><small>smashlounge was created in a college dorm room</small></h4><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
+    echo "  <h3>Want to support us? </h3><h4><small>" . $quotes[array_rand($quotes)] . "</small></h4><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
     echo "</div>";
   }
+}
+
+
+function getCharFromID($mysqli, $id) {
+  if ($id == '0') {
+    return "NO MAIN";
+  }
+  $query = "SELECT * FROM charinfo WHERE id='". $id . "'";
+
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $main = $row['name'];
+  }
+  return $main;
+}
+
+function getTechFromID($mysqli, $id) {
+  if ($id == '0') {
+    return "NO TECH";
+  }
+  $query = "SELECT * FROM techs WHERE id='". $id . "'";
+
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $tech = $row['tech'];
+  }
+  return $tech;
+}
+
+function getIDFromChar($mysqli, $name) {
+  if ($name == '') {
+    return "NO MAIN";
+  }
+  $query = "SELECT * FROM charinfo WHERE id='". $id . "'";
+
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $main = $row['id'];
+  }
+  return $main;
+}
+
+function getIdFromUsername($mysqli, $username) {
+  $userid = -1;
+  $query = "SELECT * from users WHERE username='" . $username . "'";
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+   $userid = $row['id'];
+  }
+  return $userid;
+}
+
+function getYoutubeIdFromUrl($url) {
+  $parts = parse_url($url);
+  if(isset($parts['query'])){
+    parse_str($parts['query'], $qs);
+    if(isset($qs['v'])){
+      return $qs['v'];
+    }else if($qs['vi']){
+      return $qs['vi'];
+    }
+  }
+  if(isset($parts['path'])){
+    $path = explode('/', trim($parts['path'], '/'));
+    return $path[count($path)-1];
+  }
+  return '';
+}
+
+function makeSidebar($loggedIn, $currentPage = '') {
+  $pages = array('home', 'admin', 'lounge', 'upcoming', 
+    'users', 'login', 'moderate', 'register', 'update', 
+    'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
+    'vods');
+  $specials = array('techs', 'chars');
+  global $dataTech, $dataChar, $char, $tech;
+  $user = Sentry::getUser();
+
+  echo "<div class='expander'>";
+  echo "  <ul class='nav nav-sidebar'>";
+    if ($currentPage == 'home') {
+      echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
+    }
+    if ($currentPage == 'TMG') {
+      echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='30px'>&nbsp;tmg</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='30px'>&nbsp;tmg</a></li>";
+    }
+    
+    if ($currentPage == 'vods') {
+      echo "     <li class='home active'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
+    } else {
+      echo "     <li class='home'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
+    } 
+    if ($currentPage == 'users') {
+      echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
+    } else {
+      echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
+    }    
+    if ($currentPage == 'submit') {
+      echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
+    }
+    if ($currentPage == 'lounge') {
+      echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
+    }
+    if ($currentPage == 'rankings') {
+      echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
+    }
+    if ($currentPage == 'upcoming') {
+      echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
+    } else {
+      echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
+    }
+    if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
+      makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+      makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+    } else if ($currentPage == 'techs') {
+      makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
+      makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+    } else if ($currentPage == 'chars') {
+      makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+      makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
+    }
+
+  echo "   </ul>";
+  echo "</div>";
+  
+
+  if ($loggedIn) {
+    echo "<div class='loginbox'>";
+    echo "    <hr class='login'>";
+
+    echo "    <a class='btn bttn login ";
+      if ($currentPage=='login') {
+        echo "active";
+      }
+    echo "' href='/users/" . $user['username'] . "'>profile</a>";
+
+    echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
+    echo "</div>";
+
+  } else {
+    echo "<div class='loginbox'>";
+    echo "    <hr class='login'>";
+    echo "    <a class='btn bttn login ";
+      if ($currentPage=='login') {
+        echo "active";
+      }
+    echo "' href='/login.php'>login</a>";
+
+
+    echo "    <a class='btn bttn login ";
+      if ($currentPage=='register') {
+        echo "active";
+      }
+    echo "' href='/register.php'>register</a>";
+
+    echo "</div>";
+  }
+}
+
+function sidebar($currentPage = '') {
+  $pages = array('home', 'admin', 'lounge', 'upcoming', 
+    'users', 'login', 'moderate', 'register', 'update', 
+    'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
+    'vods');
+  $specials = array('techs', 'chars');
+  global $dataTech, $dataChar, $char, $tech, $loggedIn;
+  $user = Sentry::getUser();
+
+  echo '
+            <!-- sidebar -->
+            <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+                <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+                <ul class="nav" id="navSideToggle">
+                  <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+                </ul>
+                 
+                <ul class="nav hidden-xs" id="lg-menu">';
+                      if ($currentPage == 'home') {
+                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
+                      }
+                    /*<li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
+                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>*/
+          echo '</ul>
+                </nav>';
+                echo '<div class="row">';
+                echo '<h1 class="sidebar"><a href="/" class="hvr-underline-from-center">smashlounge</a></h1>';
+                echo "</div>";
+                echo '<div class="row">';
+               echo '<div class="expander">
+                <ul class="nav" id="lg-menu">';
+                      if ($currentPage == 'home') {
+                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
+                      }
+                      /*
+                      if ($currentPage == 'TMG') {
+                        echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='sidebarico' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' class='sidebarico' alt='TMG' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
+                      }
+                      */
+                      if ($currentPage == 'vods') {
+                        echo "     <li class='home active'><a href='/vods.php'><i class='fa fa-youtube-play sidebarico'></i>&nbsp;vods</a></li>";
+                      } else {
+                        echo "     <li class='home'><a href='/vods.php'><i class='fa fa-youtube-play sidebarico'></i>&nbsp;vods</a></li>";
+                      } 
+                      if ($currentPage == 'users') {
+                        echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user sidebarico'></span>&nbsp;users</a></li>";
+                      } else {
+                        echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user sidebarico'></span>&nbsp;users</a></li>";
+                      }    
+                      if ($currentPage == 'submit') {
+                        echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox sidebarico'></span>&nbsp;submit</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox sidebarico'></span>&nbsp;submit</a></li>";
+                      }
+                      if ($currentPage == 'lounge') {
+                        echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe sidebarico'></span>&nbsp;lounge</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe sidebarico'></span>&nbsp;lounge</a></li>";
+                      }
+                      if ($currentPage == 'rankings') {
+                        echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate sidebarico'></span>&nbsp;rankings</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate sidebarico'></span>&nbsp;rankings</a></li>";
+                      }
+                      if ($currentPage == 'upcoming') {
+                        echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar sidebarico'></span>&nbsp;upcoming</a></li>";
+                      } else {
+                        echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar sidebarico'></span>&nbsp;upcoming</a></li>";
+                      }
+            if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+            } else if ($currentPage == 'techs') {
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+            } else if ($currentPage == 'chars') {
+              makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
+              makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
+            }
+  echo '        </ul>
+              </div>';
+              echo "</div>";
+                if ($loggedIn) {
+                    echo "<div class='row'>";
+                      echo "<div class='loginbox' style='padding-top:30px;'>";
+                      //echo "    <hr class='login'>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login ";
+                          if ($currentPage=='login') {
+                            echo "active";
+                          }
+                        echo "' href='/users/" . $user['username'] . "'>profile</a>";
+                      echo "</div>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
+                      echo "</div>";
+                      echo "</div>";
+                    echo "</div>";
+
+                  } else {
+                    echo "<div class='row'>";
+                      echo "<div class='loginbox' style='padding-top:30px;'>";
+                      //echo "    <hr class='login'>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login ";
+                          if ($currentPage=='login') {
+                            echo "active";
+                          }
+                        echo "' href='/login.php'>login</a>";
+                      echo "</div>";
+                      echo "<div class='col-md-6'>";
+                        echo "    <a class='btn bttn login ";
+                          if ($currentPage=='register') {
+                            echo "active";
+                          }
+                        echo "' href='/register.php'>register</a>";
+                      echo "</div>";
+                      echo "</div>";
+                    echo "</div>";
+                  }
+  echo ' 
+              
+                <!-- tiny only nav-->
+                <ul class="nav visible-xs" id="xs-menu">
+                    <li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+                    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+                </ul>
+              
+            </div>
+            <!-- /sidebar -->
+     ';
+}
+
+function navbar() {
+  echo '<div class="navbar navbar-sl navbar-static-top">  
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand gccontroller"><img src="/img/assets/gccontroller.png" style="width:30px;height:20px;bottom:3px;"/></a>
+    </div>
+    <nav class="collapse navbar-collapse" role="navigation">
+    <form class="navbar-form navbar-left search">
+        <div class="input-group input-group-sm" style="width:300px;">
+          <input type="text" class="form-control search" placeholder="Search for..." name="search">
+          <ul class="results" >
+            <li>LOL</li>
+          </ul>
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+        </div>
+    </form>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+      </li>
+      <li>
+        <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
+      </li>
+      <li>
+        <a href="#"><span class="badge">badge</span></a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+          <li><a href="">More</a></li>
+        </ul>
+      </li>
+    </ul>
+    </nav>
+  </div>';
+}
+function footer() {
+  $links = array(
+    "twitter" => array("https://www.twitter.com/thesmashlounge", "fa-twitter-square"),
+    "facebook" => array("https://www.facebook.com/SmashLounge", "fa-facebook-square"),
+    "reddit" => array("https://www.reddit.com/r/SmashLounge", "fa-reddit-square"),
+    "about" => array("/about.php", "fa-info-circle"),
+
+  );
+  echo '
+  <div class="row footer">
+    <ul class="nav navbar-nav">';
+    foreach ($links as $key => $rec) {
+      echo '<li>';
+        echo '<a href="' . $rec[0] . '" target="_blank">';
+          echo '<i class="fa ' . $rec[1] . ' fa-2x"></i>';
+          echo '&nbsp;';
+          echo $key;
+        echo '</a>';
+      echo "</li>";
+    }
+    /*
+      <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter-square fa-2x"></i>&nbsp;twitter</a></li>
+      <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter-square fa-2x"></i>&nbsp;twitter</a></li>
+    */
+  echo '  </ul>
+  </div>
+  ';
+}
+function hasSubdomain($url) {
+    $parsed = parse_url($url);
+    $exploded = explode('.', $parsed["host"]);
+    return (count($exploded) > 2);
+}
+
+function makeTwitchPanel($hasTwitch, $twitch) {
+  if ($hasTwitch) {
+    echo "<div class='well'>";
+        echo "        <h3><small class='pull-left labelz'>twitch</small><br>";
+          if (streamIsLive($twitch)) {
+            echo "<a href='http://www.twitch.tv/$twitch'> Online</a>";
+          } else {
+            echo "<a href='http://www.twitch.tv/$twitch'> Offline</a>";
+          }
+    echo "</div>";
+  }
+}
+
+function getLatLong($cityName) {
+
+  $query = "?address=" . urlencode($cityName);
+  $clientId = '&key=AIzaSyAXOuPfrJzmPwmqJ5U7OLDLqs9B7HpjXlA';
+  $file = "https://maps.googleapis.com/maps/api/geocode/json" . $query . $clientId;
+  echo $file;
+  //https://maps.googleapis.com/maps/api/geocode/json?address=Mountain+View,+CA&key=AIzaSyAXOuPfrJzmPwmqJ5U7OLDLqs9B7HpjXlA
+}
+
+function array_sort($array, $on, $order=SORT_ASC)
+{
+    $new_array = array();
+    $sortable_array = array();
+
+    if (count($array) > 0) {
+        foreach ($array as $k => $v) {
+            if (is_array($v)) {
+                foreach ($v as $k2 => $v2) {
+                    if ($k2 == $on) {
+                        $sortable_array[$k] = $v2;
+                    }
+                }
+            } else {
+                $sortable_array[$k] = $v;
+            }
+        }
+
+        switch ($order) {
+            case SORT_ASC:
+                asort($sortable_array);
+            break;
+            case SORT_DESC:
+                arsort($sortable_array);
+            break;
+        }
+
+        foreach ($sortable_array as $k => $v) {
+            $new_array[$k] = $array[$k];
+        }
+    }
+
+    return $new_array;
+}
+
+
+function printLibraries() {
+  echo "<!-- PRINTING DEPENDENCIES -->";
+  echo "\n";
+  analytics();
+  echo "<link rel='shortcut icon' href='/img/favicon.ico'>";
+  echo "<!-- Bootstrap core CSS -->";
+  echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";
+  echo "<link href='https://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic|Quicksand:400,700' rel='stylesheet' type='text/css'>";
+  echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
+  echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
+  echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
+  echo "<link href='/css/new.css' rel='stylesheet'>";
+  echo "<link href='/css/users.css' rel='stylesheet'>";
+  //Open Graph Properties
+  echo '
+  <meta property="og:description" 
+    content="Smashlounge: An open knowledgebase for Super Smash Brothers" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="smashlounge" />
+  <meta property="og:url" content="http://www.smashlounge.com" />
+  <meta property="og:site_name" content="smashlounge" />
+  <meta property="og:image" content="http://smashlounge.com/img/assets/BG_twit.jpg" />
+  <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
+
+  echo "<script src='/js/bootstrap.min.js'></script>";
+  echo "<script src='/js/toggler.js'></script>";
+  echo "<!--  -->";
+  echo "\n";
+}
+
+
+function printNewLibraries() {
+  echo "<!-- PRINTING DEPENDENCIES -->";
+  echo "\n";
+  analytics();
+  echo "<link rel='shortcut icon' href='/img/favicon.ico'>";
+  echo "<!-- Bootstrap core CSS -->";
+  echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";
+  echo "<link href='https://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic|Quicksand:400,700' rel='stylesheet' type='text/css'>";
+  echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
+  echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
+  echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
+
+  echo "<link href='/css/hover/css/hover-min.css' rel='stylesheet'>";
+  echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
+
+  //Open Graph Properties
+  echo '
+  <meta property="og:description" 
+    content="Smashlounge: An open knowledgebase for Super Smash Brothers" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="smashlounge" />
+  <meta property="og:url" content="http://www.smashlounge.com" />
+  <meta property="og:site_name" content="smashlounge" />
+  <meta property="og:image" content="http://smashlounge.com/img/assets/BG_twit.jpg" />
+  <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
+
+  echo "<script src='/js/bootstrap.min.js'></script>";
+  echo "<script src='/js/scrollbar/jquery.mCustomScrollbar.min.js'></script>";
+  echo "<script src='/js/jquery.scrollTo.min.js'></script>";
+  
+  echo "<script src='/js/toggler.js'></script>";
+  echo "\n";
+}
+
+function analytics() {
+  echo "<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-51481444-1', 'auto');
+      ga('require', 'displayfeatures');
+      ga('send', 'pageview');
+    </script>";
+}
+
+function printBetaMast() {
+  echo "<div class='alert alert-info' role='alert'>There's an issue we're investigating which causes updating profiles to not work properly. Follow us on twitter for updates!<br><br>";
+  echo "</div>";
+}
+
+function getGameFromID($id) {
+        switch ($id) {
+            case 0:
+                return "All Games";
+            case 1:
+                return "Smash64";
+            case 2:
+                return "Smash Melee";
+            case 3:
+                return "Smash Brawl";
+            case 4:
+                return "Project M";
+            case 5:
+                return "Smash 4";
+        }
+}
+
+function getAllTechs($mysqli, $techTable) {
+  $query = "SELECT * from " . $techTable;
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $techs[] =  $row;
+  }
+  asort($techs);
+  return $techs;
+}
+
+function getFrameDataForGif($id) {
+  global $mysqli;
+
+  $ret = '';
+
+  $query = "SELECT * from framedatajson WHERE gifid=" . $id;
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $ret = $row['json_text'];
+  }
+
+  return $ret;
 }
 
 ?>

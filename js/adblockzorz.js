@@ -20,4 +20,16 @@ function showImage() {
 
 $(document).ready(function(){
 	window.setTimeout('TestPage()', 500); 
+
 })
+
+var resizeTimer;
+
+function resizer() {
+    googletag.pubads().refresh([window.Leaderslot]);
+}
+
+window.addEventListener("resize", function(){ 
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizer, 250);
+});

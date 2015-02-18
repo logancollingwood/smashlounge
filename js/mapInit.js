@@ -23,8 +23,8 @@ var customIcons = {
 
 function initialize() {
   var mapOptions = {
-    zoom: 4,
-    center: new google.maps.LatLng(37.6, -95.665)
+    zoom: 3,
+    center: new google.maps.LatLng(45.9193968, -38.5453781)
   };
   var infoWindow = new google.maps.InfoWindow;
   map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -56,12 +56,23 @@ function initialize() {
   });
 }
 
+
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function bindInfoWindow(marker, map, infoWindow, html) {
   google.maps.event.addListener(marker, 'click', function() {
     infoWindow.setContent(html);
     infoWindow.open(map, marker);
+  });
+
+  google.maps.event.addListener(map, 'click', function( event ){
+    var lat = event.latLng.lat();
+    var lon = event.latLng.lng();
+    document.getElementById('longitude').value = lon.toFixed(3);
+    document.getElementById('latitude').value = lat.toFixed(3);
+    $("#longitude").html = lon;
+            alert( "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng() ); 
   });
 }
 

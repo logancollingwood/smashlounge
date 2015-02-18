@@ -46,7 +46,11 @@ if ($mysqli->connect_errno) {
     case 5:
         $region = "West Coast";
         break;
+    case 6:
+        $region = "International";
+        break;
     }
+
 
     $node = $dom->createElement("marker");
     $newnode = $parnode->appendChild($node);

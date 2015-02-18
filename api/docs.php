@@ -1,6 +1,6 @@
 <?php
   require("../techs/db.php");
-  $char = isset($_GET['char'])       ? trim($_GET['char'])       : "";
+  //require("../techs/init.php");
 
   $mysqli = new mysqli($dahostname, $username, $password, $database);
   if ($mysqli->connect_errno) {   
@@ -10,8 +10,12 @@
 
   $query = "SELECT * FROM " . $charTable . " ORDER BY tierdata";
 
+  //Defines the amount of API response examples to render in documentation
   $examples = 2;
   $counter = 0;
+  $char = 'Fox';
+  $charCount = 0;
+
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
   }
@@ -80,6 +84,27 @@
   }
   $json['techs'] = $techData;
 
+  $query = "SELECT * FROM " . $techTable . " WHERE tech='Tech'";
+  if (!$result = $mysqli->query($query)) {
+      die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $name =  $row["tech"];
+    $id = $row['id'];
+  }
+  $json['techniques_full'] = $name;
+
+  $query = "SELECT * FROM techinfo WHERE techid = " . $id;
+  if (!$result = $mysqli->query($query)) {
+      die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    unset($row['id']);
+    unset($row['techid']);
+    $data = $row;
+  }
+  $json['techniques_full'] = $data;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,19 +119,12 @@
     <title>API Docs</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic|Quicksand:400,700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
-    <link href="../css/grid.css" rel="stylesheet">
-    <link href="../css/dashboard.css" rel="stylesheet">
-    <link href="../css/custom.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <link href="/css/grid.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="/css/new.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -136,7 +154,7 @@
             <li><a href="https://www.facebook.com/SmashLounge"><i class="fa fa-facebook"></i></a></li>
             <li class='here'><a href="/api/docs">api</a></li>
             <li><a href="/donate.php">donate</a></li>
-            <li><a href="/about.html">about</a></li>
+            <li><a href="/about.php">about</a></li>
           </ul>
         </div>
       </div>
@@ -146,7 +164,8 @@
 
       <div class="page-header">
         <h1>Smashlounge API Docs</h1>
-        <p class="lead">Building documentation for API. (STILL A WORK IN PROGRESS)</p>
+        <br>
+        <p class="lead"><small>Building documentation for API. (STILL A WORK IN PROGRESS)</small></p>
       </div>
 
       <h2>characters</h2>
@@ -191,8 +210,22 @@
           echo "</pre>";
  
         ?>
+
       </div>
 
+      <h3>Specify a technique using GET to find relevant info!</h3>
+      <p>Example api url: <a href='http://www.smashlounge.com/api/techniques?tech=Jump+Canceled+Grab'>http://www.smashlounge.com/api/techniques?tech=Jump+Canceled+Grab</a></p>
+      <h4>response</h4>
+      <div class="well">
+        <?php
+          echo "<pre>";
+          echo json_encode($json['techniques_full'], JSON_PRETTY_PRINT);
+          echo "</pre>";
+        ?>
+      </div>
+
+      <h3>Gather all regional groups via XML</h3>
+      <p>Example api url: <a href='http://www.smashlounge.com/api/scenesXML.php'>http://www.smashlounge.com/api/scenesXML.php</a></p>
       <hr>
 
 

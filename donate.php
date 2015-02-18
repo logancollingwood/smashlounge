@@ -1,3 +1,7 @@
+<?php 
+
+  require('techs/init.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,16 +20,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/favicon.png">
+
 
     <title>Thank You</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <?php
+      printLibraries();
+    ?>
 
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -57,6 +61,12 @@
       margin-left: 2%;
       margin-right: 2%;
     }
+    body {
+      box-shadow: none;
+    }
+    .site-wrapper {
+      box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    }
     h3 {
       text-shadow: none;
     }
@@ -70,29 +80,9 @@
     <div class="site-wrapper">
 
       
-          <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container-fluid heddur">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-               <a class="navbar-brand heddur" href="/">smash lounge&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-gamepad fa-1x"></i></a>
-              </div>
-              <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="http://www.reddit.com/r/smashlounge"><i class="fa fa-reddit"></i></a></li>
-                  <li><a href="https://www.facebook.com/SmashLounge"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="/api/docs">api</a></li>
-                  <li class='here'><a href="/donate.php">donate</a></li>
-                  <li><a href="/about.html">about</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <?php
+        createNavBar('donate');
+      ?>
 
       <div class="site-wrapper-inner">
 
@@ -100,7 +90,8 @@
 
 
           <div class='row'>
-
+            <br>
+            <div class='col-md-5'>
               <div class="panel panel-default donate">
                 <div class='panel-heading'>
                   <h3> Donate with Bitcoin <i class="fa fa-btc fa-1x"></i></h3>
@@ -109,15 +100,15 @@
                   <form class='form-horizontal' action="https://bitpay.com/checkout" method="post" onsubmit="return bp.validateMobileCheckoutForm($('#donate'));" role='form'>
                     <input name="action" type="hidden" value="checkout">
                     <div class="form-group">
-                      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                      <div class="col-sm-10">
+                      <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                      <div class="col-sm-8">
                         <input name="orderID" id='inputEmail' type="email" placeholder="Email address (optional)" style="width: 100%;">
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <label for="amount" class="col-sm-2 control-label">Amount</label>
-                      <div class="col-sm-8">
+                      <label for="amount" class="col-sm-4 control-label">Amount</label>
+                      <div class="col-sm-6">
                         <input name="price" id='amount' type="number" placeholder="Amount" value="10.00"  style="width: 100%;"/>
                       </div>
                       <div class='col-sm-2'>
@@ -142,12 +133,15 @@
                   <br />
                 </div>
               </div>
+            </div>
 
+            <div class='col-md-2 donate'>
               
-              <h3> OR </h3>
-              
+              <h3 style="color:#FFF;"> OR </h3>
+            </div>
 
-              <div class='panel panel-default'>
+            <div class='col-md-5 donate'>
+              <div class='panel panel-default donate'>
                 <div class='panel-heading'>
                   <h3> Donate with Paypal <i class="fa fa-money fa-1x"></i></h3>
                 </div>
@@ -161,27 +155,33 @@
                   <br />
                 </div>
               </div> 
-
+            </div>
+          </div>
+          <div class='row'>
               <div class="inner cover thanks">
-                <h1 class="cover-heading large">Thank you <span class="glyphicon glyphicon-heart gray"></span></h1>
-                <br />
-                <br />
-                <p class="lead">Every donation helps us develop more features for the community.</p>
+                
+                  <h1 class="cover-heading large">Thank you <span class="glyphicon glyphicon-heart gray"></span></h1>
+                  <br />
+                  <br />
+                  <p class="lead">Every donation helps us develop more features for the community.</p>
 
 
-                <p> <span class="badge pull-left">1</span> Donations keep us from having to run ads in order to recoup hosting costs every month</p>
+                  <p> <span class="badge pull-left">1</span> Donations keep us from having to run ads in order to recoup hosting costs every month</p>
 
-                <p> <span class="badge pull-left">2</span> They allow us to spend more personal time building new features</p>
+                  <p> <span class="badge pull-left">2</span> They allow us to spend more personal time building new features</p>
 
-                <p> <span class="badge pull-left">3</span> They will allow us to expand our business, and grow as a part of the Smash community</p>
-                <a href="mailto:smashlounge@gmail.com">email us</a>
+                  <p> <span class="badge pull-left">3</span> They will allow us to expand our business, and grow as a part of the Smash community</p>
+                  <a href="mailto:smashlounge@gmail.com">email us</a>
+                
               </div>
 
           </div>
+        </div>
 
 
-
-
+          <br/>
+          <br/>
+          <br/>
         </div>
 
       </div>

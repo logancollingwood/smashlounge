@@ -2,6 +2,12 @@ $(document).ready(function(){
 
 	$("#toggler").click(function(){
   		$(this).toggleClass('active, inactive');
+      var which = $(this).data( "target" );
+      which += "Anchor";
+      console.log(which);
+      $(which).scrollintoview();
+      var rowpos = $(which).position();
+      //$('#sidebar').scrollTop(rowpos.top);
 	})
 
 	 $('#chars').on('shown.bs.collapse', function () {

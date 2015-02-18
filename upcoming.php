@@ -1,6 +1,25 @@
 <?php
+  $hasGet = false;
+  $tournament = isset($_GET['tournament'])       ? trim($_GET['tournament'])       : "";
+  $tournament = urldecode($tournament);
+
+  if ($tournament != '') {
+    $hasGet = true;
+  }
   require("techs/init.php");
   require("techs/initUpcoming.php");
+  require("techs/twitch.php");
+  require_once("techs/sentry.php");
+
+
+    $loggedIn = false;
+    if (Sentry::check())
+    {
+        $loggedIn = true;
+        $user = Sentry::getUser();
+    }
+
+
 ?>
 <!--
 
@@ -25,44 +44,36 @@ Questions?
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-51481444-1', 'smashlounge.com');
-  ga('send', 'pageview');
-
-</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A compendium for Super Smash Bros.">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="img/favicon.png">
+
 
     <title>Smash Lounge: Upcoming Events</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+
+
+    
+    <?php 
+      printLibraries();
+    ?>
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard_tech.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/calendar.css" rel="stylesheet">
+    <link href="/css/dashboard_mobile.css" rel="stylesheet">
+    <link href="/css/calendar.css" rel="stylesheet">
 
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="http://test.gfycat.com/gfycat_test_may18.js"></script>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
   </head>
   <body>
 
@@ -73,52 +84,100 @@ Questions?
 
     <div class='container-fluid'>
       <div class="col-sm-3 col-md-2 sidebar">
-        <ul class="nav nav-sidebar turnup">
-          <li class="home"><a href="/"><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;Home</a></li>
-          <li class="home"><a href="/lounge.php"><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;Lounge</a></li>
-          <li class="home active"><a href="/upcoming"><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;Upcoming</a></li>
-          <?php 
-            makeCollapseNav("tech", $dataTech, 'out', $char, $tech, '');
-            makeCollapseNav("char", $dataChar, 'out', $char, $tech);
-          ?>
-        </ul>
+        <?php makeSidebar($loggedIn, 'upcoming') ?>
       </div>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <div class='jumbotron full'>
-        <h1 class="hddr2">Upcoming events</h1>
-        </div>
+        <?php //printBetaMast(); ?>
+          <div class='jumbotron banner'>
+            <div class='row'>
+              <?php 
+                if (!$hasTournament) { 
+                  echo "<h1 class='lead'>Upcoming events</h1>";
+                } else {
+                  echo "<div class='col-md-1 vcenter'>";
+                    echo "<a href='/upcoming.php'><i class='fa fa-angle-left fa-4x'></i></a>";
+                  echo "</div>";
+                  echo "<div class='col-md-8 vcenter'>";
+                    echo "<h1 class='lead'>$tournament</h1>";
+                  echo "</div>";
+                  echo "<div class='col-md-3 vcenter'>";
+                    echo "<h1><anchor>" . date("F jS", strtotime($startDate))  . " - " . date("F jS", strtotime($endDate)) . "</anchor></h2>";
+                  echo "</div>";
+                }
+              ?>
+            </div>
+          </div>
+       
 
-
-        <div class='row centered'>
+        <div class='row'>
 
           <div class='col-md-9'>
-            <div class='well'>
+
+            <!-- NO TOURNAMENT HANDLER -->
+            <?php if (!$hasTournament) { ?>
+
+
+              <div class='well'>
                 <!-- NAV -->
                 <div class='page-header'>
-                  <div class="pull-right form-inline">
-                    <div class="btn-group">
-                      <button class="btn btn-primary" data-calendar-nav="prev"><< Prev</button>
-                      <button class="btn" data-calendar-nav="today">Today</button>
-                      <button class="btn btn-primary" data-calendar-nav="next">Next >></button>
+                  <div class='row'>
+
+                    <div class='col-md-8'>
+                      <h3></h3>
                     </div>
-                    <div class="btn-group">
-                      <button class="btn btn-warning" data-calendar-view="year">Year</button>
-                      <button class="btn btn-warning active" data-calendar-view="month">Month</button>
-                      <button class="btn btn-warning" data-calendar-view="week">Week</button>
-                      <button class="btn btn-warning" data-calendar-view="day">Day</button>
+
+                    <div class='col-md-4'>
+                      <div class="pull-right form-inline">
+                        <div class="btn-group">
+                          <button class="btn btn-warning" data-calendar-view="year">Year</button>
+                          <button class="btn btn-warning active" data-calendar-view="month">Month</button>
+                          <button class="btn btn-warning" data-calendar-view="week">Week</button>
+                          <button class="btn btn-warning" data-calendar-view="day">Day</button>
+                        </div>
+
+                        <hr>
+
+                        <div class="btn-group">
+                          <button class="btn btn-primary" data-calendar-nav="prev"><< Prev</button>
+                          <button class="btn" data-calendar-nav="today">Today</button>
+                          <button class="btn btn-primary" data-calendar-nav="next">Next >></button>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
 
-                  <h3></h3>
                 </div>
-                
+                <div id='calendar'></div>
+              </div>
 
-              <div id='calendar'></div>
-            </div>
+            <!-- FOR TOURNAMENT SPECIFIC HANDLER -->
+            <?php } else { 
+
+                if ($bracket != '') {
+                  makeBracket($bracket);
+                }
+                makeDiscussion();
+
+            } ?>
+
           </div>
 
           <div class='col-md-3'>
+            
+            <?php
+              if ($hasTournament) {
+                makeTwitchPanel($hasTwitch, $twitch);
+                makeVods($vods);
+                if ($first || $second || $third) {
+                  makeStandings($first, $second, $third);
+                }
+                
+                makeInfo($host, $attending, $location);
+              }
+            ?>
+
             <div class='panel panel-default'>
               <div class='panel-header'>
                 <h4>Upcoming:</h4>
@@ -127,22 +186,35 @@ Questions?
                 <ul id="eventlist" class="nav nav-list"></ul>
               </div>
             </div>
+
+            <div class='panel panel-default'>
+              <div class='panel-header'>
+                <h4>Recent:</h4>
+              </div>
+              <div class='panel-body'>
+                <ul id="recentList" class="nav nav-list"></ul>
+              </div>
+            </div>
+
+            <div class='well'>
+              <h4> <a href='/submit.php#tournament'> Submit a Tournament </a></h4>
+            </div>
+            <hr>
+          </div>
+
           </div>
 
         </div>
       </div>
+
     </div>
 
 
-      <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/toggler.js"></script>
-    <script src="js/docs.min.js"></script>
-    <script type="text/javascript" src="js/underscore-min.js"></script>
-    <script type="text/javascript" src="js/calendar.js"></script>
+
+    <script type="text/javascript" src="/js/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/calendar.js"></script>
+    <script type="text/javascript" src="/js/initTournament.js"></script>
+    <script type="text/javascript" src="/js/jquery.challonge.js"></script>
     <script type="text/javascript">
         var calendar = $("#calendar").calendar(
             {
@@ -153,15 +225,33 @@ Questions?
                   if(!events) {
                     return;
                   }
-                  var list = $('#eventlist');
-                  list.html('');
+                  var upcomingList = $('#eventlist');
+                  upcomingList.html('');
 
+                  var recentList = $('#recentList');
+                  recentList.html('');
+
+                    var upcomingCounter = 0;
+                    var recentCounter = 0;
                   $.each(events, function(key, val) {
-                    var time = new Date(val.start);
-                    
-                    $(document.createElement('li'))
-                      .html('<a href="' + val.url + '">' + val.title + ' ' + time +  '</a>')
-                      .appendTo(list);
+                    var time = val.start;
+                    var startDate = new Date(time);
+                    var todaysDate = new Date();
+                    if (time >= todaysDate) {
+                      if (!(upcomingCounter >= 5)) {
+                        $(document.createElement('li'))
+                          .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                          .appendTo(upcomingList);
+                        upcomingCounter++;
+                      }
+                    } else {
+                      if (!(recentCounter >= 5)) {
+                        $(document.createElement('li'))
+                          .html('<a href="/tournament/' + encodeURIComponent(val.title) + '">' + val.title + '</a>')
+                          .appendTo(recentList);
+                        recentCounter++;
+                      }
+                    }
                   });
                 },
                 onAfterViewLoad: function(view) {
@@ -186,6 +276,5 @@ Questions?
           });
           
     </script>
-
 
   </body>

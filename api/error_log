@@ -1,0 +1,2 @@
+[11-Aug-2014 20:06:07 UTC] PHP Fatal error:  Call to undefined method mysqli::quote() in /home/vaplounge/public_html/api/upcoming.php on line 19
+[11-Aug-2014 20:09:08 UTC] PHP Fatal error:  Class 'Helper' not found in /home/vaplounge/public_html/api/upcoming.php on line 22
