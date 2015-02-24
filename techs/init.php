@@ -1000,6 +1000,7 @@ function printNewLibraries() {
   echo "<script src='/js/jquery.scrollTo.min.js'></script>";
   
   echo "<script src='/js/toggler.js'></script>";
+  echo "<script src='/js/parallax.min.js'></script>";
   echo "\n";
 }
 
