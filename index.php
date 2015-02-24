@@ -34,7 +34,7 @@ Questions?
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="A compendium for League of Legends">
       <meta name="author" content="smashlounge">
-      <title>wrekt.io</title>
+      <title>Smash Lounge</title>
 
       <!-- Main Dependencies -->
       <?php printNewLibraries(); ?>
