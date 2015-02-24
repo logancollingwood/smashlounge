@@ -99,7 +99,7 @@ Questions?
                           <div class="col-md-10 col-sm-10 col-md-offset-1">
 
                             <?php
-                              echo "<div id='randomSlot' class='panel panel-default gifTainer'>";
+                              echo "<div id='randomSlot' class='panel gifTainer theaterGif'>";
                               echo "</div>";
                             ?>
 

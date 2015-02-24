@@ -34,7 +34,7 @@ function drawRandomGif() {
     var panelBody = "<img class='gfyitem' data-expand=true data-id='" + m[4] + "' />";
     var panelFooter = "<h4 randGifDesc><a href='" + permalink + "'>" +  title + "</a></h4>"
     $('#randomSlot').empty();
-    $("#randomSlot").append("<div class='panel-heading'>" + panelHeading + "</div><div class='panel-body randgifz'>" + panelBody + "</div><div class='panel-footer'>" + panelFooter + "</div>");
+    $("#randomSlot").append("<div class='panel-heading'>" + panelHeading + "</div><div class='panel-body'>" + panelBody + "</div><div class='panel-footer'>" + panelFooter + "</div>");
     spawned = true;
     gfyCollection.init();
   });

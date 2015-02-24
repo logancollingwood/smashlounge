@@ -977,6 +977,7 @@ function printNewLibraries() {
   echo "<!-- Bootstrap core CSS -->";
   echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";
   echo "<link href='https://fonts.googleapis.com/css?family=Ubuntu:300|Raleway:300|Didact+Gothic|Quicksand:400,700' rel='stylesheet' type='text/css'>";
+  echo "<link href='http://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto' rel='stylesheet' type='text/css'>";
   echo "<script type='text/javascript' src='/js/gfycat_test_june25.js'></script>";
   echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>";
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
