@@ -144,7 +144,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "<li id='charsAnchor'>";
     echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownChars'></span>";
-    echo "&nbsp;characters";
+    echo "<span class='pagetitle'>characters</span>";
     echo "</a>";
     echo "<li>";
     echo "<div id='chars" . $target . "' class='collapse " . $collapsed . "'>";
@@ -174,7 +174,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "<li id='techsAnchor'>";
     echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
-    echo "&nbsp;techniques";
+    echo "<span class='pagetitle'>techniques</span>";
     echo "</a>";
     echo "<li>";
     echo "<div id='techs" . $target . "' class='collapse " . $collapsed . "'>";
@@ -664,6 +664,10 @@ function sidebar($currentPage = '') {
     "rankings" => array("/rankings.php", "glyphicon glyphicon-certificate"),
     "upcoming" => array("/upcoming.php", "glyphicon glyphicon-calendar")
     );
+    $modules = array('home', 'admin', 'lounge', 'upcoming', 
+    'users', 'login', 'moderate', 'register', 'update', 
+    'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
+    'vods');
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech, $loggedIn;
   $user = Sentry::getUser();
@@ -706,7 +710,7 @@ function sidebar($currentPage = '') {
                             echo "</a>";
                           echo "</li>";
                       }
-            if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
+            if (in_array($currentPage, $modules) && !in_array($currentPage, $specials)) {
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
             } else if ($currentPage == 'techs') {
