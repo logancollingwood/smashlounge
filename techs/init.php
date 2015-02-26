@@ -655,10 +655,15 @@ function makeSidebar($loggedIn, $currentPage = '') {
 }
 
 function sidebar($currentPage = '') {
-  $pages = array('home', 'admin', 'lounge', 'upcoming', 
-    'users', 'login', 'moderate', 'register', 'update', 
-    'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
-    'vods');
+  $pages = array(
+    "home" => array("/", "glyphicon glyphicon-home"),
+    "vods" => array("/vods.php", "glyphicon glyphicon-play-circle"),
+    "users" => array("/users.php", "glyphicon glyphicon-user"),
+    "submit" => array("/submit.php", "glyphicon glyphicon-inbox"),
+    "lounge" => array("/lounge.php", "glyphicon glyphicon-globe"),
+    "rankings" => array("/rankings.php", "glyphicon glyphicon-certificate"),
+    "upcoming" => array("/upcoming.php", "glyphicon glyphicon-calendar")
+    );
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech, $loggedIn;
   $user = Sentry::getUser();
@@ -689,47 +694,17 @@ function sidebar($currentPage = '') {
                 echo '<div class="row">';
                echo '<div class="expander">
                 <ul class="nav" id="lg-menu">';
-                      if ($currentPage == 'home') {
-                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
-                      } else {
-                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
-                      }
-                      /*
-                      if ($currentPage == 'TMG') {
-                        echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='sidebarico' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
-                      } else {
-                        echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' class='sidebarico' alt='TMG' style='max-width:100%;max-height:100%;' width='15px'>&nbsp;tmg</a></li>";
-                      }
-                      */
-                      if ($currentPage == 'vods') {
-                        echo "     <li class='home active'><a href='/vods.php'><i class='fa fa-youtube-play sidebarico'></i>&nbsp;vods</a></li>";
-                      } else {
-                        echo "     <li class='home'><a href='/vods.php'><i class='fa fa-youtube-play sidebarico'></i>&nbsp;vods</a></li>";
-                      } 
-                      if ($currentPage == 'users') {
-                        echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user sidebarico'></span>&nbsp;users</a></li>";
-                      } else {
-                        echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user sidebarico'></span>&nbsp;users</a></li>";
-                      }    
-                      if ($currentPage == 'submit') {
-                        echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox sidebarico'></span>&nbsp;submit</a></li>";
-                      } else {
-                        echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox sidebarico'></span>&nbsp;submit</a></li>";
-                      }
-                      if ($currentPage == 'lounge') {
-                        echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe sidebarico'></span>&nbsp;lounge</a></li>";
-                      } else {
-                        echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe sidebarico'></span>&nbsp;lounge</a></li>";
-                      }
-                      if ($currentPage == 'rankings') {
-                        echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate sidebarico'></span>&nbsp;rankings</a></li>";
-                      } else {
-                        echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate sidebarico'></span>&nbsp;rankings</a></li>";
-                      }
-                      if ($currentPage == 'upcoming') {
-                        echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar sidebarico'></span>&nbsp;upcoming</a></li>";
-                      } else {
-                        echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar sidebarico'></span>&nbsp;upcoming</a></li>";
+                      foreach ($pages as $title => $href) {
+                        if (strcmp($currentPage, $title) == 0) {
+                          echo '<li class="home active">';
+                        } else {
+                          echo '<li class="home">';
+                        }
+                            echo "<a href='" . $href[0] . "'>";
+                              echo "<span class='" . $href[1] . " sidebarico'></span>";
+                              echo "<span class='pagetitle'>" . $title . "</span>";
+                            echo "</a>";
+                          echo "</li>";
                       }
             if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');

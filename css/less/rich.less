@@ -5,8 +5,9 @@
 
 @flair-color: #00bcd4;
 
-@import "gifcontainers";
-
+@import "_gifcontainers";
+@import "_jumbotron";
+@import "_panels";
 
 /* custom template */
 html, body {
@@ -301,7 +302,7 @@ small.text-muted {
 
 }
 #lg-menu > li.home.active {
-    background-color: #666565;
+    background-color: #666;
 }
 
 
@@ -350,19 +351,21 @@ small.text-muted {
     overflow: hidden;
     padding:0px;
 	padding-top:15px;
+	background-color: #555555;
 }
 
 #sidebar, #sidebar a, #sidebar-footer a {
     opacity: 1;
     color:#ffffff;
-    background-color: #555555;
 	text-shadow:0 0 2px #000000;
     padding-left:5px;
 }
 #sidebar .nav li {
+    text-align: left;
     font-family: 'Open Sans';
     font-size: 22px;
 }
+
 .list-dd a{
     font-size: 12px;
     margin-left: 10%;
@@ -374,6 +377,11 @@ small.text-muted {
     font-weight: 100;
     font-family: 'Quicksand';
 }
+.pagetitle {
+    margin-left: 15%;
+}
+
+
 .nav-list {
     border-left: 5px solid @theme;
     transition: all 0.5s ease;
@@ -419,38 +427,14 @@ small.text-muted {
     z-index: 1;
 }
 a.bttn.login {
+    background-color: #666;
+    text-align: center;
     font-family: 'Open Sans';
     text-transform: uppercase;
 }
+
 #mCSB_1_scrollbar_vertical {
     margin-top: 15px;
-}
-/*
-    jumbotron
-*/
-.jumbotron {
-    background-color:transparent;
-    margin-bottom: 0px;
-    text-align: center;
-    -webkit-box-shadow: inset 0px -25px 30px -10px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    inset 0px -25px 30px -10px rgba(50, 50, 50, 0.75);
-    box-shadow:         inset 0px -25px 30px -10px rgba(50, 50, 50, 0.75);
-    border-left: 2px solid #6e6e6e;
-}
-.jumbotron .header {
-    font-size: 36px;
-    font-family: 'Montserrat', 'Quicksand';
-    color: #fff;
-}
-.jumbotron hr {
-    color: @theme;
-}
-.jumbotron .description {
-    font-family: 'Roboto';
-    font-size: 20px;
-    color: #fff;
-}
-.jumbotron .buttons {
 }
 
 
@@ -627,7 +611,7 @@ a:hover {
 .content-wrapper {
     padding-top: 2%;
     background-color: #555555;
-    background-image: url('../img/blacktexture.png');
+    background-image: url('../../img/blacktexture.png');
     border-left: 2px solid #6e6e6e;
 }
 .panel {

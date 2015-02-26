@@ -39,7 +39,7 @@ Questions?
       <!-- Main Dependencies -->
       <?php printNewLibraries(); ?>
 
-      <link href="/css/rich.css" rel="stylesheet">
+      <link href="/css/less/rich.css" rel="stylesheet">
 
     </head>
 
@@ -60,22 +60,24 @@ Questions?
                       
                       <div class="jumbotron">
                         <div class='header'>smashlounge</div>
-                        <hr>
-                        <div class="description">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br></div>
+                        <div class="blur">
+                          <hr>
+                          <div class="description">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br></div>
 
-                            <?php
-                              if ($displayChar) {
-                                echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
-                              } else if ($displayTech) {
-                                echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
-                              }
-                            //echo "<div style='width:2px;height:150px;background-color:#fff;'>&nbsp;</div>";
-                            echo "&nbsp";
-                            echo "&nbsp";
-                            echo "<a class='btn btn-primary btn-lg bttn rand' href='submit.php'><span class='glyphicon glyphicon-cloud-upload pull-left'></span> Contribute</a>";
-                            echo "</br>";
-                        echo "</br>";
-                        ?>
+                              <?php
+                                if ($displayChar) {
+                                  echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                                } else if ($displayTech) {
+                                  echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
+                                }
+                              //echo "<div style='width:2px;height:150px;background-color:#fff;'>&nbsp;</div>";
+                              echo "&nbsp";
+                              echo "&nbsp";
+                              echo "<a class='btn btn-primary btn-lg bttn rand' href='submit.php'><span class='glyphicon glyphicon-cloud-upload pull-left'></span> Contribute</a>";
+                              echo "</br>";
+                          echo "</br>";
+                          ?>
+                        </div>
                       </div>
                       <div class="content-wrapper">
                         <div class='mobilenav'>
@@ -141,12 +143,13 @@ Questions?
                                   $counter = 0;
                                   $maxCount = 4;
                                   foreach ($activeStreams as $data) {
+                                    $streamer = $data['channel']['display_name'];
                                     if ($counter >= $maxCount) break;
                                     echo "<p>";
                                     echo "<h4>";
                                     echo "<a href='" . $data['channel']['url'] . "' class='theme'>";
                                     echo $data['channel']['status'] . "</h4></a>";
-                                    echo $data['channel']['display_name'] . "<br>";
+                                    echo "<a href=//www.twitch.tv/$streamer>$streamer</a><br>";
                                     echo $data['viewers'] . "  <i class='fa fa-eye theme'></i>";
                                     echo "</p>";
                                     if ($counter != $maxCount - 1) echo "<hr>";
@@ -174,7 +177,7 @@ Questions?
     <script>
       $('.jumbotron').parallax({
         imageSrc: '/img/assets/slBG_only_2560x1440.png',
-        speed: 1,
+        speed: .7,
       });
     </script>
     </body>
