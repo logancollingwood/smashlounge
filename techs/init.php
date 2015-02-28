@@ -977,10 +977,9 @@ function printNewLibraries() {
 
   echo "<script src='/js/bootstrap.min.js'></script>";
   echo "<script src='/js/scrollbar/jquery.mCustomScrollbar.min.js'></script>";
-  echo "<script src='/js/jquery.scrollTo.min.js'></script>";
+  //echo "<script src='/js/jquery.scrollTo.min.js'></script>";
   
   echo "<script src='/js/toggler.js'></script>";
-  echo "<script src='/js/parallax.min.js'></script>";
   echo "\n";
 }
 

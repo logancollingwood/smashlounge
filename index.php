@@ -41,6 +41,17 @@ Questions?
 
       <link href="/css/less/rich.css" rel="stylesheet">
 
+      <style type="text/css">    
+        #home { 
+            background: url(img/assets/slBG_only_2560x1440.png) 50% 0 fixed; 
+            background-color: #329c90;
+            background-image: url(img/assets/slBG_only_2560x1440.png);     
+            height: auto;  
+            margin: 0 auto; 
+            width: 100%; 
+            position: relative; 
+        }
+      </style>
     </head>
 
   <body>
@@ -57,7 +68,7 @@ Questions?
                 <!-- top nav -->
                 <?php //navbar(); ?>
                 <!-- /top nav -->
-                      
+                      <section id="home" data-speed="9" data-type="background">
                       <div class="jumbotron">
                         <div class='header'>smashlounge</div>
                         <div class="blur">
@@ -79,6 +90,7 @@ Questions?
                           ?>
                         </div>
                       </div>
+                      </section>
                       <div class="content-wrapper">
                         <div class='mobilenav'>
                           <div class='well'>
@@ -173,13 +185,7 @@ Questions?
     <script src="/js/jquery.fitvids.js"></script>
     <script src="/js/initIndex.js"></script>
     <script src="js/randomGfycat.js"></script>
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <script>
-      $('.jumbotron').parallax({
-        imageSrc: '/img/assets/slBG_only_2560x1440.png',
-        speed: .7,
-      });
-    </script>
+
     </body>
- <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 
 </html>

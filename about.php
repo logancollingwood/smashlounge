@@ -1,7 +1,6 @@
 <?php
 
   require("techs/init.php");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
