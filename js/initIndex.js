@@ -63,12 +63,12 @@ $(document).ready(function(){
   });
 
   $('.expander').css({'overflow':'auto'});
-  
+  /*
   $(".expander").mCustomScrollbar({
     theme: "light-thin",
     scrollButtons: {enable:true},
   });
-
+  */
   $('[data-toggle=offcanvas]').click(function() {
       $(this).toggleClass('visible-xs text-center');
       $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
@@ -77,18 +77,17 @@ $(document).ready(function(){
       $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
       $('#btnShow').toggle();
   });
-  $(document).ready(function(){
-   $window = $(window);
- 
-   $('section[data-type="background"]').each(function(){
-     var $scroll = $(this);
-      
-      $(window).scroll(function() {                       
-        var yPos = -($window.scrollTop() / $scroll.data('speed')); 
-        var coords = '50% '+ yPos + 'px';
- 
-        $scroll.css({ backgroundPosition: coords });    
-      });
-   });  
-  });  
+
+  $window = $(window);
+
+  $('section[data-type="background"]').each(function(){
+   var $scroll = $(this);
+    
+    $("#main").scroll(function() {                
+      var yPos = -($window.scrollTop() / $scroll.data('speed')); 
+      var coords = '50% '+ yPos + 'px';
+
+      $scroll.css({ backgroundPosition: coords });    
+    });
+  });     
 });

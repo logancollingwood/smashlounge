@@ -962,7 +962,7 @@ function printNewLibraries() {
   echo "<link href='//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>";
 
   echo "<link href='/css/hover/css/hover-min.css' rel='stylesheet'>";
-  echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
+  
 
   //Open Graph Properties
   echo '
@@ -976,11 +976,10 @@ function printNewLibraries() {
   <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
 
   echo "<script src='/js/bootstrap.min.js'></script>";
-  echo "<script src='/js/scrollbar/jquery.mCustomScrollbar.min.js'></script>";
-  //echo "<script src='/js/jquery.scrollTo.min.js'></script>";
+  echo "<script src='/js/jquery.scrollTo.min.js'></script>";
+  echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
   
   echo "<script src='/js/toggler.js'></script>";
-  echo "\n";
 }
 
 function analytics() {

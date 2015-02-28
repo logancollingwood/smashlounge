@@ -34,7 +34,7 @@ $(document).ready(function(){
        $("#collapseDownDataz").removeClass("glyphicon-collapse-up").addClass("glyphicon-collapse-down");
     });
 
-    $('#tip').popover();
+    //$('#tip').popover();
 
     $('.popover-dismiss').popover({
       trigger: 'focus'

@@ -32,7 +32,7 @@ Questions?
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="A compendium for League of Legends">
+      <meta name="description" content="A compendium for Super Smash Brothers">
       <meta name="author" content="smashlounge">
       <title>Smash Lounge</title>
 
@@ -43,9 +43,9 @@ Questions?
 
       <style type="text/css">    
         #home { 
-            background: url(img/assets/slBG_only_2560x1440.png) 50% 0 fixed; 
+            background: url(img/home.jpg) 50% 0 fixed; 
             background-color: #329c90;
-            background-image: url(img/assets/slBG_only_2560x1440.png);     
+            background-image: url(img/assets/arches.png);     
             height: auto;  
             margin: 0 auto; 
             width: 100%; 
@@ -68,7 +68,7 @@ Questions?
                 <!-- top nav -->
                 <?php //navbar(); ?>
                 <!-- /top nav -->
-                      <section id="home" data-speed="9" data-type="background">
+                      <section id="home" data-speed="8" data-type="background">
                       <div class="jumbotron">
                         <div class='header'>smashlounge</div>
                         <div class="blur">
@@ -182,10 +182,10 @@ Questions?
       </div>
     </div>
   </div>
-    <script src="/js/jquery.fitvids.js"></script>
-    <script src="/js/initIndex.js"></script>
-    <script src="js/randomGfycat.js"></script>
-
-    </body>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="/js/jquery.fitvids.js"></script>
+      <script src="/js/initIndex.js"></script>
+      <script src="js/randomGfycat.js"></script>
+  </body>
  
 </html>
