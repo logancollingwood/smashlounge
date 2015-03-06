@@ -42,15 +42,7 @@ Questions?
       <link href="/css/less/rich.css" rel="stylesheet">
 
       <style type="text/css">    
-        #home { 
-            background: url(img/home.jpg) 50% 0 fixed; 
-            background-color: #329c90;
-            background-image: url(img/assets/arches.png);     
-            height: auto;  
-            margin: 0 auto; 
-            width: 100%; 
-            position: relative; 
-        }
+
       </style>
     </head>
 
@@ -66,7 +58,7 @@ Questions?
             <div class="column col-sm-10 col-xs-11" id="main">
                 
                 <!-- top nav -->
-                <?php //navbar(); ?>
+                <?php navbar(); ?>
                 <!-- /top nav -->
                       <section id="home" data-speed="8" data-type="background">
                       <div class="jumbotron">
@@ -74,20 +66,17 @@ Questions?
                         <div class="blur">
                           <hr>
                           <div class="description">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br></div>
-
-                              <?php
-                                if ($displayChar) {
-                                  echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=characters/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
-                                } else if ($displayTech) {
-                                  echo "<hr><a class='btn btn-primary btn-lg bttn rand' href=techniques/" .  urlencode($randomLink) . ">"."<span class='glyphicon glyphicon-search pull-left'></span>    " . $randomLink . "</a>";
-                                }
-                              //echo "<div style='width:2px;height:150px;background-color:#fff;'>&nbsp;</div>";
-                              echo "&nbsp";
-                              echo "&nbsp";
-                              echo "<a class='btn btn-primary btn-lg bttn rand' href='submit.php'><span class='glyphicon glyphicon-cloud-upload pull-left'></span> Contribute</a>";
-                              echo "</br>";
-                          echo "</br>";
-                          ?>
+                              <hr>
+                          <div class="mast">
+                            <?php
+                              if ($displayChar) {
+                                echo '<a class="button button-inline button-large button-info" href=characters/' .  urlencode($randomLink) . '>'.'<span><i class="fa fa-share-alt"></i>' . $randomLink . '</span></a>';
+                              } else if ($displayTech) {
+                                echo '<a class="button button-inline button-large button-info" href=techniques/' .  urlencode($randomLink) . '>'.'<span><i class="fa fa-share-alt"></i>' . $randomLink . '</span></a>';
+                              }
+                            ?>
+                            <a class='button button-inline button-large button-success' href='submit.php'><span> <i class="fa fa-sign-out"></i>contribute</span></a>
+                          </div>
                         </div>
                       </div>
                       </section>

@@ -745,18 +745,18 @@ function sidebar($currentPage = '') {
                       echo "<div class='loginbox' style='padding-top:30px;'>";
                       //echo "    <hr class='login'>";
                       echo "<div class='col-md-6'>";
-                        echo "    <a class='btn bttn login ";
+                        echo "    <a class='button button-inline button-small button-info ";
                           if ($currentPage=='login') {
                             echo "active";
                           }
-                        echo "' href='/login.php'>login</a>";
+                        echo "' href='/login.php'><i class='fa fa-key'></i>login</a>";
                       echo "</div>";
                       echo "<div class='col-md-6'>";
-                        echo "    <a class='btn bttn login ";
+                        echo "    <a class='button button-inline button-small button-info ";
                           if ($currentPage=='register') {
                             echo "active";
                           }
-                        echo "' href='/register.php'>register</a>";
+                        echo "' href='/register.php'><i class='fa fa-user'></i>register</a>";
                       echo "</div>";
                       echo "</div>";
                     echo "</div>";
@@ -777,7 +777,7 @@ function sidebar($currentPage = '') {
 }
 
 function navbar() {
-  echo '<div class="navbar navbar-sl navbar-static-top">  
+  echo '<div class="navbar navbar-sl navbar-static-top" id="navbar">  
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle</span>

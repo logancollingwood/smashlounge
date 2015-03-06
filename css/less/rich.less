@@ -1,6 +1,6 @@
 /* Dark - Primary Color */
 
-@theme: #00a6b8;
+@theme: #1abc9c;
 /* Light - Highlight Color */
 
 @flair-color: #00bcd4;
@@ -8,6 +8,7 @@
 @import "_gifcontainers";
 @import "_jumbotron";
 @import "_panels";
+@import "_buttons";
 
 /* custom template */
 html, body {
@@ -203,8 +204,6 @@ h1,h2,h3 {
 .btn-default {
     color:#666666;
     text-shadow:0 0 1px rgba(0,0,0,.3);
-    box-shadow: 2px 2px 2px #000000; 
-    
 }
 .form-control {
 	
@@ -223,7 +222,9 @@ h1,h2,h3 {
    background-color:@theme;
    color:#fff;
 }
-    
+.tier {
+    margin-right: 10px;
+}
 
 .label-default {
   background-color:#dddddd;
@@ -357,7 +358,7 @@ small.text-muted {
 #sidebar, #sidebar a, #sidebar-footer a {
     opacity: 1;
     color:#ffffff;
-	text-shadow:0 0 2px #000000;
+	//text-shadow:0 0 2px #000000;
     padding-left:5px;
 }
 #sidebar .nav li {
