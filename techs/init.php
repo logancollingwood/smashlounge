@@ -728,14 +728,14 @@ function sidebar($currentPage = '') {
                       echo "<div class='loginbox' style='padding-top:30px;'>";
                       //echo "    <hr class='login'>";
                       echo "<div class='col-md-6'>";
-                        echo "    <a class='btn bttn login ";
+                        echo "    <a class='button button-inline button-small button-info ";
                           if ($currentPage=='login') {
                             echo "active";
                           }
                         echo "' href='/users/" . $user['username'] . "'>profile</a>";
                       echo "</div>";
                       echo "<div class='col-md-6'>";
-                        echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
+                        echo "    <a class='button button-inline button-small button-info' href='/logout.php'><span>logout</span></a>";
                       echo "</div>";
                       echo "</div>";
                     echo "</div>";
@@ -749,14 +749,14 @@ function sidebar($currentPage = '') {
                           if ($currentPage=='login') {
                             echo "active";
                           }
-                        echo "' href='/login.php'><i class='fa fa-key'></i>login</a>";
+                        echo "' href='/login.php'><i class='fa fa-key'></i><span>login</span></a>";
                       echo "</div>";
                       echo "<div class='col-md-6'>";
                         echo "    <a class='button button-inline button-small button-info ";
                           if ($currentPage=='register') {
                             echo "active";
                           }
-                        echo "' href='/register.php'><i class='fa fa-user'></i>register</a>";
+                        echo "' href='/register.php'><i class='fa fa-user'></i><span>register</span></a>";
                       echo "</div>";
                       echo "</div>";
                     echo "</div>";
@@ -790,12 +790,11 @@ function navbar() {
     <nav class="collapse navbar-collapse" role="navigation">
     <form class="navbar-form navbar-left search">
         <div class="input-group input-group-sm" style="width:300px;">
-          <input type="text" class="form-control search" placeholder="Search for..." name="search">
-          <ul class="results" >
-            <li>LOL</li>
+          <input type="text" class="form-control search" placeholder="Search for..." id="searchBar">
+          <ul class="results" id="searchBarResults">
           </ul>
           <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            <button class="btn btn-default" onclick="searchBar()"><i class="glyphicon glyphicon-search"></i></button>
           </div>
         </div>
     </form>
@@ -979,7 +978,7 @@ function printNewLibraries() {
   echo "<script src='/js/jquery.scrollTo.min.js'></script>";
   echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
   
-  echo "<script src='/js/toggler.js'></script>";
+  echo "<script src='/js/app.js'></script>";
 }
 
 function analytics() {

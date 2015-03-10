@@ -114,6 +114,7 @@ hr.login {
     color: #000;
 }
 .navbar-sl {
+    margin-left: 2px;
     border-width:0;
 	background-color:@theme;
     color:#ffffff;
@@ -295,6 +296,7 @@ small.text-muted {
     position:relative;
   }
   .navbar-sl {
+    margin-left: 2px;
   	background-color:@theme;
     top:0;
     width:100%;
@@ -481,11 +483,25 @@ a:hover {
     width: 300px;
 }
 
+input {
+    font-family: DINPro-Light, "Helvetica Light", sans-serif;
+    font-size: 13px;
+    color: #555860;
+}
+
+.search {
+    position: relative;
+    float: right;
+    padding: 10px;
+    margin: 0 auto;
+    width: 300px;
+}
+
 .search input {
     height: 26px;
-    width: 100%;
+    width: 49%;
     padding: 0 12px 0 25px;
-    background: white;
+    background: white url(../images/microscope.png) 8px 6px no-repeat;
     border-width: 1px;
     border-style: solid;
     border-color: #a8acbc #babdcc #c0c3d2;
@@ -507,16 +523,18 @@ a:hover {
     box-shadow: 0 0 2px rgba(85, 168, 236, 0.9);
 }
 
-.search input:focus + .results { display: block }
+.search input:focus + .results {
+    display: block
+}
 
 .search .results {
     display: none;
     position: absolute;
-    top: 35px;
+    top: 40px;
     left: 0;
     right: 0;
     z-index: 10;
-    padding: 0;
+    padding: 5px;
     margin: 0;
     border-width: 1px;
     border-style: solid;
@@ -536,9 +554,13 @@ a:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.search .results li { display: block }
+.search .results li {
+    display: block
+}
 
-.search .results li:first-child { margin-top: -1px }
+.search .results li:first-child {
+    margin-top: -1px
+}
 
 .search .results li:first-child:before, .search .results li:first-child:after {
     display: block;
@@ -561,9 +583,13 @@ a:hover {
     top: -10px;
 }
 
-.search .results li:first-child:hover:before, .search .results li:first-child:hover:after { display: none }
+.search .results li:first-child:hover:before, .search .results li:first-child:hover:after {
+    display: none
+}
 
-.search .results li:last-child { margin-bottom: -1px }
+.search .results li:last-child {
+    margin-bottom: -1px
+}
 
 .search .results a {
     display: block;
@@ -577,7 +603,9 @@ a:hover {
     border-radius: 3px;
 }
 
-.search .results a span { font-weight: 200 }
+.search .results a span {
+    font-weight: 200
+}
 
 .search .results a:before {
     content: '';
@@ -587,7 +615,7 @@ a:hover {
     top: 50%;
     right: 10px;
     margin-top: -9px;
-    background: url("http://cssdeck.com/uploads/media/items/7/7BNkBjd.png") 0 0 no-repeat;
+    background: url(../images/arrow.png) 0 0 no-repeat;
 }
 
 .search .results a:hover {
@@ -607,6 +635,27 @@ a:hover {
     -ms-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
     -o-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
     box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+}
+
+:-moz-placeholder {
+     color: #a7aabc;
+     font-weight: 200;
+}
+
+::-webkit-input-placeholder {
+    color: #a7aabc;
+    font-weight: 200;
+}
+
+.lt-ie9 .search input {
+    line-height: 26px
+}
+.results:hover  {
+     display: block;
+}
+#searchBarResults p {
+    font-family: 'Roboto';
+    color: #000;
 }
 
 .content-wrapper {
