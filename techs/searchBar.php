@@ -1,5 +1,5 @@
 <?php
-	$numEntities = 3;
+	$numEntities = 2;
 	require_once("db.php");
 	$mysqli = new mysqli($dahostname, $username, $password, $database);
 
@@ -26,7 +26,6 @@
 	$html .= '</div>';
 	$html .= '</div>';
 	$html .= '</li>';
-	$html .= '<hr>';
 
 	// Get Search
 	$search_string = preg_replace("/[^A-Za-z0-9]/", " ", $_POST['query']);
@@ -63,9 +62,12 @@
 		// Check If We Have Results
 		if (isset($result_array)) {
 			if (isset($result_array["users"])) {
+				$final = "<p class='searchTitle'><small>users</small></p>";
+				$final .= "<hr>";
 				$counter = 0;
+
 				foreach ($result_array["users"] as $users) {
-					if ($counter > $numEntities) continue;
+					if ($counter > $numEntities) break;
 					$name = $users["username"];
 					$sponsor = $users["sponsor"];
 					$display_url = "/users/" . urlencode($name);
@@ -81,17 +83,20 @@
 					}
 
 					// Insert URL
-					$final = str_replace('urlString', $display_url, $secondout);
+					$final .= str_replace('urlString', $display_url, $secondout);
 
 					// Output
-					echo($final);
+					
 					$counter++;
 				}
+				echo($final);
 			}
 			if (isset($result_array["techs"])){
+				$final = "<p class='searchTitle'><small>techs</small></p>";
+				$final .= "<hr>";
 				$counter = 0;
 				foreach ($result_array["techs"] as $tech) {
-					if ($counter > $numEntities) continue;
+					if ($counter > $numEntities) break;
 					$name = $tech["tech"];
 					$description = $tech["description"];
 					$description = substr($description, 0, 50);

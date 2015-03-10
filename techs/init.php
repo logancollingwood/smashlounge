@@ -803,10 +803,7 @@ function navbar() {
         <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
       </li>
       <li>
-        <a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Post</a>
-      </li>
-      <li>
-        <a href="#"><span class="badge">badge</span></a>
+        <a href="/submit.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Submit</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

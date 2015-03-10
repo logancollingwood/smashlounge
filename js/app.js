@@ -47,6 +47,7 @@ $(document).ready(function() {
 
     });
      // hide .navbar first
+    /*
     $("#navbar").hide();
 
     $("#main").scroll(function () {
@@ -57,7 +58,7 @@ $(document).ready(function() {
             $('.navbar').fadeOut();
         }
     });
-
+	*/
 
 	// Live Search
   	// On Search Submit and Get Results
