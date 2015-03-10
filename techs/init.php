@@ -785,7 +785,7 @@ function navbar() {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand gccontroller"><img src="/img/assets/gccontroller.png" style="width:30px;height:20px;bottom:3px;"/></a>
+      <a href="/" class="navbar-brand gccontroller hvr-trim"><img src="/img/assets/gccontroller.png" style="width:30px;height:20px;bottom:3px;"/></a>
     </div>
     <nav class="collapse navbar-collapse" role="navigation">
     <form class="navbar-form navbar-left search">
