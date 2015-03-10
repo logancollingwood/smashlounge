@@ -76,18 +76,5 @@ $(document).ready(function(){
       $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
       $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
       $('#btnShow').toggle();
-  });
-
-  $window = $(window);
-
-  $('section[data-type="background"]').each(function(){
-   var $scroll = $(this);
-    
-    $("#main").scroll(function() {                
-      var yPos = -($window.scrollTop() / $scroll.data('speed')); 
-      var coords = '50% '+ yPos + 'px';
-
-      $scroll.css({ backgroundPosition: coords });    
-    });
-  });     
+  });    
 });

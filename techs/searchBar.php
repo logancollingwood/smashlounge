@@ -114,12 +114,13 @@
 					}
 
 					// Insert URL
-					$final = str_replace('urlString', $display_url, $secondout);
+					$final .= str_replace('urlString', $display_url, $secondout);
 
 					// Output
-					echo($final);
+					
 					$counter++;
 				}
+				echo($final);
 			}
 			/*
 		    foreach ($result_array as $key => $result) {
