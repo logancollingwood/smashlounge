@@ -800,10 +800,13 @@ function navbar() {
     </form>
     <ul class="nav navbar-nav">
       <li>
-        <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a>
+        <a href="/submit.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Submit</a>
       </li>
       <li>
-        <a href="/submit.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Submit</a>
+        <a href="/donate.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-envelope"></i> Support</a>
+      </li>
+      <li>
+        <a href="/about.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-flag"></i> About</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
