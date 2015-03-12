@@ -58,6 +58,17 @@
 		    $result_array["techs"][] = $row;
 		}
 
+		$query = 'SELECT charinfo.name, charinfo.guide FROM charinfo
+		WHERE charinfo.name 
+		LIKE "%'.$search_string.'%" 
+		OR charinfo.name LIKE "%'.$search_string.'%"';
+
+		if (!$result = $mysqli->query($query)) {
+		  die('Invalid query: ' . $mysqli->error);
+		}
+		foreach($result as $row) {
+		    $result_array["chars"][] = $row;
+		}
 
 		// Check If We Have Results
 		if (isset($result_array)) {
@@ -102,6 +113,37 @@
 					$description = substr($description, 0, 50);
 					$description .= "...";
 					$display_url = "/techniques/" . urlencode($name);
+
+					// Insert Name
+					$output = str_replace('nameString', $name, $html);
+
+					// Insert Sponsor
+					if ($description != "") {
+						$secondout = str_replace('no sponsor', $description, $output);
+					} else {
+						$secondout = str_replace('no sponsor', '', $output);
+					}
+
+					// Insert URL
+					$final .= str_replace('urlString', $display_url, $secondout);
+
+					// Output
+					
+					$counter++;
+				}
+				echo($final);
+			}
+			if (isset($result_array["chars"])){
+				$final = "<p class='searchTitle'><small>chars</small></p>";
+				$final .= "<hr>";
+				$counter = 0;
+				foreach ($result_array["chars"] as $char) {
+					if ($counter > $numEntities) break;
+					$name = $char["name"];
+					$description = $char["guide"];
+					$description = substr($description, 0, 50);
+					$description .= "...";
+					$display_url = "/characters/" . urlencode($name);
 
 					// Insert Name
 					$output = str_replace('nameString', $name, $html);
