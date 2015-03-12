@@ -37,135 +37,107 @@ Questions?
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A compendium for Super Smash Bros">
     <meta name="author" content="smashlounge">
-
-
     <title>Smash Lounge: <?php echo $char ?></title>
 
-    <!-- Bootstrap core CSS -->
-    <?php 
-      printLibraries();
-    ?>
-    
+      <!-- Main Dependencies -->
+      <?php printNewLibraries(); ?>
 
-    <!-- Custom styles for this template -->
-    <link href="/css/dashboard_mobile.css" rel="stylesheet">
-
-
-    
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
+      <link href="/css/less/rich.css" rel="stylesheet">
     
   </head>
-  <body>
-    <?php
-      createNavBar()
-    ?>
 
-  	<div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-3 col-md-2 sidebar">
-            <?php makeSidebar($loggedIn, 'chars') ?>
-          </div>
+  <body>
+
+  	<div class="wrapper">
+        <div class="box">
+          <div class="row row-offcanvas row-offcanvas-left">
+
+          <?php sidebar('chars'); ?>
     
           
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <?php //printBetaMast(); ?>
-            <div class="jumbotron banner">
-              <h1 class="lead"><?php 
-              	if (!$charnotFound){
-              		echo $char; 
-              	} else {
-              		echo "Check out one of these guides!";
-              	}
-              ?>
-              </h1>
-            </div>
-            <?php 
-              echo "<ul class='nav nav-tabs' role='tablist' id='myTab'>";
-              echo "  <li class='active'><a href='#home' role='tab' data-toggle='tab' class='tabz'>General</a></li>";
-              echo "  <li><a href='#data' role='tab' data-toggle='tab' class='tabz'>Data</a></li>";
-              echo "</ul>";
-              echo "<div class='row'>";
-              echo "<div class='col-md-8'>";
-              echo "<div class='tab-content'>";
-            	if (!$charnotFound) {
-                echo "<div class='tab-pane active' id='home'>";
-  	            echo "<div class='row'>";
-                  echo "<table>";
-                    echo "<tr>";
-                      echo "<td class='chargifs'>";
-                      echo "<ul class='list-group chars'>";
-                      $counter = 0;
-                      if (count($chargifs) > 0) {
-                        foreach ($chargifs as $tmpGif) {
-                          $counter++;
-                          echo "<li class='list-group-item'>";
-                          echo "  <div class='row'>";
-                          echo "    <div class='col-md-11'>";
-                          echo "      <img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                          echo "      <h4>Example #" . $counter . "</h4>";
-                          echo "      <span class='text-muted'>" . $tmpGif['description'] . "</span>";
-                          if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
-                            echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
-                          } else if ($tmpGif['source']) {
-                            echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
-                          }
-                          echo "    </div>";
-
-                          /* Voting Controls */
-                          echo "    <div class='col-md-1 voteBlock'>";
-                          echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
-                          echo "      <hr>";
-                          echo "      <h4>". $tmpGif['score'] . "</h3>";
-                          echo "      <hr>";
-                          echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";
-                          echo "    </div>";
-                          echo "  </div>";
-                          echo " </li>";
-                        }
-                      } else {
-                        echo "<li class='list-group-item'>";
-                        echo  "<h4>Woops! This character has no general gifs! <br><small><a href='/submit.php'>Submit One</a></small></h4>";
-                        echo "</li>";
-                      }
-                  echo "<li class='list-group-item'>";
-                  echo "<h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
-                  //makeSubmitForm("char" , $char, $tech);
-                  echo "</li>";
-                  echo "</ul>";
-                  echo "</td>";
-                  echo "</div>";
+           <!-- main right col -->
+          <div class="column col-md-10" id="main">
+            <!-- top nav -->
+            <?php navbar(); ?>
+            <!-- /top nav -->
+            <section id="home" data-speed="4" data-type="background">
+              <div class="jumbotron">
+                <div class='header'><?php 
+                if (!$charnotFound){
+                  echo $char; 
                 } else {
-                    echo "<div class='row placeholders'>";
-                    echo "<ul class='list-group chars'>";
-                    foreach ($dataChar as $charRec) {
-                            echo "<li class='list-group-item list-group-item-info'>";
-                            echo "<a href=/characters/" . urlencode($charRec['name']) . ">";
-                            echo $charRec['name'] . "</a></li>";
-                            echo "\n";
+                  echo "Check out one of these guides!";
+                }
+              ?></div>
+              </div>
+            </section>
+            <div class="content-wrapper">
+            <?php 
+              echo "<div class='row'>";
+                echo "<div class='col-md-8'>";
+                echo "<ul class='nav nav-tabs' role='tablist' id='myTab'>";
+                echo "  <li class='active'><a href='#home' role='tab' data-toggle='tab' class='tabz'>General</a></li>";
+                echo "  <li><a href='#data' role='tab' data-toggle='tab' class='tabz'>Data</a></li>";
+                echo "</ul>";
+                  echo "<div class='tab-content'>";
+                  	if (!$charnotFound) {
+                      echo "<div class='tab-pane active' id='home'>";
+                            echo "<ul class='list-group chars'>";
+                            $counter = 0;
+                            if (count($chargifs) > 0) {
+                              foreach ($chargifs as $tmpGif) {
+                                $counter++;
+                                echo "<li class='list-group-item'>";
+                                echo "  <div class='row'>";
+                                echo "    <div class='col-md-11'>";
+                                echo "      <img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
+                                echo "      <h4>Example #" . $counter . "</h4>";
+                                echo "      <span class='text-muted'>" . $tmpGif['description'] . "</span>";
+                                if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
+                                  echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
+                                } else if ($tmpGif['source']) {
+                                  echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
+                                }
+                                echo "    </div>";
+
+                                /* Voting Controls */
+                                echo "    <div class='col-md-1 voteBlock'>";
+                                echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+                                echo "      <hr>";
+                                echo "      <h4>". $tmpGif['score'] . "</h3>";
+                                echo "      <hr>";
+                                echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";
+                                echo "    </div>";
+                                echo "  </div>";
+                                echo " </li>";
+                              }
+                            } else {
+                              echo "<li class='list-group-item'>";
+                              echo  "<h4>Woops! This character has no general gifs! <br><small><a href='/submit.php'>Submit One</a></small></h4>";
+                              echo "</li>";
+                            }
+                          echo "<li class='list-group-item'>";
+                          echo "<h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
+                          echo "</li>";
+                        echo "</ul>";
+                        echo "</div>";
+                        printCharData($moves, $author);
+                      } else {
+                          echo "<div class='row placeholders'>";
+                          echo "<ul class='list-group chars'>";
+                          foreach ($dataChar as $charRec) {
+                                  echo "<li class='list-group-item list-group-item-info'>";
+                                  echo "<a href=/characters/" . urlencode($charRec['name']) . ">";
+                                  echo $charRec['name'] . "</a></li>";
+                                  echo "\n";
+                          }
+                          echo "</ul>";
+                          echo "</div>";
                     }
-                    echo "</ul>";
-                    echo "</div>";
-                  echo "</div>";
-              }
-              echo "</div>";
-              echo "</table>";
-              echo "</div>";
-              echo "</div>";
-              printCharData($moves, $author);
-              echo "</div>";
-              echo "</div>";
-            ?>
+                  ?>
+                  </div>
+                  </div>
                   <div class='col-md-4'>
-                  <td valign='top' class='charinfo'>
                     <?php if (!$charnotFound) { ?>
                       <div class="panel panel-default">
                         <!-- Default panel contents -->
@@ -212,13 +184,11 @@ Questions?
 
                      
 
-                    </td>
                   </div>
-
-                    </tr>
-                  </table>
+                  </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>

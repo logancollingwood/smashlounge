@@ -28,7 +28,6 @@ Questions?
 <!DOCTYPE html>
 <html lang="en">
     <head>
-      <?php analytics(); ?>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,9 +40,6 @@ Questions?
 
       <link href="/css/less/rich.css" rel="stylesheet">
 
-      <style type="text/css">    
-
-      </style>
     </head>
 
   <body>
@@ -55,7 +51,7 @@ Questions?
             <?php sidebar('home'); ?>
 
             <!-- main right col -->
-            <div class="column col-sm-10 col-xs-11" id="main">
+            <div class="column col-md-10" id="main">
                 
                 <!-- top nav -->
                 <?php navbar(); ?>
@@ -146,14 +142,28 @@ Questions?
                             $maxCount = 4;
                             foreach ($activeStreams as $data) {
                               $streamer = $data['channel']['display_name'];
+                              $gameTitle = $data['channel']['game'];
+
                               if ($counter >= $maxCount) break;
-                              echo "<p>";
                               echo "<h4>";
                               echo "<a href='" . $data['channel']['url'] . "' class='theme'>";
                               echo $data['channel']['status'] . "</h4></a>";
-                              echo "<a href=//www.twitch.tv/$streamer>$streamer</a><br>";
-                              echo $data['viewers'] . "  <i class='fa fa-eye theme'></i>";
-                              echo "</p>";
+                              echo "<a href=//www.twitch.tv/$streamer>$streamer";
+                              echo "<img class='streamImg' src='" . $data['channel']['logo'] ."'></img></a>";
+                              echo "<br>";
+                              echo "<small>viewers: </small>" . $data['viewers'];
+                              if (strcmp($gameTitle, "Super Smash Bros. Melee") == 0) {
+                                echo " melee";
+                              } elseif (strcmp($gameTitle, "Super Smash Bros. for Wii U") == 0){
+                                echo " sm4sh";
+                              } elseif (strcmp($gameTitle, "Project M") == 0) {
+                                echo " pm";
+                              } elseif (strcmp($gameTitle, "Smash Bros 64") == 0) {
+                                echo " 64";
+                              }
+                               elseif (strcmp($gameTitle, "Super Smash Bros. Brawl") == 0) {
+                                echo " brawl";
+                              }
                               if ($counter != $maxCount - 1) echo "<hr>";
                               $counter++;
                             }

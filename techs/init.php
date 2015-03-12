@@ -141,7 +141,11 @@ function remove_http($url) {
 
 function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null', $dataName = 'null', $target = '') {
   if ($key === 'char') {
-    echo "<li id='charsAnchor'>";
+    if ($char != '') {
+      echo "<li id='charsAnchor' class='home active'>";
+    } else {
+      echo "<li id='charsAnchor'>";
+    }
     echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownChars'></span>";
     echo "<span class='pagetitle'>characters</span>";
@@ -171,7 +175,11 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "</ul>";
     echo "</div>";
   } else if ($key === 'tech') {
-    echo "<li id='techsAnchor'>";
+    if ($tech != '') {
+      echo "<li id='techsAnchor' class='home active'>";
+    } else {
+      echo "<li id='techsAnchor'>";
+    }
     echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
     echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
     echo "<span class='pagetitle'>techniques</span>";
@@ -190,26 +198,6 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       echo "<a ";
       if (strcasecmp($rec, $tech) == 0) echo "class='activeNav' ";
       echo "href=/techniques/" . urlencode($rec) . ">";
-      echo $rec . "</a></li>";
-      echo "\n";
-    }
-    echo "</ul>";
-    echo "</div>";
-  } else if ($key === 'data') {
-    echo "<li>";
-    echo "<a id='toggler' href='#' data-toggle='collapse' class='active' data-target='#dataz'>";
-    echo "<span class='glyphicon glyphicon-collapse-down pull-left' id='collapseDownDataz'></span>";
-    echo "&nbsp;Data";
-    echo "</a>";
-    echo "<li>";
-    echo "<div id='dataz' class='collapse " . $collapsed . "'>";
-    echo "<ul class='nav nav-list'>";
-    foreach ($data as $rec) {
-      echo "<li ";
-      if (strcasecmp($rec, $dataName) == 0) {
-        echo "class='active'";
-      }
-      echo "><a href=data.php?data=" . urlencode($rec) . ">";
       echo $rec . "</a></li>";
       echo "\n";
     }
@@ -674,24 +662,7 @@ function sidebar($currentPage = '') {
 
   echo '
             <!-- sidebar -->
-            <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
-                <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
-                <ul class="nav" id="navSideToggle">
-                  <li><a href="#" data-toggle="offcanvas" class="visible-xs text-center"><i class="glyphicon glyphicon-chevron-right"></i></a></li>
-                </ul>
-                 
-                <ul class="nav hidden-xs" id="lg-menu">';
-                      if ($currentPage == 'home') {
-                        echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
-                      } else {
-                        echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home sidebarico'></span>&nbsp;home</a></li>";
-                      }
-                    /*<li class="active"><a href="#featured"><i class="glyphicon glyphicon-list-alt"></i> Featured</a></li>
-                    <li><a href="#stories"><i class="glyphicon glyphicon-list"></i> Stories</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-paperclip"></i> Saved</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-refresh"></i> Refresh</a></li>*/
-          echo '</ul>
-                </nav>';
+            <div class="column col-md-2 col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">';
                 echo '<div class="row">';
                 echo '<h1 class="sidebar"><a href="/" class="hvr-underline-from-center">smashlounge</a></h1>';
                 echo "</div>";
@@ -806,13 +777,13 @@ function navbar() {
     </form>
     <ul class="nav navbar-nav">
       <li>
-        <a href="/submit.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Submit</a>
+        <a href="/submit.php" role="button"><i class="glyphicon glyphicon-plus"></i><span> Submit</span></a>
       </li>
       <li>
-        <a href="/donate.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-envelope"></i> Support</a>
+        <a href="/donate.php" role="button"><i class="glyphicon glyphicon-envelope"></i><span> Support</span></a>
       </li>
       <li>
-        <a href="/about.php" role="button" data-toggle="modal"><i class="glyphicon glyphicon-flag"></i> About</a>
+        <a href="/about.php" role="button"><i class="glyphicon glyphicon-flag"></i><span> About</span></a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

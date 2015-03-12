@@ -128,7 +128,6 @@ function printCharData($moves, $author) {
         }
         echo "</div>";
       }
-
       echo "</div>";
 
       echo "<div class='panel-footer frameData'>"; 
