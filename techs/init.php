@@ -787,8 +787,14 @@ function navbar() {
       </button>
       <a href="/" class="navbar-brand gccontroller hvr-trim"><img src="/img/assets/gccontroller.png" style="width:30px;height:20px;bottom:3px;"/></a>
     </div>
+
     <nav class="collapse navbar-collapse" role="navigation">
-    <form class="navbar-form navbar-left search">
+    <div class="navbar-header">
+      <div class="small-logo-container">
+        <a class="small-logo" href="#">sl</a>
+      </div>
+    </div>
+    <form class="navbar-form navbar-left search" style="margin-left: 2%;">
         <div class="input-group input-group-sm" style="width:300px;">
           <input type="text" class="form-control search" placeholder="Search for..." id="searchBar">
           <ul class="results" id="searchBarResults">

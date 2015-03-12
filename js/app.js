@@ -62,16 +62,40 @@ $(document).ready(function() {
      // hide .navbar first
     /*
     $("#navbar").hide();
-
+    */
     $("#main").scroll(function () {
-        // set distance user needs to scroll before we start fadeIn
-        if ($(this).scrollTop() > 100) {
-            $('.navbar').fadeIn();
-        } else {
-            $('.navbar').fadeOut();
-        }
+
+      var navbarColor = "26,188,156";//color attr for rgba
+      var smallLogoHeight = $('.small-logo').height();
+      var bigLogoHeight = $('.header').height();
+      
+      
+      var smallLogoEndPos = 0;
+      var smallSpeed = (smallLogoHeight / bigLogoHeight);
+      
+      var ySmall = ($("#main").scrollTop() * smallSpeed); 
+      
+      var smallPadding = navbarHeight - ySmall;
+      if (smallPadding > navbarHeight) { smallPadding = navbarHeight + 3; }
+      if (smallPadding < smallLogoEndPos) { smallPadding = smallLogoEndPos + 3; }
+      if (smallPadding < 0) { smallPadding = 3; }
+      
+      $('.small-logo-container ').css({ "padding-top": smallPadding});
+      
+      var navOpacity = ySmall / smallLogoHeight; 
+      if  (navOpacity > 1) { navOpacity = 1; }
+      if (navOpacity < 0 ) { navOpacity = 0; }
+      var navBackColor = 'rgba(' + navbarColor + ',' + navOpacity + ')';
+      $('.navbar').css({"background-color": navBackColor});
+      
+      var shadowOpacity = navOpacity * 0.4;
+      if ( ySmall > 1) {
+        $('.navbar').css({"box-shadow": "0 2px 3px rgba(0,0,0," + shadowOpacity + ")"});
+      } else {
+        $('.navbar').css({"box-shadow": "none"});
+      }
     });
-	*/
+	
 
 	// Live Search
   	// On Search Submit and Get Results
@@ -114,4 +138,7 @@ $(document).ready(function() {
    	$("#searchBarResults").on("click", function(e) {
    		e.stopPropagation();
    	});
+    var navbarHeight = $('.navbar').height(); 
+
+
 });
