@@ -28,11 +28,12 @@ Questions?
 <!DOCTYPE html>
 <html lang="en">
     <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="A compendium for Super Smash Brothers">
-      <meta name="author" content="smashlounge">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SmashLounge: Super Smash Brothers techniques">
+    <meta name="author" content="smashlounge">
+    
       <title>Smash Lounge</title>
 
       <!-- Main Dependencies -->
