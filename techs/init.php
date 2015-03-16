@@ -1022,25 +1022,24 @@ function getFrameDataForGif($id) {
 
 /**
  * Prints a specified gif using a standard layout.
-
  * @param             gfyObject $gfy The structure
  * @param Optional    count $counter optional counter for gifs on page
-
  * representing the gif. Should contain
-
  * $gfyObject['id'] = the gfycat ID
  * $gfyObject['description'] = the description of the gfy
  * $gfyObject['source'] = the gfyobject source
  * $gfyObject['score'] = the score of the gif
-
-
-
  * @return null
  */
 function printGfy($gfyObject, $count) {
 
   $frameData = getFrameDataForGif($gfyObject['id']);
-
+  $source = '';
+  if ($gfyObject['source'] && filter_var($gfyObject['source'], FILTER_VALIDATE_URL)) {
+    $source = '<a href="' . $gfyObject['source'] . '">source</a>'; 
+  } else if ($gfyObject['source']) {
+    $source = 'Courtesy of ' . $gfyObject['source'];
+  }
   /*
   if ($frameData != '') {
 
@@ -1053,8 +1052,9 @@ function printGfy($gfyObject, $count) {
   echo '  <div class="row">';
   echo '    <div class="col-md-2 voteBlock">';
   echo "       <span class='exNum'>";
-  echo          '&35; $count+1;';
+  echo          $count+1;
   echo "       </span>";
+  echo '        <hr>';
   echo '       <br>';
   echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
   echo "       <h4>". $gfyObject['score'] . "</h4>";
@@ -1062,6 +1062,10 @@ function printGfy($gfyObject, $count) {
   echo '    </div>';
   echo '    <div class="col-md-10">';
   echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
+  echo '      <div class="gfyFooter">';
+  echo '        <div class="gfyDescription">' . $gfyObject['description'] . '</div>';
+  echo '        <div class="gfySource">' . $source . '</div>';
+  echo '      </div>';
   echo '    </div>';
   echo '  </div>';
   echo '</div>';
