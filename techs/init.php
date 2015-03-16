@@ -1050,7 +1050,7 @@ function printGfy($gfyObject, $count) {
 
   echo '<div class="gfyTainer">';
   echo '  <div class="row">';
-  echo '    <div class="col-md-2 voteBlock">';
+  echo '    <div class="col-md-2 col-sm-2 voteBlock">';
   echo "       <span class='exNum'>";
   echo          $count+1;
   echo "       </span>";
@@ -1060,7 +1060,7 @@ function printGfy($gfyObject, $count) {
   echo "       <h4>". $gfyObject['score'] . "</h4>";
   echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
   echo '    </div>';
-  echo '    <div class="col-md-10">';
+  echo '    <div class="col-md-10 col-sm-2">';
   echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
   echo '      <div class="gfyFooter">';
   echo '        <div class="gfyDescription">' . $gfyObject['description'] . '</div>';
