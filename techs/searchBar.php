@@ -16,14 +16,12 @@
 	$html = '';
 	$html .= '<li class="result">';
 	$html .= '<div class="row">';
-	$html .= '<div class="col-md-6">';
-	$html .= '<p class="descr"><small>no sponsor</small></p>';
-	$html .= '</div>';
-	$html .= '<div class="col-md-6">';
 	$html .= '<a href="urlString">';
-	$html .= 'nameString';
-	$html .= '</a>';
+	$html .= '<div class="searchButton">';
+	$html .= '<p class="searchDescr"><small>no sponsor</small></p>';
+	$html .= '<p class="searchName">nameString</p>';
 	$html .= '</div>';
+	$html .= '</a>';
 	$html .= '</div>';
 	$html .= '</li>';
 
@@ -33,17 +31,16 @@
 	// Check Length More Than One Character
 	if (strlen($search_string) >= 1 && $search_string !== ' ') {
 
-		// Build Query
-		$query = 'SELECT users.username, userinfo.sponsor FROM users LEFT JOIN userinfo on users.id=userinfo.userid
-		WHERE users.username 
+		$query = 'SELECT charinfo.name, charinfo.guide FROM charinfo
+		WHERE charinfo.name 
 		LIKE "%'.$search_string.'%" 
-		OR users.username LIKE "%'.$search_string.'%"';
+		OR charinfo.name LIKE "%'.$search_string.'%"';
 
 		if (!$result = $mysqli->query($query)) {
 		  die('Invalid query: ' . $mysqli->error);
 		}
 		foreach($result as $row) {
-		    $result_array["users"][] = $row;
+		    $result_array["chars"][] = $row;
 		}
 
 		$query = 'SELECT techs.tech, techs.description FROM techs
@@ -58,37 +55,40 @@
 		    $result_array["techs"][] = $row;
 		}
 
-		$query = 'SELECT charinfo.name, charinfo.guide FROM charinfo
-		WHERE charinfo.name 
+
+		$query = 'SELECT users.username, userinfo.sponsor FROM users LEFT JOIN userinfo on users.id=userinfo.userid
+		WHERE users.username 
 		LIKE "%'.$search_string.'%" 
-		OR charinfo.name LIKE "%'.$search_string.'%"';
+		OR users.username LIKE "%'.$search_string.'%"';
 
 		if (!$result = $mysqli->query($query)) {
 		  die('Invalid query: ' . $mysqli->error);
 		}
 		foreach($result as $row) {
-		    $result_array["chars"][] = $row;
+		    $result_array["users"][] = $row;
 		}
+		
 
 		// Check If We Have Results
 		if (isset($result_array)) {
-			if (isset($result_array["users"])) {
-				$final = "<p class='searchTitle'><small>users</small></p>";
+			if (isset($result_array["chars"])){
+				$final = "<p class='searchTitle'><small>chars</small></p>";
 				$final .= "<hr>";
 				$counter = 0;
-
-				foreach ($result_array["users"] as $users) {
+				foreach ($result_array["chars"] as $char) {
 					if ($counter > $numEntities) break;
-					$name = $users["username"];
-					$sponsor = $users["sponsor"];
-					$display_url = "/users/" . urlencode($name);
+					$name = $char["name"];
+					$description = $char["guide"];
+					$description = substr($description, 0, 50);
+					$description .= "...";
+					$display_url = "/characters/" . urlencode($name);
 
 					// Insert Name
 					$output = str_replace('nameString', $name, $html);
 
 					// Insert Sponsor
-					if ($sponsor != "") {
-						$secondout = str_replace('no sponsor', $sponsor, $output);
+					if ($description != "") {
+						$secondout = str_replace('no sponsor', $description, $output);
 					} else {
 						$secondout = str_replace('no sponsor', '', $output);
 					}
@@ -133,24 +133,23 @@
 				}
 				echo($final);
 			}
-			if (isset($result_array["chars"])){
-				$final = "<p class='searchTitle'><small>chars</small></p>";
+			if (isset($result_array["users"])) {
+				$final = "<p class='searchTitle'><small>users</small></p>";
 				$final .= "<hr>";
 				$counter = 0;
-				foreach ($result_array["chars"] as $char) {
+
+				foreach ($result_array["users"] as $users) {
 					if ($counter > $numEntities) break;
-					$name = $char["name"];
-					$description = $char["guide"];
-					$description = substr($description, 0, 50);
-					$description .= "...";
-					$display_url = "/characters/" . urlencode($name);
+					$name = $users["username"];
+					$sponsor = $users["sponsor"];
+					$display_url = "/users/" . urlencode($name);
 
 					// Insert Name
 					$output = str_replace('nameString', $name, $html);
 
 					// Insert Sponsor
-					if ($description != "") {
-						$secondout = str_replace('no sponsor', $description, $output);
+					if ($sponsor != "") {
+						$secondout = str_replace('no sponsor', $sponsor, $output);
 					} else {
 						$secondout = str_replace('no sponsor', '', $output);
 					}
@@ -164,30 +163,7 @@
 				}
 				echo($final);
 			}
-			/*
-		    foreach ($result_array as $key => $result) {
-		        // Output
-        		$display_name = $result[0];
-				$display_url = $key . $result[$];
 
-
-				// Insert Name
-				$output = str_replace('nameString', $display_name, $html);
-
-				// Insert Sponsor
-				if (isset($result['sponsor'])) {
-					$secondout = str_replace('no sponsor', $result['sponsor'], $output);
-				} else {
-					$secondout = str_replace('no sponsor', '', $output);
-				}
-
-				// Insert URL
-				$final = str_replace('urlString', $display_url, $secondout);
-
-				// Output
-				echo($final);
-		    }
-		    */
 		} else {
 	    	// Format No Results Output
 

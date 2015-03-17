@@ -1,8 +1,12 @@
-/* Dark - Primary Color */
 
-@theme: #1abc9c;
+//BASE COLOR 
+//http://www.0to255.com/1abc9c
+@base: #18ad90;
+
+//this is one shade darker than base
+@highlight: #1abc9c;
+
 /* Light - Highlight Color */
-
 @flair-color: #00bcd4;
 
 @import "_gifcontainers";
@@ -94,7 +98,7 @@ h1 {
 	margin-top:32px;
 }
 hr.login {
-    border-top: 2px solid @theme;
+    border-top: 2px solid @highlight;
     width: 90%;
     margin-top: 0px;
 }
@@ -116,7 +120,7 @@ hr.login {
 .navbar-sl {
     margin-left: 2px;
     border-width:0;
-	background-color:@theme;
+	background-color:@highlight;
     color:#ffffff;
     font-family:arial,sans-serif;
     top:0;
@@ -245,7 +249,7 @@ h1,h2,h3 {
    background-color:#fff;
 }
 .badge:hover, .badge-inverse{
-   background-color:@theme;
+   background-color:@highlight;
    color:#fff;
 }
 .tier {
@@ -322,7 +326,7 @@ small.text-muted {
   }
   .navbar-sl {
     margin-left: 2px;
-  	background-color:@theme;
+  	background-color:@highlight;
     top:0;
     width:100%;
     position:relative;
@@ -361,7 +365,10 @@ small.text-muted {
 	padding-top:15px;
 	background-color: #555555;
 }
-
+#sidebar .list-dd a {
+    margin-left: 0px;
+    padding-left: 34px;
+}
 #sidebar, #sidebar a, #sidebar-footer a {
     opacity: 1;
     color:#ffffff;
@@ -393,7 +400,7 @@ small.text-muted {
     background-color: #555555;
 }
 .nav-list {
-    border-left: 5px solid @theme;
+    border-left: 5px solid @highlight;
     transition: all 0.5s ease;
     transition-delay: 80ms;
     -webkit-transition-delay: 80ms;
@@ -470,7 +477,7 @@ a.bttn.login {
     vertical-align:middle;
 }
 a:hover {
-    color: @theme;
+    color: @highlight;
 }
 
 
@@ -599,6 +606,7 @@ input {
 }
 
 .search .results a {
+    height: 75px;
     display: block;
     position: relative;
     margin: 0 -1px;
@@ -622,21 +630,20 @@ input {
     top: 50%;
     right: 10px;
     margin-top: -9px;
-    background: url(../images/arrow.png) 0 0 no-repeat;
 }
 
 .search .results a:hover {
     text-decoration: none;
     color: #fff;
-    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
-    border-color: #2380dd #2179d5 #1a60aa;
+    text-shadow: 0 -1px rgba(255, 255, 255, 0.3);
+    border-color: @base @highlight @base;
     background-color: #338cdf;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #59aaf4), color-stop(100%, #338cdf));
-    background-image: -webkit-linear-gradient(top, #59aaf4, #338cdf);
-    background-image: -moz-linear-gradient(top, #59aaf4, #338cdf);
-    background-image: -ms-linear-gradient(top, #59aaf4, #338cdf);
-    background-image: -o-linear-gradient(top, #59aaf4, #338cdf);
-    background-image: linear-gradient(top, #59aaf4, #338cdf);
+    background-image: -webkit-linear-gradient(top, @highlight, @base);
+    background-image: -moz-linear-gradient(top, @highlight, @base);
+    background-image: -ms-linear-gradient(top, @highlight, @base);
+    background-image: -o-linear-gradient(top, @highlight, @base);
+    background-image: linear-gradient(top, @highlight, @base);
     -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
     -moz-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
     -ms-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
@@ -662,7 +669,6 @@ input {
 }
 #searchBarResults p {
     font-family: 'Roboto';
-    color: #000;
 }
 #searchBarResults p.searchTitle {
     color: #bbb;
@@ -671,6 +677,22 @@ input {
     margin-top: 3%;
     font-size: 16px;
 }
+.searchDescr {
+    width: 80%;
+    float: left;
+}
+
+.searchName {
+    width: 20%;
+    text-overflow: none;
+    float: right;    
+}
+.searchButton {
+    border-radius: 10px;
+    height: 10%;
+    width: 100%;
+}
+
 
 .content-wrapper {
     padding-top: 2%;
