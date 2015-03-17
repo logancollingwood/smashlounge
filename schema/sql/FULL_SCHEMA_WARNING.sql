@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Mar 17, 2015 at 07:27 AM
+-- Generation Time: Mar 17, 2015 at 07:29 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `attacks`
 --
 
+DROP TABLE IF EXISTS `attacks`;
 CREATE TABLE `attacks` (
 `id` int(11) NOT NULL,
   `charid` int(11) NOT NULL,
@@ -686,6 +687,7 @@ INSERT INTO `attacks` (`id`, `charid`, `gameid`, `description`, `inputs`, `links
 -- Table structure for table `charinfo`
 --
 
+DROP TABLE IF EXISTS `charinfo`;
 CREATE TABLE `charinfo` (
 `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
@@ -733,6 +735,7 @@ INSERT INTO `charinfo` (`id`, `name`, `tierdata`, `weight`, `fallspeed`, `guide`
 -- Table structure for table `chartech`
 --
 
+DROP TABLE IF EXISTS `chartech`;
 CREATE TABLE `chartech` (
 `id` int(11) NOT NULL,
   `charid` int(11) NOT NULL,
@@ -764,6 +767,7 @@ INSERT INTO `chartech` (`id`, `charid`, `techid`) VALUES
 -- Table structure for table `framedatajson`
 --
 
+DROP TABLE IF EXISTS `framedatajson`;
 CREATE TABLE `framedatajson` (
 `id` int(11) NOT NULL,
   `gifid` int(11) NOT NULL,
@@ -784,6 +788,7 @@ INSERT INTO `framedatajson` (`id`, `gifid`, `json_text`) VALUES
 -- Table structure for table `framedatamoves`
 --
 
+DROP TABLE IF EXISTS `framedatamoves`;
 CREATE TABLE `framedatamoves` (
 `id` int(11) NOT NULL,
   `name` varchar(90) NOT NULL,
@@ -852,6 +857,7 @@ INSERT INTO `framedatamoves` (`id`, `name`, `description`) VALUES
 -- Table structure for table `friends`
 --
 
+DROP TABLE IF EXISTS `friends`;
 CREATE TABLE `friends` (
 `id` int(50) NOT NULL,
   `myid` int(50) NOT NULL,
@@ -864,6 +870,7 @@ CREATE TABLE `friends` (
 -- Table structure for table `gifs`
 --
 
+DROP TABLE IF EXISTS `gifs`;
 CREATE TABLE `gifs` (
 `id` int(11) NOT NULL,
   `typeid` int(11) NOT NULL DEFAULT '1',
@@ -1670,6 +1677,7 @@ INSERT INTO `gifs` (`id`, `typeid`, `dataid`, `source`, `submittedby`, `url`, `d
 -- Table structure for table `groups`
 --
 
+DROP TABLE IF EXISTS `groups`;
 CREATE TABLE `groups` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -1691,6 +1699,7 @@ INSERT INTO `groups` (`id`, `name`, `permissions`, `created_at`, `updated_at`) V
 -- Table structure for table `locals`
 --
 
+DROP TABLE IF EXISTS `locals`;
 CREATE TABLE `locals` (
 `id` int(1) NOT NULL,
   `region` int(1) DEFAULT NULL,
@@ -1895,6 +1904,7 @@ INSERT INTO `locals` (`id`, `region`, `profileid`, `name`, `latitude`, `longitud
 -- Table structure for table `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
@@ -1906,6 +1916,7 @@ CREATE TABLE `migrations` (
 -- Table structure for table `moves`
 --
 
+DROP TABLE IF EXISTS `moves`;
 CREATE TABLE `moves` (
 `id` int(11) NOT NULL,
   `name` varchar(35) NOT NULL,
@@ -1931,6 +1942,7 @@ INSERT INTO `moves` (`id`, `name`, `description`) VALUES
 -- Table structure for table `submissions`
 --
 
+DROP TABLE IF EXISTS `submissions`;
 CREATE TABLE `submissions` (
 `id` int(11) NOT NULL,
   `url` varchar(90) NOT NULL,
@@ -1946,6 +1958,7 @@ CREATE TABLE `submissions` (
 -- Table structure for table `submissionsgroup`
 --
 
+DROP TABLE IF EXISTS `submissionsgroup`;
 CREATE TABLE `submissionsgroup` (
 `id` int(11) NOT NULL,
   `name` varchar(130) NOT NULL,
@@ -1962,6 +1975,7 @@ CREATE TABLE `submissionsgroup` (
 -- Table structure for table `submissionstech`
 --
 
+DROP TABLE IF EXISTS `submissionstech`;
 CREATE TABLE `submissionstech` (
 `id` int(11) NOT NULL,
   `name` varchar(90) NOT NULL,
@@ -1975,6 +1989,7 @@ CREATE TABLE `submissionstech` (
 -- Table structure for table `submissionstournament`
 --
 
+DROP TABLE IF EXISTS `submissionstournament`;
 CREATE TABLE `submissionstournament` (
 `id` int(11) NOT NULL,
   `title` varchar(90) NOT NULL,
@@ -1997,6 +2012,7 @@ CREATE TABLE `submissionstournament` (
 -- Table structure for table `techs`
 --
 
+DROP TABLE IF EXISTS `techs`;
 CREATE TABLE `techs` (
 `id` int(11) NOT NULL,
   `tech` varchar(32) NOT NULL,
@@ -2045,6 +2061,7 @@ INSERT INTO `techs` (`id`, `tech`, `description`, `smashwiki`, `inputs`) VALUES
 -- Table structure for table `throttle`
 --
 
+DROP TABLE IF EXISTS `throttle`;
 CREATE TABLE `throttle` (
 `id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
@@ -2258,6 +2275,7 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 -- Table structure for table `upcoming`
 --
 
+DROP TABLE IF EXISTS `upcoming`;
 CREATE TABLE `upcoming` (
 `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
@@ -2295,6 +2313,7 @@ INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `en
 -- Table structure for table `userinfo`
 --
 
+DROP TABLE IF EXISTS `userinfo`;
 CREATE TABLE `userinfo` (
 `id` int(11) NOT NULL,
   `image` varchar(130) NOT NULL,
@@ -2326,6 +2345,7 @@ INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
 `id` int(10) unsigned NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -2358,6 +2378,7 @@ INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `acti
 -- Table structure for table `users_groups`
 --
 
+DROP TABLE IF EXISTS `users_groups`;
 CREATE TABLE `users_groups` (
 `id` int(10) unsigned NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
