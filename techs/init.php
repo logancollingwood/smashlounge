@@ -1053,7 +1053,7 @@ function printGfy($gfyObject, $count) {
   echo '  <div class="row">';
   echo '    <div class="col-md-2 voteBlock">';
   echo "       <span class='exNum'>";
-  echo          $count+1;
+  echo          '&35; $count+1;
   echo "       </span>";
   echo '       <br>';
   echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";

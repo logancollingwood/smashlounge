@@ -76,12 +76,12 @@ Questions?
               echo "<div class='row'>";
                 echo "<div class='col-md-8'>";
                 echo "<ul class='nav nav-tabs' role='tablist' id='myTab'>";
-                echo "  <li class='active'><a href='#home' role='tab' data-toggle='tab' class='tabz'>General</a></li>";
+                echo "  <li class='active'><a href='#gener' role='tab' data-toggle='tab' class='tabz'>General</a></li>";
                 echo "  <li><a href='#data' role='tab' data-toggle='tab' class='tabz'>Data</a></li>";
                 echo "</ul>";
                   echo "<div class='tab-content'>";
                   	if (!$charnotFound) {
-                      echo "<div class='tab-pane active' id='home'>";
+                      echo "<div class='tab-pane active' id='gener'>";
                             echo "<ul class='list-group chars'>";
                             $counter = 0;
                             if (count($chargifs) > 0) {
