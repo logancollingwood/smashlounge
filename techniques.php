@@ -1,9 +1,10 @@
 <?php
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
-  $submit = isset($_GET['submit'])       ? trim($_GET['submit'])       : "";
+
   require("techs/init.php");
   require("techs/initTechs.php");
   require_once("techs/controller.php");
+
 ?>
 <!--
 
@@ -33,80 +34,84 @@ Questions?
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="SmashLounge: Super Smash Brothers techniques">
+    <meta name="description" content="A compendium for Super Smash Brothers">
     <meta name="author" content="smashlounge">
 
 
     <title>Smash Lounge: <?php echo $tech ?></title>
 
-    <?php 
-      printLibraries();
-    ?>
+    <!-- Main Dependencies -->
+    <?php printNewLibraries(); ?>
 
-    <!-- Custom styles for this template -->
-    <link href="/css/dashboard_mobile.css" rel="stylesheet">
+    <link href="/css/less/rich.css" rel="stylesheet">
 
-
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
     
   </head>
   <body>
-   <?php
-      createNavBar()
-    ?>
+    <div class="wrapper">
+      <div class="box">
+        <div class="row row-offcanvas row-offcanvas-left">
 
-    <div class="container-fluid">
-        <div class="row">
-
-          <div class="col-sm-3 col-md-2 sidebar">
-            <?php makeSidebar($loggedIn, 'techs') ?>
-          </div>
+       
+          <?php sidebar('techs'); ?>
     
           
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <?php //printBetaMast(); ?>
-            <div class="jumbotron banner">
-              <h1 class="lead"><?php 
-                if ($techInfo["tech"]){
-                  echo $techInfo["tech"]; 
-                } else {
-                  echo "Check out one of these techs!";
-                }
-              ?>
-              </h1>
-              <p class="fifty">
-              <?php
-                if ($techInfo["description"] != "") {
-                 echo $techInfo["description"];
-                }
-              ?>
-              </p>
-              <?php
-               if (!empty($techInfo["inputs"]))  
-               echo "<p class='fifty2'>Inputs: <br />" . $techInfo["inputs"] . "</p>";
-               if ($techInfo["smashwiki"] != ''); 
-               echo "<p><a class='btn btn-primary btn-lg bttn' role='button' href='" . $techInfo["smashwiki"] . "'>Learn More</a></p>";
-              ?>
-            </div>
-            <div class='row'>
-            <div class='col-md-8'>
+          <!-- main right col -->
+          <div class="column col-md-10" id="main">
+
+            <!-- top nav -->
+            <?php navbar(); ?>
+            <!-- /top nav -->
+
+
+            <section id="home" data-speed="4" data-type="background">
+              <div class="jumbotron">
+                <div class='header'>
+                  <?php 
+                    if ($techInfo["tech"]){
+                      echo $techInfo["tech"]; 
+                    } else {
+                      echo "Check out one of these techs!";
+                    }
+                  ?>
+                </div>
+                <div class="blur">
+                  <div class="description">                   
+                    <?php
+                      if ($techInfo["description"] != "") {
+                       echo $techInfo["description"];
+                      }
+                    ?>
+                  </div>
+                  <div class="mast">
+                    <br>
+                    <?php
+                     if (!empty($techInfo["inputs"]))  
+                      echo "<p class='fifty2'>Inputs: <br />" . $techInfo["inputs"] . "</p>";
+                     if ($techInfo["smashwiki"] != ''); 
+                      echo "<p><a class='button button-inline button-large button-info' role='button' href='" . $techInfo["smashwiki"] . "'>Learn More</a></p>";
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="content-wrapper">
+              <div class="row">
               <?php 
               
 
                 if (!$notFound) {
-                  echo "<div class='row centered'>";
-                  $counter = 0;
+                  echo "<div class='col-md-8'>";
+
                   if ($gifs) {
-                    echo "<ul class='list-group techzz'>";
+                    $counter = 0;
                     foreach ($gifs as $tmpGif) {
+
+                      printGfy($tmpGif, $counter);
+                      
+                      echo "<hr>";
+                      /*
                       echo "<li class='list-group-item'>";
                       $frameData = getFrameDataForGif($tmpGif['id']);
 
@@ -144,22 +149,19 @@ Questions?
                           }
                           //echo  "<span class='badge'>". $counter . "</span>";
                         }
-                      $counter++;
                       echo "</li>";
+                      */
+                      $counter++;
                     }
-
+                    /*
                     echo "<li class='list-group-item'>";
                     echo "<h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
                     //makeSubmitForm("char" , $char, $tech);
                     echo "</li>";
-                    if ($submit) {
-                      alertMSG($submit);
-                    }
-                  } else {
-                    echo "<div class='well'>";
-                    echo "  <h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
-                    echo "</div>";
+                    */
+
                   }
+
                 } else {
                   echo "<ul class='list-group'>";
                   foreach ($dataTech as $techRec) {
@@ -170,11 +172,10 @@ Questions?
                   }
                 }
                   echo "</ul>";
-                  echo "</div>";
-                
+
 
                 ?>
-              </div>
+                </div>
                 <div class='col-md-4'>
                   <div class='well'>
                     <div id="disqus_thread"></div>
