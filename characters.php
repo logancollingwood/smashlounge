@@ -60,7 +60,7 @@ Questions?
             <!-- top nav -->
             <?php navbar(); ?>
             <!-- /top nav -->
-            <section id="home" data-speed="4" data-type="background">
+            <section id="banner" data-speed="4" data-type="background">
               <div class="jumbotron">
                 <div class='header'><?php 
                 if (!$charnotFound){

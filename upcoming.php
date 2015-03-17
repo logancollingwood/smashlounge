@@ -9,16 +9,6 @@
   require("techs/init.php");
   require("techs/initUpcoming.php");
   require("techs/twitch.php");
-  require_once("techs/sentry.php");
-
-
-    $loggedIn = false;
-    if (Sentry::check())
-    {
-        $loggedIn = true;
-        $user = Sentry::getUser();
-    }
-
 
 ?>
 <!--
@@ -48,8 +38,8 @@ Questions?
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A compendium for Super Smash Bros.">
-    <meta name="author" content="">
+    <meta name="description" content="SmashLounge: Super Smash Brothers techniques">
+    <meta name="author" content="smashlounge">
 
 
     <title>Smash Lounge: Upcoming Events</title>
@@ -57,58 +47,50 @@ Questions?
     
 
 
-    
-    <?php 
-      printLibraries();
-    ?>
+    <!-- Main Dependencies -->
+    <?php printNewLibraries(); ?>
 
-    <!-- Custom styles for this template -->
-    <link href="/css/dashboard_mobile.css" rel="stylesheet">
-    <link href="/css/calendar.css" rel="stylesheet">
+    <link href="/css/less/rich.css" rel="stylesheet">
 
-
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
   </head>
   <body>
+    <div class="wrapper">
+      <div class="box">
 
-    <?php
-      createNavBar();
-    ?>
+        <!-- top nav -->
+        <?php navbar(); ?>
+        <!-- /top nav -->
+        
+        <div class="row row-offcanvas row-offcanvas-left">
 
+          <?php sidebar('upcoming'); ?>
 
-    <div class='container-fluid'>
-      <div class="col-sm-3 col-md-2 sidebar">
-        <?php makeSidebar($loggedIn, 'upcoming') ?>
-      </div>
+            <!-- main right col -->
+            <div class="column col-md-10" id="main">
+                
 
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <?php //printBetaMast(); ?>
-          <div class='jumbotron banner'>
-            <div class='row'>
-              <?php 
-                if (!$hasTournament) { 
-                  echo "<h1 class='lead'>Upcoming events</h1>";
-                } else {
-                  echo "<div class='col-md-1 vcenter'>";
-                    echo "<a href='/upcoming.php'><i class='fa fa-angle-left fa-4x'></i></a>";
-                  echo "</div>";
-                  echo "<div class='col-md-8 vcenter'>";
-                    echo "<h1 class='lead'>$tournament</h1>";
-                  echo "</div>";
-                  echo "<div class='col-md-3 vcenter'>";
-                    echo "<h1><anchor>" . date("F jS", strtotime($startDate))  . " - " . date("F jS", strtotime($endDate)) . "</anchor></h2>";
-                  echo "</div>";
-                }
-              ?>
-            </div>
-          </div>
-       
+                <section id="banner" data-speed="4" data-type="background">
+                  <div class="jumbotron">
+                    <div class='header'>upcoming</div>
+                    <div class="blur">
+                      <hr>
+                      <div class="description">
+                        <?php 
+                          if (!$hasTournament) { 
+                            echo "scout upcoming events";
+                          } else {
+                            echo $tournament;
+                          }
+                        ?>
+                      </div>
+                      <hr>
+                      <div class="mast">
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <div class="content-wrapper">
 
         <div class='row'>
 
@@ -118,13 +100,13 @@ Questions?
             <?php if (!$hasTournament) { ?>
 
 
-              <div class='well'>
+
                 <!-- NAV -->
                 <div class='page-header'>
                   <div class='row'>
 
                     <div class='col-md-8'>
-                      <h3></h3>
+                      <h3 class="month"></h3>
                     </div>
 
                     <div class='col-md-4'>
@@ -150,7 +132,7 @@ Questions?
 
                 </div>
                 <div id='calendar'></div>
-              </div>
+
 
             <!-- FOR TOURNAMENT SPECIFIC HANDLER -->
             <?php } else { 

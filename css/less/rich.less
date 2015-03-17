@@ -13,6 +13,7 @@
 @import "_jumbotron";
 @import "_panels";
 @import "_buttons";
+@import "_calendar";
 
 /* custom template */
 html, body {
@@ -114,18 +115,15 @@ hr.login {
 .navbar-brand .gccontroller {
     color: #fff;
 }
-.navbar-brand .gccontroller:hover {
-    color: #000;
-}
 .navbar-sl {
-    margin-left: 2px;
+    width: 83.3%;
+    margin-left: 16.7%;
     border-width:0;
 	background-color:@highlight;
     color:#ffffff;
     font-family:arial,sans-serif;
     top:0;
     position:fixed;
-    width:inherit;
 }
 .navbar-right { 
     margin-right: 0px;
@@ -175,6 +173,7 @@ hr.login {
 
 
 #main {
+   padding-top: 50px;
    padding-left:0;
    padding-right:0;
 }
@@ -262,9 +261,7 @@ h1,h2,h3 {
 .page-header {
   margin-top: 55px;
   padding-top: 9px;
-  border-top:1px solid #eeeeee;
   font-weight:700;
-  text-transform:uppercase;
   letter-spacing:2px;
 }
 
@@ -396,9 +393,7 @@ small.text-muted {
     margin-left: 15%;
 }
 
-.nav>li>a:focus, .nav>li>a:hover {
-    background-color: #555555;
-}
+
 .nav-list {
     border-left: 5px solid @highlight;
     transition: all 0.5s ease;

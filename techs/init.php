@@ -1032,6 +1032,7 @@ function getFrameDataForGif($id) {
  * @return null
  */
 function printGfy($gfyObject, $count) {
+  $num = $count+1;
 
   $frameData = getFrameDataForGif($gfyObject['id']);
   $source = '';
@@ -1052,7 +1053,8 @@ function printGfy($gfyObject, $count) {
   echo '  <div class="row">';
   echo '    <div class="col-md-2 col-sm-2 voteBlock">';
   echo "       <span class='exNum'>";
-  echo          $count+1;
+  echo          '#';
+  echo          $num;
   echo "       </span>";
   echo '        <hr>';
   echo '       <br>';

@@ -46,7 +46,10 @@ Questions?
   <body>
       <div class="wrapper">
         <div class="box">
-        <div class="row row-offcanvas row-offcanvas-left">
+          <!-- top nav -->
+          <?php navbar(); ?>
+          <!-- /top nav -->
+          <div class="row row-offcanvas row-offcanvas-left">
                       
           
             <?php sidebar('home'); ?>
@@ -54,17 +57,14 @@ Questions?
             <!-- main right col -->
             <div class="column col-md-10" id="main">
                 
-                <!-- top nav -->
-                <?php navbar(); ?>
-                <!-- /top nav -->
 
-                <section id="home" data-speed="4" data-type="background">
+                <section id="banner" data-speed="4" data-type="background">
                   <div class="jumbotron">
                     <div class='header'>smashlounge</div>
                     <div class="blur">
                       <hr>
                       <div class="description">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br></div>
-                          <hr>
+                      <hr>
                       <div class="mast">
                         <?php
                           if ($displayChar) {
