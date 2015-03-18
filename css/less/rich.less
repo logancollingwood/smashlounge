@@ -322,7 +322,7 @@ small.text-muted {
     position:relative;
   }
   .navbar-sl {
-    margin-left: 2px;
+    margin-left: 0px;
   	background-color:@highlight;
     top:0;
     width:100%;
@@ -701,7 +701,25 @@ input {
 }
 
 
+.nav-tabs {
+    border-bottom: 1px solid @highlight;
+    margin-bottom: 2%
+}
+.nav-tabs>li>a {
+    color: #fff;
+}
+.nav-tabs>li>a:hover {
+    color: #000;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #fff;
+    background-color: @base;
+    border: none;
+}
 
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: transparent;
+}
 /*
     Streams
 */
@@ -712,4 +730,10 @@ input {
 .gameTitle {
     border-left: 1px solid #eee;
     margin-left: 10px;
+}
+
+.charIco {
+  float: left;
+  margin-left: 5%;
+  margin-top: 25px;
 }

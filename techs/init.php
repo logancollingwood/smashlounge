@@ -1074,5 +1074,19 @@ function printGfy($gfyObject, $count) {
 
 }
 
+function printCharImage($char) {
+  $pathToImage = "/img/Characters/";
+  $urlPattern = "HeadSSBM.png";
+  $char = clean($char);
+  $fullSource = $pathToImage . urlencode($char) . $urlPattern;
+
+  echo '<img class="charIco" src="' .$fullSource . '" />';
+}
+
+function clean($string) {
+   $string = str_replace(' ', '', $string); // Replaces all spaces with hyphens.
+
+   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
 
 ?>
