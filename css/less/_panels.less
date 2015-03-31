@@ -1,3 +1,51 @@
 .panel-body {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #444;
     overflow: hidden;
+}
+.panel-heading {
+    background-color:#555;
+    font-family: 'Roboto';
+    color: #fff;
+}
+
+
+.streams {
+    
+    text-align: right;
+    color: #fff;
+
+    .streamTitle {
+        font-family: 'Roboto';
+    }
+    .streamTitle a {
+        color: #fff;
+        transition: all 0.3s;
+    }
+    .streamTitle a:hover {
+        color: @highlight;
+    }
+    .streamer a{
+        color: @highlight;
+    }
+    .streamer a:hover {
+        color: @flair-color;
+    }
+    .streamGame {
+        font-family: 'Raleway';
+        color: #fff;
+    }
+    .viewers {
+        color: #fff;
+    }
+}
+
+/*
+    VOD SHIT
+*/
+
+#vod {
+    padding: 5px;
+    border: 1px solid #fff;
 }
