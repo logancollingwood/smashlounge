@@ -292,12 +292,14 @@ function makeCharDataTable($charTier, $charWeight, $charFallSpeed) {
         echo "  <table class='table table-bordered table-hover stats'>";
         echo "    <tr>";
         echo "      <td> Rank </td>";
-        echo "      <td> Weight </td>";
-        echo "      <td> Fall Speed </td>";
+        echo "      <td>" . $charTier . "</td>";
         echo "    </tr>";
         echo "    <tr>";
-        echo "      <td>" . $charTier . "</td>";
+        echo "      <td> Weight </td>";
         echo "      <td>" . $charWeight . "</td>";
+        echo "    </tr>";
+        echo "    <tr>";
+        echo "      <td> Fall Speed </td>";
         echo "      <td>" . $charFallSpeed . "</td>";
         echo "    </tr>";
         echo "  </table>";
@@ -1032,6 +1034,7 @@ function getFrameDataForGif($id) {
  * @return null
  */
 function printGfy($gfyObject, $count) {
+  $num = $count+1;
 
   $frameData = getFrameDataForGif($gfyObject['id']);
   $source = '';
@@ -1052,7 +1055,8 @@ function printGfy($gfyObject, $count) {
   echo '  <div class="row">';
   echo '    <div class="col-md-2 col-sm-2 voteBlock">';
   echo "       <span class='exNum'>";
-  echo          $count+1;
+  echo          '#';
+  echo          $num;
   echo "       </span>";
   echo '        <hr>';
   echo '       <br>';
@@ -1072,5 +1076,19 @@ function printGfy($gfyObject, $count) {
 
 }
 
+function printCharImage($char) {
+  $pathToImage = "/img/Characters/";
+  $urlPattern = "HeadSSBM.png";
+  $char = clean($char);
+  $fullSource = $pathToImage . urlencode($char) . $urlPattern;
+
+  echo '<img class="charIco" src="' .$fullSource . '" />';
+}
+
+function clean($string) {
+   $string = str_replace(' ', '', $string); // Replaces all spaces with hyphens.
+
+   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+}
 
 ?>

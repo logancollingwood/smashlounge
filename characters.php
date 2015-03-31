@@ -50,6 +50,11 @@ Questions?
 
   	<div class="wrapper">
         <div class="box">
+
+          <!-- top nav -->
+          <?php navbar(); ?>
+          <!-- /top nav -->
+
           <div class="row row-offcanvas row-offcanvas-left">
 
           <?php sidebar('chars'); ?>
@@ -57,14 +62,13 @@ Questions?
           
            <!-- main right col -->
           <div class="column col-md-10" id="main">
-            <!-- top nav -->
-            <?php navbar(); ?>
-            <!-- /top nav -->
-            <section id="home" data-speed="4" data-type="background">
+
+            <section id="banner" data-speed="4" data-type="background">
               <div class="jumbotron">
                 <div class='header'><?php 
                 if (!$charnotFound){
-                  echo $char; 
+                  printCharImage($char);
+                  echo $char;
                 } else {
                   echo "Check out one of these guides!";
                 }
@@ -86,30 +90,8 @@ Questions?
                             $counter = 0;
                             if (count($chargifs) > 0) {
                               foreach ($chargifs as $tmpGif) {
-                                $counter++;
-                                echo "<li class='list-group-item'>";
-                                echo "  <div class='row'>";
-                                echo "    <div class='col-md-11'>";
-                                echo "      <img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                                echo "      <h4>Example #" . $counter . "</h4>";
-                                echo "      <span class='text-muted'>" . $tmpGif['description'] . "</span>";
-                                if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
-                                  echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
-                                } else if ($tmpGif['source']) {
-                                  echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
-                                }
-                                echo "    </div>";
-
-                                /* Voting Controls */
-                                echo "    <div class='col-md-1 voteBlock'>";
-                                echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
-                                echo "      <hr>";
-                                echo "      <h4>". $tmpGif['score'] . "</h3>";
-                                echo "      <hr>";
-                                echo "      <a href='#' class='vote' data-id='" . $tmpGif['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";
-                                echo "    </div>";
-                                echo "  </div>";
-                                echo " </li>";
+                                printGfy($tmpGif, $counter);
+                                echo "<hr>";
                               }
                             } else {
                               echo "<li class='list-group-item'>";
@@ -146,9 +128,31 @@ Questions?
                             <p><?php echo $charGuide; ?></p>
                           </div>
                           <!-- List group -->
+                          <div class='row'>
+                            <div class='col-md-6'>
+                              <ul class='list-group'>
+                                <?php
+                                  if ($storedTechz) {
+                                    foreach ($storedTechz as $key => $value) {
+                                      echo "<li class='list-group-item techLink'><a href='/techniques.php?tech=" . urlencode($value['tech']) . "'>" . $value['tech'] . "</a></li>";
+                                    }
+                                  }
+                                ?>
+                              </ul>
+                            </div>
+                            <div class='col-md-6'>
+
+                                <?php
+
+                                      makeCharDataTable($charTier, $charWeight, $charFallSpeed);
+
+                                ?>
+
+                            </div>
+                          </div>
                           <?php 
-                         
-                              echo "<ul class='list-group'>";
+                          /*
+                            echo "<ul class='list-group'>";
                               if ($storedTechz) {
                                 foreach ($storedTechz as $key => $value) {
                                   echo "<li class='list-group-item techLink'><a href='/techniques.php?tech=" . urlencode($value['tech']) . "'>" . $value['tech'] . "</a></li>";
@@ -160,7 +164,7 @@ Questions?
                                 echo "</li>";
                               }
                             echo "</ul>";
-                            
+                            */
                           ?>
                       </div>
                       <?php } ?>

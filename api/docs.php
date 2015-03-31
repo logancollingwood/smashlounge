@@ -51,7 +51,7 @@
   //
   ////////////////////////////////////////
 
-  $query = "SELECT * FROM " . $charGifTable . " WHERE charid='6'";
+  $query = "SELECT * FROM gifs WHERE dataid='6' AND typeid='0'";
 
   if (!$result = $mysqli->query($query)) {
     die('Invalid query: ' . $mysqli->error);
@@ -93,17 +93,6 @@
     $id = $row['id'];
   }
   $json['techniques_full'] = $name;
-
-  $query = "SELECT * FROM techinfo WHERE techid = " . $id;
-  if (!$result = $mysqli->query($query)) {
-      die('Invalid query: ' . $mysqli->error);
-  }
-  foreach ($result as $row) {
-    unset($row['id']);
-    unset($row['techid']);
-    $data = $row;
-  }
-  $json['techniques_full'] = $data;
 
 ?>
 <!DOCTYPE html>

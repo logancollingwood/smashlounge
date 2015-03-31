@@ -50,21 +50,23 @@ Questions?
   <body>
     <div class="wrapper">
       <div class="box">
+
+        <!-- top nav -->
+        <?php navbar(); ?>
+        <!-- /top nav -->
+
         <div class="row row-offcanvas row-offcanvas-left">
 
        
           <?php sidebar('techs'); ?>
-    
+
           
           <!-- main right col -->
           <div class="column col-md-10" id="main">
 
-            <!-- top nav -->
-            <?php navbar(); ?>
-            <!-- /top nav -->
 
 
-            <section id="home" data-speed="4" data-type="background">
+            <section id="banner" data-speed="4" data-type="background">
               <div class="jumbotron">
                 <div class='header'>
                   <?php 

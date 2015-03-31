@@ -234,3 +234,4 @@ github.php
 .gitconfig
 .mysql_history
 src
+schema/sql/FULL_SCHEMA_WARNING.sql
