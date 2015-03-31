@@ -128,9 +128,31 @@ Questions?
                             <p><?php echo $charGuide; ?></p>
                           </div>
                           <!-- List group -->
+                          <div class='row'>
+                            <div class='col-md-6'>
+                              <ul class='list-group'>
+                                <?php
+                                  if ($storedTechz) {
+                                    foreach ($storedTechz as $key => $value) {
+                                      echo "<li class='list-group-item techLink'><a href='/techniques.php?tech=" . urlencode($value['tech']) . "'>" . $value['tech'] . "</a></li>";
+                                    }
+                                  }
+                                ?>
+                              </ul>
+                            </div>
+                            <div class='col-md-6'>
+
+                                <?php
+
+                                      makeCharDataTable($charTier, $charWeight, $charFallSpeed);
+
+                                ?>
+
+                            </div>
+                          </div>
                           <?php 
-                         
-                              echo "<ul class='list-group'>";
+                          /*
+                            echo "<ul class='list-group'>";
                               if ($storedTechz) {
                                 foreach ($storedTechz as $key => $value) {
                                   echo "<li class='list-group-item techLink'><a href='/techniques.php?tech=" . urlencode($value['tech']) . "'>" . $value['tech'] . "</a></li>";
@@ -142,7 +164,7 @@ Questions?
                                 echo "</li>";
                               }
                             echo "</ul>";
-                            
+                            */
                           ?>
                       </div>
                       <?php } ?>

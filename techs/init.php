@@ -292,12 +292,14 @@ function makeCharDataTable($charTier, $charWeight, $charFallSpeed) {
         echo "  <table class='table table-bordered table-hover stats'>";
         echo "    <tr>";
         echo "      <td> Rank </td>";
-        echo "      <td> Weight </td>";
-        echo "      <td> Fall Speed </td>";
+        echo "      <td>" . $charTier . "</td>";
         echo "    </tr>";
         echo "    <tr>";
-        echo "      <td>" . $charTier . "</td>";
+        echo "      <td> Weight </td>";
         echo "      <td>" . $charWeight . "</td>";
+        echo "    </tr>";
+        echo "    <tr>";
+        echo "      <td> Fall Speed </td>";
         echo "      <td>" . $charFallSpeed . "</td>";
         echo "    </tr>";
         echo "  </table>";
