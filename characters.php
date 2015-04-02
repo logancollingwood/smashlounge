@@ -88,19 +88,24 @@ Questions?
                       echo "<div class='tab-pane active' id='gener'>";
                             echo "<ul class='list-group chars'>";
                             $counter = 0;
-                            if (count($chargifs) > 0) {
+                            $numGifs = count($chargifs);
+                            if ($numGifs > 0) {
                               foreach ($chargifs as $tmpGif) {
                                 printGfy($tmpGif, $counter);
-                                echo "<hr>";
+                                if ($counter != $numGifs-1) {
+                                  echo "<hr>";
+                                } else {
+                                  echo "<br>";
+                                }
+                                $counter++;
                               }
+
                             } else {
                               echo "<li class='list-group-item'>";
                               echo  "<h4>Woops! This character has no general gifs! <br><small><a href='/submit.php'>Submit One</a></small></h4>";
                               echo "</li>";
                             }
-                          echo "<li class='list-group-item'>";
-                          echo "<h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
-                          echo "</li>";
+                          printSubmit('gif');
                         echo "</ul>";
                         echo "</div>";
                         printCharData($moves, $author);
@@ -126,6 +131,9 @@ Questions?
                           <div class="panel-heading">How to: <?php echo $char ?></div>
                           <div class="panel-body desc">
                             <p><?php echo $charGuide; ?></p>
+                            <h1>
+                              Bread and Butter
+                            </h1>
                           </div>
                           <!-- List group -->
                           <div class='row'>

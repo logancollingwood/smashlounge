@@ -108,62 +108,18 @@ Questions?
 
                   if ($gifs) {
                     $counter = 0;
+                    $numGifs = count($gifs);
                     foreach ($gifs as $tmpGif) {
-
-                      printGfy($tmpGif, $counter);
-                      
-                      echo "<hr>";
-                      /*
-                      echo "<li class='list-group-item'>";
-                      $frameData = getFrameDataForGif($tmpGif['id']);
-
-                      if ($frameData != '') {
-                          echo "<div class='row'>";
-                            echo "<div class='col-md-8'>";
-                              echo "<div id=gif" . $tmpGif['id'] . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $tmpGif['url'] . "' style='width:100%'></div>";
-                            echo "</div>";
-                            echo "<div class='col-md-4'>";
-
-                              echo "<div class='controller-wrapper'>";
-                                makeControllerWithID($tmpGif['id']);
-                              echo "</div>";
-                              echo "<hr>";
-                               echo  "<h4>Example #" . ($counter+1) . "</h4>";
-                              echo "<hr>";
-                              echo "<div class='well'>";
-                                echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
-                                if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
-                                  echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
-                                } else if ($tmpGif['source']) {
-                                  echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
-                                }
-                                echo "</div>";
-                            echo "</div>";
-                          echo "</div>";
-                        } else {
-                          echo "<img class='gfyitem' data-expand=true data-id='" . $tmpGif['url'] . "'/>";
-                          echo  "<h4>Example #" . ($counter+1) . "</h4>";
-                          echo  "<span class='text-muted'>" . $tmpGif['description'] . "</span>";
-                          if ($tmpGif['source'] && filter_var($tmpGif['source'], FILTER_VALIDATE_URL)) {
-                            echo "<br /><span class='text-muted'><a href='" . $tmpGif['source'] . "'>source</a></span>";
-                          } else if ($tmpGif['source']) {
-                            echo "<br /><span class='text-muted'>Courtesy of: " . $tmpGif['source'] . "</span>";
-                          }
-                          //echo  "<span class='badge'>". $counter . "</span>";
-                        }
-                      echo "</li>";
-                      */
+                      printGfy($tmpGif, $counter);  
+                      if ($counter != $numGifs-1) {
+                        echo "<hr>";
+                      } else {
+                        echo "<br>";
+                      }
                       $counter++;
                     }
-                    /*
-                    echo "<li class='list-group-item'>";
-                    echo "<h4> <a href='/submit.php#gif'> Submit a gif </a></h4>";
-                    //makeSubmitForm("char" , $char, $tech);
-                    echo "</li>";
-                    */
-
+                    printSubmit('gif');
                   }
-
                 } else {
                   echo "<ul class='list-group'>";
                   foreach ($dataTech as $techRec) {

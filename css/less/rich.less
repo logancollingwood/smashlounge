@@ -173,9 +173,12 @@ hr.login {
 
 
 #main {
-   padding-top: 50px;
-   padding-left:0;
-   padding-right:0;
+    padding-top: 50px;
+    padding-left:0;
+    padding-right:0;
+    background-color: #555555;
+    background-image: url('../../img/blacktexture.png');
+    border-left: 2px solid #6e6e6e;
 }
 #main .img-circle {
    margin-top:18px;
@@ -280,10 +283,23 @@ h1,h2,h3 {
     color:#c0c0c0;
 }
 
-.well {
- box-shadow: 5px 5px 5px #000000;   
+.submitBox {
+    background-color: rgba(26,188,156,0.7);
+    text-align: center;
+    border: 0px;
+    
+    p {
+        font-family: 'Quicksand';
+        font-size: 24px;
+        margin: 0 0 0px;
+    }
 }
-
+a:focus, a:hover {
+    text-decoration: none;
+}
+a {
+    color: #fff;
+}
 .modal-body {
 	padding:0px;
 }
@@ -686,10 +702,8 @@ input {
 
 .content-wrapper {
     padding-top: 2%;
-    background-color: #555555;
-    background-image: url('../../img/blacktexture.png');
-    border-left: 2px solid #6e6e6e;
 }
+
 .panel {
     border: 0px;
     //box-shadow: 5px 5px 5px #000000;
@@ -703,15 +717,14 @@ input {
 .nav-tabs>li>a {
     color: #fff;
 }
-.nav-tabs>li>a:hover {
-    color: #000;
-}
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
     color: #fff;
     background-color: @base;
     border: none;
 }
-
+.nav-tabs>li>a:hover {
+    border-color: @highlight;
+}
 .nav>li>a:focus, .nav>li>a:hover {
     background-color: transparent;
 }
@@ -731,4 +744,13 @@ input {
   float: left;
   margin-left: 5%;
   margin-top: 25px;
+}
+
+
+
+.techLink a {
+    color: #000;
+}
+.techLink a:hover {
+    color: @highlight;
 }

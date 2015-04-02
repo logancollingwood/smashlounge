@@ -1064,7 +1064,7 @@ function printGfy($gfyObject, $count) {
   echo "       <h4>". $gfyObject['score'] . "</h4>";
   echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
   echo '    </div>';
-  echo '    <div class="col-md-10 col-sm-2">';
+  echo '    <div class="col-md-10 col-sm-10">';
   echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
   echo '      <div class="gfyFooter">';
   echo '        <div class="gfyDescription">' . $gfyObject['description'] . '</div>';
@@ -1074,6 +1074,14 @@ function printGfy($gfyObject, $count) {
   echo '  </div>';
   echo '</div>';
 
+}
+
+function printSubmit($key) {
+  echo '<div class="well submitBox">';
+    echo '<p>';
+      echo '<a href="/submit.php#'.$key.'">Submit a ' . $key . '</a>';
+    echo '</p>';
+  echo '</div>';
 }
 
 function printCharImage($char) {
