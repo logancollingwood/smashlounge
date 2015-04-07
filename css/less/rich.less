@@ -400,6 +400,15 @@ small.text-muted {
     -webkit-transition-delay: 80ms;
     -webkit-transition-timing-function: ease;
 }
+.nav-tabs>li>a {
+    font-family: 'Roboto';
+    color: @highlight;
+    border: 2px solid @highlight;
+    border-bottom: none;
+    &:hover {
+        background-color: transparent;
+    }
+}
 @media screen and (max-width: 768px) {
     .expander {
         display: none;

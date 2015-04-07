@@ -1,21 +1,30 @@
+
+@panel-dark: #555555;
+@panel-light: #444444;
+
 .panel-body {
     overflow: hidden;
 }
 .panel-default {
     .panel-heading {
       font-family: 'roboto';
-      background-color: #555555;
+      background-color: @panel-dark;
       color: #ffffff;
       text-align: center;
       font-size: 24px;
     }
     .panel-body {
-        background-color: #444444;
+        background-color: @panel-light;
         text-align: center;
         
         .streamGame {
             font-family: 'Raleway';
         }
+    }
+    .panel-footer {
+        font-family: 'Raleway';
+        color: #ffffff;
+        background-color: @panel-dark;
     }
     
     .streams {

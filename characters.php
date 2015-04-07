@@ -158,22 +158,6 @@ Questions?
 
                             </div>
                           </div>
-                          <?php 
-                          /*
-                            echo "<ul class='list-group'>";
-                              if ($storedTechz) {
-                                foreach ($storedTechz as $key => $value) {
-                                  echo "<li class='list-group-item techLink'><a href='/techniques.php?tech=" . urlencode($value['tech']) . "'>" . $value['tech'] . "</a></li>";
-                                }
-                              }
-                              if (!$charnotFound) {
-                                echo "<li class='list-group-item dataChar'>";
-                                makeCharDataTable($charTier, $charWeight, $charFallSpeed);
-                                echo "</li>";
-                              }
-                            echo "</ul>";
-                            */
-                          ?>
                       </div>
                       <?php } ?>
                       <div class='well'>
