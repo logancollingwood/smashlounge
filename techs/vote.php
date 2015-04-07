@@ -15,8 +15,10 @@
 
 	if ($direction == 'up') {
 		$query = "UPDATE $pageId SET score = score + 1 WHERE id=$gifId";
+
 	} else if ($direction == 'down') {
 		$query = "UPDATE $pageId SET score = score - 1 WHERE id=$gifId";
+		
 	} else {
 		die();
 	}

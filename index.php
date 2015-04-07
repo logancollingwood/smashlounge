@@ -4,19 +4,6 @@
 ?>
 <!--
 
-ooooo
-`888'
- 888          .ooooo.   .oooooooo  .oooo.   ooo. .oo.
- 888         d88' `88b 888' `88b  `P  )88b  `888P"Y88b
- 888         888   888 888   888   .oP"888   888   888
- 888       o 888   888 `88bod8P'  d8(  888   888   888
-o888ooooood8 `Y8bod8P' `8oooooo.  `Y888""8o o888o o888o
-                       d"     YD
-                       "Y88888P'
-
--->
-<!--
-
 Smashlounge is built for the community, by the community.
 
 All tools used on this site are for non-commercial purposes.

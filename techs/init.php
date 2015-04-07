@@ -772,13 +772,10 @@ function navbar() {
       </div>
     </div>
     <form class="navbar-form navbar-left search" style="margin-left: 2%;">
-        <div class="input-group input-group-sm" style="width:300px;">
-          <input type="text" class="form-control search" placeholder="Search for..." id="searchBar">
+        <div class="input-group input-group-sm" style="width:250px;">
+          <input type="text" class="form-control search" placeholder="search" id="searchBar">
           <ul class="results" id="searchBarResults">
           </ul>
-          <div class="input-group-btn">
-            <button class="btn btn-default" onclick="searchBar()"><i class="glyphicon glyphicon-search"></i></button>
-          </div>
         </div>
     </form>
     <ul class="nav navbar-nav">
@@ -1048,7 +1045,7 @@ function printGfy($gfyObject, $count) {
   if ($gfyObject['source'] && filter_var($gfyObject['source'], FILTER_VALIDATE_URL)) {
     $source = '<a href="' . $gfyObject['source'] . '">source</a>'; 
   } else if ($gfyObject['source']) {
-    $source = 'Courtesy of ' . $gfyObject['source'];
+    $source = 'from ' . $gfyObject['source'];
   }
   /*
   if ($frameData != '') {
