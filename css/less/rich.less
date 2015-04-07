@@ -6,6 +6,8 @@
 //this is one shade darker than base
 @highlight: #1abc9c;
 
+@dark: #12806b;
+
 /* Light - Highlight Color */
 @flair-color: #00bcd4;
 
@@ -13,17 +15,46 @@
 @bgcolor: #333;
 @bgtexture: url('../../img/blacktexture.png');
 
+@darkbg: #555;
+@lightbg: #333;
+@medbg: #444;
+
 @import "_gifcontainers";
 @import "_jumbotron";
 @import "_panels";
 @import "_buttons";
+@import "_scrollbar";
 
+h1 {
+    color: #fff;
+    font-family: 'Montserrat';
+    font-size: 1.5vw;
+    text-align: center;
+}
+h2 {
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 1.5vw;
+    text-align: center;
+}
+h3 {
+    color: #fff;
+    font-family: 'Raleway';
+    font-size: 0.6vw;
+    text-align: center;
+}
+h4 {
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 0.8vw;
+    text-align: center;
+}
 
 /* custom template */
 html, body {
    height: 100%;
    font-family:verdana,arial,sans-serif;
-   color:#555555;
+   color:@darkbg;
 }
 
 .nav {
@@ -36,23 +67,20 @@ html, body {
     margin-left: 5%;
 }
 a {
-  color:#222222;
+    color: #ffffff;
+    transition: 0.3s ease all;
+    &:hover {
+        color: @highlight;
+        text-decoration: none;
+    }
 }
 
-a:hover {
-  text-decoration:none;
-}
 
 hr {
   border-color:#dedede;
   width: 70%;
   left: 15%;
   color: #fff;
-}
-h1 {
-    font-family: 'Montserrat';
-    font-size: 1.5vw;
-    text-align: center;
 }
 
 .wrapper, .row {
@@ -198,7 +226,7 @@ hr.login {
     padding-right:0;
     background-color: @bgcolor;
     //background-image: @bgtexture;
-    border-left: 2px solid #6e6e6e;
+    border-left: 1px solid #ffffff;
 }
 #main .img-circle {
    margin-top:18px;
@@ -225,7 +253,7 @@ hr.login {
   border-radius:2px;
 }
 #sidebar-footer {
-  background-color:#444;
+  background-color:#medbg;
   position:absolute;
   bottom:5px;
   padding:5px;
@@ -257,8 +285,11 @@ h1,h2,h3 {
     color:#666666;
     text-shadow:0 0 1px rgba(0,0,0,.3);
 }
-.form-control {
-	
+.form-horizontal {
+	.control-label {
+	    font-family: 'Raleway';
+	    color: #ffffff;
+	}
 }
 
 .panel textarea, .well textarea, textarea.form-control
@@ -308,7 +339,9 @@ h1,h2,h3 {
 }
 
 .well {
- box-shadow: 5px 5px 5px #000000;   
+    border: none;
+    background-color: @darkbg;
+    padding-bottom: 15px;
 }
 
 .modal-body {
@@ -378,7 +411,7 @@ small.text-muted {
     overflow: hidden;
     padding:0px;
 	padding-top:15px;
-	background-color: #555555;
+	background-color: @darkbg;
 }
 #sidebar .list-dd a {
     margin-left: 0px;
@@ -412,7 +445,7 @@ small.text-muted {
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
-    background-color: #555555;
+    background-color: @darkbg;
 }
 .nav-list {
     border-left: 5px solid @highlight;
@@ -464,7 +497,7 @@ small.text-muted {
     padding-bottom: 15%;
     height: 100px;
     text-align: center;
-    background-color: #444;
+    background-color: @medbg;
     z-index: 1;
 }
 a.bttn.login {
@@ -484,16 +517,15 @@ a.bttn.login {
     footer
 */
 .footer {
-  position: relative;
-  bottom: -4px;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 50px;
-  margin-top: 60px;
-  background-color: #f5f5f5;
-}
-.footer a {
-    color: #555555;
+    text-align: center;
+    width: 100%;
+    background-color: @medbg;
+    a {
+        color: #ffffff;
+        &:hover {
+            color: @highlight
+        }
+    }
 }
 
 /* fa */
@@ -737,3 +769,12 @@ input {
     border-left: 1px solid #eee;
     margin-left: 10px;
 }
+
+
+/*
+    Maps
+*/
+#map-canvas {
+    border-radius: 5px;
+}
+

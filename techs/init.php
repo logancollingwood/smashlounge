@@ -464,7 +464,11 @@ function createBeg($cap) {
   $rand = rand(0, 10) / 10;
   if ($rand < $cap) {
     echo "<div class='well full'>";
-    echo "  <h3>Want to support us? </h3><h4><small>" . $quotes[array_rand($quotes)] . "</small></h4><hr> <a href='http://www.github.com/logancollingwood/smashlounge'><p>Contribute</p></a><hr><a href='/donate.php'> <p>Donate</p></a>";
+    echo "  <h2>Want to support us? </h2><h4>" . $quotes[array_rand($quotes)] . "</h4><hr>";
+    echo "  <div class='row'>";
+    echo "    <a href='http://www.github.com/logancollingwood/smashlounge' class='pull-left'><p>Contribute</p></a>";
+    echo "    <a href='/donate.php' class='pull-right'> <p>Donate</p></a>";
+    echo "  </div>";
     echo "</div>";
   }
 }
@@ -782,7 +786,10 @@ function navbar() {
         <a href="/submit.php" role="button"><i class="glyphicon glyphicon-plus"></i><span> Submit</span></a>
       </li>
       <li>
-        <a href="/donate.php" role="button"><i class="glyphicon glyphicon-envelope"></i><span> Support</span></a>
+        <a href="/api/docs.php" role="button"><i class="fa fa-cloud"></i><span> API</span></a>
+      </li>
+      <li>
+        <a href="/donate.php" role="button"><i class="glyphicon glyphicon-envelope"></i><span> Support Us</span></a>
       </li>
       <li>
         <a href="/about.php" role="button"><i class="glyphicon glyphicon-flag"></i><span> About</span></a>
@@ -812,8 +819,8 @@ function footer() {
 
   );
   echo '
-  <div class="row footer">
-    <ul class="nav navbar-nav">';
+  <div class="row">
+    <ul class="nav navbar-nav footer">';
     foreach ($links as $key => $rec) {
       echo '<li>';
         echo '<a href="' . $rec[0] . '" target="_blank">';
