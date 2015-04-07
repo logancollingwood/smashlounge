@@ -122,8 +122,7 @@ Questions?
                         </div>
                         <div class='panel-footer'>
                           <p> 
-                            subscribe on youtube
-                            <a class='button button-inline button-small button-success' href="http://www.youtube.com/c/smashlounge"><span> <i class="fa fa-youtube-play"></i></span></a>
+                            <a class='button button-inline button-small button-success' href="http://www.youtube.com/c/smashlounge"><span> <i class="fa fa-youtube-play"></i>subscribe on youtube</span></a>
                           </p>
                         </div>
                       </div>

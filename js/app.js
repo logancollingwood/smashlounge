@@ -65,7 +65,9 @@ $(document).ready(function() {
     */
     $("#main").scroll(function () {
 
-      var navbarColor = "26,188,156";//color attr for rgba
+      var navbarColor = "26,188,156";
+
+      //color attr for rgba
       var smallLogoHeight = $('.small-logo').height();
       var bigLogoHeight = $('.header').height();
       
@@ -82,10 +84,20 @@ $(document).ready(function() {
       
       $('.small-logo-container ').css({ "padding-top": smallPadding});
       
-      var navOpacity = 1
+      var navOpacity = $(this).scrollTop()/250;
+
       var navBackColor = 'rgba(' + navbarColor + ',' + navOpacity + ')';
-      $('.navbar').css({"background-color": navBackColor});
+      var webkitgradient = " -webkit-gradient(linear, left bottom, left top, color-stop(0, " + navBackColor + "), color-stop(1, #1abc9c))";
+      var mozgradient = "-moz-linear-gradient(center bottom, " + navBackColor + " 0%, #1abc9c 100%);";
       
+      //console.log(mozgradient);
+      //console.log(webkitgradient);
+      //console.log($(this).scrollTop()/250);
+
+      $('.navbar').css({"background": webkitgradient});
+
+      //-webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(26,188,156,0)), color-stop(1, #1abc9c))
+
       var shadowOpacity = navOpacity * 0.4;
       if ( ySmall > 1) {
         $('.navbar').css({"box-shadow": "0 2px 3px rgba(0,0,0," + shadowOpacity + ")"});

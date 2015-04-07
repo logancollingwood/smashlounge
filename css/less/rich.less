@@ -9,10 +9,15 @@
 /* Light - Highlight Color */
 @flair-color: #00bcd4;
 
+//Main background texture
+@bgcolor: #333;
+@bgtexture: url('../../img/blacktexture.png');
+
 @import "_gifcontainers";
 @import "_jumbotron";
 @import "_panels";
 @import "_buttons";
+
 
 /* custom template */
 html, body {
@@ -124,6 +129,22 @@ hr.login {
     position:fixed;
     width:83.4%;
     margin-left:16.6%;
+    
+    /* Webkit */
+    background: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, fade(@highlight, 0)),
+        color-stop(1, fade(@highlight, 100))
+    );
+
+    /* Gecko */  
+    background: -moz-linear-gradient(
+        center bottom,
+        fade(@highlight, 0) 0%, 
+        fade(@highlight, 100) 100%
+    );
 }
 .navbar-right { 
     margin-right: 0px;
@@ -175,8 +196,8 @@ hr.login {
 #main {
     padding-left:0;
     padding-right:0;
-    background-color: #555555;
-    background-image: url('../../img/blacktexture.png');
+    background-color: @bgcolor;
+    //background-image: @bgtexture;
     border-left: 2px solid #6e6e6e;
 }
 #main .img-circle {
