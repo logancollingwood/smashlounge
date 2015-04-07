@@ -111,7 +111,9 @@ Questions?
                   <div class='row'>
                     <div class='col-md-8'>
                       <div class='panel panel-default'>
-                        <div class='panel-heading'>From the <a href="https://www.youtube.com/playlist?list=PLhHSkxk_9ky44HiUFCkX7LSv4ID5E7Wis">SmashLounge Invitational</a>&nbsp;<button type='button' class='btn btn-default btn-lg' id='newVod' aria-label='Left Align'>next-></button></div>
+                        <div class='panel-heading'>From the <a href="https://www.youtube.com/playlist?list=PLhHSkxk_9ky44HiUFCkX7LSv4ID5E7Wis">SmashLounge Invitational</a>&nbsp;
+                          <a class='button button-inline button-small button-success pull-right' id='newVod' aria-label='Left Align'><span> <i class="fa fa-arrow-circle-o-right"></i>next match</span></a>
+                        </div>
                         <div class='panel-body full'>
                           <div id="vod">
                             <div id="player"></div>
@@ -153,7 +155,6 @@ Questions?
                               echo "<a href=//www.twitch.tv/$streamer>$streamer";
                               echo "<img class='streamImg' src='" . $data['channel']['logo'] ."'></img></a>";
                               echo "</div>";
-                              echo "<br>";
                               echo "<div class='viewers'>viewers:" . $data['viewers'] . "</div>";
                               echo "<div class='streamGame'>";
                               if (strcmp($gameTitle, "Super Smash Bros. Melee") == 0) {
@@ -170,7 +171,7 @@ Questions?
                                 echo "sm4sh";
                               }
                               echo "</div>";
-                              //if ($counter != $maxCount - 1) echo "<hr>";
+                              if ($counter != $maxCount - 1) echo "<hr>";
                               $counter++;
                             }
                           ?>

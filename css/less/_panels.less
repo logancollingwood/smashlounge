@@ -1,3 +1,36 @@
 .panel-body {
     overflow: hidden;
 }
+.panel-default {
+    .panel-heading {
+      font-family: 'roboto';
+      background-color: #555555;
+      color: #ffffff;
+      text-align: center;
+      font-size: 24px;
+    }
+    .panel-body {
+        background-color: #444444;
+        text-align: center;
+        
+        .streamGame {
+            font-family: 'Raleway';
+        }
+    }
+    
+    .streams {
+        color: #ffffff;
+        a {
+            
+            color: #ffffff;
+            transition: .5s all ease;
+            
+            &:hover {
+                
+                color: @highlight;
+                
+            }
+        }
+    }
+    
+}
