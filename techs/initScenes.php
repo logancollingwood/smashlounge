@@ -11,7 +11,7 @@
       	printf("Connect failed: %s\n", $mysqli->connect_error);
     	exit();
     }
-
+    $international =  array();
 	$query = "SELECT * FROM " . $locals;
 
 	if (!$result = $mysqli->query($query)) {

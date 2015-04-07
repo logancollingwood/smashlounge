@@ -43,29 +43,12 @@
     $profileHref = "/users/$username";
 
     $region = "";
-    
-    switch ($row['region']) {
-    case 1:
-        $region = "Atlantic North";
-        break;
-    case 2:
-        $region = "Atlantic South";
-        break;
-    case 3:
-        $region = "Midwest";
-        break;
-    case 4:
-        $region = "South & Southwest";
-        break;
-    case 5:
-        $region = "West Coast";
-        break;
-    }
+
     
     $node = $dom->createElement("marker");
     $newnode = $parnode->appendChild($node);
     $newnode->setAttribute("name", htmlspecialchars($username));
-    $newnode->setAttribute("region", $region);
+    //$newnode->setAttribute("region", $region);
     $newnode->setAttribute("lat", $row['latitude']);
     $newnode->setAttribute("lng", $row['longitude']);
     $newnode->setAttribute("href", $profileHref);

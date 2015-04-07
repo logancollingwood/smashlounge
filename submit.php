@@ -98,7 +98,7 @@ Questions?
               <div class="row">
               <ul class='nav nav-tabs' role='tablist' id='myTab'>
                 <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz' data-id="gif">Gifs</a></li>
-                <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz' data-id="tournament">Tournaments</a></li>
+                <!-- <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz' data-id="tournament">Tournaments</a></li> -->
                 <li><a href='#technique' role='tab' data-toggle='tab' class='tabz' data-id="technique">Techniques</a></li>
                 <li><a href='#group' role='tab' data-toggle='tab' class='tabz' data-id="group">Regional Group</a></li>
               </ul>
@@ -268,6 +268,7 @@ Questions?
                   </div>
                 </div>
 
+<!--
                 <div class='tab-pane' id='tournament'>
                   
                   <div class='col-md-12'>
@@ -328,7 +329,7 @@ Questions?
 
 
                 </div>
-
+-->
                 <div class='tab-pane' id='technique'>
                     <div class='col-md-12'>
                     <div class='well SL'>

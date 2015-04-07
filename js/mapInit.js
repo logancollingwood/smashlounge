@@ -54,6 +54,7 @@ function initialize() {
       bindInfoWindow(marker, map, infoWindow, html);
     }
   });
+
 }
 
 

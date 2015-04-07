@@ -136,6 +136,7 @@ Questions?
                             </h1>
                           </div>
                           <!-- List group -->
+                          <div class="panel-footer desc">
                           <div class='row'>
                             <div class='col-md-6'>
                               <ul class='list-group'>
@@ -158,6 +159,7 @@ Questions?
 
                             </div>
                           </div>
+                        </div>
                       </div>
                       <?php } ?>
                       <div class='well'>

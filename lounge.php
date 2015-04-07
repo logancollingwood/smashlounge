@@ -43,18 +43,11 @@ Questions?
 
     <title>Smash Lounge: Find a group!</title>
 
-    <?php
-      printLibraries();
-    ?>
+    <!-- Main Dependencies -->
+    <?php printNewLibraries(); ?>
 
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard_mobile.css" rel="stylesheet">
+    <link href="/css/less/rich.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
@@ -64,29 +57,38 @@ Questions?
   </head>
 
   <body>
+<div class="wrapper">
+        <div class="box">
 
-    <?php
-      createNavBar()
-    ?>
+          <!-- top nav -->
+          <?php navbar(); ?>
+          <!-- /top nav -->
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <?php makeSidebar($loggedIn, 'lounge') ?>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main map">
-         
-          <div class="row">
-            <?php //printBetaMast(); ?>
-            <div class="jumbotron banner">
- 
-                
-                  <?php if (!$id) ?>
-                  <h1 class='lead'>Locate a group near you! <h1/><p class='fifty'><small>the locations are merely for reference and do not represent actual group locations</small></p>
+          <div class="row row-offcanvas row-offcanvas-left">
 
-            </div>
-            <?php if (!$id) { ?>
-            <div id="map-canvas"/></div>
+          <?php sidebar('lounge'); ?>
+    
+          
+           <!-- main right col -->
+          <div class="column col-md-10 map" id="main">
+          <section id="banner" data-speed="4" data-type="background">
+              <div class="jumbotron">
+                <div class='header'>
+                  Locate a group near you! 
+                </div>
+                <div class="blur">
+                  <div class="description">                   
+                    the locations are merely for reference and do not represent actual group locations
+                  </div>
+                  <div class="mast">
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="content-wrapper">
+              <div class="container-fluid">
+                <div id="map-canvas"/></div>
+              </div>
 
             <div class="container-fluid">
 
@@ -143,21 +145,15 @@ Questions?
 
               <div class="row">
                   <?php
-                    echo "<li class='list-group-item gray'>";
-                    echo "<h4> <a href='/submit.php#group'>Submit a scene! </a></h4>";
-                    echo "</li>";
-                    if ($submit) {
-                      alertMSG($submit);
-                    }
-                    echo "</ul>";
-                    echo "</td>";
+                    printSubmit('group');
                   ?>
               </div>
             </div> 
-            <?php } ?>
+
 
           </div>
         </div>
+      </div>
       </div>
     </div>
 

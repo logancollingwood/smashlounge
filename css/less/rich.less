@@ -15,15 +15,16 @@
 @bgcolor: #333;
 @bgtexture: url('../../img/blacktexture.png');
 
-@darkbg: #555;
-@lightbg: #333;
-@medbg: #444;
 
 @import "_gifcontainers";
 @import "_jumbotron";
 @import "_panels";
 @import "_buttons";
 @import "_scrollbar";
+
+@lightbg: #555;
+@darkbg: #333;
+@medbg: #444;
 
 h1 {
     color: #fff;
@@ -54,7 +55,7 @@ h4 {
 html, body {
    height: 100%;
    font-family:verdana,arial,sans-serif;
-   color:@darkbg;
+   color:@lightbg;
 }
 
 .nav {
@@ -226,7 +227,10 @@ hr.login {
     padding-right:0;
     background-color: @bgcolor;
     //background-image: @bgtexture;
-    border-left: 1px solid #ffffff;
+    border-left: 1px solid @lightbg;
+}
+.content-wrapper {
+    margin-top: 15px;
 }
 #main .img-circle {
    margin-top:18px;
@@ -280,6 +284,14 @@ h1,h2,h3 {
 	background-color:#3B5999;
     color:#fffffe;
     box-shadow: 2px 2px 2px #000000; 
+}
+.list-group-item {
+    background-color: @lightbg;
+}
+.techLink {
+    &:hover {
+        background-color: @darkbg;
+    }
 }
 .btn-default {
     color:#666666;
@@ -340,8 +352,13 @@ h1,h2,h3 {
 
 .well {
     border: none;
-    background-color: @darkbg;
+    background-color: @lightbg;
     padding-bottom: 15px;
+}
+.submitBox {
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 24px;
 }
 
 .modal-body {
@@ -374,6 +391,7 @@ small.text-muted {
   }
   .navbar-sl {
     margin-left: 2px;
+    margin-bottom: 0px;
   	background-color:@highlight;
     top:0;
     width:100%;
@@ -411,7 +429,7 @@ small.text-muted {
     overflow: hidden;
     padding:0px;
 	padding-top:15px;
-	background-color: @darkbg;
+	background-color: @lightbg;
 }
 #sidebar .list-dd a {
     margin-left: 0px;
@@ -453,6 +471,10 @@ small.text-muted {
     transition-delay: 80ms;
     -webkit-transition-delay: 80ms;
     -webkit-transition-timing-function: ease;
+}
+.nav-tabs {
+    margin: 15px;
+    margin-bottom: 0px;
 }
 .nav-tabs>li>a {
     font-family: 'Roboto';
@@ -774,7 +796,37 @@ input {
 /*
     Maps
 */
+/* begin css for raw map
+*/
+.map{
+  height: 100%;
+  position: relative;
+  overflow: auto;
+  z-index: 1;
+}
 #map-canvas {
-    border-radius: 5px;
+  height: 250px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+}
+@media (min-width: 768px) {
+  #map-canvas {
+      height:500px;
+      margin-bottom: 25px;
+  }
+}
+
+/* 
+    Tables
+*/
+.table-hover>tbody>tr:hover { 
+    background-color: @darkbg;
+}
+
+/*
+    Char
+*/
+.charIco {
+    margin-right: 30px;
 }
 

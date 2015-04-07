@@ -16,19 +16,6 @@
 ?>
 <!--
 
-ooooo                                                   
-`888'                                                   
- 888          .ooooo.   .oooooooo  .oooo.   ooo. .oo.   
- 888         d88' `88b 888' `88b  `P  )88b  `888P"Y88b  
- 888         888   888 888   888   .oP"888   888   888  
- 888       o 888   888 `88bod8P'  d8(  888   888   888  
-o888ooooood8 `Y8bod8P' `8oooooo.  `Y888""8o o888o o888o 
-                       d"     YD                        
-                       "Y88888P'                        
-                       
--->
-<!--
-
 Smashlounge is built for the community, by the community.
 
 All tools used on this site are for non-commercial purposes.
@@ -48,36 +35,23 @@ Questions?
     <meta name="author" content="">
     
     <?php 
-    if ($username != '') {
-      echo "<title>Smash Lounge: $username</title>";
-    } else {
-      echo "<title>Smash Lounge: Global Player Database</title>";
-    }
+      if ($username != '') {
+        echo "<title>Smash Lounge: $username</title>";
+      } else {
+        echo "<title>Smash Lounge: Global Player Database</title>";
+      }
     ?>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main Dependencies -->
+    <?php printNewLibraries(); ?>
 
-    
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    
-
-    <?php 
-      printLibraries();
-    ?>
-
-    <!-- Custom styles for this template -->
-    <link href="/css/dashboard_mobile.css" rel="stylesheet">
+    <link href="/css/less/rich.css" rel="stylesheet">
 
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqmaEEEbIm2Iln3ieqGdtfzVLi6AzHA1Q&sensor=true">
     </script>
+
     <meta name="twitter:card" content="smashlounge" />
     <meta name="twitter:site" content="@thesmashlounge" />
     <meta name="twitter:title" content="smashlounge: <?php echo $username ?>" />
@@ -87,87 +61,82 @@ Questions?
 
   <body>
 
+    <div class="wrapper">
+        <div class="box">
 
-    <?php
-      createNavBar();
-    ?>
+          <!-- top nav -->
+          <?php navbar(); ?>
+          <!-- /top nav -->
 
-    <div class="container-fluid">
-      <div class="row">
+          <div class="row row-offcanvas row-offcanvas-left">
 
+          <?php sidebar('users'); ?>
+    
+          
+           <!-- main right col -->
+          <div class="column col-md-10" id="main">
+            <section id="banner" data-speed="4" data-type="background">
+              <div class="jumbotron">
+                <div class='header'>
+                <?php 
 
-        <!-- compartamentalize sidebar -->
-        <div class="col-sm-3 col-md-2 sidebar">
-           <?php makeSidebar($loggedIn, 'users'); ?>
-        </div>
-
-
-
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <?php //printBetaMast(); ?>
-          <div class="jumbotron banner">
-            <?php 
-
-            if ($found) {
-              
-                echo "<div class='row'>";
-
-                  echo "<div class='col-md-2 vcenter'>";
-                    if ($hasImage) {
-                      echo "<img id='profpic' border='0' src='/img/profiles/".$profileImage."' width='60%' alt='$username' height='60%'>";
-                    }
-                  echo "</div>";
-
-                  echo "<div class='col-md-2 vcenter'>";
-                    if ($hasSponsor) {
-                      echo "<div class='sponsor'>$sponsor</div> ";
-                    }
-                  echo "</div>";
-
-                  echo "<div class='col-md-6 vcenter'>";
-                    echo "<h1 class='lead' style='text-align:left;'>$username</h1> ";
-                  echo "</div>";
-
-                  echo "<div class='col-md-2 vcenter'>";
+                if ($found) {
+                  
                     echo "<div class='row'>";
-                    //This is changed so that the correct buttons are enabled, disabled shown, and hidden by jquery
-                    //at the bottom of the page
-                      
-                    echo '<a href="/update.php"><button type="button" id="edit" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
-                          </button></a>';
-                      
-                     
-                          // add as friend
-                    echo "<button type='button' id='addfriend' class='btn btn-default' aria-label='Left Align'>
-                              <i class='fa fa-plus'></i> Add as Friend
-                            </button>";
-                        
 
-                          // unfriend
-                    echo "<button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
-                            <i class='fa fa-times'></i> Remove from Friends
-                          </button>";
-                     
-                    //echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
-                    echo "</div>";
-                  echo "</div>";
+                      echo "<div class='col-md-2 vcenter'>";
+                        if ($hasImage) {
+                          echo "<img id='profpic' border='0' src='/img/profiles/".$profileImage."' width='60%' alt='$username' height='60%'>";
+                        }
+                      echo "</div>";
 
-                echo "</div>";  
-            } else { 
-                $allUsers = getAllUsers($mysqli);
-                echo "<div class='row'>";
-                  echo "<h1 class='lead'>global directory</h1>";
-                echo "</div>"; 
+                      echo "<div class='col-md-2 vcenter'>";
+                        if ($hasSponsor) {
+                          echo "<div class='sponsor'>$sponsor</div> ";
+                        }
+                      echo "</div>";
 
-            }
+                      echo "<div class='col-md-6 vcenter'>";
+                        echo "<h1 class='lead' style='text-align:left;'>$username</h1> ";
+                      echo "</div>";
+
+                      echo "<div class='col-md-2 vcenter'>";
+                        echo "<div class='row'>";
+                        //This is changed so that the correct buttons are enabled, disabled shown, and hidden by jquery
+                        //at the bottom of the page
+                          
+                        echo '<a href="/update.php"><button type="button" id="edit" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit Profile
+                              </button></a>';
+                          
+                         
+                              // add as friend
+                        echo "<button type='button' id='addfriend' class='btn btn-default' aria-label='Left Align'>
+                                  <i class='fa fa-plus'></i> Add as Friend
+                                </button>";
+                            
+
+                              // unfriend
+                        echo "<button type='button' id='removefriend' class='btn btn-default' aria-label='Left Align'>
+                                <i class='fa fa-times'></i> Remove from Friends
+                              </button>";
+                         
+                        //echo "<a class='anchor' href='/usercard.php?username=" . $username . "'><i class='fa fa-external-link-square fa-2x'></i></a>";
+                        echo "</div>";
+                      echo "</div>";
+
+                    echo "</div>";  
+                } else { 
+                    $allUsers = getAllUsers($mysqli);
+                    echo "users"; 
+                }
 
 
-            ?>
-            
-          </div>
 
-
+                ?>
+                </div>
+              </section>
+              <div class="content-wrapper">
           
 
             <?php if ($found) { ?>
@@ -221,6 +190,7 @@ Questions?
 
         </div>
       </div>
+    </div>
     </div>
 
 

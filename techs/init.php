@@ -655,8 +655,8 @@ function sidebar($currentPage = '') {
     "users" => array("/users.php", "glyphicon glyphicon-user"),
     "submit" => array("/submit.php", "glyphicon glyphicon-inbox"),
     "lounge" => array("/lounge.php", "glyphicon glyphicon-globe"),
-    "rankings" => array("/rankings.php", "glyphicon glyphicon-certificate"),
-    "upcoming" => array("/upcoming.php", "glyphicon glyphicon-calendar")
+    "rankings" => array("/rankings.php", "glyphicon glyphicon-certificate")
+    //"upcoming" => array("/upcoming.php", "glyphicon glyphicon-calendar")
     );
     $modules = array('home', 'admin', 'lounge', 'upcoming', 
     'users', 'login', 'moderate', 'register', 'update', 
