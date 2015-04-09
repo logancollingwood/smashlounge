@@ -159,10 +159,10 @@
 			$techData[] = $row;
 		}
 		$json['techs'] = $techData;
-		}
+	}
 
 
-        sendResponse(200, json_encode($json, JSON_PRETTY_PRINT));
-        return true;
+    sendResponse(200, json_encode($json, JSON_PRETTY_PRINT));
+    return true;
 	
 ?>

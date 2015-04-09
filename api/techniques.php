@@ -42,7 +42,7 @@
 		  $dataTech["tech"][] = $row;
 		  $techCount++;
 		}
-		//asort($dataTech);
+		ksort($dataTech["tech"]["tech"]);
 
 
 		echo json_encode($dataTech, JSON_PRETTY_PRINT);
@@ -55,6 +55,7 @@
 		}
 		foreach ($result as $row) {
   		  $json["tech"] = $row["tech"];
+  		  $dataTech["success"] = 1;
   		  $techID = $row["id"];
 		  unset($row["tech"]);
 		  $json["tech"] = $row;
@@ -72,9 +73,7 @@
 		
 
 
-		echo "<pre>";
 		echo json_encode($json, JSON_PRETTY_PRINT);
-		echo "</pre>";
 	}
 
 ?>
