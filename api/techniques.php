@@ -38,14 +38,14 @@
 		}
 		foreach ($result as $row) {
 		  unset($row["id"]);
-		  $dataTech["success"] = 1;
-		  $dataTech["tech"][] = $row;
+		  $dataTech[] = $row;
 		  $techCount++;
 		}
-		ksort($dataTech["tech"]["tech"]);
+		$json["success"] = 1;
+		$json["tech"] = $dataTech;
 
 
-		echo json_encode($dataTech, JSON_PRETTY_PRINT);
+		echo json_encode($json, JSON_PRETTY_PRINT);
 
 	} else {
 
@@ -54,6 +54,7 @@
    			die('Invalid query: ' . $mysqli->error);
 		}
 		foreach ($result as $row) {
+  		  $json["tech"] = $row["tech"];
   		  $json["success"] = 1;
   		  $techID = $row["id"];
 		  unset($row["tech"]);
