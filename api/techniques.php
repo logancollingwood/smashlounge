@@ -38,16 +38,15 @@
 		}
 		foreach ($result as $row) {
 		  unset($row["id"]);
-		  $dataTech[] = $row["tech"];
-		  unset($row["tech"]);
-		  $dataTech[] = $row;
+		  $dataTech["success"] = 1;
+		  $dataTech["tech"][] = $row;
 		  $techCount++;
 		}
 		//asort($dataTech);
 
-		echo "<pre>";
+
 		echo json_encode($dataTech, JSON_PRETTY_PRINT);
-		echo "</pre>";
+
 	} else {
 
 		$query = "SELECT * FROM techs WHERE tech='$tech'";
@@ -55,11 +54,22 @@
    			die('Invalid query: ' . $mysqli->error);
 		}
 		foreach ($result as $row) {
-  		  $json[] = $row["tech"];
-		  unset($row["id"]);
+  		  $json["tech"] = $row["tech"];
+  		  $techID = $row["id"];
 		  unset($row["tech"]);
-		  $json[] = $row;
+		  $json["tech"] = $row;
 		}
+
+		$query = "SELECT * FROM gifs WHERE typeid=2 AND dataid='$techID'";
+		if (!$result = $mysqli->query($query)) {
+   			die('Invalid query: ' . $mysqli->error);
+		}
+		foreach ($result as $row) {
+			unset($row["typeid"]);
+			unset($row["dataid"]);
+  		  $json["gifs"][] = $row;
+		}
+		
 
 
 		echo "<pre>";

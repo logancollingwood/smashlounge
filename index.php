@@ -162,7 +162,7 @@ Questions?
                       <div class='panel panel-default'>
                         <div class='panel-heading'> <a class='button button-inline button-small button-success' href="http://twitter.com/thesmashlounge"><span> <i class="fa fa-twitter"></i>Hit us up on twitter</span></a> </div>
                         <div class='panel-body'>
-                          <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-chrome="noheader nofooter noscrollbar transparent" data-widget-id="536330140297347072">Tweets by @thesmashlounge</a>
+                          <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-chrome="noheader nofooter noscrollbar transparent" data-widget-id="585544387632967681">Tweets by @thesmashlounge</a>
                           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                         </div>
                       </div>
