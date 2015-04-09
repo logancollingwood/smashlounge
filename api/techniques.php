@@ -54,8 +54,7 @@
    			die('Invalid query: ' . $mysqli->error);
 		}
 		foreach ($result as $row) {
-  		  $json["tech"] = $row["tech"];
-  		  $dataTech["success"] = 1;
+  		  $json["success"] = 1;
   		  $techID = $row["id"];
 		  unset($row["tech"]);
 		  $json["tech"] = $row;
