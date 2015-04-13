@@ -14,8 +14,8 @@
    
    $redirect = isset($_GET['redirect'])       ? trim($_GET['redirect'])       : "";
    if(!empty($_POST)){ 
-       //echo "logging in";
-       //require('techs/dbSuper.php');
+
+       require('techs/dbSuper.php');
    
        try
        {
@@ -47,7 +47,7 @@
        }
    
        if ($redirect) {
-           header("Location: /" . $redirect . ".php") ;
+           header("Location: /" . $redirect . ".php");
            die("Redirecting to: redirect");
        }
    
