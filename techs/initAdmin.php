@@ -3,6 +3,7 @@
 	  $groupSubmission = array();
 	  $techSubmission = array();
 	  $tournamentSubmission = array();
+	  $vodSubmission = array();
 
 
 	  $query = "SELECT * FROM submissions";
@@ -55,6 +56,15 @@
 	  } else {
 	  	foreach ($result as $row) {
 	  		$tournamentSubmission[] = $row;
+	  	}
+	  }
+	  $query = "SELECT * FROM submissionsvod";
+	  if (!$result = $mysqli->query($query)) {
+	  	echo "sumission vod gathering failed";
+	  	die();
+	  } else {
+	  	foreach ($result as $row) {
+	  		$vodSubmission[] = $row;
 	  	}
 	  }
 ?>

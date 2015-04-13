@@ -203,7 +203,63 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     }
     echo "</ul>";
     echo "</div>";
+  } else if ($key === 'vods') {
+    if ($tech != '') {
+      echo "<li id='vodsAnchor' class='home active'>";
+    } else {
+      echo "<li id='techsAnchor'>";
+    }
+    echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
+    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
+    echo "<span class='pagetitle'>techniques</span>";
+    echo "</a>";
+    echo "<li>";
+    echo "<div id='techs" . $target . "' class='collapse " . $collapsed . "'>";
+    echo "<ul class='nav nav-list'>";
+    $counter = 0;
+    foreach ($data as $rec) {
+      $counter++;
+      echo "<li class='list-dd";
+      if (strcasecmp($rec, $tech) == 0) {
+        echo " active";
+      }
+      echo "'>";
+      echo "<a ";
+      if (strcasecmp($rec, $tech) == 0) echo "class='activeNav' ";
+      echo "href=/techniques/" . urlencode($rec) . ">";
+      echo $rec . "</a></li>";
+      echo "\n";
+    }
+    echo "</ul>";
+    echo "</div>";
   }
+}
+
+$vodcategories = array(1 => "Techniques", 2 => "Matches", 3 => "Entertainment", 4 => "PewPewUniversity", 5 => "Teams");
+
+function printVodsCollapse($active = false) {
+  global $vodcategories;
+  if ($active) {
+    echo "<li id='vodsAnchor' class='home active'>";
+  } else {
+    echo "<li id='vodsAnchor'>";
+  }
+  echo "    <a href='#vod' id='toggler' data-toggle='collapse' class='active' data-target='#vods'>";
+  echo "      <span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
+  echo "      <span class='pagetitle'>vods</span>";
+  echo "    </a>";
+  echo "  </li>";
+  echo "  <li>";
+  echo "   <div id='vods' class='collapse out'>";
+  echo "      <ul class='nav nav-list'>";
+  foreach ($vodcategories as $key => $category) {
+  echo "          <li class='list-dd'>";
+  echo "            <a href='/vods/$category'>$category</a>";
+  echo "          </li>";
+  }
+  echo "      </ul>";
+  echo "    </div>";
+  echo "  </li>";
 }
 function makeSubmitForm($from, $Thachar, $Thatech) {
   if ($from == 'char'){
@@ -551,7 +607,7 @@ function getYoutubeIdFromUrl($url) {
 function sidebar($currentPage = '') {
   $pages = array(
     "home" => array("/", "glyphicon glyphicon-home"),
-    "vods" => array("/vods/", "fa fa-youtube-play"),
+    //"vods" => array("/vods/", "fa fa-youtube-play"),
     "users" => array("/users.php", "fa fa-users"),
     "submit" => array("/submit.php", "fa fa-cloud-download"),
     "lounge" => array("/lounge.php", "glyphicon glyphicon-globe"),
@@ -597,6 +653,7 @@ function sidebar($currentPage = '') {
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
             }
+            printVodsCollapse();
   echo '        </ul>   
               </div>';
               echo "</div>";
@@ -864,7 +921,6 @@ function printNewLibraries() {
   <meta property="og:image:secure_url" content="https://smashlounge.com/img/assets/BG_twit.jpg" />';
 
   echo "<script src='/js/bootstrap.min.js'></script>";
-  echo "<script src='/js/jquery.scrollTo.min.js'></script>";
   echo "<script src='/js/app.js'></script>";
 }
 

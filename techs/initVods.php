@@ -67,4 +67,71 @@
 	    echo '	</div>';
 	}
 
+	function gatherVods($vodType) {
+		$vods = selectVodsByCategory($vodType);
+
+		$numVods = count($vods);
+
+		$numColums = 2;
+
+		$ColumSize = 12/$numColums;
+
+		echo "<div class='row'>";
+			echo "<div class='col-md-$ColumSize'>";
+			for ($j = 0; $j < floor($numVods/2); $j++) {
+				displayVod($vods[$j]);
+			}
+			echo "</div>";
+			echo "<div class='col-md-$ColumSize'>";
+			for ($j = ceil($numVods/2); $j < $numVods; $j++) {
+				displayVod($vods[$j]);
+			}
+			echo "</div>";
+		echo "</div>";
+	}
+
+	function selectVodsByCategory($vodType) {
+		global $mysqli;
+
+		$vodTypeId = -1;
+
+		$vodTypeId = getVodTypeId($vodType);
+
+		$vods = array();
+
+		$query = "SELECT * from vods where typeid=$vodTypeId";
+		if (!$result = $mysqli->query($query)) {
+		  die('Invalid query: ' . $mysqli->error);
+		}
+		foreach ($result as $row) {
+			$vods[] = $row;
+		}
+
+		return $vods;
+	}
+
+	function getVodTypeId($vodType) {
+		$id = -1;
+		switch ($vodType) {
+			case 'Techniques':
+				$id = 1;
+				break;
+			case 'Matches':
+				$id = 2;
+				break;
+			case 'Entertainment': 
+				$id = 3;
+				break;
+			case 'PewPewUniversity':
+				$id = 4;
+				break;
+			case 'Teams': 
+				$id = 5;
+				break;
+			default:
+				$id = -1;
+				break;
+		}
+		return $id;
+	}
 ?>

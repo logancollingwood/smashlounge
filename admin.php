@@ -74,7 +74,7 @@
                 <div class="row">
                 <ul class='nav nav-tabs' role='tablist' id='myTab'>
                   <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz' data-id="gif">Gifs</a></li>
-                  <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz' data-id="tournament">Tournaments</a></li>
+                  <li><a href='#vod' role='tab' data-toggle='tab' class='tabz' data-id="vod">Vods</a></li>
                   <li><a href='#technique' role='tab' data-toggle='tab' class='tabz' data-id="technique">Techniques</a></li>
                   <li><a href='#group' role='tab' data-toggle='tab' class='tabz' data-id="group">Regional Group</a></li>
                 </ul>
@@ -122,30 +122,30 @@
                       <?php endforeach; ?>
                     </table>
                   </div>
-                  <div class='tab-pane' id='tournament'>
-                    <table class="table table-striped">
+                  <div class='tab-pane' id='vod'>
+                    <table class="table">
                       <tr>
-                        <th>Tournament Name</th>
-                        <th>Start</th>
-                        <th>End</th>
-                        <th>Challonge</th>
-                        <th>Twitch</th>
+                        <th>Vod Title</th>
+                        <th>Description</th>
+                        <th>vod</th>
                         <th>Approve</th>
                         <th>Deny</th>
                       </tr>
-                       <?php foreach ($tournamentSubmission as $row): ?>
+                      <?php foreach ($vodSubmission as $row): ?>
                         <tr class="submission" data-id="<?php echo $row['id']; ?>">
                           <td>
                             <?php echo trim($row['title']); ?>
                           </td>
                           <td>
-                            <?php echo trim($row['start']); ?>
+                            <?php echo trim($row['description']); ?>
                           </td>
                           <td>
-                            <?php echo trim($row['end']); ?>
+                            <?php echo '
+                              <iframe type="text/html" width="300" height="200"
+                                src="http://www.youtube.com/embed/' . $row['url'] . '?origin=http://example.com"
+                                frameborder="0"/></iframe>';
+                            ?>
                           </td>
-                          <td><?php echo $row['bracket']; ?></td>
-                          <td><?php echo $row['stream']; ?></td>
                           <td><a class="approve-link" href="#"><i class="fa fa-check-circle fa-3x"></i></a></td>
                           <td><a class="delete-link" href="#"><i class="fa fa-times-circle fa-3x"></i></a></td>
                         </tr>

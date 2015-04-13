@@ -248,6 +248,56 @@
 		}
 		printf("Success with a tournament.");
 		exit();
+	} else if ($key == 'vod') {
+		$query = "SELECT * FROM submissionsvod WHERE id =" . $_POST['id'];
+
+		if ($result = $mysqli->query($query)) {
+		    while ($row = $result->fetch_row()) {
+		    	$url = $row[1];
+		    	$title = $row[2];
+		    	$credit = $row[3];
+		    	$typeid = $row[4];
+		    	$description = $row[5];
+
+		        printf("%s %s %s %s %s \n", $url, $title, $credit, $typeid, $description);
+		    }
+		    /* free result set */
+		    $result->close();
+		} else {
+			printf("Unable to find record in submissions table. Exiting.");
+			exit();
+		}
+
+		$query = "INSERT INTO vods (url, title, credit, typeid, description) values (?, ?, ?, ?, ?)";
+		if (!($stmt = $mysqli->prepare($query))) {
+	     	echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+	     	exit();
+		}
+		// Bind Params
+		if (!$stmt->bind_param("sssss", $url, $title, $credit, $typeid, $description)) {
+		    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+		// Execute
+		if (!$stmt->execute()) {
+		    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+		printf("%d Row inserted.\n", $stmt->affected_rows);
+		$stmt->close();
+
+		$query = "DELETE FROM submissionsvod WHERE id =" . $_POST['id'];
+		if (!($stmt = $mysqli->prepare($query))) {
+		     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		     exit();
+		}
+		// Execute
+		if (!$stmt->execute()) {
+		    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+		printf("Success with a vod.");
+		exit();
 	}
 	exit();
 

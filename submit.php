@@ -98,7 +98,7 @@ Questions?
               <div class="row">
               <ul class='nav nav-tabs' role='tablist' id='myTab'>
                 <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz' data-id="gif">Gifs</a></li>
-                <!-- <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz' data-id="tournament">Tournaments</a></li> -->
+                <li><a href='#vod' role='tab' data-toggle='tab' class='tabz' data-id="vod">Vods</a></li>
                 <li><a href='#technique' role='tab' data-toggle='tab' class='tabz' data-id="technique">Techniques</a></li>
                 <li><a href='#group' role='tab' data-toggle='tab' class='tabz' data-id="group">Regional Group</a></li>
               </ul>
@@ -268,8 +268,8 @@ Questions?
                   </div>
                 </div>
 
-<!--
-                <div class='tab-pane' id='tournament'>
+
+                <div class='tab-pane' id='vod'>
                   
                   <div class='col-md-12'>
                     
@@ -279,49 +279,50 @@ Questions?
                       <form method="post" class="form-horizontal">
 
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_nameid">Tournament Name</label>
+                          <label class="col-md-4 control-label" for="vod_urlid">Vod URL</label>
                           <div class="col-md-8">
-                            <input id="tournament_nameid" type="text" class="form-control" name="tournament_name" placeholder="Do You Fox With It?"/>
+                            <input id="vod_urlid" type="text" class="form-control" name="vod_url" placeholder="youtube.com/v/"/>
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_hostid">Tournament Host</label>
+                          <label class="col-md-4 control-label" for="vod_titleid">Vod Title</label>
                           <div class="col-md-8">
-                            <input id="tournament_hostid" type="text" class="form-control" name="tournament_host" placeholder="NorCal Melee"/>
+                            <input id="vod_titleid" type="text" class="form-control" name="vod_title" placeholder="WOMBO COMBO"/>
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_startid">Start Date</label>
+                          <label class="col-md-4 control-label" for="vod_descid">Vod Description</label>
                           <div class="col-md-8">
-                            <input id="tournament_startid" type="date" class="form-control" maxlength="100" name="tournament_start" placeholder="6/24/15"/>
+                            <input id="vod_descid" type="text" class="form-control" name="vod_desc" placeholder="PewPewU going OFF"/>
+                          </div>
+                        </div>
+
+                        <div class="form-group" id='vodSelector'>
+                          <label class="col-md-4 control-label" for="vod_selectorid">vod type</label>
+                          <div class="col-md-8">
+                            <select id='vod_selectorid' name='vod_type' class="form-control">
+                              <?php
+
+                                foreach($vodcategories as $key => $category) {
+                                  echo "<option value='$key'>" . $category . "</option>";
+                                }
+                              ?>
+                            </select>
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_endid">End Date</label>
+                          <label class="col-md-4 control-label" for="vod_creditid">Vod credit</label>
                           <div class="col-md-8">
-                            <input id="tournament_endid" type="date" class="form-control" maxlength="100" name="tournament_end" placeholder="6/25/15"/>
+                            <input id="vod_creditid" type="text" class="form-control" name="vod_credit" placeholder="VGBC GIMR"/>
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_twitchid">Twitch URL</label>
-                          <div class="col-md-8">
-                            <input id="tournament_twitchid" type="text" class="form-control" maxlength="100" name="tournament_twitch" placeholder="twitch.tv/showdownsmash"/>
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label class="col-md-4 control-label" for="tournament_challongeid">Challonge URL</label>
-                          <div class="col-md-8">
-                            <input id="tournament_challongeid" type="text" class="form-control" maxlength="100" name="tournament_challonge" placeholder="http://challonge.com/BiWeekly1"/>
-                          </div>
-                        </div>
 
                         <br>
-                        <button id="submittournament" class="btn btn-default post-submissions">submit</button>
+                        <button id="submitvod" class="btn btn-default post-submissions">submit</button>
                       </form>
                       </div>
                     </div>
@@ -329,7 +330,7 @@ Questions?
 
 
                 </div>
--->
+
                 <div class='tab-pane' id='technique'>
                     <div class='col-md-12'>
                     <div class='well SL'>

@@ -13,8 +13,8 @@
 	$place = '';
 	if ($type == 'gif') {
 		$place = 'submissions';
-	} else if ($type =='tournament') {
-		$place = 'submissionstournament';
+	} else if ($type =='vod') {
+		$place = 'submissionsvod';
 	} else if ($type == 'technique') {
 		$place = 'submissionstech';
 	} else if ($type == 'group') {

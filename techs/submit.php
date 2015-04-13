@@ -16,6 +16,22 @@
 	 
 	  return $matches[4];
 	}
+	function getYoutubeIdFromUrl($url) {
+	  $parts = parse_url($url);
+	  if(isset($parts['query'])){
+	    parse_str($parts['query'], $qs);
+	    if(isset($qs['v'])){
+	      return $qs['v'];
+	    }else if($qs['vi']){
+	      return $qs['vi'];
+	    }
+	  }
+	  if(isset($parts['path'])){
+	    $path = explode('/', trim($parts['path'], '/'));
+	    return $path[count($path)-1];
+	  }
+	  return '';
+	}
 
 	//echo(print_r($_POST));
 	
@@ -166,6 +182,40 @@
 		printf("%d Row inserted.\n", $stmt->affected_rows);
 		$stmt->close();
 
+	} else if ($key == 'vod') {
+
+		$vodurl = $_POST['vod_url'];
+		$vodtitle = $_POST['vod_title'];
+		$voddesc = $_POST['vod_desc'];
+		$vodtype = $_POST['vod_type'];
+		$vodcredit = $_POST['vod_credit'];
+		
+		$vodurl = getYoutubeIdFromUrl($vodurl);
+
+		if ($vodurl == '' || $vodtitle == '') {
+			printf("nullfields");
+			exit();
+		}
+
+
+
+		if (!($stmt = $mysqli->prepare("INSERT INTO submissionsvod (url, title, credit, typeid, description) VALUES (?, ?, ?, ?, ?)"))) {
+		     echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		     exit();
+		}
+		// Bind Params
+		if (!$stmt->bind_param("sssss", $vodurl, $vodtitle, $vodcredit, $vodtype, $voddesc)) {
+		    echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+		// Execute
+		if (!$stmt->execute()) {
+		    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+		    exit();
+		}
+
+		printf("%d Row inserted.\n", $stmt->affected_rows);
+		$stmt->close();
 	} else {
 		echo "FAILURE";
 		return false;
