@@ -574,18 +574,18 @@ function sidebar($currentPage = '') {
                 echo "</div>";
                 echo '<div class="row">';
                echo '<div class="expander">
-                <ul class="nav" id="lg-menu">';
+                        <ul class="nav" id="lg-menu">';
                       foreach ($pages as $title => $href) {
                         if (strcmp($currentPage, $title) == 0) {
-                          echo '<li class="home active">';
+                          echo '  <li class="home active">';
                         } else {
-                          echo '<li class="home">';
+                          echo '  <li class="home">';
                         }
-                            echo "<a href='" . $href[0] . "'>";
-                              echo "<span class='" . $href[1] . " sidebarico'></span>";
-                              echo "<span class='pagetitle'>" . $title . "</span>";
-                            echo "</a>";
-                          echo "</li>";
+                            echo "      <a href='" . $href[0] . "'>";
+                              echo "      <span class='" . $href[1] . " sidebarico'></span>";
+                              echo "      <span class='pagetitle'>" . $title . "</span>";
+                            echo "    </a>";
+                          echo "  </li>";
                       }
             if (in_array($currentPage, $modules) && !in_array($currentPage, $specials)) {
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
@@ -597,7 +597,7 @@ function sidebar($currentPage = '') {
               makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
               makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
             }
-  echo '        </ul>
+  echo '        </ul>   
               </div>';
               echo "</div>";
                 if ($loggedIn) {

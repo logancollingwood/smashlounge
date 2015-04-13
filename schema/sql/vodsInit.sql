@@ -43,6 +43,7 @@ INSERT INTO `vods` (`id`, `url`, `title`, `update_date`, `score`, `credit`, `typ
 (2, 'qUiAZltrWwo', '[Falco] Multi-shine Tutorial - feat. Squid (Advanced Level) - SSBM', '2015-04-16 16:04:50', 0, 'SSBM Tutorials', 1, 0, '', 'A quick tutorial on Multi-shine with Falco'),
 (3, 'XhujDoRBXeY', 'PewPewUniversity - A tutorial on No Impact Landing', '2015-04-16 16:05:58', 0, 'Kevin Toy', 1, 0, '', 'A sample tutorial on no impact landings'),
 (4, 'Kr5y0-W9YVo', 'Cort (Marth) vs PC Chris (Fox) 2', '2015-04-16 16:11:56', 0, 'raserucort', 2, 0, '', 'One of the fastest matches in Melee');
+-- (5, 'OSxVR_QGPoI', 'PewFat', '2015-04-16 16:11:56', 0, 'SFAT', 2, '', 'PewPewU and SFAT demonstrating great teams synergy many years ago');
 
 --
 -- Indexes for dumped tables

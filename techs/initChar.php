@@ -110,8 +110,8 @@ function printCharData($moves, $author) {
 
               echo "<div class='col-md-4'>";
               echo "<li class='list-group-item'>";
-              echo "<img class='gfyitem' data-expand=true data-id='" . $info['url'] . "'/>";
-              echo  "<h4>" . $info['description'] . "</h4>";
+              echo "<div class='charDataGfy'><img class='gfyitem' data-expand=true data-id='" . $info['url'] . "'/></div>";
+              echo  "<p class='data-desc'>" . $info['description'] . "</h4>";
             
               if ($info['source']) {
               /*

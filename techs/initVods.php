@@ -6,6 +6,12 @@
 	if (!$result = $mysqli->query($query)) {
 	  die('Invalid query: ' . $mysqli->error);
 	}
+
+	$TechniqueVods 		= array();
+	$MatchVods			= array();
+	$EntertainmentVods 	= array();
+
+
 	foreach ($result as $row) {
 		switch ($row['typeid']) {
 			case '1':
@@ -23,14 +29,17 @@
 				$EntertainmentVods[] = $row;
 				$row['typeid'] = 'Entertainment';
 				break;
+
 			default: 
 				$row['typeid'] = 'General';
 				break;
 		}
-		
-		shuffle($TechniqueVods);
-		shuffle($MatchVods);
-		shuffle($EntertainmentVods);
+		if ($TechniqueVods != null)
+			shuffle($TechniqueVods);
+		if ($MatchVods != null)
+			shuffle($MatchVods);
+		if ($EntertainmentVods != null)
+			shuffle($EntertainmentVods);
 
 		$allVods['Techniques'] = $TechniqueVods;
 		$allVods['Matches'] = $MatchVods;
