@@ -622,7 +622,8 @@ function sidebar($currentPage = '') {
                       echo "<div class='loginbox' style='padding-top:30px;'>";
                       //echo "    <hr class='login'>";
                       echo "<div class='col-md-6'>";
-                        echo "    <a class='button button-inline button-small button-info ";
+                        echo "    <a id='loginPop' data-placement='top' data-toggle='popover' title='Login!' data-trigger='manual' data-content='Whoops! You need to be logged in to vote.'";
+                        echo "    class='button button-inline button-small button-info ";
                           if ($currentPage=='login') {
                             echo "active";
                           }
@@ -944,6 +945,8 @@ function printGfy($gfyObject, $count) {
   global $loggedIn;
   $num = $count+1;
 
+  $gfyID = $gfyObject['id'];
+
   $frameData = getFrameDataForGif($gfyObject['id']);
   $source = '';
   if ($gfyObject['source'] && filter_var($gfyObject['source'], FILTER_VALIDATE_URL)) {
@@ -960,6 +963,7 @@ function printGfy($gfyObject, $count) {
 
   }
   */
+  $score = getGifScore($gfyID);
 
   echo '<div class="gfyTainer">';
   echo '  <div class="row">';
@@ -969,14 +973,12 @@ function printGfy($gfyObject, $count) {
   echo          $num;
   echo "       </span>";
   echo '        <hr>';
-  if ($loggedIn) {
-    echo '       <br>';
-    echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
-    echo "       <h4>". $gfyObject['score'] . "</h4>";
-    echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
-  } else {
-    echo '       <small>score:</small><h4> ' . $gfyObject['score'] . '</h4>';
-  }
+
+  echo '       <br>';
+  echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+  echo "       <h4 id='score$gfyID'>" . $score['total'] . "</h4><i id='spin$gfyID'class='fa fa-circle-o-notch fa-spin hidden margin-left'></i>";
+  echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
+
   echo '    </div>';
   echo '    <div class="col-md-10 col-sm-10">';
   echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
@@ -988,6 +990,41 @@ function printGfy($gfyObject, $count) {
   echo '  </div>';
   echo '</div>';
 
+}
+
+/*
+  returns an array of
+  $score['gifid'] for which gif
+  $score['up']    total number of upvotes
+  $score['total'] total score
+  $score['down']  total number of downvotes
+*/
+
+function getGifScore($gifID) {
+  global $mysqli;
+
+  $query = "
+      SELECT gifid, SUM(direction) as total, SUM(CASE WHEN direction<0 THEN direction ELSE 0 END) as up,
+           SUM(CASE WHEN direction>=0 THEN direction ELSE 0 END) as down
+    FROM gifvotes
+    where gifID = $gifID";
+  
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+  foreach ($result as $row) {
+    $score = $row;
+  }
+
+  //force undefined values to 0
+  //this also catches when a gif has not been voted on before
+  //shouldn't effect anything, only graphical display of current totals
+  if ($score["gifid"] == NULL) $score["gifid"] = -1;
+  if ($score["up"] == NULL) $score["up"] = 0;
+  if ($score["total"] == NULL) $score["total"] = 0;
+  if ($score["down"] == NULL) $score["down"] = 0;
+
+  return $score;
 }
 
 function printSubmit($key) {

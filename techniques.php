@@ -168,7 +168,7 @@ Questions?
 
     <script type="text/javascript" src="/js/svg.min.js"></script>
     <script type="text/javascript" src="/js/frameinput.js"></script>
-
+    <script type="text/javascript" src="/js/voting.js"></script>
     <script>
       $( document ).ready(function() {
         <?php foreach ($gifs as $tmpGif) { 
