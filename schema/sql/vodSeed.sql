@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2015 at 09:18 AM
+-- Generation Time: Apr 13, 2015 at 09:19 AM
 -- Server version: 5.5.36
 -- PHP Version: 5.4.27
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `vods`
 --
 
+DROP TABLE IF EXISTS `vods`;
 CREATE TABLE IF NOT EXISTS `vods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(260) NOT NULL,
