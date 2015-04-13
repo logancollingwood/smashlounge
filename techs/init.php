@@ -252,6 +252,9 @@ function printVodsCollapse($active = false) {
   echo "  <li>";
   echo "   <div id='vods' class='collapse out'>";
   echo "      <ul class='nav nav-list'>";
+  echo "          <li class='list-dd'>";
+  echo "            <a href='/vods/'>All</a>";
+  echo "          </li>";
   foreach ($vodcategories as $key => $category) {
   echo "          <li class='list-dd'>";
   echo "            <a href='/vods/$category'>$category</a>";
