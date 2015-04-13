@@ -77,7 +77,7 @@ Questions?
                                   displayVod($vod);
                                 }
                                 echo "<h2> Combos </h2><hr>";
-                                foreach ($allVods['ComboVods'] as $vod) {
+                                foreach ($allVods['Combos'] as $vod) {
                                   displayVod($vod);
                                 }
                               ?>
@@ -90,7 +90,7 @@ Questions?
                                   displayVod($vod);
                                 }
                                 echo "<h2> PewPewUniversity </h2><hr>";
-                                foreach ($allVods['PPU'] as $vod) {
+                                foreach ($allVods['PewPewUniversity'] as $vod) {
                                   displayVod($vod);
                                 }
                               ?>
@@ -103,7 +103,7 @@ Questions?
                                   displayVod($vod);
                                 }
                                 echo "<h2> Teams </h2><hr>";
-                                foreach ($allVods['TeamVods'] as $vod) {
+                                foreach ($allVods['Teams'] as $vod) {
                                   displayVod($vod);
                                 }
                               ?>

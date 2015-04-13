@@ -2,66 +2,22 @@
 
 	require_once("techs/db.php");
 
-	$query = "SELECT * from vods";
-	if (!$result = $mysqli->query($query)) {
-	  die('Invalid query: ' . $mysqli->error);
-	}
+	//initializes an array with 1 vod per 6 categories for display on the home page
+	foreach ($vodcategories as $key => $name) {
+		$tempArr = array();
+		$query = "
+		SELECT * FROM vods WHERE typeid=$key
+		ORDER BY RAND()
+		LIMIT 1";
 
-	$TechniqueVods 		= array();
-	$MatchVods			= array();
-	$EntertainmentVods 	= array();
-	$PPUVods 			= array();
-	$ComboVods			= array();
-	$TeamVods			= array();
-
-	foreach ($result as $row) {
-		switch ($row['typeid']) {
-			case '1':
-				$TechniqueVods[] = $row;
-				break;
-			case '2':
-				$MatchVods[] = $row;
-				break;
-			case '3':
-				$EntertainmentVods[] = $row;
-				break;
-			case '4':
-				$PPUVods[] = $row;
-				break;
-			case '5':
-				$ComboVods[] = $row;
-				break;
-			case '6':
-				$TeamVods[] = $row;
-				break;
-			default: 
-				$row['typeid'] = 'General';
-				break;
+		if (!$result = $mysqli->query($query)) {
+		  die('Invalid query: ' . $mysqli->error);
 		}
-		if ($TechniqueVods != null)
-			shuffle($TechniqueVods);
-		if ($MatchVods != null)
-			shuffle($MatchVods);
-		if ($EntertainmentVods != null)
-			shuffle($EntertainmentVods);
-		if ($PPUVods != null)
-			shuffle($PPUVods);
-		if ($ComboVods != null)
-			shuffle($ComboVods);
-		if ($TeamVods != null)
-			shuffle($TeamVods);
-
-		$allVods['Techniques'] = $TechniqueVods;
-		$allVods['Matches'] = $MatchVods;
-		$allVods['Entertainment'] = $EntertainmentVods;
-		$allVods['PPU'] = $PPUVods;
-		$allVods['ComboVods'] = $ComboVods;
-		$allVods['TeamVods'] = $TeamVods;
-
-
-		$allVods[] = $row;
+		foreach ($result as $row) {
+			$tempArr[] = $row;
+		}
+		$allVods[$name] = $tempArr;
 	}
-
 
 
 
@@ -85,20 +41,25 @@
 
 		$numVods = count($vods);
 
+		$firsthalf = array_slice($vods, 0, $numVods / 2);
+		$secondhalf = array_slice($vods, $numVods / 2);
+
 		$numColums = 2;
 
 		$ColumSize = 12/$numColums;
 
 		echo "<div class='row'>";
 			echo "<div class='col-md-$ColumSize'>";
-			for ($j = 0; $j <= floor($numVods/2); $j++) {
-				displayVod($vods[$j]);
+			foreach ($firsthalf as $vod) {
+				displayVod($vod);
 			}
+
 			echo "</div>";
 			echo "<div class='col-md-$ColumSize'>";
-			for ($j = ceil($numVods/2); $j < $numVods; $j++) {
-				displayVod($vods[$j]);
+			foreach ($secondhalf as $vod) {
+				displayVod($vod);
 			}
+
 			echo "</div>";
 		echo "</div>";
 	}
