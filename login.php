@@ -1,8 +1,8 @@
 <?php
-   require("techs/init.php");
+   require_once("techs/init.php");
    require_once("techs/sentry.php");
    
-   $submit = isset($_GET['str'])       ? trim($_GET['str'])       : "";
+
    $loggedIn = false;
    if (Sentry::check())
    {
@@ -13,6 +13,7 @@
    }
    
    $redirect = isset($_GET['redirect'])       ? trim($_GET['redirect'])       : "";
+
    if(!empty($_POST)){ 
 
        require('techs/dbSuper.php');
@@ -46,12 +47,7 @@
            header("Location: login.php?str=failed");
        }
    
-       if ($redirect) {
-           header("Location: /" . $redirect . ".php");
-           die("Redirecting to: redirect");
-       }
-   
-       header("Location: login.php");
+       header("Location: index.php");
        die("Redirecting to: secret");
    }
    

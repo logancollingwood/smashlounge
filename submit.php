@@ -178,13 +178,14 @@ Questions?
                           </div>
                         </div>
 
+                          <!--
                         <div class="form-group">
                           <label class="col-md-4 control-label" for="tournament_nameid">Include Frame Data?</label>
                           <div class="col-md-8">
                             <input id="boolean-framedata" type="checkbox" class="form-control" name="boolean-framedata"/>
                           </div>
                         </div>
-
+                            -->
                         <button id="submitgif" class="btn btn-default post-submissions">submit</button>
                         <br>
                       </form>

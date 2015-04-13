@@ -18,48 +18,49 @@ $(document).ready(function(){
 
 	 	//THIS SENDS AN AJAX REQUEST TO THE SERVER FOR HANDLING A VOTE
 	 	//ON THE SERVER SIDE, LOGIN WILL BE CHECKED VIA A COOKIE
-	 	//AND ECHO 'LOGIN' ON LOGIN FAILURE
+	 	//AND returns a json object on return.
+                // on return, if the login flag is false, that means the cookie wasn't detected by sentry
 
 	  	$.ajax({
-	        url: '/techs/vote.php',
-	        type: 'POST',
-	        data: { gifId: id , page: page, direction: direction },
-	        dataType: 'json'
-	    })
-        .success(function(data) { 
-        	console.log(data);
-        	if (data.login == 0 && data.success == 0) {
-        		console.log("requireLogin");
-        		$('#loginPop').popover('show');
-        		return;
-        	} else if (data.success || data.duplicateSuccess) {
-        		console.log($(this));
+        	        url: '/techs/vote.php',
+                        type: 'POST',
+                        data: { gifId: id , page: page, direction: direction },
+                        dataType: 'json'
+                })
+                .success(function(data) { 
+                	console.log(data);
+                	if (data.login == 0 && data.success == 0) {
+                		console.log("requireLogin");
+                		$('#loginPop').popover('show');
+                		return;
+                	} else if (data.success || data.duplicateSuccess) {
+                		console.log($(this));
 
-        		var currScore = scoreElem.html();
+                		var currScore = scoreElem.html();
 
-        		if (direction == "down") {
-        			
-        			$("#down" + id).attr("disabled", true);
-        			$("#up" + id).attr("disabled", false);
-        			$("#up" + id).removeClass("SL");
-        			$("#down" + id).addClass("SL");
-        		} else if (direction == "up") {
-        			
-        			$("#up" + id).attr("disabled", true);
-        			$("#down" + id).attr("disabled", false);
-        			$("#up" + id).addClass("SL");
-        			$("#down" + id).removeClass("SL");
-        		}
+                		if (direction == "down") {
+                			
+                			$("#down" + id).attr("disabled", true);
+                			$("#up" + id).attr("disabled", false);
+                			$("#up" + id).removeClass("SL");
+                			$("#down" + id).addClass("SL");
+                		} else if (direction == "up") {
+                			
+                			$("#up" + id).attr("disabled", true);
+                			$("#down" + id).attr("disabled", false);
+                			$("#up" + id).addClass("SL");
+                			$("#down" + id).removeClass("SL");
+                		}
 
-        		scoreElem.html(data.score);
-        		console.log(scoreElem);
-        	}
-        })
-	    .fail(function() {
-	      console.log('failing');
-	    })
-        .always(function(html) {
-        	scoreElem.children().addClass("hidden");
-        });
+                		scoreElem.html(data.score);
+                		console.log(scoreElem);
+                	}
+                })
+        	.fail(function() {
+        	        console.log('failing');
+        	})
+                .always(function(html) {
+                	scoreElem.children().addClass("hidden");
+                });
 	});
 });

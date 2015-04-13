@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  $('#loginPop').popover();
 	$("#toggler").click(function(){
   		$(this).toggleClass('active, inactive');
       var which = $(this).data( "target" );
