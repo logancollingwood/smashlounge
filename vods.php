@@ -52,7 +52,7 @@ Questions?
 
           <div class="row row-offcanvas row-offcanvas-left">
 
-          <?php sidebar('users'); ?>
+          <?php sidebar('vods'); ?>
 
 
            <!-- main right col -->

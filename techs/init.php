@@ -551,7 +551,7 @@ function getYoutubeIdFromUrl($url) {
 function sidebar($currentPage = '') {
   $pages = array(
     "home" => array("/", "glyphicon glyphicon-home"),
-    "vods" => array("/vods.php", "fa fa-youtube-play"),
+    "vods" => array("/vods/", "fa fa-youtube-play"),
     "users" => array("/users.php", "fa fa-users"),
     "submit" => array("/submit.php", "fa fa-cloud-download"),
     "lounge" => array("/lounge.php", "glyphicon glyphicon-globe"),
