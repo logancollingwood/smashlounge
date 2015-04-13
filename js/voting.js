@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	$('#loginPop').popover();
 
 	$( ".vote" ).on( "click", function() {
 		if ($(this).attr("disabled")) return;

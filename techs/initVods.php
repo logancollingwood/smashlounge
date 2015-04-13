@@ -10,26 +10,30 @@
 	$TechniqueVods 		= array();
 	$MatchVods			= array();
 	$EntertainmentVods 	= array();
-
+	$PPUVods 			= array();
+	$ComboVods			= array();
+	$TeamVods			= array();
 
 	foreach ($result as $row) {
 		switch ($row['typeid']) {
 			case '1':
-
 				$TechniqueVods[] = $row;
-				$row['typeid'] = 'Technique';
 				break;
 			case '2':
-
 				$MatchVods[] = $row;
-				$row['typeid'] = 'Match';
 				break;
 			case '3':
-
 				$EntertainmentVods[] = $row;
-				$row['typeid'] = 'Entertainment';
 				break;
-
+			case '4':
+				$PPUVods[] = $row;
+				break;
+			case '5':
+				$ComboVods[] = $row;
+				break;
+			case '6':
+				$TeamVods[] = $row;
+				break;
 			default: 
 				$row['typeid'] = 'General';
 				break;
@@ -40,10 +44,19 @@
 			shuffle($MatchVods);
 		if ($EntertainmentVods != null)
 			shuffle($EntertainmentVods);
+		if ($PPUVods != null)
+			shuffle($PPUVods);
+		if ($ComboVods != null)
+			shuffle($ComboVods);
+		if ($TeamVods != null)
+			shuffle($TeamVods);
 
 		$allVods['Techniques'] = $TechniqueVods;
 		$allVods['Matches'] = $MatchVods;
 		$allVods['Entertainment'] = $EntertainmentVods;
+		$allVods['PPU'] = $PPUVods;
+		$allVods['ComboVods'] = $ComboVods;
+		$allVods['TeamVods'] = $TeamVods;
 
 
 		$allVods[] = $row;
@@ -78,7 +91,7 @@
 
 		echo "<div class='row'>";
 			echo "<div class='col-md-$ColumSize'>";
-			for ($j = 0; $j < floor($numVods/2); $j++) {
+			for ($j = 0; $j <= floor($numVods/2); $j++) {
 				displayVod($vods[$j]);
 			}
 			echo "</div>";
@@ -111,27 +124,11 @@
 	}
 
 	function getVodTypeId($vodType) {
-		$id = -1;
-		switch ($vodType) {
-			case 'Techniques':
-				$id = 1;
-				break;
-			case 'Matches':
-				$id = 2;
-				break;
-			case 'Entertainment': 
-				$id = 3;
-				break;
-			case 'PewPewUniversity':
-				$id = 4;
-				break;
-			case 'Teams': 
-				$id = 5;
-				break;
-			default:
-				$id = -1;
-				break;
+		global $vodcategories;
+
+		foreach ($vodcategories as $num => $name) {
+			if ($name == $vodType) return $num;
 		}
-		return $id;
+		return -1;
 	}
 ?>

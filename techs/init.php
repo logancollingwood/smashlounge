@@ -235,7 +235,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
   }
 }
 
-$vodcategories = array(1 => "Techniques", 2 => "Matches", 3 => "Entertainment", 4 => "PewPewUniversity", 5 => "Teams");
+$vodcategories = array(1 => "Techniques", 2 => "Matches", 3 => "Entertainment", 4 => "PewPewUniversity", 5 => "Combos", 6 => "Teams");
 
 function printVodsCollapse($active = false) {
   global $vodcategories;

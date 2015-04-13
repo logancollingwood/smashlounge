@@ -76,6 +76,10 @@ Questions?
                                 foreach ($allVods['Entertainment'] as $vod) {
                                   displayVod($vod);
                                 }
+                                echo "<h2> Combos </h2><hr>";
+                                foreach ($allVods['ComboVods'] as $vod) {
+                                  displayVod($vod);
+                                }
                               ?>
                         </div>
                         <div class='col-md-4'>
@@ -85,6 +89,10 @@ Questions?
                                 foreach ($allVods['Techniques'] as $vod) {
                                   displayVod($vod);
                                 }
+                                echo "<h2> PewPewUniversity </h2><hr>";
+                                foreach ($allVods['PPU'] as $vod) {
+                                  displayVod($vod);
+                                }
                               ?>
                         </div>
                         <div class='col-md-4'>
@@ -92,6 +100,10 @@ Questions?
                           <hr>
                               <?php
                                 foreach ($allVods['Matches'] as $vod) {
+                                  displayVod($vod);
+                                }
+                                echo "<h2> Teams </h2><hr>";
+                                foreach ($allVods['TeamVods'] as $vod) {
                                   displayVod($vod);
                                 }
                               ?>
