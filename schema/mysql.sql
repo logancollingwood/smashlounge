@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.7
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 10, 2015 at 12:28 PM
--- Server version: 5.5.41-cll-lve
--- PHP Version: 5.4.23
+-- Host: 127.0.0.1
+-- Generation Time: Apr 13, 2015 at 09:13 AM
+-- Server version: 5.5.36
+-- PHP Version: 5.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -865,6 +865,20 @@ INSERT INTO `framedatamoves` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `friends`
+--
+
+DROP TABLE IF EXISTS `friends`;
+CREATE TABLE IF NOT EXISTS `friends` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `myid` int(50) NOT NULL,
+  `friendid` int(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `gifs`
 --
 
@@ -880,7 +894,7 @@ CREATE TABLE IF NOT EXISTS `gifs` (
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `score` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1905 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1911 ;
 
 --
 -- Dumping data for table `gifs`
@@ -1668,7 +1682,35 @@ INSERT INTO `gifs` (`id`, `typeid`, `dataid`, `source`, `submittedby`, `url`, `d
 (1901, 3, 263, '', 0, 'NastyLightAnt', '', '2015-02-21 20:56:43', 0),
 (1902, 3, 162, '', 0, 'IllTidyChamois', '', '2015-03-09 20:22:38', 0),
 (1903, 3, 162, '', 0, 'CookedFemaleAfricanaugurbuzzard', '', '2015-03-09 20:22:38', 0),
-(1904, 3, 162, '', 0, 'EasyAdorableKite', '', '2015-03-09 20:22:38', 0);
+(1904, 3, 162, '', 0, 'EasyAdorableKite', '', '2015-03-09 20:22:38', 0),
+(1906, 3, 119, '', 0, 'LividZanyAllosaurus', '', '2015-03-17 19:42:15', 0),
+(1907, 3, 119, '', 0, 'OilyBeneficialAmurratsnake', '', '2015-03-17 19:42:15', 0),
+(1908, 3, 60, '', 0, 'DenseFailingAmericancrocodile', '', '2015-04-01 01:49:15', 0),
+(1909, 3, 202, '', 0, 'FarawayGeneralAustraliancurlew', '', '2015-04-05 23:29:36', 0),
+(1910, 2, 26, 'SSS 17 - S2J vs Fiction (WF)', 0, 'ConfusedMelodicGallowaycow', 'nice tech chase string from S2J', '2015-04-07 03:39:24', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gifvotes`
+--
+
+DROP TABLE IF EXISTS `gifvotes`;
+CREATE TABLE IF NOT EXISTS `gifvotes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gifid` int(11) NOT NULL,
+  `voterid` int(11) NOT NULL,
+  `direction` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `gifvotes`
+--
+
+INSERT INTO `gifvotes` (`id`, `gifid`, `voterid`, `direction`) VALUES
+(1, 526, 2, 1),
+(2, 527, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -1710,7 +1752,7 @@ CREATE TABLE IF NOT EXISTS `locals` (
   `longitude` decimal(11,7) DEFAULT NULL,
   `game` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=184 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=194 ;
 
 --
 -- Dumping data for table `locals`
@@ -1898,7 +1940,17 @@ INSERT INTO `locals` (`id`, `region`, `profileid`, `name`, `latitude`, `longitud
 (180, 1, 'www.facebook.com/groups/1480028002218278/', 'Cortland Smash Bros', '42.6020000', '-76.1860000', 2),
 (181, 1, 'www.facebook.com/groups/CornellSmash/', 'Cornell Smash [the old Facebook listing for ', '42.4470000', '-76.4900000', 0),
 (182, 6, 'www.facebook.com/groups/108829072557656/', 'Smash BR', '-15.8150000', '-47.8560000', 0),
-(183, 1, 'www.facebook.com/groups/VermontMelee', 'Vermont Melee', '44.4750000', '-73.2060000', 2);
+(183, 1, 'www.facebook.com/groups/VermontMelee', 'Vermont Melee', '44.4750000', '-73.2060000', 2),
+(184, 6, 'www.facebook.com/groups/315598801891025/', 'Ottawa Melee', '45.3970000', '-75.6660000', 2),
+(185, 3, 'www.facebook.com/groups/PlattevilleSmashBros/', 'Platteville Smash Bros.', '42.7330000', '-90.4870000', 0),
+(186, 5, 'www.facebook.com/groups/centralwashingtonsmash/', 'Central Washington Super Smash Bros', '47.4310000', '-120.3370000', 1),
+(187, 5, 'www.facebook.com/groups/centralwashingtonsmash/', 'Central Washington Smash', '47.4160000', '-120.2960000', 4),
+(188, 1, 'www.facebook.com/groups/SCPASmash', 'South Central PA Smash', '40.1520000', '-76.5920000', 0),
+(189, 1, 'm.facebook.com/groups/500077296805692/?refsrc=http%3A%2F%2Fwww.reddit.com%2Fr%2Fsmashbros%2Fwiki%2Ffacebook&refid=9&_rdr#_=_', 'Northeast PA Competitive Smash ', '40.8720000', '-75.3440000', 0),
+(190, 1, 'www.facebook.com/groups/SmashWichita/', 'Super Smash Bros. 4 Wichita', '0.0000000', '0.0000000', 5),
+(191, 1, 'www.facebook.com/groups/NEPAsmash/', 'Northeast PA Competitive Smash', '41.2750000', '-75.7890000', 0),
+(192, 2, 'www.facebook.com/groups/604473126274663/', 'Memphis Area Smash', '35.1380000', '-90.0710000', 2),
+(193, 2, 'www.facebook.com/groups/604473126274663/805739082814732/?notif_t=group_activity', 'Memphis Area Smash', '35.1430000', '-90.0530000', 0);
 
 -- --------------------------------------------------------
 
@@ -1949,7 +2001,7 @@ DROP TABLE IF EXISTS `submissions`;
 CREATE TABLE IF NOT EXISTS `submissions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(90) NOT NULL,
-  `source` varchar(260) NOT NULL,
+  `source` varchar(30) NOT NULL,
   `description` varchar(300) NOT NULL,
   `pageid` int(11) NOT NULL,
   `dataid` int(11) NOT NULL,
@@ -2012,6 +2064,23 @@ CREATE TABLE IF NOT EXISTS `submissionstournament` (
   `host` varchar(65) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submissionsvod`
+--
+
+DROP TABLE IF EXISTS `submissionsvod`;
+CREATE TABLE IF NOT EXISTS `submissionsvod` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(260) NOT NULL,
+  `title` varchar(130) NOT NULL,
+  `credit` varchar(160) NOT NULL,
+  `typeid` int(11) NOT NULL,
+  `description` varchar(260) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -2082,7 +2151,7 @@ CREATE TABLE IF NOT EXISTS `throttle` (
   `banned_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=190 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=152 ;
 
 --
 -- Dumping data for table `throttle`
@@ -2239,45 +2308,7 @@ INSERT INTO `throttle` (`id`, `user_id`, `ip_address`, `attempts`, `suspended`, 
 (148, 203, NULL, 0, 0, 0, NULL, NULL, NULL),
 (149, 17, NULL, 0, 0, 0, NULL, NULL, NULL),
 (150, 204, NULL, 0, 0, 0, NULL, NULL, NULL),
-(151, 205, NULL, 0, 0, 0, NULL, NULL, NULL),
-(152, 247, NULL, 0, 0, 0, NULL, NULL, NULL),
-(153, 248, NULL, 0, 0, 0, NULL, NULL, NULL),
-(154, 249, NULL, 0, 0, 0, NULL, NULL, NULL),
-(155, 245, NULL, 0, 0, 0, NULL, NULL, NULL),
-(156, 227, NULL, 0, 0, 0, NULL, NULL, NULL),
-(157, 250, NULL, 0, 0, 0, NULL, NULL, NULL),
-(158, 251, NULL, 0, 0, 0, NULL, NULL, NULL),
-(159, 252, NULL, 0, 0, 0, NULL, NULL, NULL),
-(160, 253, NULL, 0, 0, 0, NULL, NULL, NULL),
-(161, 233, NULL, 0, 0, 0, NULL, NULL, NULL),
-(162, 254, NULL, 0, 0, 0, NULL, NULL, NULL),
-(163, 234, NULL, 0, 0, 0, NULL, NULL, NULL),
-(164, 64, NULL, 0, 0, 0, NULL, NULL, NULL),
-(165, 47, NULL, 0, 0, 0, NULL, NULL, NULL),
-(166, 255, NULL, 0, 0, 0, NULL, NULL, NULL),
-(167, 256, NULL, 0, 0, 0, NULL, NULL, NULL),
-(168, 257, NULL, 0, 0, 0, NULL, NULL, NULL),
-(169, 232, NULL, 0, 0, 0, NULL, NULL, NULL),
-(170, 258, NULL, 0, 0, 0, NULL, NULL, NULL),
-(171, 239, NULL, 0, 0, 0, NULL, NULL, NULL),
-(172, 260, NULL, 0, 0, 0, NULL, NULL, NULL),
-(173, 229, NULL, 0, 0, 0, NULL, NULL, NULL),
-(174, 261, NULL, 0, 0, 0, NULL, NULL, NULL),
-(175, 263, NULL, 0, 0, 0, NULL, NULL, NULL),
-(176, 264, NULL, 0, 0, 0, NULL, NULL, NULL),
-(177, 265, NULL, 0, 0, 0, NULL, NULL, NULL),
-(178, 216, NULL, 0, 0, 0, NULL, NULL, NULL),
-(179, 231, NULL, 0, 0, 0, NULL, NULL, NULL),
-(180, 266, NULL, 0, 0, 0, NULL, NULL, NULL),
-(181, 267, NULL, 0, 0, 0, NULL, NULL, NULL),
-(182, 268, NULL, 0, 0, 0, NULL, NULL, NULL),
-(183, 269, NULL, 0, 0, 0, NULL, NULL, NULL),
-(184, 241, NULL, 0, 0, 0, NULL, NULL, NULL),
-(185, 60, NULL, 0, 0, 0, NULL, NULL, NULL),
-(186, 270, NULL, 0, 0, 0, NULL, NULL, NULL),
-(187, 271, NULL, 0, 0, 0, NULL, NULL, NULL),
-(188, 272, NULL, 0, 0, 0, NULL, NULL, NULL),
-(189, 273, NULL, 0, 0, 0, NULL, NULL, NULL);
+(151, 205, NULL, 0, 0, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2303,20 +2334,142 @@ CREATE TABLE IF NOT EXISTS `upcoming` (
   `host` varchar(90) NOT NULL,
   `vods` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `upcoming`
 --
 
 INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `end`, `first`, `second`, `third`, `stream`, `attending`, `location`, `host`, `vods`) VALUES
-(1, 'Do You Fox Wit it', '722984804448159', '//dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', 'Hax', 'Silentwolf', 'SFAT', 'showdownsmash', 250, 'Oakland', 'NorCal', '3048'),
+(1, 'Do You Fox Wit it', '722984804448159', 'http://dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', 'Hax', 'Silentwolf', 'SFAT', 'showdownsmash', 250, 'Oakland', 'NorCal', '3048'),
 (9, 'TMG Columbia vs UMass Boston', '//www.facebook.com/TheMeleeGames', '//themeleegames.challonge.com/TS', 'event-info', '2015-01-31', '2015-02-02', '', '', '', '', 0, 'Secaucus, NJ', 'Apex 2015', ''),
-(10, 'Paragon', '1502519116670412', '//paragon.challonge.com', 'event-info', '2015-01-17', '2015-01-18', '', '', '', 'vgbootcamp', 150, 'Orlando, FL', 'Versus Gaming Center / Gaming Knights', ''),
-(11, 'APEX 2015', '301539433342834', '', 'event-info', '2015-01-30', '2015-02-01', '', '', '', 'vgbootcamp', 1025, 'Secaucus, NJ', 'APEX', ''),
-(12, 'Smashlounge Invitational', '', '//challonge.com/SLInvitational1', 'event-info', '2014-01-23', '2014-01-23', '', '', '', 'pewpewu', 6, 'Santa Cruz, CA', 'smashlounge', ''),
-(13, 'Cusetown Beatdown', '', '-', 'event-info', '2015-02-28', '2015-02-28', '', '', '', 'cnysmashbros', 0, '', 'Mana', ''),
-(14, 'Cornell Monthly 5', '', '//cornellssbm.challonge.com/', 'event-info', '2015-03-07', '2015-03-07', '', '', '', 'cnysmashbros', 0, '', 'Cornell Smash', '');
+(11, 'Test Upcoming', '', 'http://themeleegames.challonge.com/', 'event-info', '2015-01-10', '2015-01-11', '', '', '', 'twitch.tv/pewpewu', 0, '', 'Upcoming', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userinfo`
+--
+
+DROP TABLE IF EXISTS `userinfo`;
+CREATE TABLE IF NOT EXISTS `userinfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(130) NOT NULL,
+  `facebook` varchar(90) NOT NULL,
+  `location` varchar(130) NOT NULL,
+  `twitch` varchar(90) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `vod` varchar(130) NOT NULL,
+  `twitter` varchar(90) NOT NULL,
+  `main` int(11) NOT NULL,
+  `sponsor` varchar(90) NOT NULL,
+  `latitude` float NOT NULL,
+  `longitude` int(11) NOT NULL,
+  `friendcode` varchar(12) NOT NULL,
+  `garpr` varchar(90) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `userid` (`userid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `userinfo`
+--
+
+INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid`, `vod`, `twitter`, `main`, `sponsor`, `latitude`, `longitude`, `friendcode`, `garpr`) VALUES
+(9, '', 'logan6694', 'Santa Cruz', 'xuaqua', 2, 'ZKsyg8iw5sk', 'logan6694', 6, 'Smash Lounge', 36.985, -122, '123456789124', ''),
+(10, '', 'MIOMPewPewU', 'Bay Area', 'pewpewu', 3, 'BMlxvpOhK7o', 'miom_pewpewu', 14, 'Melee it On Me', 0, 0, '123456789123', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `permissions` text COLLATE utf8_unicode_ci,
+  `activated` tinyint(4) NOT NULL DEFAULT '0',
+  `activation_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `activated_at` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_login` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `persist_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `reset_password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_activation_code_index` (`activation_code`),
+  KEY `users_reset_password_code_index` (`reset_password_code`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
+(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2015-04-13 09:04:18', '$2y$10$pVVUJFxhT7NM0hZkOhXypOpfNaMib/OxmDVjAgGcXYCF.1RtcoLw6', NULL, NULL, NULL, '2014-09-07 06:29:24', '2015-04-13 16:04:18'),
+(3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_groups`
+--
+
+DROP TABLE IF EXISTS `users_groups`;
+CREATE TABLE IF NOT EXISTS `users_groups` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned NOT NULL,
+  `group_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users_groups`
+--
+
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
+(1, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vods`
+--
+
+DROP TABLE IF EXISTS `vods`;
+CREATE TABLE IF NOT EXISTS `vods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(260) NOT NULL,
+  `title` varchar(130) NOT NULL,
+  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `score` int(11) NOT NULL,
+  `credit` varchar(160) NOT NULL,
+  `typeid` int(11) NOT NULL,
+  `dataid` int(11) NOT NULL,
+  `submitted_by` varchar(130) NOT NULL,
+  `description` varchar(260) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `vods`
+--
+
+INSERT INTO `vods` (`id`, `url`, `title`, `update_date`, `score`, `credit`, `typeid`, `dataid`, `submitted_by`, `description`) VALUES
+(1, 'RBH4Z_vz1fk', 'Westballz imprisoned by destiny. . . Again', '2015-04-16 15:25:11', 0, 'GRSmash', 3, 0, '', 'RIP Westballz'),
+(2, 'qUiAZltrWwo', '[Falco] Multi-shine Tutorial - feat. Squid (Advanced Level) - SSBM', '2015-04-16 16:04:50', 0, 'SSBM Tutorials', 1, 0, '', 'A quick tutorial on Multi-shine with Falco'),
+(3, 'XhujDoRBXeY', 'PewPewUniversity - A tutorial on No Impact Landing', '2015-04-16 16:05:58', 0, 'Kevin Toy', 1, 0, '', 'A sample tutorial on no impact landings'),
+(4, 'Kr5y0-W9YVo', 'Cort (Marth) vs PC Chris (Fox) 2', '2015-04-16 16:11:56', 0, 'raserucort', 2, 0, '', 'One of the fastest matches in Melee'),
+(5, 'OSxVR_QGPoI', 'PewFat', '2015-04-13 07:46:02', 0, 'SFAT', 2, 0, '', 'PewPewU and SFAT demonstrating great teams synergy many years ago'),
+(6, '8orJkb0LtaE', 'Shroomed - "IM NOT YELLING" (nsfw)', '2015-04-13 07:50:20', 0, 'ShowDown Smash', 3, 0, '', 'Shroomed going off at a recent "Get Smashed at the Foundry event".');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
