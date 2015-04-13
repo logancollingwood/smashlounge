@@ -147,7 +147,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       echo "<li id='charsAnchor'>";
     }
     echo "<a href='#char" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#chars" . $target . "'>";
-    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownChars'></span>";
+    echo "<span class='fa fa-caret-square-o-down sidebarico' id='collapseDownChars'></span>";
     echo "<span class='pagetitle'>characters</span>";
     echo "</a>";
     echo "<li>";
@@ -181,7 +181,7 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
       echo "<li id='techsAnchor'>";
     }
     echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
-    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
+    echo "<span class='fa fa-caret-square-o-down sidebarico' id='collapseDownTechs'></span>";
     echo "<span class='pagetitle'>techniques</span>";
     echo "</a>";
     echo "<li>";
@@ -244,13 +244,13 @@ function printVodsCollapse($active = false) {
   } else {
     echo "<li id='vodsAnchor'>";
   }
-  echo "    <a href='#vod' id='toggler' data-toggle='collapse' class='active' data-target='#vods'>";
-  echo "      <span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
+  echo "    <a href='#vod' id='toggler' data-toggle='collapse' class='active' data-target='#vodsList'>";
+  echo "      <span class='fa fa-caret-square-o-down sidebarico' id='collapseDownVods'></span>";
   echo "      <span class='pagetitle'>vods</span>";
   echo "    </a>";
   echo "  </li>";
   echo "  <li>";
-  echo "   <div id='vods' class='collapse out'>";
+  echo "   <div id='vodsList' class='collapse out'>";
   echo "      <ul class='nav nav-list'>";
   echo "          <li class='list-dd'>";
   echo "            <a href='/vods/'>All</a>";
@@ -518,12 +518,12 @@ function createNavBar($extra = 'false') {
 }
 
 function createBeg($cap) {
-  $quotes = array('smashlounge was created in a college dorm room', 'smashlounge was created by two full time students', 'smashlounge is open source for the community','smashlounge costs about $30/month to run: all contributions are useful','smashlounge exists for the community, and is open to all improvements');
+  $quotes = array('smashlounge has community moderators and a team of developers', 'smashlounge is open source for the community','smashlounge costs about $30/month to run: all contributions are useful','smashlounge exists for the community, and is open to all improvements');
 
   $rand = rand(0, 10) / 10;
   if ($rand < $cap) {
     echo "<div class='well full'>";
-    echo "  <h2>Want to support us? </h2><h4>" . $quotes[array_rand($quotes)] . "</h4><hr>";
+    echo "  <h2>Want to support us? </h2><p>" . $quotes[array_rand($quotes)] . "</p><hr>";
     echo "  <div class='row'>";
     echo "    <a href='http://www.github.com/logancollingwood/smashlounge' class='pull-left'><p>Contribute</p></a>";
     echo "    <a href='/donate.php' class='pull-right'> <p>Donate</p></a>";
@@ -715,6 +715,7 @@ function sidebar($currentPage = '') {
 }
 
 function navbar() {
+  global $moderatorFlag;
   echo '<div class="navbar navbar-sl navbar-static-top" id="navbar">  
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
@@ -753,6 +754,16 @@ function navbar() {
         <a href="/about.php" role="button"><i class="glyphicon glyphicon-flag"></i><span> About</span></a>
       </li>
     </ul>';
+    if ($moderatorFlag == 1) {
+      echo '    <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/admin.php"><p style="color: black">admin</p></a></li>
+                    </ul>
+                  </li>
+                </ul>';
+    }
     /*
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
@@ -925,6 +936,7 @@ function printNewLibraries() {
 
   echo "<script src='/js/bootstrap.min.js'></script>";
   echo "<script src='/js/app.js'></script>";
+  echo "<script src='/js/toggler.js'></script>";
 }
 
 function analytics() {

@@ -1,6 +1,7 @@
 $(document).ready(function(){
   $('#loginPop').popover();
-	$("#toggler").click(function(){
+	
+  $("#toggler").click(function(){
   		$(this).toggleClass('active, inactive');
       var which = $(this).data( "target" );
       which += "Anchor";
@@ -8,30 +9,30 @@ $(document).ready(function(){
       $(which).scrollintoview();
       var rowpos = $(which).position();
       //$('#sidebar').scrollTop(rowpos.top);
-	})
+	});
 
-	 $('#chars').on('shown.bs.collapse', function () {
-       $("#collapseDownChars").removeClass("glyphicon-collapse-down").addClass("glyphicon-collapse-up");
+	 $('#chars').on('show.bs.collapse', function () {
+      $("#collapseDownChars").addClass("fa-rotate-180");
     });
 
-    $('#chars').on('hidden.bs.collapse', function () {
-       $("#collapseDownChars").removeClass("glyphicon-collapse-up").addClass("glyphicon-collapse-down");
+    $('#chars').on('hide.bs.collapse', function () {
+      $("#collapseDownChars").removeClass("fa-rotate-180");
     });
 
-    $('#techs').on('shown.bs.collapse', function () {
-       $("#collapseDownTechs").removeClass("glyphicon-collapse-down").addClass("glyphicon-collapse-up");
+    $('#techs').on('show.bs.collapse', function () {
+      $("#collapseDownTechs").addClass("fa-rotate-180");
     });
 
-    $('#techs').on('hidden.bs.collapse', function () {
-       $("#collapseDownTechs").removeClass("glyphicon-collapse-up").addClass("glyphicon-collapse-down");
+    $('#techs').on('hide.bs.collapse', function () {
+      $("#collapseDownTechs").removeClass("fa-rotate-180");
     });
 
-    $('#dataz').on('shown.bs.collapse', function () {
-       $("#collapseDownDataz").removeClass("glyphicon-collapse-down").addClass("glyphicon-collapse-up");
+    $('#vodsList').on('show.bs.collapse', function () {
+      $("#collapseDownVods").addClass("fa-rotate-180");
     });
 
-    $('#dataz').on('hidden.bs.collapse', function () {
-       $("#collapseDownDataz").removeClass("glyphicon-collapse-up").addClass("glyphicon-collapse-down");
+    $('#vodsList').on('hide.bs.collapse', function () {
+      $("#collapseDownVods").removeClass("fa-rotate-180");
     });
 
     //$('#tip').popover();
@@ -57,4 +58,4 @@ $(document).ready(function(){
             $('.navbar').fadeOut();
         }
     });
-})
+});
