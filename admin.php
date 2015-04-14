@@ -27,46 +27,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <?php analytics(); ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="SmashLounge: An Online compendium for Super Smash Bros">
+    <meta name="description" content="SmashLounge: Super Smash Brothers techniques">
     <meta name="author" content="smashlounge">
-   
+    
+    <title>Moderate Smashlounge</title>
 
-    <title>Moderate SmashLounge</title>
+      <!-- Main Dependencies -->
+      <?php printNewLibraries(); ?>
 
-    <?php printLibraries(); ?>
-
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard_mobile.css" rel="stylesheet">
+      <link href="/css/less/rich.css" rel="stylesheet">
 
   </head>
 
   <body>
+      <div class="wrapper">
+        <div class="box">
+          <!-- top nav -->
+          <?php navbar(); ?>
+          <!-- /top nav -->
+          <div class="row row-offcanvas row-offcanvas-left">
+                      
+          
+            <?php sidebar('home'); ?>
 
-  <?php createNavBar(); ?>
+            <!-- main right col -->
+            <div class="column col-md-10" id="main">
+                
 
-    <div class="container-fluid"> 
-      
+                <section id="banner" data-speed="4" data-type="background">
+                  <div class="jumbotron">
+                    <div class='header'>moderate</div>
+                    <div class="blur">
 
-        <div class="col-sm-3 col-md-2 sidebar">
-          <?php makeSidebar($loggedIn, 'admin'); ?>
-        </div>
+                      <div class="description">thanks for helping out</div>
 
+                      <div class="mast">
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-            <!-- Logged In -->
-            
-              <div class="jumbotron banner">
-                <div class='row'>
-                  <h1 class='lead'>Approve/Deny</h1>
-                  <p class="fifty"><small>thanks for helping out</small></p>
-                </div>
-              </div>
-
+                <div class="content-wrapper">
+                <div class="row">
                 <ul class='nav nav-tabs' role='tablist' id='myTab'>
                   <li class='active'><a href='#gif' role='tab' data-toggle='tab' class='tabz' data-id="gif">Gifs</a></li>
                   <li><a href='#tournament' role='tab' data-toggle='tab' class='tabz' data-id="tournament">Tournaments</a></li>
@@ -217,7 +222,8 @@
                   </div>
                 </div>
             </div>
-
+          </div>
+          </div>
       
     </div> <!-- /container -->
 

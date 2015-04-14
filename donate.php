@@ -130,8 +130,9 @@
                                   <p>They will allow us to expand our business, and grow as a part of the Smash community</p>
                                 </li>
                               </ul>
-                              <a class='button button-inline button-large button-success SL bttn' href="mailto:smashlounge@gmail.com"><span> <i class="fa fa-share"></i>Email Us</span></a>
-
+                              <a class='button button-inline button-small button-success SL bttn' href="mailto:smashlounge@gmail.com"><span> <i class="fa fa-share"></i>Email Us</span></a>
+                              <a class='button button-inline button-small button-success SL bttn' href="http://www.twitter.com/thesmashlounge"><span> <i class="fa fa-twitter"></i>Tweet us</span></a>
+                              <a class='button button-inline button-small button-success SL bttn' href="http://www.facebook.com/smashlounge"><span> <i class="fa fa-twitter"></i>Facebook us</span></a>
                             </div>
 
                         

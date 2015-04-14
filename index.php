@@ -49,9 +49,9 @@ Questions?
                   <div class="jumbotron">
                     <div class='header'>smashlounge</div>
                     <div class="blur">
-                      <hr>
+
                       <div class="description">A compendium for acquiring ultimate smash knowledge. Check out an example page to get going</br></div>
-                      <hr>
+
                       <div class="mast">
                         <?php
                           if ($displayChar) {
@@ -99,7 +99,7 @@ Questions?
                         <div class='panel-body streams'>
                           <?php
                             $counter = 0;
-                            $maxCount = 4;
+                            $maxCount = 3;
                             foreach ($activeStreams as $data) {
                               $streamer = $data['channel']['display_name'];
                               $gameTitle = $data['channel']['game'];

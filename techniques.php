@@ -1,3 +1,4 @@
+
 <?php
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
 
@@ -86,12 +87,11 @@ Questions?
                     ?>
                   </div>
                   <div class="mast">
-                    <br>
                     <?php
                      if (!empty($techInfo["inputs"]))  
-                      echo "<p class='fifty2'>Inputs: <br />" . $techInfo["inputs"] . "</p>";
+                      echo "<p class='techInputs'>Inputs: <br />" . $techInfo["inputs"] . "</p>";
                      if ($techInfo["smashwiki"] != ''); 
-                      echo "<p><a class='button button-inline button-large button-info' role='button' href='" . $techInfo["smashwiki"] . "'>Learn More</a></p>";
+                      echo "<p class='techInputs'><a class='button button-inline button-large button-info' role='button' href='" . $techInfo["smashwiki"] . "'>Learn More</a></p>";
                     ?>
                   </div>
                 </div>

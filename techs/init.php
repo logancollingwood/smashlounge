@@ -408,7 +408,7 @@ function makeLoungeList($scene, $title, $listCounter) {
   if ($scene != NULL) {
     foreach ($scene as $row) {
       echo "<tr>";
-      echo "<th><a href='" . $row['profileid'] . "'><i class='fa fa-facebook-square fa-3x'></i></a></th>";
+      echo "<th><a href='" . $row['profileid'] . "' class='fbGroup'><i class='fa fa-facebook-square fa-3x'></i></a></th>";
       echo "<th>" . $row['name'] . "</th>";
       echo "<th>" . $row['game'] . "</th>";
       echo "</tr>";
@@ -551,11 +551,11 @@ function getYoutubeIdFromUrl($url) {
 function sidebar($currentPage = '') {
   $pages = array(
     "home" => array("/", "glyphicon glyphicon-home"),
-    "vods" => array("/vods.php", "glyphicon glyphicon-play-circle"),
-    "users" => array("/users.php", "glyphicon glyphicon-user"),
-    "submit" => array("/submit.php", "glyphicon glyphicon-inbox"),
+    "vods" => array("/vods.php", "fa fa-youtube-play"),
+    "users" => array("/users.php", "fa fa-users"),
+    "submit" => array("/submit.php", "fa fa-cloud-download"),
     "lounge" => array("/lounge.php", "glyphicon glyphicon-globe"),
-    "rankings" => array("/rankings.php", "glyphicon glyphicon-certificate")
+    "rankings" => array("/rankings.php", "glyphicon glyphicon-bookmark")
     //"upcoming" => array("/upcoming.php", "glyphicon glyphicon-calendar")
     );
     $modules = array('home', 'admin', 'lounge', 'upcoming', 
@@ -861,8 +861,6 @@ function printNewLibraries() {
 
   echo "<script src='/js/bootstrap.min.js'></script>";
   echo "<script src='/js/jquery.scrollTo.min.js'></script>";
-  echo "<link href='/css/scrollbar/jquery.mCustomScrollbar.css' rel='stylesheet'>";
-  
   echo "<script src='/js/app.js'></script>";
 }
 
@@ -940,6 +938,7 @@ function getFrameDataForGif($id) {
  * @return null
  */
 function printGfy($gfyObject, $count) {
+  global $loggedIn;
   $num = $count+1;
 
   $frameData = getFrameDataForGif($gfyObject['id']);
@@ -967,10 +966,14 @@ function printGfy($gfyObject, $count) {
   echo          $num;
   echo "       </span>";
   echo '        <hr>';
-  echo '       <br>';
-  echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
-  echo "       <h4>". $gfyObject['score'] . "</h4>";
-  echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
+  if ($loggedIn) {
+    echo '       <br>';
+    echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+    echo "       <h4>". $gfyObject['score'] . "</h4>";
+    echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
+  } else {
+    echo '       <small>score:</small><h4> ' . $gfyObject['score'] . '</h4>';
+  }
   echo '    </div>';
   echo '    <div class="col-md-10 col-sm-10">';
   echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
