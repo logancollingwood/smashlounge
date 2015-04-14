@@ -94,9 +94,9 @@ $(document).ready(function() {
 
       var shadowOpacity = navOpacity * 0.4;
       if ( ySmall > 1) {
-        $('.navbar').css({"box-shadow": "0 2px 3px rgba(0,0,0," + shadowOpacity + ")"});
+        //$('.navbar').css({"box-shadow": "0 2px 3px rgba(0,0,0," + shadowOpacity + ")"});
       } else {
-        $('.navbar').css({"box-shadow": "none"});
+        //$('.navbar').css({"box-shadow": "none"});
       }
     });
 	

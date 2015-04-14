@@ -128,35 +128,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Register</title>
-    <meta name="description" content="Register for Smash Lounge">
-    <meta name="author" content="smashlounge.com">
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="SmashLounge: Super Smash Brothers techniques">
+      <meta name="author" content="smashlounge">
+      
+        <title>Register</title>
 
-    <?php
-        printLibraries();
-    ?>
-    
+        <!-- Main Dependencies -->
+        <?php printNewLibraries(); ?>
 
-    
-    <link href="css/dashboard_mobile.css" rel="stylesheet">
+        <link href="/css/less/rich.css" rel="stylesheet">
 
-
-</head>
+    </head>
 
 <body>
-    <div class='container-fluid'>
-
-        <div class='row'>
-            <?php createNavBar(); ?>
-
-            <div class="col-sm-3 col-md-2 sidebar">
-
-               <?php makeSidebar($loggedIn, 'register'); ?>
-
-            </div>
-
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <div class="wrapper">
+    <div class="box">
+      <!-- top nav -->
+      <?php navbar(); ?>
+      <!-- /top nav -->
+      <div class="row row-offcanvas row-offcanvas-left">
+         <?php sidebar('register'); ?>
+         <!-- main right col -->
+         <div class="column col-md-10" id="main">
+            <section id="banner" data-speed="4" data-type="background">
+               <div class="jumbotron">
+                  <div class='header'>register</div>
+                  <div class="blur">
+                     <div class="description"></div>
+                     <div class="mast"></div>
+                  </div>
+               </div>
+            </section>
+            <div class="content-wrapper">
 
                 <div class='row'>
                     <div class='col-md-6 col-md-offset-3'>
@@ -194,8 +200,8 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <div class="controls">
-                                        <button class="btn btn-lg btn-primary SL bttn" type="submit">Register</button>
+                                    <div class="controls" style="text-align:center;">
+                                        <button class='button button-inline button-large button-success SL bttn' type="submit"><span> <i class="fa fa-sign-out"></i>Register</span></button>
                                     </div>
                                 </div>
                                 <br />

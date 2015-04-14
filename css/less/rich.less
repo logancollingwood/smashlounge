@@ -41,14 +41,20 @@ h2 {
 h3 {
     color: #fff;
     font-family: 'Raleway';
-    font-size: 0.6vw;
+    font-size: 1.4vw;
     text-align: center;
 }
 h4 {
     color: #fff;
     font-family: 'Roboto';
-    font-size: 0.8vw;
+    font-size: 1.3vw;
     text-align: center;
+}
+p {
+    //color: #fff;
+}
+li {
+    list-style-type: none;
 }
 
 /* custom template */
@@ -485,6 +491,10 @@ small.text-muted {
         background-color: transparent;
     }
 }
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #fff;
+    background-color: @lightbg;
+}
 @media screen and (max-width: 768px) {
     .expander {
         display: none;
@@ -576,7 +586,7 @@ a:hover {
 }
 
 input {
-    font-family: DINPro-Light, "Helvetica Light", sans-serif;
+    border-radius: 5px;
     font-size: 13px;
     color: #555860;
 }
@@ -590,6 +600,7 @@ input {
 }
 
 .search input {
+    font-family: 'Quicksand';
     height: 26px;
     width: 49%;
     padding: 0 12px 0 25px;
@@ -684,6 +695,7 @@ input {
 }
 
 .search .results a {
+    transition: 0s linear all;
     height: 75px;
     display: block;
     position: relative;
@@ -691,7 +703,6 @@ input {
     padding: 6px 40px 6px 10px;
     color: #808394;
     font-weight: 500;
-    text-shadow: 0 1px #fff;
     border: 1px solid transparent;
     border-radius: 3px;
 }
@@ -713,9 +724,9 @@ input {
 .search .results a:hover {
     text-decoration: none;
     color: #fff;
-    text-shadow: 0 -1px rgba(255, 255, 255, 0.3);
+    
     border-color: @base @highlight @base;
-    background-color: #338cdf;
+
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #59aaf4), color-stop(100%, #338cdf));
     background-image: -webkit-linear-gradient(top, @highlight, @base);
     background-image: -moz-linear-gradient(top, @highlight, @base);
@@ -763,7 +774,7 @@ input {
 .searchName {
     width: 20%;
     text-overflow: none;
-    float: right;    
+    float: right;  
 }
 .searchButton {
     border-radius: 10px;
@@ -816,6 +827,15 @@ input {
   }
 }
 
+/*
+    rankings
+*/
+.rank {
+    color: #fff;
+}
+.name {
+    color: #fff;
+}
 /* 
     Tables
 */
@@ -830,3 +850,16 @@ input {
     margin-right: 30px;
 }
 
+
+/*
+    Donate
+*/
+
+.hvr-icon-grow:before {
+    content: "\f004";
+}
+.hvr-icon-grow {
+    &:hover {
+        color: #df3958;
+    }
+}

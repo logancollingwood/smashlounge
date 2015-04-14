@@ -548,106 +548,6 @@ function getYoutubeIdFromUrl($url) {
   return '';
 }
 
-function makeSidebar($loggedIn, $currentPage = '') {
-  $pages = array('home', 'admin', 'lounge', 'upcoming', 
-    'users', 'login', 'moderate', 'register', 'update', 
-    'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
-    'vods');
-  $specials = array('techs', 'chars');
-  global $dataTech, $dataChar, $char, $tech;
-  $user = Sentry::getUser();
-
-  echo "<div class='expander'>";
-  echo "  <ul class='nav nav-sidebar'>";
-    if ($currentPage == 'home') {
-      echo "    <li class='home active'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
-    } else {
-      echo "    <li class='home'><a href='/'><span class='glyphicon glyphicon-home pull-left'></span>&nbsp;home</a></li>";
-    }
-    if ($currentPage == 'TMG') {
-      echo "    <li class='home active'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='30px'>&nbsp;tmg</a></li>";
-    } else {
-      echo "    <li class='home'><a href='/themeleegames.php'><img src='/img/assets/tmgico.png' alt='TMG' class='pull-left' style='max-width:100%;max-height:100%;' width='30px'>&nbsp;tmg</a></li>";
-    }
-    
-    if ($currentPage == 'vods') {
-      echo "     <li class='home active'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
-    } else {
-      echo "     <li class='home'><a href='/vods.php'><i class='fa fa-youtube-play pull-left'></i>&nbsp;vods</a></li>";
-    } 
-    if ($currentPage == 'users') {
-      echo "     <li class='home active'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
-    } else {
-      echo "     <li class='home'><a href='/users.php'><span class='glyphicon glyphicon-user pull-left'></span>&nbsp;users</a></li>";
-    }    
-    if ($currentPage == 'submit') {
-      echo "    <li class='home active'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
-    } else {
-      echo "    <li class='home'><a href='/submit.php'><span class='glyphicon glyphicon-inbox pull-left'></span>&nbsp;submit</a></li>";
-    }
-    if ($currentPage == 'lounge') {
-      echo "    <li class='home active'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
-    } else {
-      echo "    <li class='home'><a href='/lounge.php'><span class='glyphicon glyphicon-globe pull-left'></span>&nbsp;lounge</a></li>";
-    }
-    if ($currentPage == 'rankings') {
-      echo "    <li class='home active'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
-    } else {
-      echo "    <li class='home'><a href='/rankings.php'><span class='glyphicon glyphicon-certificate pull-left'></span>&nbsp;rankings</a></li>";
-    }
-    if ($currentPage == 'upcoming') {
-      echo "    <li class='home active'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
-    } else {
-      echo "    <li class='home'><a href='/upcoming.php'><span class='glyphicon glyphicon-calendar pull-left'></span>&nbsp;upcoming</a></li>";
-    }
-    if (in_array($currentPage, $pages) && !in_array($currentPage, $specials)) {
-      makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
-      makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
-    } else if ($currentPage == 'techs') {
-      makeCollapseNav('tech', $dataTech, 'in', $char, $tech, '');
-      makeCollapseNav('char', $dataChar, 'out', $char, $tech, '');
-    } else if ($currentPage == 'chars') {
-      makeCollapseNav('tech', $dataTech, 'out', $char, $tech, '');
-      makeCollapseNav('char', $dataChar, 'in', $char, $tech, '');
-    }
-
-  echo "   </ul>";
-  echo "</div>";
-  
-
-  if ($loggedIn) {
-    echo "<div class='loginbox'>";
-    echo "    <hr class='login'>";
-
-    echo "    <a class='btn bttn login ";
-      if ($currentPage=='login') {
-        echo "active";
-      }
-    echo "' href='/users/" . $user['username'] . "'>profile</a>";
-
-    echo "    <a class='btn bttn login' href='/logout.php'>logout</a>";
-    echo "</div>";
-
-  } else {
-    echo "<div class='loginbox'>";
-    echo "    <hr class='login'>";
-    echo "    <a class='btn bttn login ";
-      if ($currentPage=='login') {
-        echo "active";
-      }
-    echo "' href='/login.php'>login</a>";
-
-
-    echo "    <a class='btn bttn login ";
-      if ($currentPage=='register') {
-        echo "active";
-      }
-    echo "' href='/register.php'>register</a>";
-
-    echo "</div>";
-  }
-}
-
 function sidebar($currentPage = '') {
   $pages = array(
     "home" => array("/", "glyphicon glyphicon-home"),
@@ -661,7 +561,7 @@ function sidebar($currentPage = '') {
     $modules = array('home', 'admin', 'lounge', 'upcoming', 
     'users', 'login', 'moderate', 'register', 'update', 
     'techs', 'chars', 'attending', 'submit', 'TMG', 'rankings', 
-    'vods');
+    'vods', 'donate');
   $specials = array('techs', 'chars');
   global $dataTech, $dataChar, $char, $tech, $loggedIn;
   $user = Sentry::getUser();
@@ -791,7 +691,8 @@ function navbar() {
       <li>
         <a href="/about.php" role="button"><i class="glyphicon glyphicon-flag"></i><span> About</span></a>
       </li>
-    </ul>
+    </ul>';
+    /*
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i></a>
@@ -804,7 +705,8 @@ function navbar() {
         </ul>
       </li>
     </ul>
-    </nav>
+    */
+echo '</nav>
   </div>';
 }
 function footer() {
@@ -1028,9 +930,9 @@ function getFrameDataForGif($id) {
 
 /**
  * Prints a specified gif using a standard layout.
- * @param             gfyObject $gfy The structure
- * @param Optional    count $counter optional counter for gifs on page
- * representing the gif. Should contain
+ * @param             gfyObject $gfy      The Gif structure representing the gif. Struct described below
+ * @param Optional    count $counter      optional counter for gifs on page
+ * 
  * $gfyObject['id'] = the gfycat ID
  * $gfyObject['description'] = the description of the gfy
  * $gfyObject['source'] = the gfyobject source
@@ -1047,6 +949,8 @@ function printGfy($gfyObject, $count) {
   } else if ($gfyObject['source']) {
     $source = 'from ' . $gfyObject['source'];
   }
+  
+  //todo -- implement controllers
   /*
   if ($frameData != '') {
 

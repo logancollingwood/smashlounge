@@ -14,7 +14,7 @@ Questions?
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@ Questions?
 
       <link href="/css/less/rich.css" rel="stylesheet">
 
-    </head>
+  </head>
 
   <body>
       <div class="wrapper">
@@ -147,8 +147,7 @@ Questions?
                         <div class='panel-body full'>
                           <div id="vod">
                             <div id="player"></div>
-                          </div>
-                          <br>            
+                          </div>          
                         </div>
                         <div class='panel-footer'>
                           <p> 

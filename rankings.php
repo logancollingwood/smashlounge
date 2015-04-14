@@ -81,7 +81,7 @@ Questions?
 						<div class='tab-content'>
 		                	<div class='tab-pane active' id='norcalTab'>
 		                		<div class='well'>
-				      				<table id="norcal" class="table table-bordered table-striped table-hover">
+				      				<table id="norcal" class="table table-bordered table-hover">
 				      					<tr>
 				      						<th class='rank'> Rank </th>
 				      						<th class='name'> Player </th>
@@ -91,7 +91,7 @@ Questions?
 							</div>
 							<div class='tab-pane' id='austinTab'>
 								<div class='well'>
-		      						<table id="austin" class="table table-bordered table-striped table-hover">
+		      						<table id="austin" class="table table-bordered table-hover">
 				      					<tr>
 				      						<th class='rank'> Rank </th>
 				      						<th class='name'> Player </th>
@@ -101,7 +101,7 @@ Questions?
 							</div>
 							<div class='tab-pane' id='nycTab'>
 								<div class='well'>
-		      						<table id="nyc" class="table table-bordered table-striped table-hover">
+		      						<table id="nyc" class="table table-bordered table-hover">
 				      					<tr>
 				      						<th class='rank'> Rank </th>
 				      						<th class='name'> Player </th>
@@ -111,7 +111,7 @@ Questions?
 							</div>
 							<div class='tab-pane' id='newenglandTab'>
 								<div class='well'>
-		      						<table id="newengland" class="table table-bordered table-striped table-hover">
+		      						<table id="newengland" class="table table-bordered table-hover">
 				      					<tr>
 				      						<th class='rank'> Rank </th>
 				      						<th class='name'> Player </th>
@@ -121,7 +121,7 @@ Questions?
 							</div>	
 							<div class='tab-pane' id='newjerseyTab'>
 								<div class='well'>
-		      						<table id="newjersey" class="table table-bordered table-striped table-hover">
+		      						<table id="newjersey" class="table table-bordered table-hover">
 				      					<tr>
 				      						<th class='rank'> Rank </th>
 				      						<th class='name'> Player </th>
