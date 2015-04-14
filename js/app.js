@@ -78,19 +78,16 @@ $(document).ready(function() {
       
       $('.small-logo-container ').css({ "padding-top": smallPadding});
       
-      var navOpacity = $(this).scrollTop()/250;
+      var navOpacity = $(this).scrollTop()/$('#banner').height();
 
       var navBackColor = 'rgba(' + navbarColor + ',' + navOpacity + ')';
       var webkitgradient = " -webkit-gradient(linear, left bottom, left top, color-stop(0, " + navBackColor + "), color-stop(1, #1abc9c))";
       var mozgradient = "-moz-linear-gradient(center bottom, " + navBackColor + " 0%, #1abc9c 100%);";
       
-      //console.log(mozgradient);
-      //console.log(webkitgradient);
-      //console.log($(this).scrollTop()/250);
+
 
       $('.navbar').css({"background": webkitgradient});
 
-      //-webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(26,188,156,0)), color-stop(1, #1abc9c))
 
       var shadowOpacity = navOpacity * 0.4;
       if ( ySmall > 1) {
