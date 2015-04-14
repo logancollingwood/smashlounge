@@ -72,9 +72,10 @@ $(document).ready(function() {
       var ySmall = ($("#main").scrollTop() * smallSpeed); 
       
       var smallPadding = navbarHeight - ySmall;
-      if (smallPadding > navbarHeight) { smallPadding = navbarHeight + 3; }
-      if (smallPadding < smallLogoEndPos) { smallPadding = smallLogoEndPos + 3; }
-      if (smallPadding < 0) { smallPadding = 3; }
+      
+      if (smallPadding > navbarHeight) { smallPadding = navbarHeight + 5; }
+      if (smallPadding < smallLogoEndPos) { smallPadding = smallLogoEndPos + 5; }
+      if (smallPadding < 0) { smallPadding = 5; }
       
       $('.small-logo-container ').css({ "padding-top": smallPadding});
       
