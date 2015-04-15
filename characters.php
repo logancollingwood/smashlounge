@@ -183,6 +183,7 @@ Questions?
                      
 
                   </div>
+                  <?php footer(); ?>
                   </div>
                 </div>
               </div>

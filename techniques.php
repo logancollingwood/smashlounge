@@ -156,7 +156,7 @@ Questions?
                   createBeg(.5);
                   ?>
                 </div>
-
+                <?php footer(); ?>
               
 
 

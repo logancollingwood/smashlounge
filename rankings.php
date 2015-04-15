@@ -132,7 +132,6 @@ Questions?
 						</div>
 
 	      			</div>
-
       		</div>
   		</div>
     <script src="js/garprUtil.js"></script>

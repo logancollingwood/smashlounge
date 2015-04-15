@@ -722,7 +722,7 @@ function footer() {
     <ul class="nav navbar-nav footer">';
     foreach ($links as $key => $rec) {
       echo '<li>';
-        echo '<a href="' . $rec[0] . '" target="_blank">';
+        echo '<a href="' . $rec[0] . '" target="_blank" class="socialLinks">';
           echo '<i class="fa ' . $rec[1] . ' fa-2x"></i>';
           echo '&nbsp;';
           echo $key;
@@ -733,6 +733,9 @@ function footer() {
       <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter-square fa-2x"></i>&nbsp;twitter</a></li>
       <li><a href="https://www.twitter.com/thesmashlounge"><i class="fa fa-twitter-square fa-2x"></i>&nbsp;twitter</a></li>
     */
+  echo '  <div id="copyright">
+            <p><i class="fa fa-copyright"></i>&nbsp;smashlounge 2015</p>
+          </div>';
   echo '  </ul>
   </div>
   ';

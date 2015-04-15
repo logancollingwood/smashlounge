@@ -22,6 +22,7 @@
 @import "_buttons";
 @import "_scrollbar";
 
+@ultralightbg: #999;
 @lightbg: #555;
 @darkbg: #333;
 @medbg: #444;
@@ -268,10 +269,12 @@ hr.login {
   bottom:5px;
   padding:5px;
 }
-#footer {
-  margin-bottom:20px;
+@media (min-width: 768px) {
+    .navbar-nav.footer>li>a {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }
-
 /* bootstrap overrides */
 
 h1,h2,h3 {
@@ -553,9 +556,19 @@ a.bttn.login {
     width: 100%;
     background-color: @medbg;
     a {
-        color: #ffffff;
+        color: @ultralightbg;
         &:hover {
             color: @highlight
+        }
+    }
+    #copyright {
+        margin-right: 15px;
+        margin-top: 8px;
+        float: right;
+        p {
+            font-size: 1.1vw;
+            font-family: 'Raleway';
+            color: @ultralightbg;
         }
     }
 }

@@ -176,7 +176,7 @@ Questions?
                   <hr>
                   <?php createBeg(.3); ?>
                   </div>
-
+                  <?php footer(); ?>
                 <?php } else {
                   echo "<div class='row'>";
                     makeAllUsers($allUsers);

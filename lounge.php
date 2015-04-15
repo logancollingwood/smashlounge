@@ -57,7 +57,7 @@ Questions?
   </head>
 
   <body>
-<div class="wrapper">
+    <div class="wrapper">
         <div class="box">
 
           <!-- top nav -->
@@ -150,10 +150,11 @@ Questions?
               </div>
             </div> 
 
+            <?php footer(); ?>
+          </div>  
 
-          </div>
         </div>
-      </div>
+
       </div>
     </div>
 

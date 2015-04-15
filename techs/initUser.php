@@ -332,13 +332,14 @@ function makeAllUsers($allUsers) {
             echo '  </ul>';
             echo "<div class='clr'></div>";
           echo "</div>";
-      echo "</div>";
-      echo "</div>";
-
-        echo "<div class='col-md-8'>";
-          echo "<div id='map-canvas'/></div>";
         echo "</div>";
+      echo "</div>";
 
+      echo "<div class='col-md-8'>";
+        echo "<div id='map-canvas'/></div>";
+      echo "</div>";
+
+        footer();
         
 
       echo "</div>";
