@@ -53,8 +53,8 @@ Questions?
           <div class="row row-offcanvas row-offcanvas-left">
 
           <?php sidebar('users'); ?>
-    
-          
+
+
            <!-- main right col -->
           <div class="column col-md-10" id="main">
             <section id="banner" data-speed="4" data-type="background">
@@ -70,9 +70,35 @@ Questions?
               </div>
             </section>
             <div class="content-wrapper">
+                <div class='container'>
+                  <div class = 'row'>
+                    <div class='col-md-12'>
+                      <div class='panel panel-default'>
+                        <div class='panel-heading'>From the <a href="https://www.youtube.com/playlist?list=PLhHSkxk_9ky44HiUFCkX7LSv4ID5E7Wis">SmashLounge Invitational</a>&nbsp;
+                          <a class='button button-inline button-small button-success pull-right' id='newVod' aria-label='Left Align'><span> <i class="fa fa-arrow-circle-o-right"></i>next match</span></a>
+                        </div>
+                        <div class='panel-body full'>
+                          <div id="vod">
+                            <div id="player"></div>
+                          </div>
+                        </div>
+                        <div class='panel-footer'>
+                          <p>
+                            <a class='button button-inline button-small button-success' href="http://www.youtube.com/c/smashlounge"><span> <i class="fa fa-youtube-play"></i>subscribe on youtube</span></a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
             </div>
           </div>
         </div>
       </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="/js/jquery.fitvids.js"></script>
+      <script src="/js/initIndex.js"></script>
     </body>
 </html>
