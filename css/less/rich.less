@@ -411,7 +411,19 @@ small.text-muted {
   }
 }
 #lg-menu > li.home.active {
+    position: relative;
     background-color: #666;
+}
+#lg-menu > li.home.active:after {
+	content: ' ';
+	width: 0;
+	height: 0;
+	left: 90%;
+	top: 0%;
+	position: absolute;
+    border-top: 24px solid transparent;
+    border-right: 24px solid @medbg;
+    border-bottom: 24px solid transparent;
 }
 @media screen and (max-width: 768px) {
     #sidebar {
@@ -514,8 +526,8 @@ small.text-muted {
     bottom: 0;
     left: 0;
     right: 0;
-    overflow: hidden;
-    overflow-y: scroll;
+    overflow-x: visible;
+    overflow-y: visible;
     padding-bottom: 0px !important;
     margin-bottom: 100px;
 }
