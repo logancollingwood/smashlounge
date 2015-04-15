@@ -92,6 +92,71 @@ Questions?
                   </div>
                 </div>
 
+                <div class='container'>
+                  <div class='row'>
+                      <div class='col-md-3'>
+                        <h2> Vod Category 1 </h2>
+                          <div class='panel panel-default'>
+                            <div class='panel-body full'>
+                                <ul>
+                                <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                                <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                                <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                                <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                                <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+
+                                </ul>
+                            </div>
+                          </div>
+                      </div>
+                      <div class='col-md-3'>
+                        <h2> Vod Category 2 </h2>
+                          <div class='panel panel-default'>
+                            <div class='panel-body full'>
+                              <ul>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+
+                              </ul>
+                            </div>
+                          </div>
+                      </div>
+                      <div class='col-md-3'>
+                        <h2> Vod Category 3 </h2>
+                          <div class='panel panel-default'>
+                            <div class='panel-body full'>
+                              <ul>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+
+                              </ul>
+                            </div>
+                          </div>
+                      </div>
+                      <div class='col-md-3'>
+                        <h2> Vod Category 4 </h2>
+                          <div class='panel panel-default'>
+                            <div class='panel-body full'>
+                              <ul>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+                              <li><img src='/img/assets/tmgico.png' alt='Cat1' style='max-width:100%;max-height:100%;' width='60px' height='60px'></li><hr>
+
+                              </ul>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
             </div>
           </div>
         </div>
