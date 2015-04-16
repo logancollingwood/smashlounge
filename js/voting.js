@@ -38,20 +38,20 @@ $(document).ready(function(){
         		var currScore = scoreElem.html();
 
         		if (direction == "down") {
-        			currScore--;
+        			
         			$("#down" + id).attr("disabled", true);
         			$("#up" + id).attr("disabled", false);
         			$("#up" + id).removeClass("SL");
         			$("#down" + id).addClass("SL");
         		} else if (direction == "up") {
-        			currScore++;
+        			
         			$("#up" + id).attr("disabled", true);
         			$("#down" + id).attr("disabled", false);
         			$("#up" + id).addClass("SL");
         			$("#down" + id).removeClass("SL");
         		}
 
-        		scoreElem.html(currScore);
+        		scoreElem.html(data.score);
         		console.log(scoreElem);
         	}
         })

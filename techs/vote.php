@@ -76,7 +76,7 @@
 		  		//if you've already voted, and you're now voting up
 		  		if ($direction == 'up') {
 					$modifyDirection = 1;
-				//if you've already voted, and you're now voting up
+				//if you've already voted, and you're now voting down
 				} else if ($direction == 'down') {
 					$modifyDirection = -1;
 				} 
@@ -88,6 +88,9 @@
 				  die('Invalid query: ' . $mysqli->error);
 				} else {
 					$json['success'] = 1;
+					$totScore = getGifScore($gifId);
+				
+					$json['score'] = $totScore['total'];
 				}
 			//If not, we have to do a fresh insert
 		  	} else {
@@ -99,8 +102,12 @@
 				  die('Invalid query: ' . $mysqli->error);
 				} else {
 					$json['success'] = 1;
+					$totScore = getGifScore($gifId);
+
+					$json['score'] = $totScore['total'];
 				}
-		  	}
+			}
+
 		}
 
 
@@ -108,6 +115,32 @@
 		$json['login'] = 0;
 	}
 
+	function getGifScore($gifID) {
+	  global $mysqli;
+
+	  $query = "
+	      SELECT gifid, SUM(direction) as total, SUM(CASE WHEN direction<0 THEN direction ELSE 0 END) as up,
+	           SUM(CASE WHEN direction>=0 THEN direction ELSE 0 END) as down
+	    FROM gifvotes
+	    where gifID = $gifID";
+	  
+	  if (!$result = $mysqli->query($query)) {
+	    die('Invalid query: ' . $mysqli->error);
+	  }
+	  foreach ($result as $row) {
+	    $score = $row;
+	  }
+
+	  //force undefined values to 0
+	  //this also catches when a gif has not been voted on before
+	  //shouldn't effect anything, only graphical display of current totals
+	  if ($score["gifid"] == NULL) $score["gifid"] = -1;
+	  if ($score["up"] == NULL) $score["up"] = 0;
+	  if ($score["total"] == NULL) $score["total"] = 0;
+	  if ($score["down"] == NULL) $score["down"] = 0;
+
+	  return $score;
+	}
 	
 
 	echo json_encode($json);
