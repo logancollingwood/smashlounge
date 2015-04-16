@@ -8,19 +8,6 @@
 ?>
 <!--
 
-ooooo
-`888'
- 888          .ooooo.   .oooooooo  .oooo.   ooo. .oo.
- 888         d88' `88b 888' `88b  `P  )88b  `888P"Y88b
- 888         888   888 888   888   .oP"888   888   888
- 888       o 888   888 `88bod8P'  d8(  888   888   888
-o888ooooood8 `Y8bod8P' `8oooooo.  `Y888""8o o888o o888o
-                       d"     YD
-                       "Y88888P'
-
--->
-<!--
-
 Smashlounge is built for the community, by the community.
 
 All tools used on this site are for non-commercial purposes.
@@ -80,6 +67,7 @@ Questions?
                   <div class='row'>
                       <div class='col-md-4'>
                         <h2> Entertainment </h2>
+                        <hr>
 
                             <?php
                               foreach ($allVods['Entertainment'] as $vod) {
@@ -89,6 +77,7 @@ Questions?
                       </div>
                       <div class='col-md-4'>
                         <h2> Techniques </h2>
+                        <hr>
                             <?php
                               foreach ($allVods['Techniques'] as $vod) {
                                 displayVod($vod);
@@ -97,6 +86,7 @@ Questions?
                       </div>
                       <div class='col-md-4'>
                         <h2> Matches </h2>
+                        <hr>
                             <?php
                               foreach ($allVods['Matches'] as $vod) {
                                 displayVod($vod);
@@ -105,13 +95,13 @@ Questions?
                       </div>
                   </div>
                 </div>
-
+              <?php footer() ?>
             </div>
+
           </div>
         </div>
       </div>
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="/js/jquery.fitvids.js"></script>
       <script src="/js/initVods.js"></script>
     </body>
