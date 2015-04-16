@@ -2,6 +2,7 @@ $(document).ready(function(){
 	$('#loginPop').popover();
 
 	$( ".vote" ).on( "click", function() {
+		if ($(this).attr("disabled")) return;
 
 	  	var id =  $( this ).data("id");
 	  	var page =  $( this ).data("type");
@@ -11,8 +12,6 @@ $(document).ready(function(){
 
 		var scoreElem = $("#score" + id);
 		var children = scoreElem.children(".fa");
-		console.log(children);
-
 		scoreElem.children().removeClass("hidden");
 
 	 	console.log(id + " " + page + " " + direction);
@@ -24,23 +23,32 @@ $(document).ready(function(){
 	  	$.ajax({
 	        url: '/techs/vote.php',
 	        type: 'POST',
-	        data: { gifId: id , page: page, direction: direction }
+	        data: { gifId: id , page: page, direction: direction },
+	        dataType: 'json'
 	    })
-        .success(function(html) { 
-        	console.log(html);
-        	if (html == "login") {
+        .success(function(data) { 
+        	console.log(data);
+        	if (data.login == 0 && data.success == 0) {
         		console.log("requireLogin");
         		$('#loginPop').popover('show');
         		return;
-        	} else if (html == "success" || html == "duplicateSuccess") {
+        	} else if (data.success || data.duplicateSuccess) {
         		console.log($(this));
 
         		var currScore = scoreElem.html();
 
         		if (direction == "down") {
         			currScore--;
+        			$("#down" + id).attr("disabled", true);
+        			$("#up" + id).attr("disabled", false);
+        			$("#up" + id).removeClass("SL");
+        			$("#down" + id).addClass("SL");
         		} else if (direction == "up") {
         			currScore++;
+        			$("#up" + id).attr("disabled", true);
+        			$("#down" + id).attr("disabled", false);
+        			$("#up" + id).addClass("SL");
+        			$("#down" + id).removeClass("SL");
         		}
 
         		scoreElem.html(currScore);

@@ -942,7 +942,7 @@ function getFrameDataForGif($id) {
  * @return null
  */
 function printGfy($gfyObject, $count) {
-  global $loggedIn;
+  global $loggedIn, $user;
   $num = $count+1;
 
   $gfyID = $gfyObject['id'];
@@ -975,9 +975,24 @@ function printGfy($gfyObject, $count) {
   echo '        <hr>';
 
   echo '       <br>';
-  echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+
+  $voteDetails = voteDetails($gfyID, $user['id']);
+
+
+  if ($voteDetails['direction'] > 0) {
+    echo "       <a id='up$gfyID'href='#' class='vote SL' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up' disabled='disabled'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+  } else {
+    echo "       <a id='up$gfyID'href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+  }
+  
   echo "       <h4 id='score$gfyID'>" . $score['total'] . "</h4><i id='spin$gfyID'class='fa fa-circle-o-notch fa-spin hidden margin-left'></i>";
-  echo "       <a href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
+  
+  if ($voteDetails['direction'] < 0) {
+    echo "       <a id='down$gfyID'href='#' class='vote SL' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down' disabled='disabled'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
+  } else {
+    echo "       <a id='down$gfyID'href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";  
+  }
+  
 
   echo '    </div>';
   echo '    <div class="col-md-10 col-sm-10">';
@@ -1026,6 +1041,25 @@ function getGifScore($gifID) {
 
   return $score;
 }
+
+function voteDetails($gifID, $userID) {
+  global $mysqli;
+  $query = "SELECT * from gifvotes where gifid=$gifID and voterid=$userID";
+  
+  if (!$result = $mysqli->query($query)) {
+    die('Invalid query: ' . $mysqli->error);
+  }
+
+  if(mysqli_num_rows($result) > 0) {
+      foreach($result as $record) {
+        return $record;
+      }
+  }
+
+  return NULL;
+
+}
+
 
 function printSubmit($key) {
   echo '<div class="well submitBox">';

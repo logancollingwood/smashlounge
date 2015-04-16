@@ -1,9 +1,7 @@
-
 <?php
   $tech = isset($_GET['tech'])       ? trim($_GET['tech'])       : "";
-
-  require("techs/init.php");
-  require("techs/initTechs.php");
+  require_once("techs/init.php");
+  require_once("techs/initTechs.php");
   require_once("techs/controller.php");
 
 ?>

@@ -25,9 +25,12 @@
 	    'charset'   => 'utf8',
 	    'collation' => 'utf8_unicode_ci',
 	]);
+	/**
+	 * Send as JSON
+	 */
+	header("Content-Type: application/json", true);
 
 	$capsule->bootEloquent();
-
 	$mysqli = new mysqli($dahostname, $username, $password, $dbname);
 
 	if ($mysqli->connect_errno) {   
@@ -35,62 +38,79 @@
 	  exit();
 	}
 
+	$json['success'] = 0;
+	$json['login'] = 0;
+
 	$user['id'] = -1;
 	if (Sentry::check()) {
+		$json['login'] = 1;
 		$loggedIn = true;
 		$user = Sentry::getUser();
-	} else {
-		echo "login";
-		die();
-	}
+		$gifId = $_POST['gifId'];
+		$direction = $_POST['direction'];
 
-	//error_log(print_r($_POST));
-	$gifId = $_POST['gifId'];
+		$actualTinyInt = 0;
 
+		if ($direction == 'up') {
+			$actualTinyInt = 1;
+		} else if ($direction == 'down') {
+			$actualTinyInt = -1;
+		} else {
+			die();
+		}
 
-	$direction = $_POST['direction'];
+		$userId = $user["id"];
 
-	$actualTinyInt = 0;
+		//This catches to see if we should just update or create a new record
+		//this keeps the database from holding infinitely many votes per user instead of just updating a current one
+		$query = "SELECT * from gifvotes where gifid = $gifId and voterid = $userId;";
 
-	if ($direction == 'up') {
-
-		$actualTinyInt = 1;
-
-	} else if ($direction == 'down') {
-		
-		$actualTinyInt = -1;
-
-	} else {
-		die();
-	}
-
-	$userId = $user["id"];
-
-	//This catches to see if we should just update or create a new record
-	//this keeps the database from holding infinitely many votes per user instead of just updating a current one
-	$query = "SELECT * from gifvotes where gifid = $gifId and voterid = $userId;";
-	if (!$result = $mysqli->query($query)) {
-	  die('Invalid query: ' . $mysqli->error);
-	} else {
-		$query = "	UPDATE gifvotes 
-				  	SET direction=$actualTinyInt
-				  	WHERE gifid = $gifId AND voterid = $userId;";
 		if (!$result = $mysqli->query($query)) {
 		  die('Invalid query: ' . $mysqli->error);
+		
 		} else {
-			echo "duplicateSuccess";
-			return;
+		  	$rows = mysqli_num_rows($result);
+		  	//If there are actually results here
+		  	if ($rows != 0) {
+
+		  		//if you've already voted, and you're now voting up
+		  		if ($direction == 'up') {
+					$modifyDirection = 1;
+				//if you've already voted, and you're now voting up
+				} else if ($direction == 'down') {
+					$modifyDirection = -1;
+				} 
+
+		  		$query = "	UPDATE gifvotes 
+					  	SET direction=$modifyDirection
+					  	WHERE gifid = $gifId AND voterid = $userId;";
+				if (!$result = $mysqli->query($query)) {
+				  die('Invalid query: ' . $mysqli->error);
+				} else {
+					$json['success'] = 1;
+				}
+			//If not, we have to do a fresh insert
+		  	} else {
+  				$query = "
+					INSERT INTO gifvotes (gifid,voterid,direction)
+					VALUES ($gifId,$userId,$actualTinyInt);";
+
+				if (!$result = $mysqli->query($query)) {
+				  die('Invalid query: ' . $mysqli->error);
+				} else {
+					$json['success'] = 1;
+				}
+		  	}
 		}
-	}
 
-	$query = "
-		INSERT INTO gifvotes (gifid,voterid,direction)
-		VALUES ($gifId,$userId,$actualTinyInt);";
 
-	if (!$result = $mysqli->query($query)) {
-	  die('Invalid query: ' . $mysqli->error);
 	} else {
-		echo "success";
-		return;
+		$json['login'] = 0;
 	}
+
+	
+
+	echo json_encode($json);
+
+	exit;
 ?>
