@@ -205,31 +205,25 @@ function makeCollapseNav($key, $data, $collapsed, $char = 'null', $tech = 'null'
     echo "</ul>";
     echo "</div>";
   } else if ($key === 'vods') {
+
+    global $vodcategories;
+
     if ($tech != '') {
       echo "<li id='vodsAnchor' class='home active'>";
     } else {
-      echo "<li id='techsAnchor'>";
+      echo "<li id='vodsAnchor'>";
     }
-    echo "<a href='#tech" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#techs" . $target . "'>";
-    echo "<span class='glyphicon glyphicon-collapse-down sidebarico' id='collapseDownTechs'></span>";
-    echo "<span class='pagetitle'>techniques</span>";
+    echo "<a href='#vods" . $target . "' id='toggler' data-toggle='collapse' class='active' data-target='#vods" . $target . "'>";
+    echo "<span class='glyphicon glyphicon-collapse-down sidebarico'  id='collapseDownVods'></span>";
+    echo "<span class='pagetitle'>vods</span>";
     echo "</a>";
     echo "<li>";
-    echo "<div id='techs" . $target . "' class='collapse " . $collapsed . "'>";
+    echo "<div id='vods" . $target . "' class='collapse " . $collapsed . "'>";
     echo "<ul class='nav nav-list'>";
-    $counter = 0;
-    foreach ($data as $rec) {
-      $counter++;
-      echo "<li class='list-dd";
-      if (strcasecmp($rec, $tech) == 0) {
-        echo " active";
-      }
-      echo "'>";
-      echo "<a ";
-      if (strcasecmp($rec, $tech) == 0) echo "class='activeNav' ";
-      echo "href=/techniques/" . urlencode($rec) . ">";
-      echo $rec . "</a></li>";
-      echo "\n";
+    foreach ($vodcategories as $key => $category) {
+    echo "          <li class='list-dd'>";
+    echo "            <a href='/vods/$category'>$category</a>";
+    echo "          </li>";
     }
     echo "</ul>";
     echo "</div>";
@@ -909,6 +903,7 @@ function printLibraries() {
 
 
 function printNewLibraries() {
+  global $environment;
   echo "<!-- PRINTING DEPENDENCIES -->";
   echo "\n";
 
@@ -1114,6 +1109,27 @@ function getGifScore($gifID) {
   if ($score["down"] == NULL) $score["down"] = 0;
 
   return $score;
+}
+
+function printDisqus() {
+  echo '
+  <div class="well">
+    <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = "thesmashlounge"; // required: replace example with your forum shortname';
+
+  echo "
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>";
+  echo '    
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>';
 }
 
 function voteDetails($gifID, $userID) {

@@ -1,7 +1,7 @@
 <?php
 
 	require_once("techs/db.php");
-
+	
 	//initializes an array with 1 vod per 6 categories for display on the home page
 	foreach ($vodcategories as $key => $name) {
 		$tempArr = array();
@@ -22,7 +22,7 @@
 
 
 
-	function displayVod($vod) {
+	function displayVod($vod, $counter = 0) {
 		$vodId = $vod['id'];
 
 		global $loggedIn, $user;
@@ -31,7 +31,15 @@
 				<div class="gfyTainer">';
 		echo '		<div class="row">';
 		echo '			<div class="col-md-2 col-sm-2 voteBlock">';
+		if ($counter != 0) {
+	  	echo "       		<span class='exNum'>";
+	  	echo          			'#';
+	  	echo          			$counter;
+	  	echo "       		</span>";
+  	  	echo '        		<hr>';
 
+  		echo '       		<br>';
+	  	}
 			//this gathers vote details for a particular user, in case we need to 
 			// display a previous vote or whatever
 			$voteDetails = vodvoteDetails($vod['id'], $user['id']);
@@ -122,31 +130,19 @@
 
 		$numVods = count($vods);
 
-		$firsthalf = array_slice($vods, 0, $numVods / 2);
-		$secondhalf = array_slice($vods, $numVods / 2);
-
-		$numColums = 2;
-
-		$ColumSize = 12/$numColums;
 
 		echo "<div class='row'>";
-			echo "<div class='col-md-$ColumSize'>";
-			foreach ($firsthalf as $vod) {
-				displayVod($vod);
+			echo "<div class='col-md-8'>";
+			$counter = 1;
+			foreach ($vods as $vod) {
+				displayVod($vod, $counter);
+				$counter++;
 			}
-
+			printSubmit('vod');
 			echo "</div>";
-			echo "<div class='col-md-$ColumSize'>";
-			foreach ($secondhalf as $vod) {
-				displayVod($vod);
-			}
-
+			echo "<div class='col-md-4'>";
+				printDisqus();
 			echo "</div>";
-		echo "</div>";
-		echo "<div class='row'>";
-		echo "	<div class='col-md-12'>";
-				printSubmit('vod');
-		echo "	</div>";
 		echo "</div>";
 	}
 

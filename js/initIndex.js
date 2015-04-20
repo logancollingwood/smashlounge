@@ -69,7 +69,7 @@ $(document).ready(function(){
     scrollButtons: {enable:true},
   });
   */
-  $('.videocontainer').fitVids();
+  $('.videoContainer').fitVids();
   
   $('[data-toggle=offcanvas]').click(function() {
       $(this).toggleClass('visible-xs text-center');

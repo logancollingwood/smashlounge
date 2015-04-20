@@ -492,6 +492,10 @@ small.text-muted {
     font-family: 'Open Sans';
     font-size: 1.3vw;
 }
+.sidebarico {
+    float: left;
+}
+
 
 .list-dd a{
     font-size: 12px;
@@ -506,6 +510,11 @@ small.text-muted {
 }
 .pagetitle {
     margin-left: 15%;
+}
+@media(Max-Width: 768px) {
+    .pagetitle {
+        margin-left: 0px;
+    }
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
@@ -851,9 +860,45 @@ input {
 /*
     Streams
 */
+@media (max-width: 768px) { 
+    .streampanel {
+        visibility: hidden;
+    }
+}
+.streamUnit {
+    height: 150px;
+    margin-bottom: 40px;
+    .streamTitle {
+        text-align: left;
+        font-size: 20px;
+        margin-bottom: 10px;
+        font-family: 'Quicksand';
+    }
+    .streamDetails {
+        margin-top: 10%;
+    }
+}
+.streamer {
+    height: 5%;
+    margin-bottom:10%;
+    .streamerText {
+        margin-top: 10%;
+        position: absolute;
+        font-size: 20px;
+        margin-left: -20%;
+        font-family: 'Raleway';
+        padding-left: 25px;
+    }
+}
 .streamImg {
-    padding-left: 15px;
-    width: 50px;
+    border-radius: 15px;
+    width: 100px;
+    left: 0%;
+    position: absolute;
+    img {
+        width: 95%;
+        border-radius: 15px;
+    }
 }
 .gameTitle {
     border-left: 1px solid #eee;

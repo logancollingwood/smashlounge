@@ -129,11 +129,16 @@ Questions?
                         </div>
                         
                     </div>
-                    <?php printSubmit('vod'); ?>
+                    <div class='row'>
+                      <div class="col-md-12">
+                        <?php printSubmit('vod'); ?>
+                      </div>
+                    </div>
+
                 <?php } else { ?>
 
                   <?php gatherVods($whichVod); ?>
-                  <?php printSubmit('vod'); ?>
+                  
                 <?php } ?>
 
               <?php footer() ?>
