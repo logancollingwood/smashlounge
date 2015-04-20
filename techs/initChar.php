@@ -171,4 +171,21 @@ function printCharData($moves, $author) {
   echo "</div>";
 }
 
+function makeTwitterCard($char) {
+
+  $charURL = urlencode($char);
+  $imgPath = "https://smashlounge.com/img/Characters/" . $char . "HeadSSBM.png";
+
+
+  echo "
+  <meta name='twitter:url' content='https://smashlounge.com/character/$charURL' />
+  <meta name='twitter:card' content='summary' />
+  <meta name='twitter:site' content='@thesmashlounge' />
+  <meta name='twitter:title' content='SmashLounge - $char' />
+  <meta name='twitter:description' content='SmashLounge $char guide. Click through for more.' />
+  <meta name='twitter:image' content='$imgPath' />
+  ";
+
+}
+
 ?>
