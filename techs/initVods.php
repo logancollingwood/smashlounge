@@ -1,7 +1,7 @@
 <?php
 
 	require_once("techs/db.php");
-	
+
 	//initializes an array with 1 vod per 6 categories for display on the home page
 	foreach ($vodcategories as $key => $name) {
 		$tempArr = array();
@@ -147,6 +147,9 @@
 	}
 
 	function selectVodsByCategory($vodType) {
+		//Selects vods by a given string category
+		//and returns an array of db results sorted by
+		//vote count
 		global $mysqli;
 
 		$vodTypeId = -1;
@@ -155,16 +158,55 @@
 
 		$vods = array();
 
-		$query = "SELECT * from vods where typeid=$vodTypeId";
-		if (!$result = $mysqli->query($query)) {
-		  die('Invalid query: ' . $mysqli->error);
-		}
-		foreach ($result as $row) {
-			$vods[] = $row;
-		}
+	 	$query = "SELECT * FROM vods where typeid=$vodTypeId";
+
+	  	if (!$result = $mysqli->query($query)) {
+	    	die('Invalid query: ' . $mysqli->error);
+	  	}
+	  	foreach ($result as $row) {
+
+		    $score = getScoreByID($row['id']);
+
+		    $row['score'] = $score;
+
+	    	$vods[] = $row;
+	  	}
+
+
+	  	usort($vods,'scoreDescSort');
+
+
 
 		return $vods;
 	}
+	function scoreDescSort($item1,$item2) {
+       if ($item1['score'] == $item2['score']) return 0;
+       return ($item1['score'] < $item2['score']) ? 1 : -1;
+    }
+
+	function getScoreByID($id) {
+	    global $mysqli;
+
+	    $query = "
+	        SELECT vodid, SUM(direction) as total
+	      FROM vodvotes
+	      where vodid = $id";
+	    
+	    if (!$result = $mysqli->query($query)) {
+	      die('Invalid query: ' . $mysqli->error);
+	    }
+	    foreach ($result as $row) {
+	      $score = $row['total'];
+	    }
+
+	    //force undefined values to 0
+	    //this also catches when a gif has not been voted on before
+	    //shouldn't effect anything, only graphical display of current totals
+
+	    if ($score == NULL) $score = 0;
+
+	    return $score;
+    }
 
 	function getVodTypeId($vodType) {
 		global $vodcategories;
