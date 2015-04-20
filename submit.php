@@ -450,12 +450,14 @@ Questions?
                   </div>
 
                 </div>
-                <?php footer(); ?>
               </div>
 
           </div>
+
         </div>
+       
       </div>
+
     </div>
 
     <script src="/js/pageJs/submitInit.js"></script>
