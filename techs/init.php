@@ -1136,11 +1136,11 @@ function voteDetails($gifID, $userID) {
 
 
 function printSubmit($key) {
-  echo '<div class="well submitBox">';
-    echo '<p>';
-      echo '<a href="/submit.php#'.$key.'">Submit a ' . $key . '</a>';
-    echo '</p>';
-  echo '</div>';
+  echo '  <div class="well submitBox">';
+    echo '  <p>';
+      echo '  <a href="/submit.php#'.$key.'">Submit a ' . $key . '</a>';
+    echo '  </p>';
+  echo '  </div>';
 }
 
 function printCharImage($char) {
@@ -1157,5 +1157,7 @@ function clean($string) {
 
    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
+
+
 
 ?>

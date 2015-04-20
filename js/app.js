@@ -19,7 +19,7 @@ $(document).ready(function() {
         $(this).toggleClass('active, inactive');
     });
 
-
+  
     // hide .navbar first
     $("#main").scroll(function() {
 

@@ -32,8 +32,10 @@
 		echo '		<div class="row">';
 		echo '			<div class="col-md-2 col-sm-2 voteBlock">';
 
+			//this gathers vote details for a particular user, in case we need to 
+			// display a previous vote or whatever
 			$voteDetails = vodvoteDetails($vod['id'], $user['id']);
-			//print_r($voteDetails);
+
 			$score = getVodScore($vodId);
 
 		  	if ($voteDetails['direction'] > 0) {
@@ -140,6 +142,11 @@
 			}
 
 			echo "</div>";
+		echo "</div>";
+		echo "<div class='row'>";
+		echo "	<div class='col-md-12'>";
+				printSubmit('vod');
+		echo "	</div>";
 		echo "</div>";
 	}
 

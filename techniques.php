@@ -116,7 +116,6 @@ Questions?
                       }
                       $counter++;
                     }
-                    printSubmit('gif');
                   }
                 } else {
                   echo "<ul class='list-group'>";
@@ -128,7 +127,7 @@ Questions?
                   }
                 }
                   echo "</ul>";
-
+                  printSubmit('gif');
 
                 ?>
                 </div>

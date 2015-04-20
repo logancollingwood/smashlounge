@@ -1,6 +1,7 @@
 <?php
   require_once("techs/init.php");
   require_once("techs/twitch.php");
+  require_once("techs/initIndex.php");
 ?>
 <!--
 
@@ -84,7 +85,7 @@ Questions?
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-8 col-sm-10 col-md-offset-">
+                    <div class="col-md-6 col-sm-10 col-md-offset-">
 
                       <?php
                         echo "<div id='randomSlot' class='panel gifTainer theaterGif'>";
@@ -93,7 +94,16 @@ Questions?
 
                     </div>
 
-                    <div class="col-md-4 col-sm-2">
+                    <div class="col-md-6 col-sm-2">
+                      <div class='panel gifTainer theaterGif'>
+                        <?php printRandomVod(); ?>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class='row'>
+                    <div class="col-md-8 col-sm-2">
                       <div class='panel panel-default streampanel'>
                         <div class='panel-heading'> Live SSB Streams </div>
                         <div class='panel-body streams'>
@@ -136,33 +146,11 @@ Questions?
                       </div>
                     </div>
 
-                  </div>
-
-                  <div class='row'>
-                    <div class='col-md-8'>
-                      <div class='panel panel-default'>
-                        <div class='panel-heading'>From the <a href="https://www.youtube.com/playlist?list=PLhHSkxk_9ky44HiUFCkX7LSv4ID5E7Wis">SmashLounge Invitational</a>&nbsp;
-                          <a class='button button-inline button-small button-success pull-right' id='newVod' aria-label='Left Align'><span> <i class="fa fa-arrow-circle-o-right"></i>next match</span></a>
-                        </div>
-                        <div class='panel-body full'>
-                          <div id="vod">
-                            <div id="player"></div>
-                          </div>          
-                        </div>
-                        <div class='panel-footer'>
-                          <p> 
-                            <a class='button button-inline button-small button-success' href="http://www.youtube.com/c/smashlounge"><span> <i class="fa fa-youtube-play"></i>subscribe on youtube</span></a>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
                     <div class='col-md-4'>
                       <div class='panel panel-default'>
                         <div class='panel-heading'> <a class='button button-inline button-small button-success' href="http://twitter.com/thesmashlounge"><span> <i class="fa fa-twitter"></i>Hit us up on twitter</span></a> </div>
                         <div class='panel-body'>
-                          <a class="twitter-timeline" href="https://twitter.com/thesmashlounge" data-chrome="noheader nofooter noscrollbar transparent" data-widget-id="585544387632967681">Tweets by @thesmashlounge</a>
-                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                          <?php twitterTimeline() ?>
                         </div>
                       </div>
                       <?php
