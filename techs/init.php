@@ -733,7 +733,7 @@ function navbar() {
         <a class="small-logo" href="#">sl</a>
       </div>
     </div>
-    <form class="navbar-form navbar-left search" style="margin-left: 2%;">
+    <form class="navbar-form navbar-left search" style="margin-left: 2%;" id="searchBarForm">
         <div class="input-group input-group-sm" style="width:250px;">
           <input type="text" class="form-control search" placeholder="search" id="searchBar">
           <ul class="results" id="searchBarResults">

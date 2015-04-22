@@ -69,48 +69,65 @@ Questions?
             <div class="content-wrapper">
                 <?php if ($whichVod == "") { ?>
                   <div class='row'>
-                        <div class='col-md-4'>
+                        <div class='col-md-6'>
                           <h2> Entertainment </h2>
                           <hr>
-
-                              <?php
-                                foreach ($allVods['Entertainment'] as $vod) {
-                                  displayVod($vod);
-                                }
-                                echo "<h2> Combos </h2><hr>";
-                                foreach ($allVods['Combos'] as $vod) {
-                                  displayVod($vod);
-                                }
-                              ?>
+                            <?php
+                              foreach ($allVods['Entertainment'] as $vod) {
+                                displayVod($vod);
+                              }
+                            ?>
                         </div>
-                        <div class='col-md-4'>
+                        <div class='col-md-6'>
                           <h2> Techniques </h2>
                           <hr>
-                              <?php
-                                foreach ($allVods['Techniques'] as $vod) {
-                                  displayVod($vod);
-                                }
-                                echo "<h2> PewPewUniversity </h2><hr>";
-                                foreach ($allVods['PewPewUniversity'] as $vod) {
-                                  displayVod($vod);
-                                }
-                              ?>
+                            <?php
+                              foreach ($allVods['Techniques'] as $vod) {
+                                displayVod($vod);
+                              }
+                            ?>
                         </div>
-                        <div class='col-md-4'>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-6'>
+                          <h2> PewPewUniversity </h2>
+                          <hr>
+                          <?php
+                              foreach ($allVods['PewPewUniversity'] as $vod) {
+                                displayVod($vod);
+                              }
+                          ?>
+                        </div>
+                        <div class='col-md-6'>
                           <h2> Matches </h2>
                           <hr>
                               <?php
                                 foreach ($allVods['Matches'] as $vod) {
                                   displayVod($vod);
                                 }
-                                echo "<h2> Teams </h2><hr>";
-                                foreach ($allVods['Teams'] as $vod) {
+                              ?>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-6'>
+                          <h2> Teams </h2>
+                          <hr>
+                          <?php
+                              foreach ($allVods['Teams'] as $vod) {
+                                displayVod($vod);
+                              }
+                          ?>
+                        </div>
+                        <div class='col-md-6'>
+                          <h2> Combos </h2>
+                          <hr>
+                              <?php
+                                foreach ($allVods['Combos'] as $vod) {
                                   displayVod($vod);
                                 }
                               ?>
                         </div>
                     </div>
-
                 <?php } else { ?>
 
                   <?php gatherVods($whichVod); ?>
@@ -126,5 +143,6 @@ Questions?
 
       <script src="/js/jquery.fitvids.js"></script>
       <script src="/js/initVods.js"></script>
+      <script type="text/javascript" src="/js/vodvoting.js"></script>
     </body>
 </html>
