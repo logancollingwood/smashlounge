@@ -237,7 +237,7 @@
             </h3>
             <p>
               If you would like to work with us (and please, feel free), email us at
-              <a href='mailto:smashlounge@gmail.com'> smashlounge@gmail.com </a>
+              <a href='mailto:tsl@smashlounge.com'> tsl@smashlounge.com </a>
             </p>
             <br>
           </div>

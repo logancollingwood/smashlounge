@@ -127,11 +127,13 @@ Questions?
                                 }
                               ?>
                         </div>
+                        
                     </div>
+                    <?php printSubmit('vod'); ?>
                 <?php } else { ?>
 
                   <?php gatherVods($whichVod); ?>
-
+                  <?php printSubmit('vod'); ?>
                 <?php } ?>
 
               <?php footer() ?>
