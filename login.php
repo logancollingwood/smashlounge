@@ -14,6 +14,7 @@
    
    $redirect = isset($_GET['redirect'])       ? trim($_GET['redirect'])       : "";
    $submit = isset($_GET['str'])       ? trim($_GET['str'])       : "";
+   
    if(!empty($_POST)){ 
 
        require('techs/dbSuper.php');
