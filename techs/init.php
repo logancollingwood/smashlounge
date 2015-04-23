@@ -11,6 +11,7 @@ $modules = array('api', 'admin', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js'
   'composer.phar', 'donate', 'error_log', 'index', 'info', 'login', 'logout', 'lounge', 'moderate',
    'register', 'techniques', 'upcoming', 'update', 'users'); 
 
+$environment = 'dev';
 
 $techCount = 0;
 $charCount = 0;
@@ -910,7 +911,9 @@ function printLibraries() {
 function printNewLibraries() {
   echo "<!-- PRINTING DEPENDENCIES -->";
   echo "\n";
-  analytics();
+  
+  if ($environment != 'dev') analytics();
+
   echo "<link rel='shortcut icon' href='/img/favicon.ico'>";
   echo "<!-- Bootstrap core CSS -->";
   echo "<link href='/css/bootstrap.min.css' rel='stylesheet'>";

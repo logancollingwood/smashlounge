@@ -28,7 +28,7 @@
 		global $loggedIn, $user;
 
 		echo '
-				<div class="well vod">';
+				<div class="gfyTainer">';
 		echo '		<div class="row">';
 		echo '			<div class="col-md-2 col-sm-2 voteBlock">';
 
@@ -58,9 +58,11 @@
 				          			src="http://www.youtube.com/embed/' . $vod['url'] . '?fs=1&modestbranding=1"
 				          			frameborder="0"/></iframe>
 			        		</div>';
-    	echo '				<p class="vodTitle"> ' . $vod['title'] . '</p>';
-    	echo '				<p class="vodDescription"> ' . $vod['description'] . '</p>';
-    	echo '				<p class="vodCredits"> -' . $vod['credit'] . '</p>';
+    	echo '				<h2> ' . $vod['title'] . '</h2>';
+    	echo '				<div class="gfyFooter">';
+    	echo '					<div class="gfyDescription"> ' . $vod['description'] . '</div>';
+    	echo '					<div class="gfySource"> from ' . $vod['credit'] . '</div>';
+    	echo '				</div>';
     	echo '			</div>';
     	echo ' 		</div>';
 	    echo '	</div>';

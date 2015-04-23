@@ -124,7 +124,7 @@
                               <div class="form-group">
                                  <label class="col-md-4 control-label" for="email">email</label>
                                  <div class="col-md-6">
-                                    <input id="email" name="email" type="email" placeholder="smashlounge@gmail.com" class="form-control input-md" required>
+                                    <input id="email" name="email" type="email" placeholder="tsl@smashlounge.com" class="form-control input-md" required>
                                  </div>
                               </div>
                               <!-- Text input-->
