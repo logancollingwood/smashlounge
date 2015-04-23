@@ -911,7 +911,7 @@ function printLibraries() {
 function printNewLibraries() {
   echo "<!-- PRINTING DEPENDENCIES -->";
   echo "\n";
-  
+
   if ($environment != 'dev') analytics();
 
   echo "<link rel='shortcut icon' href='/img/favicon.ico'>";
@@ -929,7 +929,7 @@ function printNewLibraries() {
   //Open Graph Properties
   echo '
   <meta property="og:description" 
-    content="Smashlounge: An open knowledgebase for Super Smash Brothers" />
+    content="Smashlounge: An open knowledgebase for Super Smash Brothers techniques" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="smashlounge" />
   <meta property="og:url" content="http://www.smashlounge.com" />
