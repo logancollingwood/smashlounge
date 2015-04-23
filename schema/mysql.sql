@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 23, 2015 at 07:28 AM
+-- Generation Time: Apr 23, 2015 at 05:25 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -740,7 +740,7 @@ CREATE TABLE `chartech` (
 `id` int(11) NOT NULL,
   `charid` int(11) NOT NULL,
   `techid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `chartech`
@@ -759,7 +759,13 @@ INSERT INTO `chartech` (`id`, `charid`, `techid`) VALUES
 (13, 5, 25),
 (15, 2, 26),
 (17, 5, 27),
-(18, 6, 27);
+(18, 6, 27),
+(19, 14, 11),
+(20, 14, 23),
+(21, 14, 7),
+(22, 23, 13),
+(23, 23, 10),
+(25, 23, 26);
 
 -- --------------------------------------------------------
 
@@ -868,7 +874,7 @@ CREATE TABLE `gifs` (
   `description` varchar(400) NOT NULL,
   `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `score` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=1911 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1913 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gifs`
@@ -1661,7 +1667,9 @@ INSERT INTO `gifs` (`id`, `typeid`, `dataid`, `source`, `submittedby`, `url`, `d
 (1907, 3, 119, '', 0, 'OilyBeneficialAmurratsnake', '', '2015-03-17 19:42:15', 0),
 (1908, 3, 60, '', 0, 'DenseFailingAmericancrocodile', '', '2015-04-01 01:49:15', 0),
 (1909, 3, 202, '', 0, 'FarawayGeneralAustraliancurlew', '', '2015-04-05 23:29:36', 0),
-(1910, 2, 26, 'SSS 17 - S2J vs Fiction (WF)', 0, 'ConfusedMelodicGallowaycow', 'nice tech chase string from S2J', '2015-04-07 03:39:24', 0);
+(1910, 2, 26, 'SSS 17 - S2J vs Fiction (WF)', 0, 'ConfusedMelodicGallowaycow', 'nice tech chase string from S2J', '2015-04-07 03:39:24', 0),
+(1911, 3, 4, '', 0, 'DimIckyAztecant', '', '2015-04-23 15:01:36', 0),
+(1912, 0, 8, 'Mayhem', 0, 'WhoppingMinorIvorybackedwoodswallow', 'Fly Amanita edge guards with SoPo', '2015-04-23 15:17:09', 0);
 
 -- --------------------------------------------------------
 
@@ -1966,92 +1974,6 @@ INSERT INTO `moves` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `submissions`
---
-
-DROP TABLE IF EXISTS `submissions`;
-CREATE TABLE `submissions` (
-`id` int(11) NOT NULL,
-  `url` varchar(90) NOT NULL,
-  `source` varchar(30) NOT NULL,
-  `description` varchar(300) NOT NULL,
-  `pageid` int(11) NOT NULL,
-  `dataid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `submissionsgroup`
---
-
-DROP TABLE IF EXISTS `submissionsgroup`;
-CREATE TABLE `submissionsgroup` (
-`id` int(11) NOT NULL,
-  `name` varchar(130) NOT NULL,
-  `fb` varchar(290) NOT NULL,
-  `latitude` float NOT NULL,
-  `longitude` float NOT NULL,
-  `region` int(11) NOT NULL DEFAULT '0',
-  `game` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `submissionstech`
---
-
-DROP TABLE IF EXISTS `submissionstech`;
-CREATE TABLE `submissionstech` (
-`id` int(11) NOT NULL,
-  `name` varchar(90) NOT NULL,
-  `description` varchar(650) NOT NULL,
-  `ssbwiki` varchar(180) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `submissionstournament`
---
-
-DROP TABLE IF EXISTS `submissionstournament`;
-CREATE TABLE `submissionstournament` (
-`id` int(11) NOT NULL,
-  `title` varchar(90) NOT NULL,
-  `fb_id` int(60) NOT NULL,
-  `bracket` varchar(150) NOT NULL,
-  `start` date NOT NULL,
-  `end` date NOT NULL,
-  `first` varchar(90) NOT NULL,
-  `second` varchar(90) NOT NULL,
-  `third` varchar(90) NOT NULL,
-  `stream` varchar(45) NOT NULL,
-  `attending` int(11) NOT NULL,
-  `location` varchar(50) NOT NULL,
-  `host` varchar(65) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `submissionsvod`
---
-
-DROP TABLE IF EXISTS `submissionsvod`;
-CREATE TABLE `submissionsvod` (
-`id` int(11) NOT NULL,
-  `url` varchar(260) NOT NULL,
-  `title` varchar(130) NOT NULL,
-  `credit` varchar(160) NOT NULL,
-  `typeid` int(11) NOT NULL,
-  `description` varchar(260) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `techs`
 --
 
@@ -2131,72 +2053,6 @@ INSERT INTO `upcoming` (`id`, `title`, `fb_id`, `bracket`, `class`, `start`, `en
 (1, 'Do You Fox Wit it', '722984804448159', 'http://dyfwi.challonge.com/dyftop32', 'event-success', '2014-11-15', '2014-11-16', 'Hax', 'Silentwolf', 'SFAT', 'showdownsmash', 250, 'Oakland', 'NorCal', '3048'),
 (9, 'TMG Columbia vs UMass Boston', '//www.facebook.com/TheMeleeGames', '//themeleegames.challonge.com/TS', 'event-info', '2015-01-31', '2015-02-02', '', '', '', '', 0, 'Secaucus, NJ', 'Apex 2015', ''),
 (11, 'Test Upcoming', '', 'http://themeleegames.challonge.com/', 'event-info', '2015-01-10', '2015-01-11', '', '', '', 'twitch.tv/pewpewu', 0, '', 'Upcoming', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `userinfo`
---
-
-DROP TABLE IF EXISTS `userinfo`;
-CREATE TABLE `userinfo` (
-`id` int(11) NOT NULL,
-  `image` varchar(130) NOT NULL,
-  `facebook` varchar(90) NOT NULL,
-  `location` varchar(130) NOT NULL,
-  `twitch` varchar(90) NOT NULL,
-  `userid` int(11) NOT NULL,
-  `vod` varchar(130) NOT NULL,
-  `twitter` varchar(90) NOT NULL,
-  `main` int(11) NOT NULL,
-  `sponsor` varchar(90) NOT NULL,
-  `latitude` float NOT NULL,
-  `longitude` int(11) NOT NULL,
-  `friendcode` varchar(12) NOT NULL,
-  `garpr` varchar(90) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `userinfo`
---
-
-INSERT INTO `userinfo` (`id`, `image`, `facebook`, `location`, `twitch`, `userid`, `vod`, `twitter`, `main`, `sponsor`, `latitude`, `longitude`, `friendcode`, `garpr`) VALUES
-(9, '', 'logan6694', 'Santa Cruz', 'xuaqua', 2, 'ZKsyg8iw5sk', 'logan6694', 6, 'Smash Lounge', 36.985, -122, '123456789124', ''),
-(10, '', 'MIOMPewPewU', 'Bay Area', 'pewpewu', 3, 'BMlxvpOhK7o', 'miom_pewpewu', 14, 'Melee it On Me', 0, 0, '123456789123', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-`id` int(10) unsigned NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `username` varchar(90) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `permissions` text COLLATE utf8_unicode_ci,
-  `activated` tinyint(4) NOT NULL DEFAULT '0',
-  `activation_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `activated_at` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_login` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `persist_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `reset_password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
-(2, 'logan6694@gmail.com', 'drft', '$2y$10$2Hnv3/rjsmXXirsm32WHueroCj4xx3cdxd5Sw0dLXvpfAnEZlfnKW', NULL, 1, NULL, NULL, '2015-04-22 01:27:59', '$2y$10$CxfLZpd6W6E4iFmhEXbtE.NKOQBwpgedMwsHPl7L4zV8E7wdUjtBG', NULL, NULL, NULL, '2014-09-07 06:29:24', '2015-04-22 08:27:59'),
-(3, 'pewpewu@smashlounge.com', 'pewpewu', '$2y$10$i.c0NvJYHicX9C6BjbPH1u5YF2b6p6K0S.g/9vcaeurN9cnwJrzLG', NULL, 1, NULL, NULL, '2014-09-07 18:08:05', '$2y$10$hxU/bA.sdGiDm01bsheNM.HG5hWtqItDVPr4KgTb1jjFs0qzY1rFm', NULL, NULL, NULL, '2014-09-08 01:07:57', '2014-09-08 01:08:05'),
-(4, 'tsl@smashlounge.com', 'tsl', '$2y$10$luNLAnUxuUjkRA0sHuQuWexCF.CMdijZPNQNfI/D2pfUhWNFbkGLe', NULL, 1, NULL, NULL, '2015-04-23 07:27:43', '$2y$10$ggZxGuITvkiYD.i1JQT8wehLiuFZePksOrF0.yF9I05mQmykQ9DNO', NULL, NULL, NULL, '2015-04-23 14:27:33', '2015-04-23 14:27:43');
 
 -- --------------------------------------------------------
 
@@ -2345,36 +2201,6 @@ ALTER TABLE `moves`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `submissions`
---
-ALTER TABLE `submissions`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissionsgroup`
---
-ALTER TABLE `submissionsgroup`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissionstech`
---
-ALTER TABLE `submissionstech`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissionstournament`
---
-ALTER TABLE `submissionstournament`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `submissionsvod`
---
-ALTER TABLE `submissionsvod`
- ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `techs`
 --
 ALTER TABLE `techs`
@@ -2385,18 +2211,6 @@ ALTER TABLE `techs`
 --
 ALTER TABLE `upcoming`
  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `userinfo`
---
-ALTER TABLE `userinfo`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `userid` (`userid`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `users_email_unique` (`email`), ADD KEY `users_activation_code_index` (`activation_code`), ADD KEY `users_reset_password_code_index` (`reset_password_code`);
 
 --
 -- Indexes for table `vods`
@@ -2428,7 +2242,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 -- AUTO_INCREMENT for table `chartech`
 --
 ALTER TABLE `chartech`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `framedatajson`
 --
@@ -2443,7 +2257,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
 -- AUTO_INCREMENT for table `gifs`
 --
 ALTER TABLE `gifs`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1911;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1913;
 --
 -- AUTO_INCREMENT for table `gifvotes`
 --
@@ -2465,31 +2279,6 @@ MODIFY `id` int(1) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=194;
 ALTER TABLE `moves`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `submissions`
---
-ALTER TABLE `submissions`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `submissionsgroup`
---
-ALTER TABLE `submissionsgroup`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `submissionstech`
---
-ALTER TABLE `submissionstech`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `submissionstournament`
---
-ALTER TABLE `submissionstournament`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `submissionsvod`
---
-ALTER TABLE `submissionsvod`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
 -- AUTO_INCREMENT for table `techs`
 --
 ALTER TABLE `techs`
@@ -2499,16 +2288,6 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 ALTER TABLE `upcoming`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT for table `userinfo`
---
-ALTER TABLE `userinfo`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `vods`
 --

@@ -131,13 +131,14 @@ Questions?
                           <div class="panel-heading">How to: <?php echo $char ?></div>
                           <div class="panel-body desc">
                             <p><?php echo $charGuide; ?></p>
-                            <h1>
-                              Bread and Butter
-                            </h1>
                           </div>
                           <!-- List group -->
                           <div class="panel-footer desc">
+                                                      <h1>
+                              Bread and Butter
+                            </h1>
                           <div class='row'>
+
                             <div class='col-md-6'>
                               <ul class='list-group'>
                                 <?php
