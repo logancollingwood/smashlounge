@@ -68,7 +68,7 @@ function makeTwitterTechCard($tech, $desc) {
   <meta name='twitter:url' content='https://smashlounge.com/techniques/$techURL' />
   <meta name='twitter:card' content='summary' />
   <meta name='twitter:site' content='@thesmashlounge' />
-  <meta name='twitter:title' content='SmashLounge - $char' />
+  <meta name='twitter:title' content='SmashLounge - $tech' />
   <meta name='twitter:description' content='$desc' />
   <meta name='twitter:image' content='$imgPath' />
   ";
