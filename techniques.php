@@ -43,7 +43,8 @@ Questions?
     <?php printNewLibraries(); ?>
 
     <link href="/css/less/rich.css" rel="stylesheet">
-
+    
+    <?php makeTwitterTechCard($tech, $techInfo["description"]); ?>
     
   </head>
   <body>
