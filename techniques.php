@@ -89,7 +89,7 @@ Questions?
                      if (!empty($techInfo["inputs"]))  
                       echo "<p class='techInputs'>Inputs: <br />" . $techInfo["inputs"] . "</p>";
                      if ($techInfo["smashwiki"] != ''); 
-                      echo "<p class='techInputs'><a class='button button-inline button-large button-info' role='button' href='//" . $techInfo["smashwiki"] . "'>Learn More</a></p>";
+                      echo "<p class='techInputs'><a class='button button-inline button-large button-info' role='button' href='http://" . $techInfo["smashwiki"] . "'>Learn More</a></p>";
                     ?>
                   </div>
                 </div>
