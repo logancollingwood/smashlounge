@@ -1,6 +1,6 @@
 /// <reference path="../typings/jquery/jquery.d.ts"/>
 $(document).ready(function() {
-    $window = $(window);
+    //$window = $(window);
 
     $('section[data-type="background"]').each(function() {
 

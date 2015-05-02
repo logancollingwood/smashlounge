@@ -1053,7 +1053,11 @@ function printGfy($gfyObject, $count) {
   
   /* gif column */
   echo '    <div class="col-md-9 col-sm-9">';
-  echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
+  if ($frameData == '') {
+    echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
+  } else {
+     echo "     <div id=gif" . $gfyID . " data-title=true data-autoplay=false data-controls=true data-speed=0.25 data-expand=false data-id='" . $gfyObject['url'] . "' style='width:100%'></div>";
+  }
   echo '      <div class="gfyFooter">';
   echo '        <div class="gfyDescription">' . $gfyObject['description'] . '</div>';
   echo '        <div class="gfySource">' . $source . '</div>';
