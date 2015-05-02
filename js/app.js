@@ -1,3 +1,4 @@
+/// <reference path="../typings/jquery/jquery.d.ts"/>
 $(document).ready(function() {
     $window = $(window);
 
@@ -119,5 +120,12 @@ $(document).ready(function() {
     });
 
     var navbarHeight = $('.navbar').height();
-
+    
+    $('.popper').popover({
+        container: 'body',
+        html: true,
+        content: function () {
+            return $(this).next('.popper-content').html();
+        }
+    });
 });

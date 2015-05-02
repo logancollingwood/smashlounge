@@ -3,7 +3,7 @@
 
 
 function makeControllerWithID($id) {
-echo '
+return '
     <svg 
                 id="controller-' . $id . '"
                 class="controller"

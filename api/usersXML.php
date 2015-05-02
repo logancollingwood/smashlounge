@@ -48,7 +48,6 @@
     $node = $dom->createElement("marker");
     $newnode = $parnode->appendChild($node);
     $newnode->setAttribute("name", htmlspecialchars($username));
-    //$newnode->setAttribute("region", $region);
     $newnode->setAttribute("lat", $row['latitude']);
     $newnode->setAttribute("lng", $row['longitude']);
     $newnode->setAttribute("href", $profileHref);

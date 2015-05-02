@@ -1024,52 +1024,49 @@ function printGfy($gfyObject, $count) {
     $source = 'from ' . $gfyObject['source'];
   }
   
-  //todo -- implement controllers
-  /*
-  if ($frameData != '') {
-
-  } else {
-
-  }
-  */
   $score = getGifScore($gfyID);
 
   echo '<div class="gfyTainer">';
   echo '  <div class="row">';
+  
+  /* vote column */
   echo '    <div class="col-md-2 col-sm-2 voteBlock">';
   echo "       <span class='exNum'>";
   echo          '#';
   echo          $num;
   echo "       </span>";
   echo '        <hr>';
-
   echo '       <br>';
-
   $voteDetails = voteDetails($gfyID, $user['id']);
-
-
   if ($voteDetails['direction'] > 0) {
     echo "       <a id='up$gfyID'href='#' class='vote SL' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up' disabled='disabled'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
   } else {
     echo "       <a id='up$gfyID'href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
   }
-  
   echo "       <h4 id='score$gfyID'>" . $score['total'] . "</h4><i id='spin$gfyID'class='fa fa-circle-o-notch fa-spin hidden margin-left'></i>";
-  
   if ($voteDetails['direction'] < 0) {
     echo "       <a id='down$gfyID'href='#' class='vote SL' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down' disabled='disabled'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";        
   } else {
     echo "       <a id='down$gfyID'href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='down'><span class='glyphicon glyphicon-chevron-down btn-lg'></span></a>";  
   }
-  
-
   echo '    </div>';
-  echo '    <div class="col-md-10 col-sm-10">';
+  
+  /* gif column */
+  echo '    <div class="col-md-9 col-sm-9">';
   echo '      <img class="gfyitem" data-expand=true data-id="' . $gfyObject['url'] . '"/>';
   echo '      <div class="gfyFooter">';
   echo '        <div class="gfyDescription">' . $gfyObject['description'] . '</div>';
   echo '        <div class="gfySource">' . $source . '</div>';
   echo '      </div>';
+  echo '    </div>';
+  
+  /* controller column */
+  echo '    <div class="col-md-1">';
+  if ($frameData !=  '') {
+    $dataContent = makeControllerWithID($gfyID);
+    echo '<button type="button" class="btn SL popper" data-toggle="popover" title="Frame Data"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span></button>';
+    echo '<div class="popper-content hide">'. $dataContent . '</div>';
+  }
   echo '    </div>';
   echo '  </div>';
   echo '</div>';
