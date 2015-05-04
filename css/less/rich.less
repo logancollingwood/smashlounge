@@ -22,6 +22,7 @@
 @import "_buttons";
 @import "_scrollbar";
 @import "_vods";
+@import "_404";
 
 
 @ultralightbg: #999;
@@ -52,9 +53,6 @@ h4 {
     font-family: 'Roboto';
     font-size: 1.3vw;
     text-align: center;
-}
-p {
-    //color: #fff;
 }
 li {
     list-style-type: none;
@@ -271,7 +269,7 @@ hr.login {
 .logo {
   display:block;
   padding:3px;
-  background-color:#fff;
+  background-color:#ffffff;
   color:#3B5999;
   height:28px;
   width:28px;
@@ -286,7 +284,7 @@ hr.login {
   border-radius:2px;
 }
 #sidebar-footer {
-  background-color:#medbg;
+  background-color: @medbg;
   position:absolute;
   bottom:5px;
   padding:5px;
@@ -526,6 +524,7 @@ small.text-muted {
     transition-delay: 80ms;
     -webkit-transition-delay: 80ms;
     -webkit-transition-timing-function: ease;
+    transition-timing-function: ease;
 }
 .nav-tabs {
     margin: 15px;
@@ -795,9 +794,6 @@ input {
 }
 .margin-left {
     margin-left: 10px;
-}
-.popover-title {
-    
 }
 .popover {
     background-color: @darkbg;
