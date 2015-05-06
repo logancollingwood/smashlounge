@@ -27,7 +27,7 @@ Questions?
               <script src="/js/util/jquery.transform2d.js"></script>
             <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-            <script src="/js/404.js"></script>
+            <script src="/js/pageJs/404.js"></script>
   </head>
   <body>
      <div class="column col-md-12" id="main">
