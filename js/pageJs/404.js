@@ -9,19 +9,30 @@ $(document).ready(function(){
 			    duration: 3000,
 			    complete: this.moveRight
 			};
+			
+			console.log(this);
 			$("#shot").animate({transform: "scale(1.3, 1.3)"}, animateOpts);
+			this.reset();
 		},
-
+		
+		reset: function () {
+			console.log("resetting");
+			var distance = -$("#scene").width() - 1000;
+			var horizString = "translateX(" +  distance + ")";
+			console.log(horizString);
+			$("#shot").animate({transform: "scale(-1.3, -1.3)"}, 1);
+			$("#shot").animate({transform: horizString}, 1);
+			
+		},
+		
 		moveRight: function () {
 			var animateOpts = {
 			    duration: 2500,
-			    complete: this.reset
 			};
 			var distance = $("#scene").width() - 1000;
 			var horizString = "translateX(" +  distance + ")";
-			console.log ("animating to " + horizString);
+			//console.log ("animating to " + horizString);
 		    $("#shot").animate({transform: horizString}, animateOpts);
-
 		},
 
 		rotate: function () {
@@ -32,14 +43,12 @@ $(document).ready(function(){
 			$("#shot").animate({transform: 'rotate(360deg)'}, animateOpts);
 		},
 
-		reset: function () {
-			console.log("resetting");
-			$("#shot").animate({transform: "scale(0, 0)"}, 1);
-		}
 	}
 
-	animation.reset();
+	//animation.reset();
 	animation.rotate();
 	animation.start();
-
+	
+	return animation;
+	
 });
