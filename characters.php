@@ -5,6 +5,9 @@
 	require("techs/init.php");
   
   require ("techs/initChar.php");
+  if ($charnotFound) {
+    header("Location: /404.shtml");
+  }
 ?>
 <!--
 

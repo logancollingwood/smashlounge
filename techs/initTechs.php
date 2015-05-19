@@ -75,4 +75,3 @@ function makeTwitterTechCard($tech, $desc) {
 
 }
 ?>
-

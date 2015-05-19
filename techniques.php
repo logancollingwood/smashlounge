@@ -4,6 +4,9 @@
   require_once("techs/initTechs.php");
   require_once("techs/controller.php");
 
+  if ($notFound == 1) {
+    header("Location: /404.shtml");
+  }
 ?>
 <!--
 
