@@ -33,10 +33,10 @@ Questions?
      <div class="column col-md-12" id="main">
 	             <section id="banner" data-speed="4" data-type="background">
                   <div class="jumbotron">
-                    <div class='header'>smashlounge</div>
+                    <div class='header'><a href="/">smashlounge</a></div>
                     <div class="blur">
 
-                      <div class="description">error - 404</br></div>
+                      <div class="description">error 404 - page not found</br></div>
 
                       <div class="mast">
                        
