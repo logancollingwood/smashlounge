@@ -72,7 +72,7 @@ RewriteRule ^techniques/([^/]*)$ /techniques.php?tech=$1
 
 RewriteRule ^characters/([^/]*)$ /characters.php?char=$1
 
-RewriteRule ^tournament/([^/]*)$ /upcoming.php?tournament=$1
+RewriteRule ^vods/([^/]*)$ /vods.php?tournament=$1
 ```
 
 <hr>
