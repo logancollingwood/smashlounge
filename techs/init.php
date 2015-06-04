@@ -1163,7 +1163,7 @@ function printSubmit($key) {
 function printCharImage($char) {
   $pathToImage = "/img/Characters/";
   $urlPattern = "HeadSSBM.png";
-  $char = clean($char);
+  $char = ucwords(clean($char));
   $fullSource = $pathToImage . urlencode($char) . $urlPattern;
 
   echo '<img class="charIco" src="' .$fullSource . '" />';
