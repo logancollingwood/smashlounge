@@ -315,7 +315,7 @@ function makeAllUsers($allUsers) {
           echo "<div class='panel-heading'>";
           echo "  <span class='glyphicon glyphicon-search SL'></span><input id='search' type='text' placeholder='username' />";
           echo "</div>";
-          echo "<div class='panel-body userlist'>";
+          echo "<div class='panel-body userlist' style='overflow:scroll'>";
             echo "  <!-- Show Results -->";
             echo '  <ul id="results" class="users">';
             foreach ($allUsers as $user) {

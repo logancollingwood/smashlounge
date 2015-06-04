@@ -11,7 +11,7 @@ $modules = array('api', 'admin', 'cgi-bin', 'css', 'demos', 'fonts', 'img', 'js'
   'composer.phar', 'donate', 'error_log', 'index', 'info', 'login', 'logout', 'lounge', 'moderate',
    'register', 'techniques', 'upcoming', 'update', 'users'); 
 
-$environment = 'dev';
+$environment = 'prod';
 
 $techCount = 0;
 $charCount = 0;
@@ -1039,7 +1039,7 @@ function printGfy($gfyObject, $count) {
   echo '       <br>';
   $voteDetails = voteDetails($gfyID, $user['id']);
   if ($voteDetails['direction'] > 0) {
-    echo "       <a id='up$gfyID'href='#' class='vote SL' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up' disabled='disabled'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
+    echo "       <a id='up$gfyID'href='#' class='vote SL' data-autoplay='false' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up' disabled='disabled'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
   } else {
     echo "       <a id='up$gfyID'href='#' class='vote' data-id='" . $gfyObject['id'] . "' data-type='chargif' data-direction='up'><span class='glyphicon glyphicon-chevron-up btn-lg'></span></a>";
   }
